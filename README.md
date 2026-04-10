@@ -4,8 +4,7 @@
 
 > ⚠️ **TODO**: Update the placeholders below:
 > - The three page names and their descriptions
-> - File names for your actual pages
-> - Team member names
+> - File names for the actual pages
 
 ## Project Overview
 
@@ -22,9 +21,9 @@ The platform supports robust search and filter capabilities, detailed profiles f
 
 ## Team
 
-- **Student 1**: [Name]
-- **Student 2**: [Name]
-- **Student 3**: [Name]
+- Dário Amaral (dgamaral2006@gmail.com)
+- Eduardo Santos (edu.santos4506@gmail.com)
+- Tiago Ribeiro (tiagoc8ribeiro@gmail.com)
 
 ## First Delivery
 
