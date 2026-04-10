@@ -2,6 +2,31 @@
 
 # (gym name)
 
+## Project Overview
+
+This project is a gym management website for LTW delivery 1. It presents the core static pages and demonstrates semantic HTML, responsive structure, and organized CSS architecture for a fitness center platform.
+
+## Team
+
+- Dário Amaral
+- Eduardo Santos
+- Tiago Ribeiro
+
+## First Delivery
+
+This first delivery includes the three selected pages required for evaluation:
+
+1. Home Page (`index.html`) - Landing page with clear navigation, hero section, value propositions, featured classes, and a call-to-action.
+2. Classes Page (`classes.html`) - Classes overview with schedule details, trainer information, and enrollment links.
+3. Trainers Page (`trainers.html`) - Trainer profiles with certifications, specializations, experience, and contact options.
+
+### Evaluation Criteria
+
+- Semantic HTML: correct use of structural and semantic elements.
+- CSS organization: base/reset rules first, then reusable component styles, then specific page or variant rules.
+- File and layer organization: logical separation of concerns across files or CSS layers.
+- Responsive design: layout adapts correctly to different screen sizes.
+
 ## Features
 
 **All users:**
@@ -30,6 +55,28 @@
 
 **Extra:**
 - [ ] Something extra (e.g., personal training bookings, membership plans, waitlist, ...).
+
+## Technologies
+
+- HTML5
+- CSS3
+- Responsive design
+
+## Project Structure
+
+```
+├── index.html           # Home page
+├── classes.html         # Classes page
+├── trainers.html        # Trainers page
+├── css/                 # CSS files
+│   ├── base.css         # CSS reset, typography, and base styles
+│   ├── components.css   # Reusable component styles
+│   ├── layout.css       # Layout utilities and spacing
+│   ├── responsive.css   # Media queries for mobile/tablet/desktop
+│   └── style.css        # Page-specific styles and enhancements
+├── images/              # Image assets directory
+└── README.md            # Project documentation
+```
 
 ## Running
 
