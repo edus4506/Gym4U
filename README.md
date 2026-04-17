@@ -14,7 +14,7 @@ This project is a gym management website for LTW delivery 1. It presents the cor
 
 ## First Delivery
 
-This first delivery includes the three selected pages required for evaluation:
+This first delivery includes the tree selected pages required for evaluation:
 
 1. Home Page (`index.html`) - Landing page with clear navigation, hero section, value propositions, featured classes, and a call-to-action.
 2. Classes Page (`classes.html`) - Classes overview with schedule details, trainer information, and enrollment links.
