@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trainers | Gym4U</title>
+  </head>
+
+  <body>
+    <header class="site-header">
+      <div class="container">
+        <nav class="main-nav" aria-label="Main navigation">
+          <a href="index.html" class="logo">Gym4U</a>
+
+          <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="classes.html">Classes</a></li>
+            <li><a href="trainers.html" aria-current="page">Trainers</a></li>
+            <li><a href="#">My Profile</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="page-hero">
+        <div class="container">
+          <p class="eyebrow">Our Team</p>
+          <h1>Meet Our Trainers</h1>
+          <p class="hero-text">
+            Our coaching team combines experience, motivation, and technical
+            knowledge to help every member train with confidence. Discover each
+            trainer’s background, specializations, and classes.
+          </p>
+          <a href="classes.html" class="button primary-button">Explore Classes</a>
+        </div>
+      </section>
+
+      <section class="trainer-filters" aria-labelledby="filters-heading">
+        <div class="container">
+          <h2 id="filters-heading">Find the Right Trainer</h2>
+
+          <form class="filter-form" action="#" method="get">
+            <div class="form-group">
+              <label for="trainer-search">Search by name</label>
+              <input
+                type="text"
+                id="trainer-search"
+                name="trainer-search"
+                placeholder="e.g. Tiago Santos"
+              >
+            </div>
+
+            <div class="form-group">
+              <label for="specialization">Specialization</label>
+              <select id="specialization" name="specialization">
+                <option value="">All specializations</option>
+                <option value="yoga">Yoga</option>
+                <option value="spinning">Spinning</option>
+                <option value="pilates">Pilates</option>
+                <option value="hiit">HIIT</option>
+                <option value="personal-training">Personal Training</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="experience">Experience level</label>
+              <select id="experience" name="experience">
+                <option value="">Any experience</option>
+                <option value="1-3">1–3 years</option>
+                <option value="4-6">4–6 years</option>
+                <option value="7-plus">7+ years</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="class-day">Available on</label>
+              <select id="class-day" name="class-day">
+                <option value="">Any day</option>
+                <option value="monday">Monday</option>
+                <option value="tuesday">Tuesday</option>
+                <option value="wednesday">Wednesday</option>
+                <option value="thursday">Thursday</option>
+                <option value="friday">Friday</option>
+                <option value="saturday">Saturday</option>
+              </select>
+            </div>
+
+            <button type="submit" class="button secondary-button">
+              Apply Filters
+            </button>
+          </form>
+        </div>
+      </section>
+
+      <section class="trainers-list" aria-labelledby="trainers-heading">
+        <div class="container">
+          <h2 id="trainers-heading">Our Coaching Staff</h2>
+
+          <div class="trainer-grid">
+            <article class="trainer-card">
+              <img
+                src="images/trainers/tiago-santos.jpg"
+                alt="Portrait of Tiago Santos"
+                class="trainer-photo"
+              >
+
+              <div class="trainer-card-content">
+                <p class="trainer-role">Strength &amp; Conditioning Coach</p>
+                <h3>Tiago Santos</h3>
+                <p>
+                  Tiago focuses on functional strength, endurance, and building
+                  sustainable workout routines for all experience levels.
+                </p>
+
+                <ul class="trainer-details">
+                  <li><strong>Experience:</strong> 8 years</li>
+                  <li><strong>Certifications:</strong> NASM CPT, Mobility Specialist</li>
+                  <li><strong>Specializations:</strong> Strength, HIIT, Functional Fitness</li>
+                  <li><strong>Classes:</strong> HIIT Blast, Core Strength</li>
+                </ul>
+
+                <a href="classes.html" class="button small-button">See Classes</a>
+              </div>
+            </article>
+
+            <article class="trainer-card">
+              <img
+                src="images/trainers/dario-ribeiro.jpg"
+                alt="Portrait of Dário Ribeiro"
+                class="trainer-photo"
+              >
+
+              <div class="trainer-card-content">
+                <p class="trainer-role">Yoga &amp; Mobility Trainer</p>
+                <h3>Dário Ribeiro</h3>
+                <p>
+                  Dário helps members improve posture, flexibility, and
+                  recovery through mindful movement and breath-focused practice.
+                </p>
+
+                <ul class="trainer-details">
+                  <li><strong>Experience:</strong> 6 years</li>
+                  <li><strong>Certifications:</strong> RYT 500, Breathwork Coach</li>
+                  <li><strong>Specializations:</strong> Yoga, Mobility, Recovery</li>
+                  <li><strong>Classes:</strong> Morning Yoga, Deep Stretch</li>
+                </ul>
+
+                <a href="classes.html" class="button small-button">See Classes</a>
+              </div>
+            </article>
+
+            <article class="trainer-card">
+              <img
+                src="images/trainers/eduardo-amaral.jpg"
+                alt="Portrait of Eduardo Amaral"
+                class="trainer-photo"
+              >
+
+              <div class="trainer-card-content">
+                <p class="trainer-role">Cycling &amp; Cardio Coach</p>
+                <h3>Eduardo Amaral</h3>
+                <p>
+                  Eduardo leads energetic sessions designed to improve
+                  cardiovascular endurance and keep members motivated from start
+                  to finish.
+                </p>
+
+                <ul class="trainer-details">
+                  <li><strong>Experience:</strong> 5 years</li>
+                  <li><strong>Certifications:</strong> Indoor Cycling Instructor</li>
+                  <li><strong>Specializations:</strong> Cycling, Cardio, Endurance</li>
+                  <li><strong>Classes:</strong> Spin Power, Cardio Burn</li>
+                </ul>
+
+                <a href="classes.html" class="button small-button">See Classes</a>
+              </div>
+            </article>
+
+            <article class="trainer-card">
+              <img
+                src="images/trainers/goncalo-papi.jpg"
+                alt="Portrait of Gonçalo Papi"
+                class="trainer-photo"
+              >
+
+              <div class="trainer-card-content">
+                <p class="trainer-role">Personal Trainer</p>
+                <h3>Gonçalo Papi</h3>
+                <p>
+                  Gonçalo specializes in one-on-one coaching, helping members
+                  achieve specific goals with structured and progressive plans.
+                </p>
+
+                <ul class="trainer-details">
+                  <li><strong>Experience:</strong> 9 years</li>
+                  <li><strong>Certifications:</strong> Level 4 Personal Trainer</li>
+                  <li><strong>Specializations:</strong> Muscle Gain, Fat Loss, Coaching</li>
+                  <li><strong>Classes:</strong> Personal Training Sessions</li>
+                </ul>
+
+                <a href="classes.html" class="button small-button">See Classes</a>
+              </div>
+            </article>
+
+            <article class="trainer-card">
+              <img
+                src="images/trainers/ana-ferreira.jpg"
+                alt="Portrait of Ana Ferreira"
+                class="trainer-photo"
+              >
+
+              <div class="trainer-card-content">
+                <p class="trainer-role">Pilates Instructor</p>
+                <h3>Ana Ferreira</h3>
+                <p>
+                  Ana works with members on core control, posture, flexibility,
+                  and body awareness through technique-driven pilates sessions.
+                </p>
+
+                <ul class="trainer-details">
+                  <li><strong>Experience:</strong> 7 years</li>
+                  <li><strong>Certifications:</strong> Clinical Pilates Instructor</li>
+                  <li><strong>Specializations:</strong> Pilates, Core, Posture</li>
+                  <li><strong>Classes:</strong> Pilates Flow, Core Control</li>
+                </ul>
+
+                <a href="classes.html" class="button small-button">See Classes</a>
+              </div>
+            </article>
+
+            <article class="trainer-card">
+              <img
+                src="images/trainers/tiago-gnomo.jpg"
+                alt="Portrait of Tiago Gnomo"
+                class="trainer-photo"
+              >
+
+              <div class="trainer-card-content">
+                <p class="trainer-role">HIIT &amp; Functional Coach</p>
+                <h3>Tiago Gnomo</h3>
+                <p>
+                  Tiago delivers high-intensity classes focused on power,
+                  conditioning, coordination, and training efficiency.
+                </p>
+
+                <ul class="trainer-details">
+                  <li><strong>Experience:</strong> 4 years</li>
+                  <li><strong>Certifications:</strong> Group Fitness Coach</li>
+                  <li><strong>Specializations:</strong> HIIT, Conditioning, Agility</li>
+                  <li><strong>Classes:</strong> HIIT Express, Functional Circuit</li>
+                </ul>
+
+                <a href="classes.html" class="button small-button">See Classes</a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="featured-trainer" aria-labelledby="featured-heading">
+        <div class="container">
+          <div class="featured-trainer-layout">
+            <div class="featured-trainer-image">
+              <img
+                src="images/trainers/featured-trainer.jpg"
+                alt="Featured trainer leading a group session"
+              >
+            </div>
+
+            <div class="featured-trainer-content">
+              <p class="eyebrow">Featured Trainer</p>
+              <h2 id="featured-heading">David PR</h2>
+              <p>
+                David is one of the most experienced coaches at Gym4U and is
+                known for combining technical guidance with a motivating
+                teaching style. His sessions are designed to challenge both
+                beginners and advanced members in a supportive environment.
+              </p>
+
+              <p>
+                He currently leads some of the gym’s most popular classes and
+                also supports members looking to improve strength, mobility, and
+                overall fitness performance.
+              </p>
+
+              <ul class="highlight-list">
+                <li>Leads 4 group classes per week</li>
+                <li>Special focus on functional fitness</li>
+                <li>Popular among beginner and intermediate members</li>
+              </ul>
+
+              <a href="classes.html" class="button primary-button">Join a Class</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="trainer-schedule" aria-labelledby="schedule-heading">
+        <div class="container">
+          <h2 id="schedule-heading">Classes by Trainer</h2>
+
+          <div class="schedule-table-wrapper">
+            <table>
+              <caption>
+                Weekly overview of selected classes and trainers
+              </caption>
+              <thead>
+                <tr>
+                  <th scope="col">Trainer</th>
+                  <th scope="col">Class</th>
+                  <th scope="col">Day</th>
+                  <th scope="col">Time</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Tiago Santos</th>
+                  <td>HIIT Blast</td>
+                  <td>Monday</td>
+                  <td>18:00</td>
+                </tr>
+                <tr>
+                  <th scope="row">Dário Ribeiro</th>
+                  <td>Morning Yoga</td>
+                  <td>Tuesday</td>
+                  <td>08:00</td>
+                </tr>
+                <tr>
+                  <th scope="row">Eduardo Amaral</th>
+                  <td>Spin Power</td>
+                  <td>Wednesday</td>
+                  <td>19:00</td>
+                </tr>
+                <tr>
+                  <th scope="row">Ana Ferreira</th>
+                  <td>Pilates Flow</td>
+                  <td>Thursday</td>
+                  <td>17:30</td>
+                </tr>
+                <tr>
+                  <th scope="row">Tiago Gnomo</th>
+                  <td>Functional Circuit</td>
+                  <td>Friday</td>
+                  <td>18:30</td>
+                </tr>
+                <tr>
+                  <th scope="row">Gonçalo Papi</th>
+                  <td>Personal Training</td>
+                  <td>Saturday</td>
+                  <td>10:00</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section class="cta-section">
+        <div class="container">
+          <h2>Ready to train with us?</h2>
+          <p>
+            Explore our class schedule and find the right trainer for your
+            goals.
+          </p>
+          <a href="classes.html" class="button primary-button">View Schedule</a>
+        </div>
+      </section>
+    </main>
+
+    <footer id="contact" class="site-footer">
+      <div class="container">
+        <section>
+          <h2>Gym4U</h2>
+          <p>
+            Train smarter with expert coaching, dynamic classes, and a
+            welcoming fitness community.
+          </p>
+        </section>
+
+        <section>
+          <h2>Contact</h2>
+          <ul>
+            <li>Email: contact@gym4u.pt</li>
+            <li>Phone: +351 912 345 678</li>
+            <li>Address: Rua do Fitness, Porto</li>
+          </ul>
+        </section>
+        <section>
+            <h2>Quick Links</h2>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="classes.html">Classes</a></li>
+            <li><a href="trainers.html">Trainers</a></li>
+          </ul>
+        </section>
+      </div>
+    </footer>
+  </body>
+</html>
