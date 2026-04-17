@@ -1,6 +1,6 @@
 # ltw05g02
 
-# (gym name)
+# Gym4U
 
 ## Project Overview
 
