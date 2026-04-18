@@ -2,23 +2,133 @@
 <html lang="en-US">
     <head>
         <title> Home | Gym4U </title>
+
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <link rel="icon" href="images/gym4u_icon.png">
+        <link rel="stylesheet" href="css/base.css">
     </head>
 
     <body>
         <header>
-            <h1>GYMMM FOR YOUUU</h1>
-            <p>Pages</p>
+            <h1>The Best GYM FOR YOU</h1>
             <nav>
                 <ul>
+                    <li><a href="#">Sobre Nós</a></li>
                     <li><a href="classes.html">Classes</a></li>
                     <li><a href="trainers.html">Trainers</a></li>
-                    <li><a href=#>Profile</a></li>
+                    <li><a href="#">Profile</a></li>
                 </ul>
             </nav>
         </header>
+
+        <main>
+            <section class="hero">
+                <div class="slider">
+                    <img src="images/img1.png" class="slide" alt="Gym training image 1">
+                    <img src="images/img2.png" class="slide" alt="Gym training image 2">
+                </div>
+                <div class="hero-text">
+                    <h2>Transform Your Body</h2>
+                    <p>Join the best Gym4U and start your fitness journey today.</p>
+                    <a href="classes.html">Get Started</a>
+                </div>
+            </section>
+
+            <section>
+                <h2>Why Gym4U?</h2>
+                <p>
+                    At Gym4U, we combine expert trainers, modern equipment, and a motivating
+                    environment to help you achieve your fitness goals faster.
+                </p>
+            </section>
+
+            <section>
+                <h2>What We Offer</h2>
+
+                <div class="features-grid">
+                    <div class="feature">
+                        <h3>Aulas do Ginásio</h3>
+                        <p>
+                            Participa em aulas dinâmicas como Yoga, HIIT, Spinning e muito mais,
+                            adaptadas a todos os níveis.
+                        </p>
+                        <a href="classes.html">Ver Aulas</a>
+                    </div>
+
+                    <div class="feature">
+                        <h3>Treinadores</h3>
+                        <p>
+                            Treina com profissionais experientes que te ajudam a atingir
+                            os teus objetivos com segurança.
+                        </p>
+                        <a href="trainers.html">Ver Treinadores</a>
+                    </div>
+
+                    <div class="feature">
+                        <h3>Equipamento de Qualidade</h3>
+                        <p>
+                            Equipamento moderno e de alta qualidade para garantir treinos
+                            eficientes e confortáveis.
+                        </p>
+                    </div>
+
+                    <div class="feature">
+                        <h3>Bebidas Disponíveis</h3>
+                        <p>
+                            Água, sumos naturais e bebidas energéticas disponíveis para manter
+                            o teu desempenho ao máximo.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>Your Opinion Matters</h2>
+                <p>Leave your review about our gym, equipment, and services.</p>
+
+                <form action="#" method="post">
+
+                    <fieldset>
+                        <legend>Rating</legend>
+
+                        <div class="estrelas_testemunhos">
+
+                            <input type="radio" id="star1" name="rating" value="1">
+                            <label for="star1">★</label>
+
+                            <input type="radio" id="star2" name="rating" value="2">
+                            <label for="star2">★</label>
+
+                            <input type="radio" id="star3" name="rating" value="3">
+                            <label for="star3">★</label>
+
+                            <input type="radio" id="star4" name="rating" value="4">
+                            <label for="star4">★</label>
+
+                            <input type="radio" id="star5" name="rating" value="5">
+                            <label for="star5">★</label>
+
+                        </div>
+                    </fieldset>
+
+                    <label for="review">Your Review</label>
+                    <textarea 
+                        id="review" 
+                        name="review" 
+                        rows="5" 
+                        placeholder="Write your opinion here..."
+                        required>
+                    </textarea>
+
+                    <button type="submit">Submit Review</button>
+                </form>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2026 Gym4U. All rights reserved.</p>
+        </footer>
     </body>
 </html>
