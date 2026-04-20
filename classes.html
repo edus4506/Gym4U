@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8">
@@ -6,6 +6,8 @@
     <title>Classes | Gym4U</title>
     <link rel="icon" href="images/gym4u_icon.png">
     <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/classes.css">
   </head>
   <body>
     <header>
@@ -21,267 +23,121 @@
       </nav>
     </header>
 
-    <main>
-      <section aria-labelledby="browse-classes-title">
-        <h2 id="browse-classes-title">Browse Available Classes</h2>
-        <p>
-          Filter classes by type, trainer, day, and time. Enroll or cancel your
-          spot directly from the schedule.
-        </p>
-
-        <form action="#" method="get">
-          <fieldset>
-            <legend>Filter Schedule</legend>
-
-            <label for="class-type">Class type</label>
-            <select id="class-type" name="class_type">
-              <option value="">All class types</option>
-              <option value="yoga">Yoga</option>
-              <option value="spinning">Spinning</option>
-              <option value="hiit">HIIT</option>
-              <option value="pilates">Pilates</option>
-            </select>
-
-            <label for="trainer">Trainer</label>
-            <select id="trainer" name="trainer">
-              <option value="">All trainers</option>
-              <option value="ana-silva">Ana Silva</option>
-              <option value="marco-costa">Marco Costa</option>
-              <option value="sofia-mendes">Sofia Mendes</option>
-              <option value="ricardo-pinto">Ricardo Pinto</option>
-            </select>
-
-            <label for="day">Day</label>
-            <select id="day" name="day">
-              <option value="">Any day</option>
-              <option value="monday">Monday</option>
-              <option value="tuesday">Tuesday</option>
-              <option value="wednesday">Wednesday</option>
-              <option value="thursday">Thursday</option>
-              <option value="friday">Friday</option>
-              <option value="saturday">Saturday</option>
-              <option value="sunday">Sunday</option>
-            </select>
-
-            <label for="time">Time window</label>
-            <select id="time" name="time">
-              <option value="">Any time</option>
-              <option value="morning">Morning (06:00 - 12:00)</option>
-              <option value="afternoon">Afternoon (12:00 - 17:00)</option>
-              <option value="evening">Evening (17:00 - 22:00)</option>
-            </select>
-
-            <button type="submit">Apply filters</button>
-            <button type="reset">Clear filters</button>
-            <p>Showing all classes open to enrollment.</p>
-          </fieldset>
-        </form>
-
-        <section aria-labelledby="schedule-title">
-          <h3 id="schedule-title">Upcoming Class Schedule</h3>
-          <table>
-            <caption>
-              Current week class availability and enrollment actions
-            </caption>
-            <thead>
-              <tr>
-                <th scope="col">Class</th>
-                <th scope="col">Trainer</th>
-                <th scope="col">Day</th>
-                <th scope="col">Time</th>
-                <th scope="col">Capacity</th>
-                <th scope="col">Status</th>
-                <th scope="col">Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row">Morning Yoga</th>
-                <td>Ana Silva</td>
-                <td>Monday</td>
-                <td>08:00 - 09:00</td>
-                <td>18 / 20</td>
-                <td>Open to enroll (2 spots left)</td>
-                <td>
-                  <form action="#" method="post">
-                    <button type="submit">Enroll</button>
-                  </form>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">Power Spinning</th>
-                <td>Marco Costa</td>
-                <td>Tuesday</td>
-                <td>19:00 - 20:00</td>
-                <td>25 / 25</td>
-                <td>Full (enrollment closed)</td>
-                <td>
-                  <form action="#" method="post">
-                    <button type="submit" disabled>Enroll</button>
-                  </form>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">HIIT Blast</th>
-                <td>Ricardo Pinto</td>
-                <td>Wednesday</td>
-                <td>18:00 - 18:45</td>
-                <td>16 / 20</td>
-                <td>Enrolled (you can cancel)</td>
-                <td>
-                  <form action="#" method="post">
-                    <button type="submit">Cancel Enrollment</button>
-                  </form>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">Core Pilates</th>
-                <td>Sofia Mendes</td>
-                <td>Friday</td>
-                <td>17:30 - 18:30</td>
-                <td>12 / 16</td>
-                <td>Open to enroll (4 spots left)</td>
-                <td>
-                  <form action="#" method="post">
-                    <button type="submit">Enroll</button>
-                  </form>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </section>
-      </section>
-
-      <section aria-labelledby="trainer-profiles-title">
-        <h2 id="trainer-profiles-title">Trainer Profiles</h2>
-
-        <article>
-          <h3>Gonçalo Pinto</h3>
-          <p><strong>Specializations:</strong> Hatha Yoga, Mobility, Breathwork</p>
-          <p><strong>Classes taught:</strong> Morning Yoga, Sunset Flow</p>
-        </article>
-
-        <article>
-          <h3>David Ferreira</h3>
-          <p><strong>Specializations:</strong> Indoor Cycling, Endurance Training</p>
-          <p><strong>Classes taught:</strong> Power Spinning, Sprint Intervals</p>
-        </article>
-
-        <p>
-          <a href="trainers.html" role="button" aria-label="See more trainer profiles">
-            See more
-          </a>
+    <main class="main">
+      <section class="section classes-intro" aria-labelledby="classes-title">
+        <h2 class="h2" id="classes-title">Classes at Our Gym</h2>
+        <p class="p">
+          Explore every class division available at Gym4U. Each class includes
+          the trainer who leads it, so you can choose the style and coach that
+          fits your goals.
         </p>
       </section>
 
-      <section aria-labelledby="equipment-title">
-        <h2 id="equipment-title">Main Training Area Equipment Availability</h2>
-        <table>
-          <caption>
-            Live equipment usage overview
-          </caption>
-          <thead>
-            <tr>
-              <th scope="col">Equipment</th>
-              <th scope="col">Total</th>
-              <th scope="col">In Use</th>
-              <th scope="col">Available</th>
+      <section class="section" aria-labelledby="division-title">
+        <h2 class="h2" id="division-title">Class Divisions</h2>
+
+        <div class="division-grid">
+          <article class="division-card">
+            <img class="division-image" src="images/yoga-class.jpeg" alt="Yoga and mobility class area">
+            <div class="division-content">
+              <h3 class="h3">Yoga &amp; Mobility</h3>
+              <p class="p">Calm sessions focused on flexibility, breathing, and recovery.</p>
+              <p class="p division-meta"><strong>Classes:</strong> Morning Yoga, Deep Stretch</p>
+              <p class="p division-meta"><strong>Trainer:</strong> Dário Ribeiro</p>
+            </div>
+          </article>
+
+          <article class="division-card">
+            <img class="division-image" src="images/img2.png" alt="Cycling and cardio training zone">
+            <div class="division-content">
+              <h3 class="h3">Cycling &amp; Cardio</h3>
+              <p class="p">High-energy rides and cardio work to build endurance.</p>
+              <p class="p division-meta"><strong>Classes:</strong> Spin Power, Cardio Burn</p>
+              <p class="p division-meta"><strong>Trainer:</strong> Eduardo Amaral</p>
+            </div>
+          </article>
+
+          <article class="division-card">
+            <img class="division-image" src="images/img1.png" alt="HIIT and conditioning class floor">
+            <div class="division-content">
+              <h3 class="h3">HIIT &amp; Conditioning</h3>
+              <p class="p">Fast-paced interval blocks to improve stamina and power.</p>
+              <p class="p division-meta"><strong>Classes:</strong> HIIT Blast, Core Strength</p>
+              <p class="p division-meta"><strong>Trainer:</strong> Tiago Santos</p>
+            </div>
+          </article>
+
+          <article class="division-card">
+            <img class="division-image" src="images/img2.png" alt="Functional training equipment section">
+            <div class="division-content">
+              <h3 class="h3">Functional Training</h3>
+              <p class="p">Circuit-based sessions to improve movement and coordination.</p>
+              <p class="p division-meta"><strong>Classes:</strong> HIIT Express, Functional Circuit</p>
+              <p class="p division-meta"><strong>Trainer:</strong> Tiago Gnomo</p>
+            </div>
+          </article>
+
+          <article class="division-card">
+            <img class="division-image" src="images/img1.png" alt="Pilates and core stability space">
+            <div class="division-content">
+              <h3 class="h3">Pilates &amp; Core</h3>
+              <p class="p">Technique-focused classes for posture and core control.</p>
+              <p class="p division-meta"><strong>Classes:</strong> Pilates Flow, Core Control</p>
+              <p class="p division-meta"><strong>Trainer:</strong> Ana Ferreira</p>
+            </div>
+          </article>
+
+          <article class="division-card">
+            <img class="division-image" src="images/img2.png" alt="Personal training studio area">
+            <div class="division-content">
+              <h3 class="h3">Personal Training</h3>
+              <p class="p">Individualized sessions tailored to your exact fitness goals.</p>
+              <p class="p division-meta"><strong>Class:</strong> Personal Training Sessions</p>
+              <p class="p division-meta"><strong>Trainer:</strong> Gonçalo Papi</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section schedule-box" aria-labelledby="schedule-title">
+        <h2 class="h2" id="schedule-title">Weekly Class Schedule</h2>
+        <table class="table">
+          <caption class="caption">All classes and trainers at Gym4U</caption>
+          <thead class="thead">
+            <tr class="tr">
+              <th class="th" scope="col">Class</th>
+              <th class="th" scope="col">Trainer</th>
+              <th class="th" scope="col">Day</th>
+              <th class="th" scope="col">Time</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <th scope="row">Treadmills</th>
-              <td>20</td>
-              <td>14</td>
-              <td>6</td>
-            </tr>
-            <tr>
-              <th scope="row">Stationary Bikes</th>
-              <td>16</td>
-              <td>10</td>
-              <td>6</td>
-            </tr>
-            <tr>
-              <th scope="row">Weight Benches</th>
-              <td>12</td>
-              <td>9</td>
-              <td>3</td>
-            </tr>
-            <tr>
-              <th scope="row">Rowing Machines</th>
-              <td>8</td>
-              <td>3</td>
-              <td>5</td>
-            </tr>
+          <tbody class="tbody">
+            <tr class="tr"><th class="th" scope="row">HIIT Blast</th><td class="td">Tiago Santos</td><td class="td">Monday</td><td class="td">18:00</td></tr>
+            <tr class="tr"><th class="th" scope="row">Morning Yoga</th><td class="td">Dário Ribeiro</td><td class="td">Tuesday</td><td class="td">08:00</td></tr>
+            <tr class="tr"><th class="th" scope="row">Spin Power</th><td class="td">Eduardo Amaral</td><td class="td">Tuesday</td><td class="td">19:00</td></tr>
+            <tr class="tr"><th class="th" scope="row">Core Strength</th><td class="td">Tiago Santos</td><td class="td">Wednesday</td><td class="td">18:00</td></tr>
+            <tr class="tr"><th class="th" scope="row">Functional Circuit</th><td class="td">Tiago Gnomo</td><td class="td">Wednesday</td><td class="td">18:30</td></tr>
+            <tr class="tr"><th class="th" scope="row">Deep Stretch</th><td class="td">Dário Ribeiro</td><td class="td">Thursday</td><td class="td">09:00</td></tr>
+            <tr class="tr"><th class="th" scope="row">Pilates Flow</th><td class="td">Ana Ferreira</ td>< td class = " td " > Thursday </ td >< td class = " td " > 17:30 </ td > </ tr >
+            <tr class="tr"><th class="th" scope="row">Cardio Burn</th><td class="td">Eduardo Amaral</td><td class="td">Friday</td><td class="td">19:00</td></tr>
+            <tr class="tr"><th class="th" scope="row">Core Control</th><td class="td">Ana Ferreira</td><td class="td">Friday</td><td class="td">17:30</td></tr>
+            <tr class="tr"><th class="th" scope="row">HIIT Express</th><td class="td">Tiago Gnomo</td><td class="td">Saturday</td><td class="td">18:30</td></tr>
+            <tr class="tr"><th class="th" scope="row">Personal Training Sessions</th><td class="td">Gonçalo Papi</td><td class="td">Saturday</td><td class="td">10:00</td></tr>
           </tbody>
         </table>
       </section>
 
-      <section aria-labelledby="reviews-title">
-        <h2 id="reviews-title">Class Ratings and Reviews</h2>
-
-        <form action="#" method="post">
-          <fieldset>
-            <legend>Leave a review for a class you attended</legend>
-
-            <label for="review-class">Class</label>
-            <select id="review-class" name="review_class" required>
-              <option value="">Select a class</option>
-              <option value="morning-yoga">Morning Yoga</option>
-              <option value="power-spinning">Power Spinning</option>
-              <option value="hiit-blast">HIIT Blast</option>
-              <option value="core-pilates">Core Pilates</option>
-            </select>
-
-            <label for="rating">Rating</label>
-            <select id="rating" name="rating" required>
-              <option value="">Choose a rating</option>
-              <option value="5">5 - Excellent</option>
-              <option value="4">4 - Very good</option>
-              <option value="3">3 - Good</option>
-              <option value="2">2 - Fair</option>
-              <option value="1">1 - Poor</option>
-            </select>
-
-            <label for="review-text">Review</label>
-            <textarea
-              id="review-text"
-              name="review_text"
-              rows="5"
-              placeholder="Share your experience with this class"
-              required
-            ></textarea>
-
-            <button type="submit">Submit review</button>
-          </fieldset>
-        </form>
-
-        <section aria-labelledby="recent-reviews-title">
-          <h3 id="recent-reviews-title">Recent Reviews</h3>
-
-          <article>
-            <h4>HIIT Blast - 5/5</h4>
-            <p>
-              "Intense and well-structured session. Ricardo kept everyone motivated
-              and gave great form corrections."
-            </p>
-            <p><strong>By:</strong> Member #2041</p>
-          </article>
-
-          <article>
-            <h4>Morning Yoga - 4/5</h4>
-            <p>
-              "Great class to start the day. Clear instructions and a relaxing
-              cooldown."
-            </p>
-            <p><strong>By:</strong> Member #1876</p>
-          </article>
-        </section>
+      <section class="section trainers-cta" aria-labelledby="trainers-link-title">
+        <h2 class="h2" id="trainers-link-title">Want to Know More About Our Trainers?</h2>
+        <p class="p">
+          Check full trainer profiles, specializations, and experience details.
+        </p>
+        <p class="p"><a class="a" href="trainers.html">See more about trainers</a></p>
       </section>
     </main>
 
-    <footer>
-      <p>&copy; 2026 PulseFit Gym. All rights reserved.</p>
+    <footer class="footer">
+      <p class="p">&copy; 2026 Gym4U. All rights reserved.</p>
     </footer>
   </body>
 </html>
