@@ -125,6 +125,83 @@
         </table>
       </section>
 
+      <section class="section class-filters" id="filters">
+            <h2 class="h2">Browse Classes &amp; Enroll</h2>
+            <form class="filter-group">
+                <select name="type" aria-label="Filter by class type">
+                    <option value="">All Types</option>
+                    <option value="yoga">Yoga & Mobility</option>
+                    <option value="cardio">Cycling & Cardio</option>
+                    <option value="hiit">HIIT & Conditioning</option>
+                </select>
+                <select name="trainer" aria-label="Filter by trainer">
+                    <option value="">All Trainers</option>
+                    <option value="dario">Dário Ribeiro</option>
+                    <option value="ana">Ana Ferreira</option>
+                </select>
+                <select name="day" aria-label="Filter by day">
+                    <option value="">All Days</option>
+                    <option value="monday">Monday</option>
+                    <option value="tuesday">Tuesday</option>
+                </select>
+                <input type="time" name="time" aria-label="Filter by time">
+                <button type="submit" class="btn-filter">Apply Filters</button>
+            </form>
+        </section>
+
+        <section class="section schedule-box">
+            <table class="table">
+                <caption class="caption">Book your spot or leave a review for past sessions</caption>
+                <thead class="thead">
+                    <tr class="tr">
+                        <th class="th">Class & Rating</th>
+                        <th class="th">Trainer</th>
+                        <th class="th">Day & Time</th>
+                        <th class="th">Capacity</th>
+                        <th class="th">Action</th>
+                    </tr>
+                </thead>
+                <tbody class="tbody">
+                    <tr class="tr">
+                        <th class="th" scope="row">
+                            HIIT Blast<br>
+                            <span class="rating-stars">★★★★☆ (4.2)</span>
+                        </th>
+                        <td class="td"><a href="trainers.html#tiago-santos">Tiago Santos</a></td>
+                        <td class="td">Monday, 18:00</td>
+                        <td class="td">15/20</td>
+                        <td class="td">
+                            <button class="btn btn-enroll">Enroll</button>
+                        </td>
+                    </tr>
+                    <tr class="tr enrolled-row">
+                        <th class="th" scope="row">
+                            Morning Yoga<br>
+                            <span class="rating-stars">★★★★★ (4.9)</span>
+                        </th>
+                        <td class="td"><a href="trainers.html#dario-ribeiro">Dário Ribeiro</a></td>
+                        <td class="td">Tuesday, 08:00</td>
+                        <td class="td">8/12</td>
+                        <td class="td">
+                            <button class="btn btn-cancel">Cancel</button>
+                        </td>
+                    </tr>
+                    <tr class="tr past-class">
+                        <th class="th" scope="row">
+                            Spin Power<br>
+                            <span class="rating-stars">★★★☆☆ (3.5)</span>
+                        </th>
+                        <td class="td"><a href="trainers.html#eduardo-amaral">Eduardo Amaral</a></td>
+                        <td class="td">Last Friday</td>
+                        <td class="td">Completed</td>
+                        <td class="td">
+                            <button class="btn btn-review">Rate Class</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
       <section class="section trainers-cta" id="trainers-cta">
         <h2 class="h2">Want to Know More About Our Trainers?</h2>
         <p class="p">
@@ -132,6 +209,61 @@
         </p>
         <p class="p"><a class="a" href="trainers.html">See more about trainers</a></p>
       </section>
+
+      <section class="section review-form-container">
+        <h2 class="h2">Leave a Review</h2>
+          <form class="review-form">
+            <label for="rating">Rating:</label>
+              <select id="rating" name="rating">
+                <option value="5">5 Stars - Excellent</option>
+                <option value="4">4 Stars - Very Good</option>
+                <option value="3">3 Stars - Average</option>
+                <option value="2">2 Stars - Poor</option>
+                <option value="1">1 Star - Terrible</option>
+              </select>
+              <textarea placeholder="Share your experience..." rows="3"></textarea>
+            <button type="submit" class="btn btn-enroll">Submit Review</button>
+          </form>
+        </section>
+
+        <section class="section reviews-display" id="recent-reviews">
+          <h2 class="h2">Member Feedback</h2>
+            <div class="division-grid">
+                <article class="division-card" style="padding: 1rem; border-style: solid;">
+                    <div class="review-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                        <strong>Sarah J.</strong>
+                        <span style="color: #f39c12;">★★★★★</span>
+                    </div>
+                    <p class="p" style="font-style: italic; font-size: 0.9rem;">
+                        "The Morning Yoga with Dário is the best way to start the day. The flow is perfect for all levels."
+                    </p>
+                    <small class="p division-meta">Class: <strong>Morning Yoga</strong></small>
+                </article>
+
+                <article class="division-card" style="padding: 1rem; border-style: solid;">
+                    <div class="review-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                        <strong>Mark L.</strong>
+                        <span style="color: #f39c12;">★★★★☆</span>
+                    </div>
+                    <p class="p" style="font-style: italic; font-size: 0.9rem;">
+                        "HIIT Blast was intense! Tiago really pushes you to your limits. Great energy in the room."
+                    </p>
+                    <small class="p division-meta">Class: <strong>HIIT Blast</strong></small>
+                </article>
+
+                <article class="division-card" style="padding: 1rem; border-style: solid;">
+                    <div class="review-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                        <strong>Elena R.</strong>
+                        <span style="color: #f39c12;">★★★★★</span>
+                    </div>
+                    <p class="p" style="font-style: italic; font-size: 0.9rem;">
+                        "Spin Power with Eduardo is a sweat-fest! The playlist is always fire. Highly recommend."
+                    </p>
+                    <small class="p division-meta">Class: <strong>Spin Power</strong></small>
+                </article>
+            </div>
+        </section>
+
     </main>
 
     <footer class="footer">
