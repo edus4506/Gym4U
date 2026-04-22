@@ -7,7 +7,7 @@
 
 .slider {
   position: relative;
-  height: 400px;
+  height: 50vh; 
 }
 
 .slide {
@@ -16,6 +16,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  opacity: 0;
   animation: fade 8s infinite;
 }
 
@@ -33,13 +34,13 @@
 
 .hero-text {
   position: absolute;
-  bottom: 20px;
-  left: 20px;
+  bottom: 5%;
+  left: 5%;
   background: rgba(0, 0, 0, 0.6);
   color: white;
   padding: 1rem;
   border-radius: var(--radius);
-  max-width: 400px;
+  max-width: 40%;
 }
 
 .hero-text p {
@@ -55,13 +56,93 @@
   text-align: center;
 }
 
+.features-modern {
+  margin-top: 2rem;
+}
+
+.grid-2x2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-rows: 30vh;
+  gap: 1rem;
+}
+
+.card {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  transition: transform 0.2s ease;
+}
+
+.card:hover {
+  transform: scale(1.02);
+}
+
+.card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 1;
+}
+
+.overlay.light {
+  background: rgba(120, 120, 120, 0.5);
+}
+
+.content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 35%;
+  height: 100%;
+  z-index: 2;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+
+  padding: 2rem;
+  text-align: left;
+}
+
+.content h3,
+.content p {
+  color: white;
+  margin: 0;
+}
+
+.content p {
+  margin: 0.5rem 0;
+  font-size: 0.95rem;
+  text-align: left;
+}
+
+.content a {
+  color: rgb(7, 182, 7);
+  font-weight: 600;
+  margin-top: 0.5rem;
+  text-decoration: none;
+}
+
+.content a:hover {
+  color: var(--primary-strong);
+}
+
 .review-form-container {
   background: var(--surface);
   padding: 2rem;
   border-radius: var(--radius);
   border: 1px solid var(--border);
   max-width: 100%;
-  margin: 3rem auto;
+  margin: 5% auto; 
 }
 
 .review-form {
@@ -88,7 +169,7 @@
 
 .review-form textarea {
   resize: vertical;
-  min-height: 100px;
+  min-height: 15vh;
 }
 
 .division-grid {
@@ -141,7 +222,7 @@
   }
 
   .card {
-    height: 250px;
+    height: 30vh;
   }
 
   .hero-text {
