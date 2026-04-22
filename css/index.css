@@ -30,3 +30,14 @@
   55% { opacity: 0; }
   100% { opacity: 0; }
 }
+
+main > section:nth-of-type(2) {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1.5rem;
+  max-width: 50rem;
+  margin: 2rem auto;
+  text-align: center;
+}
