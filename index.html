@@ -1,135 +1,165 @@
 <!DOCTYPE html> 
 <html lang="en-US">
-    <head>
-        <title> Home | Gym4U </title>
+<head>
+    <title>Home | Gym4U</title>
 
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <link rel="stylesheet" href="css/base.css">
-        <link rel="stylesheet" href="css/components.css">
-        <link rel="stylesheet" href="css/index.css">
-    </head>
+    <link rel="icon" href="images/gym4u_icon.png">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/index.css">
+</head>
 
-    <body>
-        <header>
-            <h1>The Best GYM FOR YOU</h1>
-            <nav>
-                <ul>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="classes.html">Classes</a></li>
-                    <li><a href="trainers.html">Trainers</a></li>
-                    <li><a href="#">Profile</a></li>
-                </ul>
-            </nav>
-        </header>
+<body>
+    <header>
+        <h1>Gym4U</h1>
+        <p>Your Fitness Journey Starts Here</p>
+        <nav aria-label="Main navigation">
+            <ul>
+                <li><a href="index.html" aria-current="page">Home</a></li>
+                <li><a href="classes.html">Classes</a></li>
+                <li><a href="trainers.html">Trainers</a></li>
+                <li><a href="#">My Profile</a></li>
+            </ul>
+        </nav>
+    </header>
 
-        <main>
-            <section class="hero">
-                <div class="slider">
-                    <img src="images/img1.png" class="slide" alt="Gym training image 1">
-                    <img src="images/img2.png" class="slide" alt="Gym training image 2">
-                </div>
-                <div class="hero-text">
-                    <h2>Transform Your Body</h2>
-                    <p>Join the best Gym4U and start your fitness journey today.</p>
-                    <a href="classes.html">Get Started</a>
-                </div>
-            </section>
+    <main>
+        <section class="section hero">
+            <div class="slider">
+                <img src="images/index/slider1.png" class="slide" alt="Gym training image 1">
+                <img src="images/index/slider2.png" class="slide" alt="Gym training image 2">
+            </div>
 
-            <section>
-                <h2>Why Gym4U?</h2>
+            <div class="hero-text">
+                <h2>Transform Your Body</h2>
                 <p>
-                    At Gym4U, we combine expert trainers, modern equipment, and a motivating
-                    environment to help you achieve your fitness goals faster.
+                    Join Gym4U and start your fitness journey with expert guidance,
+                    modern equipment, and motivating classes.
                 </p>
-            </section>
+                <a class="btn-primary">Get Started</a>
+            </div>
+        </section>
 
-            <section>
-                <h2>What We Offer</h2>
+        <section class="section about">
+            <h2>Why Gym4U?</h2>
+            <p>
+                At Gym4U, we combine expert trainers, modern equipment, and a motivating
+                environment to help you achieve your fitness goals faster.
+            </p>
+        </section>
 
-                <div class="features-grid">
-                    <div class="feature">
-                        <h3>Gym Classes</h3>
-                        <p>
-                            Join dynamic classes such as Yoga, HIIT, Spinning, and much more,
-                            suitable for all levels.
-                        </p>
-                        <a href="classes.html">View Classes</a>
-                    </div>
+        <section class="features-modern">
+            <div class="grid-2x2">
 
-                    <div class="feature">
+                <article class="card">
+                    <img src="images/index/trainers.png" alt="Trainers">
+                    <div class="overlay"></div>
+                    <div class="content">
                         <h3>Trainers</h3>
-                        <p>
-                            Train with experienced professionals who help you achieve
-                            your goals safely.
-                        </p>
+                        <p>Train with experienced professionals!</p>
                         <a href="trainers.html">View Trainers</a>
                     </div>
+                </article>
 
-                    <div class="feature">
-                        <h3>High-Quality Equipment</h3>
-                        <p>
-                            Modern and high-quality equipment to ensure efficient
-                            and comfortable workouts.
-                        </p>
+                <article class="card">
+                    <img src="images/index/classes.png" alt="Classes">
+                    <div class="overlay"></div>
+                    <div class="content">
+                        <h3>Gym Classes</h3>
+                        <p>Join dynamic classes such as Yoga, HIIT, and Spinning.</p>
+                        <a href="classes.html">View Classes</a>
                     </div>
+                </article>
 
-                    <div class="feature">
-                        <h3>Drinks Available</h3>
-                        <p>
-                            Water, natural juices, and energy drinks available to keep
-                            your performance at its best.
-                        </p>
+                <article class="card">
+                    <img src="images/index/equipment.png" alt="Equipment">
+                    <div class="overlay"></div>
+                    <div class="content">
+                        <h3>Modern Equipment</h3>
+                        <p>High-quality equipment for efficient workouts.</p>
                     </div>
-                </div>
-            </section>
+                </article>
 
-            <section>
-                <h2>Your Opinion Matters</h2>
-                <p>Leave a review about our gym, equipment, and services.</p>
+                <article class="card light">
+                    <img src="images/index/drinks.png" alt="Drinks">
+                    <div class="overlay light"></div>
+                    <div class="content">
+                        <h3>Healthy Drinks</h3>
+                        <p>Stay hydrated with water, juices, and energy drinks.</p>
+                    </div>
+                </article>
 
-                <form action="#" method="post">
+            </div>
+        </section>
 
-                    <fieldset>
-                        <legend>Rating</legend>
+        <!-- REVIEW FORM -->
+        <section class="section review-form-container">
+            <h2>Leave a Review</h2>
+            <form class="review-form">
+                <label for="rating">Rating:</label>
+                <select id="rating" name="rating">
+                    <option value="5">5 Stars - Excellent</option>
+                    <option value="4">4 Stars - Very Good</option>
+                    <option value="3">3 Stars - Average</option>
+                    <option value="2">2 Stars - Poor</option>
+                    <option value="1">1 Star - Terrible</option>
+                </select>
 
-                        <div class="review-stars">
+                <textarea placeholder="Share your experience..." rows="3"></textarea>
 
-                            <input type="radio" id="star1" name="rating" value="1">
-                            <label for="star1">★</label>
+                <button type="submit" class="btn-primary">Submit Review</button>
+            </form>
+        </section>
 
-                            <input type="radio" id="star2" name="rating" value="2">
-                            <label for="star2">★</label>
+        <section class="section">
+            <h2>Member Feedback</h2>
 
-                            <input type="radio" id="star3" name="rating" value="3">
-                            <label for="star3">★</label>
+            <div class="division-grid">
 
-                            <input type="radio" id="star4" name="rating" value="4">
-                            <label for="star4">★</label>
+                <article class="review-card">
+                    <h3>Yoga & Mobility</h3>
+                    <div class="review-header">
+                        <strong>Maria S.</strong>
+                        <span>★★★★☆</span>
+                    </div>
+                    <p class="review-text">
+                        Yoga classes are very relaxing and well structured. Perfect for stress relief after work.
+                    </p>
+                </article>
 
-                            <input type="radio" id="star5" name="rating" value="5">
-                            <label for="star5">★</label>
+                <article class="review-card">
+                    <h3>Spin Power</h3>
+                    <div class="review-header">
+                        <strong>João P.</strong>
+                        <span>★★★★★</span>
+                    </div>
+                    <p class="review-text">
+                        Spin Power has amazing energy. The trainer keeps everyone motivated throughout the session.
+                    </p>
+                </article>
 
-                        </div>
-                    </fieldset>
+                <article class="review-card">
+                    <h3>Pilates Flow</h3>
+                    <div class="review-header">
+                        <strong>Daniel R.</strong>
+                        <span>★★★★★</span>
+                    </div>
+                    <p class="review-text">
+                        Pilates sessions are excellent for posture and core strength.
+                    </p>
+                </article>
 
-                    <label for="review">Your Review</label>
-                    <textarea 
-                        id="review" 
-                        name="review" 
-                        rows="5" 
-                        placeholder="Write your review here..."
-                        required>
-                    </textarea>
+            </div>
+        </section>
 
-                    <button type="submit">Submit Review</button>
-                </form>
-            </section>
-        </main>
+    </main>
 
-        <footer>
-            <p>&copy; 2026 Gym4U. All rights reserved.</p>
-        </footer>
-    </body>
+    <footer class="footer">
+        <p>&copy; 2026 Gym4U. All rights reserved.</p>
+    </footer>
+
+</body>
 </html>
