@@ -38,7 +38,7 @@
       <h2 class="h2">Class Divisions</h2>
       <div class="division-grid">
         <article class="division-card">
-          <img class="division-image" id="yoga-class" src="images/yoga-class.jpeg" alt="Yoga and mobility class area">
+          <img class="division-image" id="yoga-class" src="images/classes/yoga-class.jpeg" alt="Yoga and mobility class area">
           <div class="division-content">
             <h3 class="h3">Yoga &amp; Mobility</h3>
             <p class="p">Calm sessions focused on flexibility, breathing, and recovery.</p>
@@ -48,7 +48,7 @@
         </article>
 
         <article class="division-card">
-          <img class="division-image" id="cycling-cardio" src="images/cycling-img.png" alt="Cycling and cardio training zone">
+          <img class="division-image" id="cycling-cardio" src="images/classes/cycling-img.png" alt="Cycling and cardio training zone">
           <div class="division-content">
             <h3 class="h3">Cycling &amp; Cardio</h3>
             <p class="p">High-energy rides and cardio work to build endurance.</p>
@@ -58,7 +58,7 @@
         </article>
 
         <article class="division-card">
-          <img class="division-image" id="hiit-conditioning" src="images/img1.png" alt="HIIT and conditioning class floor">
+          <img class="division-image" id="hiit-conditioning" src="images/classes/HIIT-img.jpeg" alt="HIIT and conditioning class floor">
           <div class="division-content">
             <h3 class="h3">HIIT &amp; Conditioning</h3>
             <p class="p">Fast-paced interval blocks to improve stamina and power.</p>
@@ -68,7 +68,7 @@
         </article>
 
         <article class="division-card">
-          <img class="division-image" id="functional-training" src="images/img2.png" alt="Functional training equipment section">
+          <img class="division-image" id="functional-training" src="images/classes/funct-img.jpeg" alt="Functional training equipment section">
           <div class="division-content">
             <h3 class="h3">Functional Training</h3>
             <p class="p">Circuit-based sessions to improve movement and coordination.</p>
@@ -78,7 +78,7 @@
         </article>
 
         <article class="division-card">
-          <img class="division-image" id="pilates-core" src="images/img1.png" alt="Pilates and core stability space">
+          <img class="division-image" id="pilates-core" src="images/classes/pilates-img.jpeg" alt="Pilates and core stability space">
           <div class="division-content">
             <h3 class="h3">Pilates &amp; Core</h3>
             <p class="p">Technique-focused classes for posture and core control.</p>
@@ -88,7 +88,7 @@
         </article>
 
         <article class="division-card">
-          <img class="division-image" id="personal-training" src="images/img2.png" alt="Personal training studio area">
+          <img class="division-image" id="personal-training" src="images/classes/personal-img.jpeg" alt="Personal training studio area">
           <div class="division-content">
             <h3 class="h3">Personal Training</h3>
             <p class="p">Individualized sessions tailored to your exact fitness goals.</p>
@@ -140,6 +140,10 @@
           <option value="">All Trainers</option>
           <option value="dario">Dário Ribeiro</option>
           <option value="david">David Gomes</option>
+          <option value="tiago">Tiago Santos</option>
+          <option value="eduardo">Eduardo Amaral</option>
+          <option value="tiago-gnomo">Tiago Gnomo</option>
+          <option value="goncalo">Gonçalo Papi</option>
         </select>
 
         <select name="day" aria-label="Filter by day">
@@ -148,8 +152,8 @@
           <option value="tuesday">Tuesday</option>
         </select>
 
-        <label for="time">Time</label>
         <select id="time" name="time" aria-label="Filter by time">
+          <option value="Any time">Any time</option>
           <optgroup label="Morning">
             <option value="06:00">06:00</option>
             <option value="07:00">07:00</option>
@@ -336,38 +340,43 @@
       </form>
     </section>
 
-    <article class="review-card">
-      <h3>Yoga & Mobility</h3>
-      <div class="review-header">
-        <strong>Maria S.</strong>
-        <span>★★★★☆</span>
-      </div>
-      <p>
-        Yoga classes are very relaxing and well structured. Perfect for stress relief after work.
-      </p>
-    </article>
+    <section class="section">
+        <h2 class="h2">Member Feedback</h2>
+        <div class="division-grid">
+          <article class="review-card">
+            <h3>Yoga & Mobility</h3>
+            <div class="review-header">
+              <strong>Maria S.</strong>
+              <span>★★★★☆</span>
+            </div>
+            <p class="r-p">
+              Yoga classes are very relaxing and well structured. Perfect for stress relief after work.
+            </p>
+          </article>
 
-    <article class="review-card">
-      <h3>Spin Power</h3>
-      <div class="review-header">
-        <strong>João P.</strong>
-        <span>★★★★★</span>
-      </div>
-      <p>
-        Spin Power has amazing energy. The trainer keeps everyone motivated throughout the session.
-      </p>
-    </article>
+          <article class="review-card">
+            <h3>Spin Power</h3>
+            <div class="review-header">
+              <strong>João P.</strong>
+              <span>★★★★★</span>
+            </div>
+            <p class="r-p">
+              Spin Power has amazing energy. The trainer keeps everyone motivated throughout the session.
+            </p>
+          </article>
 
-    <article class="review-card">
-      <h3>Pilates Flow</h3>
-      <div class="review-header">
-        <strong>Daniel R.</strong>
-        <span>★★★★★</span>
-      </div>
-      <p>
-        Pilates sessions are excellent for posture and core strength. Very clear instruction from the trainer.
-      </p>
-    </article>
+          <article class="review-card">
+            <h3>Pilates Flow</h3>
+            <div class="review-header">
+              <strong>Daniel R.</strong>
+              <span>★★★★★</span>
+            </div>
+            <p class="r-p">
+              Pilates sessions are excellent for posture and core strength. Very clear instruction from the trainer.
+            </p>
+          </article>
+        </div>
+      </section>
   </main>
 
   <footer class="footer">

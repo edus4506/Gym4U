@@ -57,7 +57,7 @@ header nav ul li a {
 .td {
   border: 1px solid var(--border);
   padding: 0.55rem;
-  text-align: left;
+  text-align: center;
 }
 
 .th {

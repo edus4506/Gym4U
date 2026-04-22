@@ -37,6 +37,7 @@ h4 {
 p {
   margin: 0 0 1rem;
   color: var(--text-soft);
+  text-align: center;
 }
 
 a {
