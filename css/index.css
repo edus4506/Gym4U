@@ -31,13 +31,121 @@
   100% { opacity: 0; }
 }
 
-main > section:nth-of-type(2) {
+.hero-text {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 1rem;
+  border-radius: var(--radius);
+  max-width: 400px;
+}
+
+.hero-text p {
+  color: #e5e7eb;
+}
+
+.about {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   padding: 1.5rem;
-  max-width: 50rem;
-  margin: 2rem auto;
   text-align: center;
+}
+
+.review-form-container {
+  background: var(--surface);
+  padding: 2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  max-width: 100%;
+  margin: 3rem auto;
+}
+
+.review-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.review-form label {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--text-soft);
+}
+
+.review-form select,
+.review-form textarea {
+  background: var(--bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+  padding: 1rem;
+  border-radius: 8px;
+  font-family: inherit;
+}
+
+.review-form textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.division-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.review-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+}
+
+.review-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.review-header span {
+  color: #fbbf24;
+}
+
+.review-text {
+  margin-top: 0.5rem;
+  color: var(--text-soft);
+  font-style: italic;
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 0.8rem 1.2rem;
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background: var(--primary-strong);
+}
+
+@media (max-width: 800px) {
+  .grid-2x2 {
+    grid-template-columns: 1fr;
+  }
+
+  .card {
+    height: 250px;
+  }
+
+  .hero-text {
+    max-width: 90%;
+    font-size: 0.9rem;
+  }
 }
