@@ -1,11 +1,16 @@
 header {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  align-items: start;
-  gap: 1rem;
-  padding: 1.2rem 1rem;
-  background: var(--surface);
-  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  height: 64px;
+  background: var(--primary);
+  border-bottom: 3px solid var(--primary-strong);
+}
+
+header nav ul li a[aria-current="page"] {
+  background: var(--primary-strong);
+  color: #ffffff;
 }
 
 header > h1 {
@@ -213,8 +218,10 @@ header nav ul li a {
 
 @media (max-width: 700px) {
   header {
-    grid-template-columns: 1fr;
-    align-items: flex-start;
+    flex-wrap: wrap;
+    height: auto;
+    padding: 0 1.25rem;
+    gap: 0;
   }
 
   header nav {
@@ -230,4 +237,11 @@ header nav ul li a {
     font-size: 0.78rem;
     padding: 0.4rem 0.3rem;
   }
+
+  header nav ul li:last-child a {
+    margin-left: 0;
+  }
 }
+
+
+
