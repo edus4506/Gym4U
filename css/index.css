@@ -7,7 +7,7 @@
 
 .slider {
   position: relative;
-  height: 50vh; 
+  height: 50vh;
 }
 
 .slide {
@@ -25,10 +25,10 @@
 }
 
 @keyframes fade {
-  0% { opacity: 0; }
-  10% { opacity: 1; }
-  45% { opacity: 1; }
-  55% { opacity: 0; }
+  0%   { opacity: 0; }
+  10%  { opacity: 1; }
+  45%  { opacity: 1; }
+  55%  { opacity: 0; }
   100% { opacity: 0; }
 }
 
@@ -43,8 +43,15 @@
   max-width: 40%;
 }
 
+.hero-text h2 {
+  color: white;
+  margin-bottom: 0.4rem;
+}
+
 .hero-text p {
   color: #e5e7eb;
+  text-align: left;
+  margin-bottom: 0.8rem;
 }
 
 .about {
@@ -100,7 +107,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 35%;
+  width: 100%;
   height: 100%;
   z-index: 2;
 
@@ -134,86 +141,6 @@
 
 .content a:hover {
   color: var(--primary-strong);
-}
-
-.review-form-container {
-  background: var(--surface);
-  padding: 2rem;
-  border-radius: var(--radius);
-  border: 1px solid var(--border);
-  max-width: 100%;
-  margin: 5% auto; 
-}
-
-.review-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1.2rem;
-}
-
-.review-form label {
-  font-weight: 600;
-  font-size: 0.9rem;
-  color: var(--text-soft);
-}
-
-.review-form select,
-.review-form textarea {
-  background: var(--bg);
-  color: var(--text);
-  border: 1px solid var(--border);
-  padding: 1rem;
-  border-radius: 8px;
-  font-family: inherit;
-}
-
-.review-form textarea {
-  resize: vertical;
-  min-height: 15vh;
-}
-
-.division-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1.5rem;
-}
-
-.review-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 1.5rem;
-  box-shadow: var(--shadow);
-  display: flex;
-  flex-direction: column;
-}
-
-.review-header {
-  display: flex;
-  justify-content: space-between;
-}
-
-.review-header span {
-  color: #fbbf24;
-}
-
-.review-text {
-  margin-top: 0.5rem;
-  color: var(--text-soft);
-  font-style: italic;
-}
-
-.btn-primary {
-  background: var(--primary);
-  color: white;
-  border: none;
-  padding: 0.8rem 1.2rem;
-  border-radius: var(--radius);
-  cursor: pointer;
-}
-
-.btn-primary:hover {
-  background: var(--primary-strong);
 }
 
 @media (max-width: 800px) {

@@ -6,12 +6,6 @@
   padding: 1.2rem;
 }
 
-.division-grid {
-  display: grid;
-  gap: 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-}
-
 .division-card {
   display: flex;
   flex-direction: column;
@@ -45,6 +39,7 @@
 
 .division-meta {
   margin: 0;
+  text-align: left;
 }
 
 .class-filters {
@@ -59,11 +54,11 @@
 .filter-group {
   display: flex;
   flex-wrap: wrap;
-  align-items: flex-end; 
+  align-items: flex-end;
   gap: 1.2rem;
 }
 
-.filter-group select, 
+.filter-group select,
 .filter-group input {
   background: var(--bg);
   color: var(--text);
@@ -71,15 +66,14 @@
   padding: 0.8rem;
   border-radius: 8px;
   font-family: inherit;
-  flex: 1; 
+  flex: 1;
   min-width: 150px;
   outline: none;
 }
 
-.filter-group select:focus, 
+.filter-group select:focus,
 .filter-group input:focus {
   border-color: var(--primary);
-  box-shadow: 0 0 8px var(--primary-glow);
 }
 
 .btn-filter {
@@ -90,13 +84,13 @@
   border-radius: 8px;
   font-weight: 600;
   cursor: pointer;
+  font-family: inherit;
   transition: all 0.3s ease;
 }
 
 .btn-filter:hover {
   background: var(--primary);
   color: white;
-  box-shadow: 0 0 15px var(--primary-glow);
 }
 
 .schedule-box {
@@ -128,86 +122,19 @@
   margin: 0;
 }
 
-.review-form-container {
-  background: var(--surface);
-  padding: 2.5rem;
-  border-radius: var(--radius);
-  border: 1px solid var(--border);
-  max-width: 800px; 
-  margin: 3rem auto; 
-}
-
-.review-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1.2rem;
-}
-
-.review-form label {
-  font-weight: 600;
+.rating-stars {
+  color: #fbbf24;
   font-size: 0.9rem;
-  color: var(--text-soft);
-  margin-bottom: -0.5rem;
-}
-
-.review-form select,
-.review-form textarea {
-  background: var(--bg);
-  color: var(--text);
-  border: 1px solid var(--border);
-  padding: 1rem;
-  border-radius: 8px;
-  font-family: inherit;
-  outline: none;
-}
-
-.review-form textarea {
-  resize: vertical; 
-  min-height: 100px;
-}
-
-.review-form select:focus,
-.review-form textarea:focus {
-  border-color: var(--primary);
-}
-
-.review-form .btn-enroll {
-  padding: 1rem 2rem;
-}
-
-.review-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 1.5rem;
-  margin-bottom: 1.5rem;
-  box-shadow: var(--shadow);
-}
-
-.review-header {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 0.5rem;
-}
-
-.review-header span {
-  color: #fbbf24; 
-}
-
-.review-header strong {
-  color: var(--text);
-}
-
-.review-card .r-p {
-  text-align: left;
-  margin-top: 0.5rem; 
-  color: var(--text-soft); 
-  font-style: italic;
 }
 
 @media (max-width: 700px) {
   .trainers-cta {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .table thead .th:nth-child(4),
+  .table tbody .td:nth-child(4) {
+    display: none;
   }
 }
