@@ -36,12 +36,19 @@
   border: 1px solid var(--border);
   border-radius: var(--radius);
   font: inherit;
+  outline: none;
+}
+
+.filter-form input:focus,
+.filter-form select:focus {
+  border-color: var(--primary);
 }
 
 .filter-form button {
   background: var(--primary);
   color: #ffffff;
   cursor: pointer;
+  border: none;
 }
 
 .filter-form button:hover,
@@ -83,10 +90,13 @@
 .trainer-role {
   font-weight: 600;
   color: var(--primary);
+  text-align: left;
+  margin: 0;
 }
 
 .trainer-meta {
   margin: 0;
+  text-align: left;
 }
 
 .schedule-box {
@@ -98,23 +108,12 @@
   overflow-x: auto;
 }
 
-.schedule-box .h2 {
-  margin-bottom: 0.8rem;
-}
-
 .caption {
   caption-side: top;
   text-align: left;
   font-weight: 600;
   color: var(--text);
   margin-bottom: 0.75rem;
-}
-
-.table {
-  width: 100%;
-  border-collapse: collapse;
-  background: var(--surface);
-  overflow: hidden;
 }
 
 .thead .th {
@@ -139,6 +138,79 @@
   background: #eaf4f0;
 }
 
+.focus-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.focus-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.2rem;
+  box-shadow: var(--shadow);
+}
+
+.focus-card .h3 {
+  color: var(--primary);
+  margin-bottom: 0.4rem;
+}
+
+.focus-card .p {
+  text-align: left;
+  margin: 0;
+}
+
+.faq-item {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.9rem 1rem;
+  margin-bottom: 0.6rem;
+  box-shadow: var(--shadow);
+}
+
+.faq-item summary {
+  font-weight: 600;
+  cursor: pointer;
+  color: var(--text);
+  list-style: none;
+}
+
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-item[open] summary {
+  color: var(--primary);
+  margin-bottom: 0.5rem;
+}
+
+.faq-item .p {
+  text-align: left;
+  margin: 0;
+}
+
+.contact-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.contact-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.2rem;
+  box-shadow: var(--shadow);
+}
+
+.contact-card .p {
+  text-align: left;
+  margin: 0 0 0.3rem;
+}
+
 .trainers-cta {
   background: var(--surface-muted);
   border: 1px dashed var(--primary);
@@ -157,7 +229,12 @@
 
   .th,
   .td {
-    padding: 0.7rem;
-    font-size: 0.95rem;
+    padding: 0.5rem 0.4rem;
+    font-size: 0.8rem;
+  }
+
+  .table thead .th:nth-child(3),
+  .table tbody .td:nth-child(3) {
+    display: none;
   }
 }
