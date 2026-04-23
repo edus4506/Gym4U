@@ -47,7 +47,7 @@ a {
 
 a:hover,
 a:focus-visible {
-  text-decoration: underline;
+  background: var(--primary);
 }
 
 main {
