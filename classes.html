@@ -12,17 +12,25 @@
 
 <body>
   <header>
-    <h1>Gym4U</h1>
-    <p>Group Classes</p>
-    <nav aria-label="Main navigation">
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="classes.html" aria-current="page">Classes</a></li>
-        <li><a href="trainers.html">Trainers</a></li>
-        <li><a href="#">My Profile</a></li>
-      </ul>
-    </nav>
-  </header>
+        <div>
+            <a href="index.html">
+                <img src="images/gym4u_logo.png" alt="Gym4U logo" class="logo">
+            </a>
+        </div>
+
+        <div class="middle">
+            <h1>Gym4U</h1>
+        </div>
+
+        <nav class="right" aria-label="Main navigation">
+            <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="classes.html" aria-current="page">Classes</a></li>
+            <li><a href="trainers.html">Trainers</a></li>
+            <li><a href="#">My Profile</a></li>
+            </ul>
+        </nav>
+    </header>
 
   <main class="main">
     <section class="section classes-intro" id="classes-intro">
@@ -58,12 +66,32 @@
         </article>
 
         <article class="division-card">
+          <img class="division-image" id="personal-training" src="images/classes/personal-img.jpeg" alt="Personal training studio area">
+          <div class="division-content">
+            <h3 class="h3">Personal Training</h3>
+            <p class="p">Individualized sessions tailored to your exact fitness goals.</p>
+            <p class="p division-meta"><strong>Class:</strong> Personal Training Sessions</p>
+            <p class="p division-meta"><strong>Trainer:</strong> Gonçalo Pinto</p>
+          </div>
+        </article>
+
+        <article class="division-card">
           <img class="division-image" id="hiit-conditioning" src="images/classes/HIIT-img.jpeg" alt="HIIT and conditioning class floor">
           <div class="division-content">
             <h3 class="h3">HIIT &amp; Conditioning</h3>
             <p class="p">Fast-paced interval blocks to improve stamina and power.</p>
             <p class="p division-meta"><strong>Classes:</strong> HIIT Blast, Core Strength</p>
             <p class="p division-meta"><strong>Trainer:</strong> Tiago Santos</p>
+          </div>
+        </article>
+
+        <article class="division-card">
+          <img class="division-image" src="images/classes/advance_pilates.png" alt="Pilates session">
+          <div class="division-content">
+            <h3 class="h3">Advanced Pilates</h3>
+            <p class="p">Focused sessions for deeper core strength, control, and flexibility.</p>
+            <p class="p division-meta"><strong>Classes:</strong> Core Stability+, Pilates Advanced</p>
+            <p class="p division-meta"><strong>Trainer:</strong> Adriana Mendes</p>
           </div>
         </article>
 
@@ -88,12 +116,12 @@
         </article>
 
         <article class="division-card">
-          <img class="division-image" id="personal-training" src="images/classes/personal-img.jpeg" alt="Personal training studio area">
+          <img class="division-image" src="images/classes/toning.png" alt="Personal toning training">
           <div class="division-content">
-            <h3 class="h3">Personal Training</h3>
-            <p class="p">Individualized sessions tailored to your exact fitness goals.</p>
-            <p class="p division-meta"><strong>Class:</strong> Personal Training Sessions</p>
-            <p class="p division-meta"><strong>Trainer:</strong> Gonçalo Pinto</p>
+            <h3 class="h3">Body Toning</h3>
+            <p class="p">Goal-focused sessions for toning, fat loss, and body definition.</p>
+            <p class="p division-meta"><strong>Classes:</strong> Body Toning, Fit Shape</p>
+            <p class="p division-meta"><strong>Trainer:</strong> Joana Rodrigues</p>
           </div>
         </article>
       </div>
@@ -113,13 +141,17 @@
         </thead>
 
         <tbody class="tbody">
+          <tr class="tr"><th class="th" scope="row">Core Stability+</th><td class="td">Adriana Mendes</td><td class="td">Monday</td><td class="td">17:00</td></tr>
           <tr class="tr"><th class="th" scope="row">HIIT Blast</th><td class="td">Tiago Santos</td><td class="td">Monday</td><td class="td">18:00</td></tr>
           <tr class="tr"><th class="th" scope="row">Morning Yoga</th><td class="td">Dário Ribeiro</td><td class="td">Tuesday</td><td class="td">08:00</td></tr>
           <tr class="tr"><th class="th" scope="row">Spin Power</th><td class="td">Eduardo Amaral</td><td class="td">Tuesday</td><td class="td">19:00</td></tr>
           <tr class="tr"><th class="th" scope="row">Core Strength</th><td class="td">Tiago Santos</td><td class="td">Wednesday</td><td class="td">18:00</td></tr>
           <tr class="tr"><th class="th" scope="row">Functional Circuit</th><td class="td">Tiago Rocha</td><td class="td">Wednesday</td><td class="td">18:30</td></tr>
+          <tr class="tr"><th class="th" scope="row">Body Toning</th><td class="td">Joana Rodrigues</td><td class="td">Wednesday</td><td class="td">19:00</td></tr>
           <tr class="tr"><th class="th" scope="row">Pilates Flow</th><td class="td">David Gomes</td><td class="td">Thursday</td><td class="td">17:30</td></tr>
+          <tr class="tr"><th class="th" scope="row">Pilates Advanced</th><td class="td">Adriana Mendes</td><td class="td">Thursday</td><td class="td">18:30</td></tr>
           <tr class="tr"><th class="th" scope="row">Core Control</th><td class="td">David Gomes</td><td class="td">Friday</td><td class="td">17:30</td></tr>
+          <tr class="tr"><th class="th" scope="row">Fit Shape</th><td class="td">Joana Rodrigues</td><td class="td">Friday</td><td class="td">18:00</td></tr>
           <tr class="tr"><th class="th" scope="row">HIIT Express</th><td class="td">Tiago Rocha</td><td class="td">Saturday</td><td class="td">18:30</td></tr>
           <tr class="tr"><th class="th" scope="row">Personal Training Sessions</th><td class="td">Gonçalo Pinto</td><td class="td">Saturday</td><td class="td">10:00</td></tr>
         </tbody>
@@ -134,12 +166,18 @@
           <option value="yoga">Yoga & Mobility</option>
           <option value="cardio">Cycling & Cardio</option>
           <option value="hiit">HIIT & Conditioning</option>
+          <option value="functional">Functional Training</option>
+          <option value="pilates">Pilates & Core</option>
+          <option value="personal">Personal Training</option>
+          <option value="toning">Body Toning</option>
         </select>
 
         <select name="trainer" aria-label="Filter by trainer">
           <option value="">All Trainers</option>
+          <option value="adriana">Adriana Mendes</option>
           <option value="dario">Dário Ribeiro</option>
           <option value="david">David Gomes</option>
+          <option value="joana">Joana Rodrigues</option>
           <option value="tiago">Tiago Santos</option>
           <option value="eduardo">Eduardo Amaral</option>
           <option value="tiago-rocha">Tiago Rocha</option>
@@ -150,6 +188,10 @@
           <option value="">All Days</option>
           <option value="monday">Monday</option>
           <option value="tuesday">Tuesday</option>
+          <option value="wednesday">Wednesday</option>
+          <option value="thursday">Thursday</option>
+          <option value="friday">Friday</option>
+          <option value="saturday">Saturday</option>
         </select>
 
         <select id="time" name="time" aria-label="Filter by time">
@@ -199,6 +241,18 @@
         </thead>
 
         <tbody class="tbody">
+
+          <tr class="tr">
+            <th class="th" scope="row">
+              Core Stability+<br>
+              <span>★★★★★ (4.7)</span>
+            </th>
+            <td class="td"><a href="trainers.html#adriana-mendes">Adriana Mendes</a></td>
+            <td class="td">Monday, 17:00</td>
+            <td class="td">10/12</td>
+            <td class="td"><button class="btn btn-enroll">Enroll</button></td>
+          </tr>
+
           <tr class="tr">
             <th class="th" scope="row">
               HIIT Blast<br>
@@ -264,6 +318,17 @@
 
           <tr class="tr">
             <th class="th" scope="row">
+              Body Toning<br>
+              <span>★★★★☆ (4.5)</span>
+            </th>
+            <td class="td"><a href="trainers.html#joana-rodrigues">Joana Rodrigues</a></td>
+            <td class="td">Wednesday, 19:00</td>
+            <td class="td">8/14</td>
+            <td class="td"><button class="btn btn-enroll">Enroll</button></td>
+          </tr>
+
+          <tr class="tr">
+            <th class="th" scope="row">
               Pilates Flow<br>
               <span>★★★★★ (4.8)</span>
             </th>
@@ -273,6 +338,17 @@
             <td class="td">
               <button class="btn btn-enroll">Enroll</button>
             </td>
+          </tr>
+
+          <tr class="tr">
+            <th class="th" scope="row">
+              Pilates Advanced<br>
+              <span>★★★★★ (4.8)</span>
+            </th>
+            <td class="td"><a href="trainers.html#adriana-mendes">Adriana Mendes</a></td>
+            <td class="td">Thursday, 18:30</td>
+            <td class="td">7/12</td>
+            <td class="td"><button class="btn btn-enroll">Enroll</button></td>
           </tr>
 
           <tr class="tr past-class">
@@ -290,15 +366,13 @@
 
           <tr class="tr">
             <th class="th" scope="row">
-              HIIT Express<br>
-              <span>★★★★☆ (4.4)</span>
+              Fit Shape<br>
+              <span>★★★★☆ (4.6)</span>
             </th>
-            <td class="td"><a href="trainers.html#tiago-rocha">Tiago Rocha</a></td>
-            <td class="td">Saturday, 18:30</td>
-            <td class="td">14/16</td>
-            <td class="td">
-              <button class="btn btn-enroll">Enroll</button>
-            </td>
+            <td class="td"><a href="trainers.html#joana-rodrigues">Joana Rodrigues</a></td>
+            <td class="td">Friday, 18:00</td>
+            <td class="td">9/14</td>
+            <td class="td"><button class="btn btn-enroll">Enroll</button></td>
           </tr>
 
           <tr class="tr">
@@ -309,6 +383,19 @@
             <td class="td"><a href="trainers.html#goncalo-pinto">Gonçalo Pinto</a></td>
             <td class="td">Saturday, 10:00</td>
             <td class="td">3/5</td>
+            <td class="td">
+              <button class="btn btn-enroll">Enroll</button>
+            </td>
+          </tr>
+
+          <tr class="tr">
+            <th class="th" scope="row">
+              HIIT Express<br>
+              <span>★★★★☆ (4.4)</span>
+            </th>
+            <td class="td"><a href="trainers.html#tiago-rocha">Tiago Rocha</a></td>
+            <td class="td">Saturday, 18:30</td>
+            <td class="td">14/16</td>
             <td class="td">
               <button class="btn btn-enroll">Enroll</button>
             </td>

@@ -13,16 +13,24 @@
 
   <body>
     <header>
-      <h1>Gym4U</h1>
-      <p>Our Trainers</p>
-      <nav aria-label="Main navigation">
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="classes.html">Classes</a></li>
-          <li><a href="trainers.html" aria-current="page">Trainers</a></li>
-          <li><a href="#">My Profile</a></li>
-        </ul>
-      </nav>
+        <div>
+            <a href="index.html">
+                <img src="images/gym4u_logo.png" alt="Gym4U logo" class="logo">
+            </a>
+        </div>
+
+        <div class="middle">
+            <h1>Gym4U</h1>
+        </div>
+
+        <nav class="right" aria-label="Main navigation">
+            <ul>
+            <li><a href="index.html" >Home</a></li>
+            <li><a href="classes.html" >Classes</a></li>
+            <li><a href="trainers.html" aria-current="page">Trainers</a></li>
+            <li><a href="#">My Profile</a></li>
+            </ul>
+        </nav>
     </header>
 
     <main class="main">
@@ -153,6 +161,27 @@
             </div>
           </article>
 
+          <article class="trainer-card" id="adriana-mendes">
+            <img
+              class="trainer-image"
+              src="images/trainers/adriana-mendes.png"
+              alt="Portrait of Adriana Mendes"
+            >
+            <div class="trainer-content">
+              <h3 class="h3">Adriana Mendes</h3>
+              <p class="p trainer-role">Pilates Instructor</p>
+              <p class="p">
+                Adriana specializes in pilates and body alignment, helping members
+                improve posture, flexibility, and core strength through controlled
+                and mindful movement.
+              </p>
+              <p class="p trainer-meta"><strong>Experience:</strong> 5 years</p>
+              <p class="p trainer-meta"><strong>Certifications:</strong> Pilates Instructor Certification</p>
+              <p class="p trainer-meta"><strong>Specializations:</strong> Pilates, Core, Flexibility</p>
+              <p class="p trainer-meta"><strong>Classes:</strong> Pilates Flow, Core Stability</p>
+            </div>
+          </article>
+
           <article class="trainer-card" id="goncalo-pinto">
             <img
               class="trainer-image"
@@ -190,6 +219,27 @@
               <p class="p trainer-meta"><strong>Certifications:</strong> Clinical Pilates Instructor</p>
               <p class="p trainer-meta"><strong>Specializations:</strong> Pilates, Core, Posture</p>
               <p class="p trainer-meta"><strong>Classes:</strong> Pilates Flow, Core Control</p>
+            </div>
+          </article>
+
+          <article class="trainer-card" id="joana-rodrigues">
+            <img
+              class="trainer-image"
+              src="images/trainers/joana-rodrigues.png"
+              alt="Portrait of Joana Rodrigues"
+            >
+            <div class="trainer-content">
+              <h3 class="h3">Joana Rodrigues</h3>
+              <p class="p trainer-role">Personal Trainer</p>
+              <p class="p">
+                Joana focuses on personalized training plans aimed at toning,
+                fat loss, and overall fitness improvement, adapting each session
+                to individual goals.
+              </p>
+              <p class="p trainer-meta"><strong>Experience:</strong> 6 years</p>
+              <p class="p trainer-meta"><strong>Certifications:</strong> Certified Personal Trainer</p>
+              <p class="p trainer-meta"><strong>Specializations:</strong> Toning, Fat Loss, Personal Training</p>
+              <p class="p trainer-meta"><strong>Classes:</strong> Personal Training Sessions</p>
             </div>
           </article>
 
@@ -231,8 +281,10 @@
             <tr class="tr"><th class="th" scope="row">Tiago Santos</th><td class="td">Strength &amp; Conditioning</td><td class="td">8 years</td><td class="td">HIIT Blast, Core Strength</td></tr>
             <tr class="tr"><th class="th" scope="row">Dário Ribeiro</th><td class="td">Yoga &amp; Mobility</td><td class="td">6 years</td><td class="td">Morning Yoga, Deep Stretch</td></tr>
             <tr class="tr"><th class="th" scope="row">Eduardo Amaral</th><td class="td">Cycling &amp; Cardio</td><td class="td">5 years</td><td class="td">Spin Power, Cardio Burn</td></tr>
+            <tr class="tr"><th class="th" scope="row">Adriana Mendes</th><td class="td">Pilates</td><td class="td">5 years</td><td class="td">Pilates Flow, Core Stability</td></tr>
             <tr class="tr"><th class="th" scope="row">Gonçalo Pinto</th><td class="td">Personal Training</td><td class="td">9 years</td><td class="td">Personal Training Sessions</td></tr>
             <tr class="tr"><th class="th" scope="row">David Gomes</th><td class="td">Pilates</td><td class="td">7 years</td><td class="td">Pilates Flow, Core Control</td></tr>
+            <tr class="tr"><th class="th" scope="row">Joana Rodrigues</th><td class="td">Personal Training</td><td class="td">6 years</td><td class="td">Personal Training Sessions</td></tr>
             <tr class="tr"><th class="th" scope="row">Tiago Rocha</th><td class="td">HIIT &amp; Functional</td><td class="td">4 years</td><td class="td">HIIT Express, Functional Circuit</td></tr>
           </tbody>
         </table>
@@ -357,6 +409,12 @@
           </article>
 
           <article class="contact-card">
+            <h3 class="h3">Adriana Mendes</h3>
+            <p class="p"><strong>Phone:</strong> +351 917 000 111</p>
+            <p class="p"><strong>Email:</strong> <a class="a" href="mailto:adriana.mendes@gym4u.pt">adriana.mendes@gym4u.pt</a></p>
+          </article>
+
+          <article class="contact-card">
             <h3 class="h3">Gonçalo Pinto</h3>
             <p class="p"><strong>Phone:</strong> +351 914 330 267</p>
             <p class="p"><strong>Email:</strong> <a class="a" href="mailto:goncalo.pinto@gym4u.pt">goncalo.pinto@gym4u.pt</a></p>
@@ -366,6 +424,12 @@
             <h3 class="h3">David Gomes</h3>
             <p class="p"><strong>Phone:</strong> +351 915 227 904</p>
             <p class="p"><strong>Email:</strong> <a class="a" href="mailto:david.gomes@gym4u.pt">david.gomes@gym4u.pt</a></p>
+          </article>
+
+          <article class="contact-card">
+            <h3 class="h3">Joana Rodrigues</h3>
+            <p class="p"><strong>Phone:</strong> +351 918 000 222</p>
+            <p class="p"><strong>Email:</strong> <a class="a" href="mailto:joana.rodrigues@gym4u.pt">joana.rodrigues@gym4u.pt</a></p>
           </article>
 
           <article class="contact-card">

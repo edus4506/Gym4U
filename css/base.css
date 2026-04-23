@@ -47,7 +47,7 @@ a {
 
 a:hover,
 a:focus-visible {
-  background: var(--primary);
+  color: var(--primary-strong);
 }
 
 main {
