@@ -14,13 +14,15 @@
   --shadow: 0 4px 14px rgba(16, 24, 40, 0.08);
 }
 
-* {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
 body {
   margin: 0;
-  font-family: "Poppins", sans-serif, Geneva;
+  font-family: "Poppins", sans-serif;
   background: var(--bg);
   color: var(--text);
   line-height: 1.5;
@@ -29,15 +31,17 @@ body {
 h1,
 h2,
 h3,
-h4 {
+h4,
+h5,
+h6 {
   margin: 0 0 0.6rem;
   line-height: 1.2;
+  color: var(--text);
 }
 
 p {
   margin: 0 0 1rem;
   color: var(--text-soft);
-  text-align: center;
 }
 
 a {
@@ -48,6 +52,52 @@ a {
 a:hover,
 a:focus-visible {
   color: var(--primary-strong);
+  text-decoration: underline;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+input,
+select,
+textarea,
+button {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+}
+
+input,
+select,
+textarea {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.6rem 0.8rem;
+  outline: none;
+  width: 100%;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--primary);
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
 }
 
 main {
