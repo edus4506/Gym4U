@@ -144,7 +144,6 @@ section,
   text-decoration: underline;
 }
 
-/* accessibility */
 .visually-hidden {
   position: absolute;
   width: 1px;
