@@ -6,8 +6,7 @@
   padding: 1.8rem;
 }
 
-.division-card img,
-.division-image {
+.division-card img, .division-image {
   height: 180px;
   width: 100%;
   object-fit: cover;
