@@ -70,9 +70,28 @@ header nav ul li:last-child a {
 
 /* footer */
 .footer {
-  display: flex;
-  justify-content: center;
-  padding: 1rem;
+  background: var(--primary);
+  color: white;
+  text-align: center;
+  padding: 1.2rem 1rem;
+  border-top: 3px solid var(--primary-strong);
+  margin-top: 2rem;
+}
+
+.footer p {
+  margin: 0.4rem 0;
+  font-size: 0.85rem;
+  color: white;
+}
+
+.footer a {
+  color: #d1d5db;
+  text-decoration: none;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+  color: white;
 }
 
 /* buttons */
