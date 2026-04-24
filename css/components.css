@@ -88,6 +88,21 @@ nav.right {
   justify-content: flex-end;
 }
 
+.about {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 2.5rem 2rem;
+  text-align: center;
+}
+
+.about h2 {
+  margin-bottom: 2rem;
+  font-size: 2rem;
+}
+
+
 .footer {
   background: var(--primary);
   color: white;
@@ -557,7 +572,7 @@ nav.right {
   padding: 2.5rem;
   border-radius: var(--radius);
   border: 1px solid var(--border);
-  max-width: 800px;
+  max-width: 100%;
   margin: 3rem auto;
   box-shadow: var(--shadow);
 }
