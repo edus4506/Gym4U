@@ -64,7 +64,6 @@ header nav ul li a[aria-current="page"] {
 }
 
 header nav ul li:last-child a {
-  margin-left: 0.5rem;
   background: #e5e7eb;
   border: none;
 }
