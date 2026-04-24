@@ -8,9 +8,9 @@ This project is a gym management website for LTW delivery 1. It presents the cor
 
 ## Team
 
-- Dário Amaral
-- Eduardo Santos
-- Tiago Ribeiro
+- Dário Amaral - up202405681
+- Eduardo Santos - up202406938
+- Tiago Ribeiro - up202404941
 
 ## Features
 
@@ -59,6 +59,17 @@ This first delivery includes the three selected pages required for evaluation:
 1. Home (`index.html`) — landing page with hero slider, feature cards, and a review form.
 2. Classes (`classes.html`) — class divisions, weekly schedule table, filter form, enroll/cancel buttons, and a review form.
 3. Trainers (`trainers.html`) — trainer profiles with specializations and certifications, filter form, and schedule table.
+
+## Website Screenshots
+
+### Home Page
+![Home](images/readme/home_readme.png)
+
+### Classes Page
+![Classes](images/readme/classes_readme.png)
+
+### Trainers Page
+![Trainers](images/readme/trainers_readme.png)
 
 ## Project Structure
 
