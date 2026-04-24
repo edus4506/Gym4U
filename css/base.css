@@ -27,10 +27,7 @@
 body {
   margin: 0;
   font-family: "Poppins", sans-serif;
-  background:
-    radial-gradient(circle at top left, rgba(2, 132, 199, 0.12), transparent 32rem),
-    radial-gradient(circle at top right, rgba(250, 204, 21, 0.12), transparent 26rem),
-    var(--bg);
+  background: var(--bg);
   color: var(--text);
   line-height: 1.5;
 }
