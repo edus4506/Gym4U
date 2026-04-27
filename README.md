@@ -8,24 +8,9 @@ This project is a gym management website for LTW delivery 1. It presents the cor
 
 ## Team
 
-- Dário Amaral
-- Eduardo Santos
-- Tiago Ribeiro
-
-## First Delivery
-
-This first delivery includes the tree selected pages required for evaluation:
-
-1. Home Page (`index.html`) - Landing page with clear navigation, hero section, value propositions, featured classes, and a call-to-action.
-2. Classes Page (`classes.html`) - Classes overview with schedule details, trainer information, and enrollment links.
-3. Trainers Page (`trainers.html`) - Trainer profiles with certifications, specializations, experience, and contact options.
-
-### Evaluation Criteria
-
-- Semantic HTML: correct use of structural and semantic elements.
-- CSS organization: base/reset rules first, then reusable component styles, then specific page or variant rules.
-- File and layer organization: logical separation of concerns across files or CSS layers.
-- Responsive design: layout adapts correctly to different screen sizes.
+- Dário Amaral - up202405681
+- Eduardo Santos - up202406938
+- Tiago Ribeiro - up202404941
 
 ## Features
 
@@ -56,28 +41,6 @@ This first delivery includes the tree selected pages required for evaluation:
 **Extra:**
 - [ ] Something extra (e.g., personal training bookings, membership plans, waitlist, ...).
 
-## Technologies
-
-- HTML5
-- CSS3
-- Responsive design
-
-## Project Structure
-
-```
-├── index.html           # Home page
-├── classes.html         # Classes page
-├── trainers.html        # Trainers page
-├── css/                 # CSS files
-│   ├── base.css         # CSS reset, typography, and base styles
-│   ├── components.css   # Reusable component styles
-│   ├── layout.css       # Layout utilities and spacing
-│   ├── responsive.css   # Media queries for mobile/tablet/desktop
-│   └── style.css        # Page-specific styles and enhancements
-├── images/              # Image assets directory
-└── README.md            # Project documentation
-```
-
 ## Running
 
     sqlite3 database/database.db < database/database.sql
@@ -88,3 +51,38 @@ This first delivery includes the tree selected pages required for evaluation:
 - admin/p4s5w0rd
 - member/1234
 - trainer/1234
+
+## First Delivery
+
+This first delivery includes the three selected pages required for evaluation:
+
+1. Home (`index.html`) — landing page with hero slider, feature cards, and a review form.
+2. Classes (`classes.html`) — class divisions, weekly schedule table, filter form, enroll/cancel buttons, and a review form.
+3. Trainers (`trainers.html`) — trainer profiles with specializations and certifications, filter form, and schedule table.
+
+## Website Screenshots
+
+### Home Page
+![Home](images/readme/home_readme.png)
+
+### Classes Page
+![Classes](images/readme/classes_readme.png)
+
+### Trainers Page
+![Trainers](images/readme/trainers_readme.png)
+
+## Project Structure
+
+```
+├── index.html           # Home page
+├── classes.html         # Classes page
+├── trainers.html        # Trainers page
+├── css/                 # CSS files
+│   ├── base.css         # CSS reset, typography, and base styles
+│   ├── components.css   # Reusable component styles
+│   ├── index.css        # Styles that only apply to this page
+│   ├── classes.css      # Styles that only apply to this page
+│   └── trainers.css     # Styles that only apply to this page
+├── images/              # Image assets directory
+└── README.md            # Project documentation
+```
