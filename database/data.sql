@@ -22,15 +22,15 @@ INSERT INTO users (name, username, email, password, role) VALUES
     ('Admin', 'admin', 'admin@gym4u.pt', 'hashed_pw_admin', 'admin');
 
 -- Trainers (extra data, user_id matches users above)
-INSERT INTO trainers (user_id, bio, experience_years, certifications, phone) VALUES
-    (6, 'Tiago focuses on functional strength, endurance, and building sustainable workout routines for all experience levels.', 8, 'NASM CPT, Mobility Specialist', '+351 911 203 145'),
-    (7, 'Dario helps members improve posture, flexibility, and recovery through mindful movement and breath-focused practice.', 6, 'RYT 500, Breathwork Coach', '+351 912 118 406'),
-    (8, 'Eduardo leads energetic sessions designed to improve cardiovascular endurance and keep members motivated.', 5, 'Indoor Cycling Instructor', '+351 913 442 781'),
-    (9, 'Adriana specializes in pilates and body alignment, helping members improve posture, flexibility, and core strength.', 5, 'Pilates Instructor Certification', '+351 917 000 111'),
-    (10, 'Goncalo specializes in one-on-one coaching, helping members achieve specific goals with structured progressive plans.', 9, 'Level 4 Personal Trainer', '+351 914 330 267'),
-    (11, 'David works with members on core control, posture, flexibility, and body awareness through pilates sessions.', 7, 'Clinical Pilates Instructor', '+351 915 227 904'),
-    (12, 'Joana focuses on personalized training plans aimed at toning, fat loss, and overall fitness improvement.', 6, 'Certified Personal Trainer', '+351 918 000 222'),
-    (13, 'Tiago delivers high-intensity classes focused on power, conditioning, coordination, and training efficiency.', 4, 'Group Fitness Coach', '+351 916 541 382');
+INSERT INTO trainers (user_id, bio, experience_years, certifications, phone, title) VALUES
+    (6, 'Tiago focuses on functional strength, endurance, and building sustainable workout routines for all experience levels.', 8, 'NASM CPT, Mobility Specialist', '+351 911 203 145', 'Strength & Conditioning Coach'),
+    (7, 'Dario helps members improve posture, flexibility, and recovery through mindful movement and breath-focused practice.', 6, 'RYT 500, Breathwork Coach', '+351 912 118 406', 'Yoga & Mobility Trainer'),
+    (8, 'Eduardo leads energetic sessions designed to improve cardiovascular endurance and keep members motivated.', 5, 'Indoor Cycling Instructor', '+351 913 442 781', 'Cycling & Cardio Coach'),
+    (9, 'Adriana specializes in pilates and body alignment, helping members improve posture, flexibility, and core strength.', 5, 'Pilates Instructor Certification', '+351 917 000 111', 'Pilates Instructor'),
+    (10, 'Goncalo specializes in one-on-one coaching, helping members achieve specific goals with structured progressive plans.', 9, 'Level 4 Personal Trainer', '+351 914 330 267', 'Personal Trainer'),
+    (11, 'David works with members on core control, posture, flexibility, and body awareness through pilates sessions.', 7, 'Clinical Pilates Instructor', '+351 915 227 904', 'Pilates Instructor'),
+    (12, 'Joana focuses on personalized training plans aimed at toning, fat loss, and overall fitness improvement.', 6, 'Certified Personal Trainer', '+351 918 000 222', 'Personal Trainer'),
+    (13, 'Tiago delivers high-intensity classes focused on power, conditioning, coordination, and training efficiency.', 4, 'Group Fitness Coach', '+351 916 541 382', 'HIIT & Functional Coach');
 
 -- Admins
 INSERT INTO admins (user_id) VALUES (14);

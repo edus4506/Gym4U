@@ -14,6 +14,7 @@ CREATE TABLE IF NOT EXISTS trainers (
     experience_years INTEGER,
     certifications TEXT,
     phone TEXT,
+    title TEXT,
     FOREIGN KEY (user_id) REFERENCES users(id)
   );
 
