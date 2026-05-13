@@ -1,25 +1,25 @@
--- Users (members)
+-- Users (members) — password: 1234
 INSERT INTO users (name, username, email, password, role) VALUES
-    ('Maria Silva', 'maria.silva', 'maria@email.com', 'hashed_pw_1', 'member'),
-    ('Joao Pereira', 'joao.pereira', 'joao@email.com', 'hashed_pw_2', 'member'),
-    ('Daniel Rocha', 'daniel.rocha', 'daniel@email.com', 'hashed_pw_3', 'member'),
-    ('Ana Costa', 'ana.costa', 'ana@email.com', 'hashed_pw_4', 'member'),
-    ('Pedro Matos', 'pedro.matos', 'pedro@email.com', 'hashed_pw_5', 'member');
+    ('Maria Silva', 'member', 'maria@email.com', '$2y$12$fjBAAB0sRN4GCrVuwBX4HejD3yKzOn9XQqDl7vKyGAD9LhmtPsqvC', 'member'),
+    ('Joao Pereira', 'joao.pereira', 'joao@email.com', '$2y$12$fjBAAB0sRN4GCrVuwBX4HejD3yKzOn9XQqDl7vKyGAD9LhmtPsqvC', 'member'),
+    ('Daniel Rocha', 'daniel.rocha', 'daniel@email.com', '$2y$12$fjBAAB0sRN4GCrVuwBX4HejD3yKzOn9XQqDl7vKyGAD9LhmtPsqvC', 'member'),
+    ('Ana Costa', 'ana.costa', 'ana@email.com', '$2y$12$fjBAAB0sRN4GCrVuwBX4HejD3yKzOn9XQqDl7vKyGAD9LhmtPsqvC', 'member'),
+    ('Pedro Matos', 'pedro.matos', 'pedro@email.com', '$2y$12$fjBAAB0sRN4GCrVuwBX4HejD3yKzOn9XQqDl7vKyGAD9LhmtPsqvC', 'member');
 
--- Users (trainers) — ids 6 to 13
+-- Users (trainers) — ids 6 to 13 — password: 1234
 INSERT INTO users (name, username, email, password, role) VALUES
-    ('Tiago Santos', 'tiago.santos', 'tiago.santos@gym4u.pt', 'hashed_pw_6', 'trainer'),
-    ('Dario Ribeiro', 'dario.ribeiro', 'dario.ribeiro@gym4u.pt', 'hashed_pw_7', 'trainer'),
-    ('Eduardo Amaral', 'eduardo.amaral', 'eduardo.amaral@gym4u.pt', 'hashed_pw_8', 'trainer'),
-    ('Adriana Mendes', 'adriana.mendes', 'adriana.mendes@gym4u.pt', 'hashed_pw_9', 'trainer'),
-    ('Goncalo Pinto', 'goncalo.pinto', 'goncalo.pinto@gym4u.pt', 'hashed_pw_10', 'trainer'),
-    ('David Gomes', 'david.gomes', 'david.gomes@gym4u.pt', 'hashed_pw_11', 'trainer'),
-    ('Joana Rodrigues', 'joana.rodrigues', 'joana.rodrigues@gym4u.pt', 'hashed_pw_12', 'trainer'),
-    ('Tiago Rocha', 'tiago.rocha', 'tiago.rocha@gym4u.pt', 'hashed_pw_13', 'trainer');
+    ('Tiago Santos', 'trainer', 'tiago.santos@gym4u.pt', '$2y$12$fjBAAB0sRN4GCrVuwBX4HejD3yKzOn9XQqDl7vKyGAD9LhmtPsqvC', 'trainer'),
+    ('Dario Ribeiro', 'dario.ribeiro', 'dario.ribeiro@gym4u.pt', '$2y$12$fjBAAB0sRN4GCrVuwBX4HejD3yKzOn9XQqDl7vKyGAD9LhmtPsqvC', 'trainer'),
+    ('Eduardo Amaral', 'eduardo.amaral', 'eduardo.amaral@gym4u.pt', '$2y$12$fjBAAB0sRN4GCrVuwBX4HejD3yKzOn9XQqDl7vKyGAD9LhmtPsqvC', 'trainer'),
+    ('Adriana Mendes', 'adriana.mendes', 'adriana.mendes@gym4u.pt', '$2y$12$fjBAAB0sRN4GCrVuwBX4HejD3yKzOn9XQqDl7vKyGAD9LhmtPsqvC', 'trainer'),
+    ('Goncalo Pinto', 'goncalo.pinto', 'goncalo.pinto@gym4u.pt', '$2y$12$fjBAAB0sRN4GCrVuwBX4HejD3yKzOn9XQqDl7vKyGAD9LhmtPsqvC', 'trainer'),
+    ('David Gomes', 'david.gomes', 'david.gomes@gym4u.pt', '$2y$12$fjBAAB0sRN4GCrVuwBX4HejD3yKzOn9XQqDl7vKyGAD9LhmtPsqvC', 'trainer'),
+    ('Joana Rodrigues', 'joana.rodrigues', 'joana.rodrigues@gym4u.pt', '$2y$12$fjBAAB0sRN4GCrVuwBX4HejD3yKzOn9XQqDl7vKyGAD9LhmtPsqvC', 'trainer'),
+    ('Tiago Rocha', 'tiago.rocha', 'tiago.rocha@gym4u.pt', '$2y$12$fjBAAB0sRN4GCrVuwBX4HejD3yKzOn9XQqDl7vKyGAD9LhmtPsqvC', 'trainer');
 
--- Users (admin) — id 14
+-- Users (admin) — id 14 — password: p4s5w0rd
 INSERT INTO users (name, username, email, password, role) VALUES
-    ('Admin', 'admin', 'admin@gym4u.pt', 'hashed_pw_admin', 'admin');
+    ('Admin', 'admin', 'admin@gym4u.pt', '$2y$12$qKqks0PvoeIfaMxgmZ6UlO5xnvLGcsw4Ui/ZH1YKFE7Cw2X/Yw9lK', 'admin');
 
 -- Trainers (extra data, user_id matches users above)
 INSERT INTO trainers (user_id, bio, experience_years, certifications, phone, title) VALUES

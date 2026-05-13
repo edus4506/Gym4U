@@ -1,0 +1,45 @@
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}
+
+.login-wrapper {
+  width: min(420px, 92%);
+  margin: 3rem auto;
+}
+
+.login-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 2.5rem;
+}
+
+.login-card h2 {
+  margin-bottom: 1.5rem;
+  color: var(--dark);
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.login-form label {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--text-soft);
+  margin-bottom: -0.5rem;
+}
+
+.login-form p {
+  text-align: center;
+  margin: 0;
+}
