@@ -1,0 +1,67 @@
+<?php
+session_start();
+
+if (isset($_SESSION['user_id'])) {
+    header('Location: index.php');
+    exit;
+}
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login | Gym4U</title>
+  <link rel="icon" href="images/gym4u_icon.png">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+  <header>
+    <div>
+      <a href="index.php">
+        <img src="images/gym4u_logo.png" alt="Gym4U logo" class="logo">
+      </a>
+    </div>
+    <div class="middle"><h1>Gym4U</h1></div>
+    <nav class="right" aria-label="Main navigation">
+      <ul>
+        <li><a href="index.php">Home</a></li>
+        <li><a href="classes.php">Classes</a></li>
+        <li><a href="trainers.php">Trainers</a></li>
+        <li><a href="login.php" aria-current="page">Login</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <div class="login-wrapper">
+      <div class="login-card">
+        <h2>Login</h2>
+        <form class="login-form" method="post" action="actions/login_action.php">
+          <label for="username">Username</label>
+          <input type="text" id="username" name="username" required>
+
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" required>
+
+          <button type="submit" class="btn btn-enroll">Login</button>
+          <p>Don't have an account? <a href="register.php">Register here</a></p>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>
+      <a href="#">Terms of Use</a>
+      <a href="#">Cancellations</a>
+      <a href="#">Complaints Book</a>
+    </p>
+    <p>Membership Conditions · Regulations · Ethics Channel · Data Processing</p>
+    <p>&copy; 2026 Gym4U. All rights reserved.</p>
+  </footer>
+</body>
+</html>
