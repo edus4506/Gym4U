@@ -139,7 +139,7 @@ $reviews = $db->query("
     </section>
 
     <!-- CTA -->
-    <section class="section cta-section" id="cta-section">
+    <section class="section cta-section">
       <h2 class="h2">Your fitness journey starts here!</h2>
       <p class="p">
         No commitments, no pressure. Try Gym4U for free and explore our classes,
