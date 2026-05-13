@@ -81,7 +81,7 @@ $divisionImages = [
   </header>
 
   <main class="main">
-    <section class="section intro-panel intro-panel-dark" id="classes-intro">
+    <section class="section intro-panel intro-panel-dark">
       <h2 class="h2">Classes at Our Gym</h2>
       <p class="p">
         Explore every class division available at Gym4U. Each class includes
@@ -89,7 +89,7 @@ $divisionImages = [
       </p>
     </section>
 
-    <section class="section" id="division-title">
+    <section class="section">
       <h2 class="h2">Class Divisions</h2>
       <div class="division-grid">
         <?php foreach ($divisions as $division => $divClasses): ?>
@@ -113,7 +113,7 @@ $divisionImages = [
       </div>
     </section>
 
-    <section class="section schedule-box" id="schedule-box">
+    <section class="section schedule-box">
       <h2 class="h2">Weekly Class Schedule</h2>
       <table class="table">
         <caption class="caption">All classes and trainers at Gym4U</caption>
@@ -138,7 +138,7 @@ $divisionImages = [
       </table>
     </section>
 
-    <section class="section class-filters" id="filters">
+    <section class="section class-filters">
       <h2 class="h2">Browse Classes &amp; Enroll</h2>
       <form class="filter-group">
         <select name="type" aria-label="Filter by class type">
@@ -227,7 +227,7 @@ $divisionImages = [
       </table>
     </section>
 
-    <section class="section cta-section" id="trainers-cta">
+    <section class="section cta-section">
       <h2 class="h2">Want to Know More About Our Trainers?</h2>
       <p class="p">Check full trainer profiles, specializations, and experience details.</p>
       <p class="p"><a class="a" href="trainers.php">See more about trainers</a></p>

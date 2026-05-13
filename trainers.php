@@ -51,7 +51,7 @@ foreach ($db->query("
   </header>
 
   <main class="trainers-page">
-    <section class="section intro-panel intro-panel-dark" id="trainers-intro">
+    <section class="section intro-panel intro-panel-dark">
       <h2 class="h2">Meet Our Trainers</h2>
       <p class="p">
         Our coaching team combines experience, motivation, and technical
@@ -61,7 +61,7 @@ foreach ($db->query("
     </section>
 
     <!-- FILTERS -->
-    <section class="section filter-panel" id="trainers-filters">
+    <section class="section filter-panel">
       <h2 class="h2">Find the Right Trainer</h2>
       <form class="filter-form filter-form-4" action="#" method="get">
         <div class="form-group">
@@ -105,7 +105,7 @@ foreach ($db->query("
     </section>
 
     <!-- TRAINER CARDS -->
-    <section class="section" id="trainers-list">
+    <section class="section">
       <h2 class="h2">Our Coaching Staff</h2>
       <div class="trainer-grid">
         <?php foreach ($trainers as $trainer): ?>
@@ -132,7 +132,7 @@ foreach ($db->query("
     </section>
 
     <!-- OVERVIEW TABLE -->
-    <section class="section schedule-box clean-panel" id="trainer-overview">
+    <section class="section schedule-box clean-panel">
       <h2 class="h2">Trainer Overview</h2>
       <table class="table">
         <caption class="caption">Summary of trainer specializations and experience</caption>
@@ -158,7 +158,7 @@ foreach ($db->query("
     </section>
 
     <!-- TRAINING FOCUS -->
-    <section class="section training-focus" id="training-focus">
+    <section class="section training-focus">
       <h2 class="h2">What our trainers can help you with</h2>
       <div class="focus-grid">
         <article class="focus-card">
@@ -189,7 +189,7 @@ foreach ($db->query("
     </section>
 
     <!-- FAQ -->
-    <section class="section trainers-faq" id="trainers-faq">
+    <section class="section trainers-faq">
       <h2 class="h2">FAQ</h2>
       <details class="faq-item">
         <summary>How can I choose the right trainer for my goals?</summary>
@@ -214,7 +214,7 @@ foreach ($db->query("
     </section>
 
     <!-- CONTACT -->
-    <section class="section trainers-contact" id="trainers-contact">
+    <section class="section trainers-contact">
       <h2 class="h2">Get in touch with our trainers</h2>
       <div class="contact-grid">
         <?php foreach ($trainers as $trainer): ?>
@@ -231,7 +231,7 @@ foreach ($db->query("
       </div>
     </section>
 
-    <section class="section cta-section" id="trainers-cta">
+    <section class="section cta-section">
       <h2 class="h2">Ready to train with us?</h2>
       <p class="p">Explore our class <a class="a" href="classes.php">schedule</a> and find the right trainer for your goals.</p>
     </section>
