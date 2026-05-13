@@ -5,18 +5,20 @@ require_once __DIR__ . '/database/db.php';
 $db = getDatabaseConnection();
 
 $classes = $db->query("
-    SELECT c.id, c.name, c.description, c.division, t.name AS trainer_name
+    SELECT c.id, c.name, c.description, cat.name AS division, u.name AS trainer_name
     FROM classes c
     JOIN trainers t ON c.trainer_id = t.id
-    ORDER BY c.division, c.name
-")->fetchAll();
+    JOIN users u ON t.user_id = u.id
+    JOIN categories cat ON c.category_id = cat.id
+    ORDER BY cat.name, c.name")->fetchAll();
 
 $schedule = $db->query("
-    SELECT cs.id, c.name AS class_name, t.name AS trainer_name,
+    SELECT cs.id, c.name AS class_name, u.name AS trainer_name,
            cs.day, cs.time, cs.capacity, cs.enrolled
     FROM class_schedule cs
     JOIN classes c ON cs.class_id = c.id
     JOIN trainers t ON c.trainer_id = t.id
+    JOIN users u ON t.user_id = u.id
     ORDER BY CASE cs.day
         WHEN 'Monday' THEN 1 WHEN 'Tuesday' THEN 2 WHEN 'Wednesday' THEN 3
         WHEN 'Thursday' THEN 4 WHEN 'Friday' THEN 5 WHEN 'Saturday' THEN 6 WHEN 'Sunday' THEN 7
@@ -151,7 +153,7 @@ $divisionImages = [
         </select>
         <select name="trainer" aria-label="Filter by trainer">
           <option value="">All Trainers</option>
-          <?php foreach ($db->query("SELECT id, name FROM trainers ORDER BY name")->fetchAll() as $t): ?>
+          <?php foreach ($db->query("SELECT t.id AS id, u.name AS name FROM trainers t JOIN users u ON t.user_id = u.id ORDER BY u.name")->fetchAll() as $t): ?>
             <option value="<?= htmlspecialchars(strtolower(explode(' ', $t['name'])[0])) ?>">
               <?= htmlspecialchars($t['name']) ?>
             </option>

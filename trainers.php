@@ -4,7 +4,13 @@ require_once __DIR__ . '/database/db.php';
 
 $db = getDatabaseConnection();
 
-$trainers = $db->query("SELECT * FROM trainers ORDER BY name")->fetchAll();
+$trainers = $db->query("SELECT t.id, t.bio, t.experience_years, t.certifications, t.phone, t.title, u.name, u.email, GROUP_CONCAT(cat.name, ', ') AS specializations
+  FROM trainers t 
+  JOIN users u ON u.id = t.user_id 
+  LEFT JOIN trainer_categories tc ON tc.trainer_id = t.id
+  LEFT JOIN categories cat ON cat.id = tc.category_id
+  GROUP BY t.id
+  ORDER BY u.name")->fetchAll();
 
 $classesPerTrainer = [];
 foreach ($db->query("
@@ -113,7 +119,7 @@ foreach ($db->query("
             >
             <div class="trainer-content">
               <h3 class="h3"><?= htmlspecialchars($trainer['name']) ?></h3>
-              <p class="p trainer-role"><?= htmlspecialchars($trainer['role']) ?></p>
+              <p class="p trainer-role"><?= htmlspecialchars($trainer['title']) ?></p>
               <p class="p"><?= htmlspecialchars($trainer['bio']) ?></p>
               <p class="p trainer-meta"><strong>Experience:</strong> <?= (int)$trainer['experience_years'] ?> years</p>
               <p class="p trainer-meta"><strong>Certifications:</strong> <?= htmlspecialchars($trainer['certifications']) ?></p>
