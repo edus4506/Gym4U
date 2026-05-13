@@ -70,7 +70,7 @@ $reviews = $db->query("
         <div class="feature">
           <h3>No Contracts</h3>
           <p>
-            Enjoy full flexibility at Gym4U. Join and leave whenever you want â€”
+            Enjoy full flexibility at Gym4U. Join and leave whenever you want -
             no minimum commitment, no fine print.
           </p>
         </div>
@@ -78,14 +78,14 @@ $reviews = $db->query("
           <h3>Spacious Facilities</h3>
           <p>
             We offer 7 different training zones so you can build your routine
-            your way â€” everything you need to train on your terms.
+            your way - everything you need to train on your terms.
           </p>
         </div>
         <div class="feature">
           <h3>Wide Variety of Classes</h3>
           <p>
             No room for boredom. Try our supervised classes like Body Pump,
-            Yoga, Zumba, Hyrox, Cycling and more â€” you'll want to try them all.
+            Yoga, Zumba, Hyrox, Cycling and more - you'll want to try them all.
           </p>
         </div>
         <div class="feature">
@@ -174,7 +174,7 @@ $reviews = $db->query("
             <h3><?= htmlspecialchars($review['class_name']) ?></h3>
             <div class="review-header">
               <strong><?= htmlspecialchars($review['name']) ?></strong>
-              <span><?= str_repeat('â˜…', (int)$review['rating']) ?></span>
+              <span><?= str_repeat('★', (int)$review['rating']) ?></span>
             </div>
             <p class="review-text"><?= htmlspecialchars($review['comment']) ?></p>
           </article>
@@ -189,7 +189,7 @@ $reviews = $db->query("
       <a href="#">Cancellations</a> |
       <a href="#">Complaints Book</a>
     </p>
-    <p>Membership Conditions Â· Regulations Â· Ethics Channel Â· Data Processing</p>
+    <p>Membership Conditions · Regulations · Ethics Channel · Data Processing</p>
     <p>&copy; 2026 Gym4U. All rights reserved.</p>
   </footer>
 </body>

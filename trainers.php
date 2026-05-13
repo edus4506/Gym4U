@@ -77,8 +77,8 @@ foreach ($db->query("
           <label for="experience">Experience level</label>
           <select id="experience" name="experience">
             <option value="">Any experience</option>
-            <option value="1-3">1â€“3 years</option>
-            <option value="4-6">4â€“6 years</option>
+            <option value="1-3">1-3 years</option>
+            <option value="4-6">4-6 years</option>
             <option value="7-plus">7+ years</option>
           </select>
         </div>
@@ -237,7 +237,7 @@ foreach ($db->query("
       <a href="#">Cancellations</a> |
       <a href="#">Complaints Book</a>
     </p>
-    <p>Membership Conditions Â· Regulations Â· Ethics Channel Â· Data Processing</p>
+    <p>Membership Conditions · Regulations · Ethics Channel · Data Processing</p>
     <p>&copy; 2026 Gym4U. All rights reserved.</p>
   </footer>
 </body>
