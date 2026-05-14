@@ -12,7 +12,7 @@
   <link rel="icon" href="images/gym4u_icon.png">
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/components.css">
-  <link rel="stylesheet" href="css/index.css">
+  <link rel="stylesheet" href="css/footers.css">
 </head>
 
 <body>
@@ -38,6 +38,17 @@
   </header>
 
   <main>
+    <section class="hero">
+      <h2>Terms and Conditions</h2>
+
+      <p>
+        Please read these Terms and Conditions carefully before using the Gym4U
+        platform, facilities, and digital services. By accessing this website,
+        creating an account, or using any Gym4U services, users acknowledge and
+        agree to comply with the following rules, policies, and regulations.
+      </p>
+    </section>
+
     <section class="section">
       <h2>Website Terms and Conditions</h2>
 
@@ -116,11 +127,11 @@
         </p>
 
         <ul>
-          <li>Full name and contact information;</li>
-          <li>User credentials and authentication details;</li>
-          <li>Membership and booking history;</li>
-          <li>Ratings, reviews, and submitted feedback;</li>
-          <li>Usage analytics and interaction data.</li>
+          <li>- Full name and contact information;</li>
+          <li>- User credentials and authentication details;</li>
+          <li>- Membership and booking history;</li>
+          <li>- Ratings, reviews, and submitted feedback;</li>
+          <li>- Usage analytics and interaction data.</li>
         </ul>
 
         <p>
@@ -158,12 +169,12 @@
         </p>
 
         <ul>
-          <li>Attempting unauthorized access to accounts, databases, or servers;</li>
-          <li>Uploading malicious software, viruses, or harmful scripts;</li>
-          <li>Disrupting platform functionality or network infrastructure;</li>
-          <li>Submitting abusive, discriminatory, offensive, or illegal content;</li>
-          <li>Using automated tools to scrape, extract, or manipulate platform data;</li>
-          <li>Impersonating staff members, trainers, or other users.</li>
+          <li>- Attempting unauthorized access to accounts, databases, or servers;</li>
+          <li>- Uploading malicious software, viruses, or harmful scripts;</li>
+          <li>- Disrupting platform functionality or network infrastructure;</li>
+          <li>- Submitting abusive, discriminatory, offensive, or illegal content;</li>
+          <li>- Using automated tools to scrape, extract, or manipulate platform data;</li>
+          <li>- Impersonating staff members, trainers, or other users.</li>
         </ul>
 
         <p>
@@ -185,9 +196,9 @@
         </p>
 
         <ul>
-          <li>The content is truthful and based on genuine experiences;</li>
-          <li>The content does not violate applicable laws or third-party rights;</li>
-          <li>The content does not contain abusive, hateful, or defamatory language.</li>
+          <li>- The content is truthful and based on genuine experiences;</li>
+          <li>- The content does not violate applicable laws or third-party rights;</li>
+          <li>- The content does not contain abusive, hateful, or defamatory language.</li>
         </ul>
 
         <p>
@@ -209,11 +220,11 @@
         </p>
 
         <ul>
-          <li>Temporary website unavailability;</li>
-          <li>Loss of data or interrupted services;</li>
-          <li>Technical errors or inaccuracies;</li>
-          <li>Security breaches caused by third parties;</li>
-          <li>External websites linked through the platform.</li>
+          <li>- Temporary website unavailability;</li>
+          <li>- Loss of data or interrupted services;</li>
+          <li>- Technical errors or inaccuracies;</li>
+          <li>- Security breaches caused by third parties;</li>
+          <li>- External websites linked through the platform.</li>
         </ul>
       </article>
 
@@ -278,10 +289,10 @@
         </p>
 
         <ul>
-          <li>Return weights and accessories after use;</li>
-          <li>Clean equipment after workouts;</li>
-          <li>Respect usage time limits during busy periods;</li>
-          <li>Immediately report damaged equipment or unsafe conditions.</li>
+          <li>- Return weights and accessories after use;</li>
+          <li>- Clean equipment after workouts;</li>
+          <li>- Respect usage time limits during busy periods;</li>
+          <li>- Immediately report damaged equipment or unsafe conditions.</li>
         </ul>
       </article>
 
@@ -337,11 +348,11 @@
         </p>
 
         <ul>
-          <li>Violation of gym regulations;</li>
-          <li>Fraudulent or abusive behavior;</li>
-          <li>Damage to equipment or facilities;</li>
-          <li>Threats to staff or members;</li>
-          <li>Unauthorized commercial activities inside the gym.</li>
+          <li>- Violation of gym regulations;</li>
+          <li>- Fraudulent or abusive behavior;</li>
+          <li>- Damage to equipment or facilities;</li>
+          <li>- Threats to staff or members;</li>
+          <li>- Unauthorized commercial activities inside the gym.</li>
         </ul>
 
         <p>

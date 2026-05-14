@@ -1,0 +1,32 @@
+h2 {
+  text-align: center;
+  font-size: 2.4rem;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+
+p {
+    margin-bottom: 2rem;
+}
+
+article ul {
+    color: var(--text-soft);
+    font-size: 0.8rem;
+    margin-left: 2rem;
+    margin-bottom: 2rem;
+}
+
+.hero {
+  background: var(--dark-soft);
+  color: white;
+  padding: 3rem 2rem;
+  border-radius: 28px;
+  box-shadow: var(--shadow);
+  margin-bottom: 2rem;
+}
+
+.hero h2, 
+.hero p {
+  color: white;
+  margin-top: 0rem;
+}
