@@ -82,15 +82,15 @@ $divisionImages = [
 
   <main class="main">
     <section class="section intro-panel intro-panel-dark">
-      <h2 class="h2">Classes at Our Gym</h2>
-      <p class="p">
+      <h2>Classes at Our Gym</h2>
+      <p>
         Explore every class division available at Gym4U. Each class includes
         the trainer who leads it, so you can choose the style and coach that fits your goals.
       </p>
     </section>
 
     <section class="section">
-      <h2 class="h2">Class Divisions</h2>
+      <h2>Class Divisions</h2>
       <div class="division-grid">
         <?php foreach ($divisions as $division => $divClasses): ?>
           <?php $img = $divisionImages[$division] ?? null; ?>
@@ -99,8 +99,8 @@ $divisionImages = [
               <img class="division-image" src="<?= htmlspecialchars($img['src']) ?>" alt="<?= htmlspecialchars($img['alt']) ?>">
             <?php endif; ?>
             <div class="division-content">
-              <h3 class="h3"><?= htmlspecialchars($division) ?></h3>
-              <p class="p"><?= htmlspecialchars($divClasses[0]['description']) ?></p>
+              <h3><?= htmlspecialchars($division) ?></h3>
+              <p><?= htmlspecialchars($divClasses[0]['description']) ?></p>
               <p class="p division-meta">
                 <strong>Classes:</strong> <?= htmlspecialchars(implode(', ', array_column($divClasses, 'name'))) ?>
               </p>
@@ -114,7 +114,7 @@ $divisionImages = [
     </section>
 
     <section class="section schedule-box">
-      <h2 class="h2">Weekly Class Schedule</h2>
+      <h2>Weekly Class Schedule</h2>
       <table class="table">
         <caption class="caption">All classes and trainers at Gym4U</caption>
         <thead class="thead">
@@ -139,7 +139,7 @@ $divisionImages = [
     </section>
 
     <section class="section class-filters">
-      <h2 class="h2">Browse Classes &amp; Enroll</h2>
+      <h2>Browse Classes &amp; Enroll</h2>
       <form class="filter-group">
         <select name="type" aria-label="Filter by class type">
           <option value="">All Types</option>
@@ -190,7 +190,7 @@ $divisionImages = [
     </section>
 
     <section class="section schedule-box">
-      <h2 class="h2">Class Booking &amp; Reviews</h2>
+      <h2>Class Booking &amp; Reviews</h2>
       <table class="table">
         <caption class="caption">Book your spot or leave a review for past sessions</caption>
         <thead class="thead">
@@ -228,13 +228,13 @@ $divisionImages = [
     </section>
 
     <section class="section cta-section">
-      <h2 class="h2">Want to Know More About Our Trainers?</h2>
-      <p class="p">Check full trainer profiles, specializations, and experience details.</p>
-      <p class="p"><a class="a" href="trainers.php">See more about trainers</a></p>
+      <h2>Want to Know More About Our Trainers?</h2>
+      <p>Check full trainer profiles, specializations, and experience details.</p>
+      <p><a href="trainers.php">See more about trainers</a></p>
     </section>
 
     <section class="section review-form-container">
-      <h2 class="h2">Leave a Review</h2>
+      <h2>Leave a Review</h2>
       <form class="review-form" method="post" action="submit_review.php">
         <label for="rating">Rating:</label>
         <select id="rating" name="rating">
@@ -250,7 +250,7 @@ $divisionImages = [
     </section>
 
     <section class="section">
-      <h2 class="h2">Member Feedback</h2>
+      <h2>Member Feedback</h2>
       <div class="division-grid">
         <?php foreach ($reviews as $review): ?>
           <article class="review-card">
