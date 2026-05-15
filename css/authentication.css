@@ -8,12 +8,12 @@ main {
   flex: 1;
 }
 
-.login-wrapper {
+.wrapper {
   width: min(420px, 92%);
   margin: 3rem auto;
 }
 
-.login-card {
+.card {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
@@ -21,25 +21,29 @@ main {
   padding: 2.5rem;
 }
 
-.login-card h2 {
+.card h2 {
   margin-bottom: 1.5rem;
   color: var(--dark);
 }
 
-.login-form {
+.form {
   display: flex;
   flex-direction: column;
   gap: 1.2rem;
 }
 
-.login-form label {
+.form label {
   font-weight: 600;
   font-size: 0.9rem;
   color: var(--text-soft);
   margin-bottom: -0.5rem;
 }
 
-.login-form p {
+.form p {
   text-align: center;
   margin: 0;
+}
+
+button {
+  margin-top: 1rem;
 }

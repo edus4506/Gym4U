@@ -1,0 +1,79 @@
+<?php
+session_start();
+
+if (isset($_SESSION['user_id'])) {
+    header('Location: index.php');
+    exit;
+}
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register | Gym4U</title>
+  <link rel="icon" href="images/gym4u_icon.png">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/authentication.css">
+</head>
+<body>
+  <header>
+    <div>
+      <a href="index.php">
+        <img src="images/gym4u_logo.png" alt="Gym4U logo" class="logo">
+      </a>
+    </div>
+    <div class="middle"><h1>Gym4U</h1></div>
+    <nav class="right" aria-label="Main navigation">
+      <ul>
+        <li><a href="index.php">Home</a></li>
+        <li><a href="classes.php">Classes</a></li>
+        <li><a href="trainers.php">Trainers</a></li>
+        <li><a href="register.php" aria-current="page">Register</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <div class="wrapper">
+      <div class="card">
+        <h2>Register</h2>
+        <form class="form" method="post" action="actions/register_action.php">
+
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" placeholder="Enter your name" required>
+
+          <label for="username">Username</label>
+          <input type="text" id="username" name="username" placeholder="Enter your username" required>
+
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="your.email@example.com" required>
+
+          <label for="phone">Phone</label>
+          <input type="tel" id="phone" name="phone" pattern="[0-9]{9}" placeholder="999999999" required>
+
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" placeholder="Enter your password" required>
+
+          <button type="submit" class="btn btn-enroll">Register</button>
+          <p>Already have an account? <a href="login.php">Login here</a></p>
+
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>
+      <a href="privacy.php">Privacy Policy</a> |
+      <a href="terms.php">Terms of Use</a> |
+      <a href="#">Cancellations</a> |
+      <a href="https://www.livroreclamacoes.pt/Inicio/" target="_blank"> Complaints Book </a>
+    </p>
+    <p>Membership Conditions · Regulations · Ethics Channel · Data Processing</p>
+    <p>&copy; 2026 Gym4U. All rights reserved.</p>
+  </footer>
+</body>
+</html>
