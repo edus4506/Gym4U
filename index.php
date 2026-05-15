@@ -185,7 +185,7 @@ $reviews = $db->query("
 
   <footer class="footer">
     <p>
-      <a href="#">Privacy Policy</a> |
+      <a href="privacy.php">Privacy Policy</a> |
       <a href="terms.php">Terms of Use</a> |
       <a href="#">Cancellations</a> |
       <a href="#">Complaints Book</a>
