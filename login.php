@@ -5,6 +5,13 @@ if (isset($_SESSION['user_id'])) {
     header('Location: index.php');
     exit;
 }
+
+$errors = [
+  'empty' => 'Please enter your username and password.',
+  'invalid' => 'Invalid username or password.',
+];
+
+$errorMessage = $errors[$_GET['error'] ?? ''] ?? null;
 ?>
 
 <!DOCTYPE html>
@@ -40,6 +47,9 @@ if (isset($_SESSION['user_id'])) {
     <div class="wrapper">
       <div class="card">
         <h2>Login</h2>
+        <?php if ($errorMessage): ?>
+          <p class="form-error"><?= htmlspecialchars($errorMessage) ?></p>
+        <?php endif; ?>
         <form class="form" method="post" action="actions/login_action.php">
           <label for="username">Username</label>
           <input type="text" id="username" name="username" placeholder="Enter your username" required>

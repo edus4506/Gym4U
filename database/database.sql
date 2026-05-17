@@ -20,6 +20,8 @@ CREATE TABLE IF NOT EXISTS users (
     username TEXT NOT NULL UNIQUE,
     email TEXT NOT NULL UNIQUE,
     password TEXT NOT NULL,
+    profile_photo TEXT,
+    active INTEGER NOT NULL DEFAULT 1,
     role TEXT NOT NULL CHECK(role IN ('member', 'trainer', 'admin')) DEFAULT 'member'
 );
 

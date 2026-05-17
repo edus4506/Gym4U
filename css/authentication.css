@@ -44,6 +44,16 @@ main {
   margin: 0;
 }
 
+.form-error {
+  background: #fee2e2;
+  border-radius: 8px;
+  color: var(--danger);
+  font-weight: 600;
+  margin-bottom: 1rem;
+  padding: 0.8rem 1rem;
+  text-align: left;
+}
+
 button {
   margin-top: 1rem;
 }

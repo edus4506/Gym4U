@@ -2,6 +2,8 @@
 declare(strict_types = 1);
 require_once __DIR__ . '/../database/db.php';
 
+session_start();
+
 $db = getDatabaseConnection();
 
 $reviews = $db->query("

@@ -5,6 +5,14 @@ if (isset($_SESSION['user_id'])) {
     header('Location: index.php');
     exit;
 }
+
+$errors = [
+  'empty' => 'Please fill in all required fields.',
+  'email' => 'Please enter a valid email address.',
+  'exists' => 'That username or email is already registered.',
+];
+
+$errorMessage = $errors[$_GET['error'] ?? ''] ?? null;
 ?>
 
 <!DOCTYPE html>
@@ -40,6 +48,9 @@ if (isset($_SESSION['user_id'])) {
     <div class="wrapper">
       <div class="card">
         <h2>Register</h2>
+        <?php if ($errorMessage): ?>
+          <p class="form-error"><?= htmlspecialchars($errorMessage) ?></p>
+        <?php endif; ?>
         <form class="form" method="post" action="actions/register_action.php">
 
           <label for="name">Name</label>

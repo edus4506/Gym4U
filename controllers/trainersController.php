@@ -2,6 +2,8 @@
 declare(strict_types = 1);
 require_once __DIR__ . '/../database/db.php';
 
+session_start();
+
 $db = getDatabaseConnection();
 
 $trainers = $db->query("SELECT t.id, t.bio, t.experience_years, t.certifications, t.phone, t.title, u.name, u.email, GROUP_CONCAT(cat.name, ', ') AS specializations

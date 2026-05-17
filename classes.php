@@ -1,5 +1,21 @@
 <?php
   require_once __DIR__ . '/controllers/classesController.php';
+
+  $successMessages = [
+    'enrolled' => 'Enrollment confirmed.',
+    'cancelled' => 'Enrollment cancelled.',
+    'reviewed' => 'Review submitted.',
+  ];
+  $errorMessages = [
+    'full' => 'That class is already full.',
+    'already-enrolled' => 'You are already enrolled in that class.',
+    'members-only' => 'Only members can enroll in classes or leave reviews.',
+    'not-enrolled' => 'You can only review classes you are enrolled in.',
+    'review' => 'Please choose a class, rating, and comment.',
+    'invalid' => 'That class action could not be completed.',
+  ];
+  $successMessage = $successMessages[$_GET['success'] ?? ''] ?? null;
+  $errorMessage = $errorMessages[$_GET['error'] ?? ''] ?? null;
 ?>
 
 <!DOCTYPE html>
@@ -26,12 +42,25 @@
         <li><a href="index.php">Home</a></li>
         <li><a href="classes.php" aria-current="page">Classes</a></li>
         <li><a href="trainers.php">Trainers</a></li>
-        <li><a href="#">Profile</a></li>
+        <?php if (isset($_SESSION['user_id'])): ?>
+          <li><a href="profile.php">Profile</a></li>
+          <li><a href="actions/logout.php">Logout</a></li>
+        <?php else: ?>
+          <li><a href="login.php">Login</a></li>
+        <?php endif; ?>
       </ul>
     </nav>
   </header>
 
   <main class="main">
+    <?php if ($successMessage): ?>
+      <p class="alert alert-success"><?= htmlspecialchars($successMessage) ?></p>
+    <?php endif; ?>
+
+    <?php if ($errorMessage): ?>
+      <p class="alert alert-error"><?= htmlspecialchars($errorMessage) ?></p>
+    <?php endif; ?>
+
     <section class="section intro-panel intro-panel-dark">
       <h2>Classes at Our Gym</h2>
       <p>
@@ -91,49 +120,47 @@
 
     <section class="section class-filters">
       <h2>Browse Classes &amp; Enroll</h2>
-      <form class="filter-group">
+      <form class="filter-group" method="get" action="classes.php">
         <select name="type" aria-label="Filter by class type">
           <option value="">All Types</option>
-          <option value="yoga">Yoga &amp; Mobility</option>
-          <option value="cardio">Cycling &amp; Cardio</option>
-          <option value="hiit">HIIT &amp; Conditioning</option>
-          <option value="functional">Functional Training</option>
-          <option value="pilates">Pilates &amp; Core</option>
-          <option value="personal">Personal Training</option>
-          <option value="toning">Body Toning</option>
+          <?php foreach ($categories as $category): ?>
+            <option value="<?= (int)$category['id'] ?>" <?= $filters['type'] === (string)$category['id'] ? 'selected' : '' ?>>
+              <?= htmlspecialchars($category['name']) ?>
+            </option>
+          <?php endforeach; ?>
         </select>
         <select name="trainer" aria-label="Filter by trainer">
           <option value="">All Trainers</option>
-          <?php foreach ($db->query("SELECT t.id AS id, u.name AS name FROM trainers t JOIN users u ON t.user_id = u.id ORDER BY u.name")->fetchAll() as $t): ?>
-            <option value="<?= htmlspecialchars(strtolower(explode(' ', $t['name'])[0])) ?>">
+          <?php foreach ($trainersForFilter as $t): ?>
+            <option value="<?= (int)$t['id'] ?>" <?= $filters['trainer'] === (string)$t['id'] ? 'selected' : '' ?>>
               <?= htmlspecialchars($t['name']) ?>
             </option>
           <?php endforeach; ?>
         </select>
         <select name="day" aria-label="Filter by day">
           <option value="">All Days</option>
-          <option value="monday">Monday</option>
-          <option value="tuesday">Tuesday</option>
-          <option value="wednesday">Wednesday</option>
-          <option value="thursday">Thursday</option>
-          <option value="friday">Friday</option>
-          <option value="saturday">Saturday</option>
+          <?php foreach (['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'] as $day): ?>
+            <option value="<?= htmlspecialchars($day) ?>" <?= strtolower($filters['day']) === $day ? 'selected' : '' ?>>
+              <?= htmlspecialchars(ucfirst($day)) ?>
+            </option>
+          <?php endforeach; ?>
         </select>
         <select id="time" name="time" aria-label="Filter by time">
-          <option value="Any time">Any time</option>
+          <option value="">Any time</option>
           <optgroup label="Morning">
-            <option value="06:00">06:00</option><option value="07:00">07:00</option>
-            <option value="08:00">08:00</option><option value="09:00">09:00</option>
-            <option value="10:00">10:00</option><option value="11:00">11:00</option>
+            <?php foreach (['06:00', '07:00', '08:00', '09:00', '10:00', '11:00'] as $time): ?>
+              <option value="<?= htmlspecialchars($time) ?>" <?= $filters['time'] === $time ? 'selected' : '' ?>><?= htmlspecialchars($time) ?></option>
+            <?php endforeach; ?>
           </optgroup>
           <optgroup label="Afternoon">
-            <option value="12:00">12:00</option><option value="13:00">13:00</option>
-            <option value="14:00">14:00</option><option value="15:00">15:00</option>
-            <option value="16:00">16:00</option><option value="17:00">17:00</option>
+            <?php foreach (['12:00', '13:00', '14:00', '15:00', '16:00', '17:00'] as $time): ?>
+              <option value="<?= htmlspecialchars($time) ?>" <?= $filters['time'] === $time ? 'selected' : '' ?>><?= htmlspecialchars($time) ?></option>
+            <?php endforeach; ?>
           </optgroup>
           <optgroup label="Evening">
-            <option value="18:00">18:00</option><option value="19:00">19:00</option>
-            <option value="20:00">20:00</option><option value="21:00">21:00</option>
+            <?php foreach (['18:00', '19:00', '20:00', '21:00'] as $time): ?>
+              <option value="<?= htmlspecialchars($time) ?>" <?= $filters['time'] === $time ? 'selected' : '' ?>><?= htmlspecialchars($time) ?></option>
+            <?php endforeach; ?>
           </optgroup>
         </select>
         <button type="submit" class="btn-filter">Apply Filters</button>
@@ -156,7 +183,8 @@
         <tbody class="tbody">
           <?php foreach ($schedule as $slot): ?>
             <?php $full = $slot['enrolled'] >= $slot['capacity']; ?>
-            <tr class="tr">
+            <?php $enrolled = isset($memberEnrollments[$slot['id']]); ?>
+            <tr class="tr <?= $enrolled ? 'enrolled-row' : '' ?>">
               <th class="th" scope="row"><?= htmlspecialchars($slot['class_name']) ?></th>
               <td class="td">
                 <a href="trainers.php#<?= htmlspecialchars(strtolower(str_replace(' ', '-', $slot['trainer_name']))) ?>">
@@ -166,12 +194,49 @@
               <td class="td"><?= htmlspecialchars($slot['day']) ?>, <?= htmlspecialchars($slot['time']) ?></td>
               <td class="td"><?= (int)$slot['enrolled'] ?>/<?= (int)$slot['capacity'] ?></td>
               <td class="td">
-                <?php if ($full): ?>
+                <?php if (!isset($_SESSION['user_id'])): ?>
+                  <a class="btn btn-enroll" href="login.php">Login</a>
+                <?php elseif (($_SESSION['user_role'] ?? '') !== 'member'): ?>
+                  <span class="muted">Members only</span>
+                <?php elseif ($enrolled): ?>
+                  <form method="post" action="actions/class_enrollment_action.php">
+                    <input type="hidden" name="schedule_id" value="<?= (int)$slot['id'] ?>">
+                    <input type="hidden" name="mode" value="cancel">
+                    <button class="btn btn-cancel" type="submit">Cancel</button>
+                  </form>
+                <?php elseif ($full): ?>
                   <button class="btn" disabled>Full</button>
                 <?php else: ?>
-                  <button class="btn btn-enroll">Enroll</button>
+                  <form method="post" action="actions/class_enrollment_action.php">
+                    <input type="hidden" name="schedule_id" value="<?= (int)$slot['id'] ?>">
+                    <input type="hidden" name="mode" value="enroll">
+                    <button class="btn btn-enroll" type="submit">Enroll</button>
+                  </form>
                 <?php endif; ?>
               </td>
+            </tr>
+          <?php endforeach; ?>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="section schedule-box">
+      <h2>Main Training Area Equipment</h2>
+      <table class="table">
+        <caption class="caption">Current equipment availability</caption>
+        <thead class="thead">
+          <tr class="tr">
+            <th class="th" scope="col">Equipment</th>
+            <th class="th" scope="col">Quantity</th>
+            <th class="th" scope="col">Status</th>
+          </tr>
+        </thead>
+        <tbody class="tbody">
+          <?php foreach ($equipment as $item): ?>
+            <tr class="tr">
+              <th class="th" scope="row"><?= htmlspecialchars($item['name']) ?></th>
+              <td class="td"><?= (int)$item['quantity'] ?></td>
+              <td class="td"><?= htmlspecialchars(ucfirst($item['status'])) ?></td>
             </tr>
           <?php endforeach; ?>
         </tbody>
@@ -186,7 +251,18 @@
 
     <section class="section review-form-container">
       <h2>Leave a Review</h2>
-      <form class="review-form" method="post" action="submit_review.php">
+      <form class="review-form" method="post" action="actions/review_action.php">
+        <label for="schedule_id">Class:</label>
+        <select id="schedule_id" name="schedule_id" required>
+          <option value="">Choose an enrolled class</option>
+          <?php foreach ($schedule as $slot): ?>
+            <?php if (isset($memberEnrollments[$slot['id']])): ?>
+              <option value="<?= (int)$slot['id'] ?>">
+                <?= htmlspecialchars($slot['class_name'] . ' - ' . $slot['day'] . ' ' . $slot['time']) ?>
+              </option>
+            <?php endif; ?>
+          <?php endforeach; ?>
+        </select>
         <label for="rating">Rating:</label>
         <select id="rating" name="rating">
           <option value="5">5 Stars - Excellent</option>
