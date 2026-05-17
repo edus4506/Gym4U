@@ -21,7 +21,7 @@ $stmt = $db->prepare('SELECT * FROM users WHERE username = ?');
 $stmt->execute([$username]);
 $user = $stmt->fetch();
 
-if (!$user || !password_verify($password, $user['password'])) {
+if (!$user || (int)$user['active'] !== 1 || !password_verify($password, $user['password'])) {
     header('Location: ../login.php?error=invalid');
     exit;
 }

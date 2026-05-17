@@ -1,7 +1,6 @@
 <?php declare(strict_types = 1); ?>
 
 <! é preciso conectar com database? >
-<! usei AI para gerar o texto, posso?>
 
 <!DOCTYPE html>
 <html lang="en-US">

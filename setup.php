@@ -5,13 +5,9 @@ require_once __DIR__ . '/database/db.php';
 
 $db = getDatabaseConnection();
 
-// Read and execute tables.sql
-$tablesSql = file_get_contents(__DIR__ . '/database/tables.sql');
-$db->exec($tablesSql);
-
-// Read and execute data.sql
-$dataSql = file_get_contents(__DIR__ . '/database/data.sql');
-$db->exec($dataSql);
+// Read and execute database.sql
+$databaseSql = file_get_contents(__DIR__ . '/database/database.sql');
+$db->exec($databaseSql);
 
 echo "Database setup completed successfully.\n";
 ?>

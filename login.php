@@ -5,6 +5,13 @@ if (isset($_SESSION['user_id'])) {
     header('Location: index.php');
     exit;
 }
+
+$errors = [
+  'empty' => 'Please enter your username and password.',
+  'invalid' => 'Invalid username or password.',
+];
+
+$errorMessage = $errors[$_GET['error'] ?? ''] ?? null;
 ?>
 
 <!DOCTYPE html>
@@ -16,7 +23,7 @@ if (isset($_SESSION['user_id'])) {
   <link rel="icon" href="images/gym4u_icon.png">
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/components.css">
-  <link rel="stylesheet" href="css/login.css">
+  <link rel="stylesheet" href="css/authentication.css">
 </head>
 <body>
   <header>
@@ -37,15 +44,18 @@ if (isset($_SESSION['user_id'])) {
   </header>
 
   <main>
-    <div class="login-wrapper">
-      <div class="login-card">
+    <div class="wrapper">
+      <div class="card">
         <h2>Login</h2>
-        <form class="login-form" method="post" action="actions/login_action.php">
+        <?php if ($errorMessage): ?>
+          <p class="form-error"><?= htmlspecialchars($errorMessage) ?></p>
+        <?php endif; ?>
+        <form class="form" method="post" action="actions/login_action.php">
           <label for="username">Username</label>
-          <input type="text" id="username" name="username" required>
+          <input type="text" id="username" name="username" placeholder="Enter your username" required>
 
           <label for="password">Password</label>
-          <input type="password" id="password" name="password" required>
+          <input type="password" id="password" name="password" placeholder="Enter your password" required>
 
           <button type="submit" class="btn btn-enroll">Login</button>
           <p>Don't have an account? <a href="register.php">Register here</a></p>

@@ -1,19 +1,7 @@
 <?php
-declare(strict_types = 1);
-require_once __DIR__ . '/database/db.php';
-
-$db = getDatabaseConnection();
-
-$reviews = $db->query("
-    SELECT r.rating, r.comment, u.name, c.name AS class_name
-    FROM reviews r
-    JOIN users u ON r.user_id = u.id
-    JOIN class_schedule cs ON r.schedule_id = cs.id
-    JOIN classes c ON cs.class_id = c.id
-    ORDER BY r.id DESC
-    LIMIT 3
-")->fetchAll();
+  require_once __DIR__ . '/controllers/indexController.php';
 ?>
+
 <!DOCTYPE html>
 <html lang="en-US">
 <head>
@@ -41,7 +29,12 @@ $reviews = $db->query("
         <li><a href="index.php" aria-current="page">Home</a></li>
         <li><a href="classes.php">Classes</a></li>
         <li><a href="trainers.php">Trainers</a></li>
-        <li><a href="#">Profile</a></li>
+        <?php if (isset($_SESSION['user_id'])): ?>
+          <li><a href="profile.php">Profile</a></li>
+          <li><a href="actions/logout.php">Logout</a></li>
+        <?php else: ?>
+          <li><a href="login.php">Login</a></li>
+        <?php endif; ?>
       </ul>
     </nav>
   </header>
@@ -140,12 +133,12 @@ $reviews = $db->query("
 
     <!-- CTA -->
     <section class="section cta-section">
-      <h2 class="h2">Your fitness journey starts here!</h2>
-      <p class="p">
+      <h2>Your fitness journey starts here!</h2>
+      <p>
         No commitments, no pressure. Try Gym4U for free and explore our classes,
         expert trainers, and modern facilities. Check the schedule and find what suits you.
       </p>
-      <p class="p"><a class="a" href="classes.php">See more about classes!</a></p>
+      <p><a href="classes.php">See more about classes!</a></p>
     </section>
 
     <!-- REVIEW FORM -->
