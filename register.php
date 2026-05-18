@@ -39,6 +39,7 @@ $errorMessage = $errors[$_GET['error'] ?? ''] ?? null;
         <li><a href="index.php">Home</a></li>
         <li><a href="classes.php">Classes</a></li>
         <li><a href="trainers.php">Trainers</a></li>
+        <li><a href="equipment.php">Equipment</a></li>
         <li><a href="register.php" aria-current="page">Register</a></li>
       </ul>
     </nav>
