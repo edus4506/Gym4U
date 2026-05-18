@@ -145,14 +145,16 @@
     <section class="section review-form-container">
       <h2>Your Feedback matters!</h2>
       <form class="review-form" method="post" action="submit_review.php">
-        <label for="rating">Rating:</label>
-        <select id="rating" name="rating">
-          <option value="5">5 Stars - Excellent</option>
-          <option value="4">4 Stars - Very Good</option>
-          <option value="3">3 Stars - Average</option>
-          <option value="2">2 Stars - Poor</option>
-          <option value="1">1 Star - Terrible</option>
-        </select>
+        <div class="rating-row">
+          <label>Rating:</label>
+          <div class="star-rating" aria-label="Rating">
+              <span onclick="gfg(1)" class="star">★</span>
+              <span onclick="gfg(2)" class="star">★</span>
+              <span onclick="gfg(3)" class="star">★</span>
+              <span onclick="gfg(4)" class="star">★</span>
+              <span onclick="gfg(5)" class="star">★</span>
+          </div>
+        </div>
         <textarea name="comment" placeholder="Share your experience..." rows="3" required></textarea>
         <button type="submit" class="btn-primary">Submit Review</button>
       </form>
@@ -187,5 +189,6 @@
     <p>&copy; 2026 Gym4U. All rights reserved.</p>
   </footer>
   <script src="js/main.js"></script>
+  <script src="js/review.js"></script>
 </body>
 </html>
