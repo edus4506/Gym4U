@@ -30,6 +30,7 @@
         <li><a href="index.php">Home</a></li>
         <li><a href="classes.php">Classes</a></li>
         <li><a href="trainers.php">Trainers</a></li>
+        <li><a href="equipment.php">Equipment</a></li>
         <li><a href="profile.php" aria-current="page">Profile</a></li>
         <li><a href="actions/logout.php">Logout</a></li>
       </ul>
