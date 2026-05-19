@@ -292,7 +292,6 @@
               <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>">
               <select name="category_id" aria-label="Category"><?php foreach ($categories as $category): ?><option value="<?= (int)$category['id'] ?>" <?= (int)$class['category_id'] === (int)$category['id'] ? 'selected' : '' ?>><?= htmlspecialchars($category['name']) ?></option><?php endforeach; ?></select>
               <select name="trainer_id" aria-label="Trainer"><?php foreach ($trainers as $trainer): ?><option value="<?= (int)$trainer['id'] ?>" <?= (int)$class['trainer_id'] === (int)$trainer['id'] ? 'selected' : '' ?>><?= htmlspecialchars($trainer['name']) ?></option><?php endforeach; ?></select>
-              <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>">
               <button class="btn btn-enroll" type="submit">Save</button>
               <button class="btn btn-cancel" type="submit" name="mode" value="delete">Remove</button>
             </form>
@@ -342,7 +341,6 @@
             <input type="number" name="quantity" min="0" value="1">
             <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>">
             <select name="status"><?php foreach ($statuses as $status): ?><option value="<?= htmlspecialchars($status) ?>"><?= htmlspecialchars(ucfirst($status)) ?></option><?php endforeach; ?></select>
-            <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>">
           </div>
           <button class="btn-primary" type="submit">Add Equipment</button>
         </form>
@@ -355,7 +353,6 @@
               <input type="number" name="quantity" min="0" value="<?= (int)$item['quantity'] ?>" aria-label="Quantity">
               <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>">
               <select name="status" aria-label="Status"><?php foreach ($statuses as $status): ?><option value="<?= htmlspecialchars($status) ?>" <?= $item['status'] === $status ? 'selected' : '' ?>><?= htmlspecialchars(ucfirst($status)) ?></option><?php endforeach; ?></select>
-              <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>">
               <button class="btn btn-enroll" type="submit">Save</button>
               <button class="btn btn-cancel" type="submit" name="mode" value="delete">Remove</button>
             </form>

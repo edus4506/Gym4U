@@ -20,7 +20,7 @@ $memberEnrollments = [];
 
 if(isset($_SESSION['user_id']) && ($_SESSION['user_role'] ?? '') === 'member') {
     $stmt= $db->prepare("
-        SELECT cs.id, c.name, AS class_name, cs.day, cs.time
+        SELECT cs.id, c.name AS class_name, cs.day, cs.time
         FROM enrollments e
         JOIN class_schedule cs ON e.schedule_id = cs.id
         JOIN classes c ON cs.class_id = c.id
