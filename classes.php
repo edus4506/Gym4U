@@ -201,7 +201,7 @@
                 <?php elseif (($_SESSION['user_role'] ?? '') !== 'member'): ?>
                   <span class="muted">Members only</span>
                 <?php elseif ($enrolled): ?>
-                  <form method="post" action="actions/class_enrollment_action.php">
+                  <form class="enroll-form" method="post" action="actions/class_enrollment_action.php" data-schedule-id="<?= (int)$slot['id'] ?>">
                     <input type="hidden" name="schedule_id" value="<?= (int)$slot['id'] ?>">
                     <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>">
                     <input type="hidden" name="mode" value="cancel">
@@ -210,7 +210,7 @@
                 <?php elseif ($full): ?>
                   <button class="btn" disabled>Full</button>
                 <?php else: ?>
-                  <form method="post" action="actions/class_enrollment_action.php">
+                  <form class="enroll-form" method="post" action="actions/class_enrollment_action.php" data-schedule-id="<?= (int)$slot['id'] ?>">
                     <input type="hidden" name="schedule_id" value="<?= (int)$slot['id'] ?>">
                     <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>">
                     <input type="hidden" name="mode" value="enroll">
@@ -313,5 +313,6 @@
   </footer>
   <script src="js/main.js"></script>
   <script src="js/review.js"></script>
+  <script src="js/classes.js"></script>
 </body>
 </html>
