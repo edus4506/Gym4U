@@ -11,6 +11,7 @@ $errors = [
   'email' => 'Please enter a valid email address.',
   'exists' => 'That username or email is already registered.',
   'password' => 'Passwords do not match.',
+  'weakpassword' => 'Password must contain at least 4 characters.',
 ];
 
 $errorMessage = $errors[$_GET['error'] ?? ''] ?? null;
@@ -71,7 +72,7 @@ $errorMessage = $errors[$_GET['error'] ?? ''] ?? null;
           <input type="password" id="password" name="password" placeholder="Enter your password" required>
 
           <label for="confirm_password">Confirm Password</label>
-          <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm your password" required>
+          <input type="password" id="confirm_password" name="confirm_password" placeholder="Must have at least 4 characters" required>
 
           <button type="submit" class="btn btn-enroll">Register</button>
           <p>Already have an account? <a href="login.php">Login here</a></p>

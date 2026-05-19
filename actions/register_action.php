@@ -25,6 +25,11 @@ if ($password !== $confirmPassword) {
   exit;
 }
 
+if (strlen($password) < 4) {
+  header('Location: ../register.php?error=weakpassword');
+  exit;
+}
+
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
   header('Location: ../register.php?error=email');
   exit;
