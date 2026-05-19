@@ -1,5 +1,6 @@
 <?php
   require_once __DIR__ . '/controllers/indexController.php';
+  require_once __DIR__ . '/utils/csrf.php';
 ?>
 
 <!DOCTYPE html>
@@ -145,7 +146,16 @@
     <!-- REVIEW FORM -->
     <section class="section review-form-container">
       <h2>Your Feedback matters!</h2>
-      <form class="review-form" method="post" action="submit_review.php">
+      <form class="review-form" method="post" action="actions/review_action.php">
+        <label for="schedule_id">Class:</label>
+        <select id="schedule_id" name="schedule_id" required>
+          <option value="">Choose an enrolled class</option>
+          <?php foreach ($memberEnrollments as $slot): ?>
+            <option value="<?= (int)$slot['id'] ?>">
+              <?= htmlspecialchars($slot['class_name'] . '-' . $slot['day'] . '-' . $slot['time']) ?>
+            </option>
+          <?php endforeach; ?>
+        </select>
         <label for="rating">Rating:</label>
         <select id="rating" name="rating">
           <option value="5">5 Stars - Excellent</option>
@@ -155,6 +165,7 @@
           <option value="1">1 Star - Terrible</option>
         </select>
         <textarea name="comment" placeholder="Share your experience..." rows="3" required></textarea>
+        <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>">
         <button type="submit" class="btn-primary">Submit Review</button>
       </form>
     </section>

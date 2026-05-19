@@ -4,7 +4,7 @@
 
 ## Project Overview
 
-This project is a gym management website for LTW delivery 1. It presents the core static pages and demonstrates semantic HTML, responsive structure, and organized CSS architecture for a fitness center platform.
+Gym4U is a gym management website built for the LTW course at FEUP (2026). It allows members to browse and enrol in fitness classes, check equipment availability, and leave reviews. Trainers manage their profile and schedule. Admins control the whole platform.
 
 ## Team
 
@@ -15,28 +15,28 @@ This project is a gym management website for LTW delivery 1. It presents the cor
 ## Features
 
 **All users:**
-- [ ] Register a new account.
-- [ ] Log in and out.
-- [ ] Edit their profile, including name, username, password, and profile photo.
+- [x] Register a new account.
+- [x] Log in and out.
+- [x] Edit their profile, including name, username, password, and profile photo.
 
 **Members:**
-- [ ] Browse the schedule of available fitness classes, filtering by type, trainer, day, or time.
-- [ ] Enroll in and cancel enrollment from upcoming classes, subject to capacity limits.
-- [ ] View trainer profiles, including their specializations and the classes they teach.
-- [ ] Check the current availability of equipment in the main training area.
-- [ ] Leave ratings and reviews for classes they have attended.
+- [x] Browse the schedule of available fitness classes, filtering by type, trainer, day, or time.
+- [x] Enroll in and cancel enrollment from upcoming classes, subject to capacity limits.
+- [x] View trainer profiles, including their specializations and the classes they teach.
+- [x] Check the current availability of equipment in the main training area.
+- [x] Leave ratings and reviews for classes they have attended.
 
 **Trainers:**
-- [ ] Manage their public profile, including bio, specializations, and certifications.
-- [ ] View the roster of members enrolled in their classes.
-- [ ] Track and manage their assigned class schedule.
+- [x] Manage their public profile, including bio, specializations, and certifications.
+- [x] View the roster of members enrolled in their classes.
+- [x] Track and manage their assigned class schedule.
 
 **Admins:**
-- [ ] Manage members and trainers (create, update, and deactivate accounts).
-- [ ] Manage the class catalog (create, edit, and remove classes) and assign trainers to them.
-- [ ] Manage equipment in the main training area (add, update availability status, and remove items).
-- [ ] Elevate a user to admin status.
-- [ ] Oversee and ensure the smooth operation of the entire system.
+- [x] Manage members and trainers (create, update, and deactivate accounts).
+- [x] Manage the class catalog (create, edit, and remove classes) and assign trainers to them.
+- [x] Manage equipment in the main training area (add, update availability status, and remove items).
+- [x] Elevate a user to admin status.
+- [x] Oversee and ensure the smooth operation of the entire system.
 
 **Extra:**
 - [ ] Something extra (e.g., personal training bookings, membership plans, waitlist, ...).
@@ -52,14 +52,6 @@ This project is a gym management website for LTW delivery 1. It presents the cor
 - member/1234
 - trainer/1234
 
-## First Delivery
-
-This first delivery includes the three selected pages required for evaluation:
-
-1. Home (`index.html`) — landing page with hero slider, feature cards, and a review form.
-2. Classes (`classes.html`) — class divisions, weekly schedule table, filter form, enroll/cancel buttons, and a review form.
-3. Trainers (`trainers.html`) — trainer profiles with specializations and certifications, filter form, and schedule table.
-
 ## Website Screenshots
 
 ### Home Page
@@ -74,15 +66,28 @@ This first delivery includes the three selected pages required for evaluation:
 ## Project Structure
 
 ```
-├── index.html           # Home page
-├── classes.html         # Classes page
-├── trainers.html        # Trainers page
-├── css/                 # CSS files
-│   ├── base.css         # CSS reset, typography, and base styles
-│   ├── components.css   # Reusable component styles
-│   ├── index.css        # Styles that only apply to this page
-│   ├── classes.css      # Styles that only apply to this page
-│   └── trainers.css     # Styles that only apply to this page
-├── images/              # Image assets directory
-└── README.md            # Project documentation
+├── index.php              # Home page
+├── classes.php            # Classes page
+├── trainers.php           # Trainers page
+├── equipment.php          # Equipment availability page
+├── profile.php            # User profile (member/trainer/admin)
+├── login.php              # Login page
+├── register.php           # Registration page
+├── controllers/           # Data loaders (no HTML output)
+├── actions/               # POST handlers (validate, update DB, redirect)
+├── utils/
+│   └── csrf.php           # CSRF token helpers
+├── css/
+│   ├── base.css           # CSS reset, typography, and base styles
+│   ├── components.css     # Reusable component styles
+│   ├── index.css          # Home page styles
+│   ├── classes.css        # Classes page styles
+│   ├── trainers.css       # Trainers page styles
+│   ├── equipment.css      # Equipment page styles
+│   └── profile.css        # Profile page styles
+├── database/
+│   ├── database.sql       # Schema and seed data
+│   └── db.php             # PDO connection helper
+├── images/                # Image assets
+└── README.md              # Project documentation
 ```

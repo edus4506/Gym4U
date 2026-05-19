@@ -3,11 +3,14 @@ declare(strict_types = 1);
 
 session_start();
 require_once __DIR__ . '/../database/users.php';
+require_once __DIR__ . '/../utils/csrf.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
   header('Location: ../register.php');
   exit;
 }
+
+csrf_verify();
 
 $name = trim($_POST['name'] ?? '');
 $username = trim($_POST['username'] ?? '');
