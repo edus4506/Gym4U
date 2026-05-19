@@ -13,9 +13,15 @@ $name = trim($_POST['name'] ?? '');
 $username = trim($_POST['username'] ?? '');
 $email = trim($_POST['email'] ?? '');
 $password = $_POST['password'] ?? '';
+$confirmPassword = $_POST['confirm_password'] ?? '';
 
 if ($name === '' || $username === '' || $email === '' || $password === '') {
   header('Location: ../register.php?error=empty');
+  exit;
+}
+
+if ($password !== $confirmPassword) {
+  header('Location: ../register.php?error=password');
   exit;
 }
 
