@@ -2,7 +2,7 @@
 declare(strict_types = 1);
 
 session_start();
-require_once __DIR__ . '/../database/users.php';
+require_once __DIR__ . '/../database/db.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
   header('Location: ../register.php');
@@ -25,7 +25,6 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 }
 
 $db = getDatabaseConnection();
-ensureUserProfilePhotoColumn($db);
 
 try {
   $stmt = $db->prepare('INSERT INTO users (name, username, email, password, role) VALUES (?, ?, ?, ?, ?)');
@@ -40,6 +39,8 @@ try {
   header('Location: ../register.php?error=exists');
   exit;
 }
+
+session_regenerate_id(true);
 
 $_SESSION['user_id'] = (int)$db->lastInsertId();
 $_SESSION['user_name'] = $name;
