@@ -29,6 +29,8 @@ if (!$user || (int)$user['active'] !== 1 || !password_verify($password, $user['p
     exit;
 }
 
+session_regenerate_id(true);
+
 $_SESSION['user_id'] = $user['id'];
 $_SESSION['user_name'] = $user['name'];
 $_SESSION['user_role'] = $user['role'];

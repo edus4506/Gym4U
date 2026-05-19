@@ -12,6 +12,8 @@ $errors = [
   'empty' => 'Please fill in all required fields.',
   'email' => 'Please enter a valid email address.',
   'exists' => 'That username or email is already registered.',
+  'password' => 'Passwords do not match.',
+  'weakpassword' => 'Password must contain at least 4 characters.',
 ];
 
 $errorMessage = $errors[$_GET['error'] ?? ''] ?? null;
@@ -71,6 +73,8 @@ $errorMessage = $errors[$_GET['error'] ?? ''] ?? null;
           <label for="password">Password</label>
           <input type="password" id="password" name="password" placeholder="Enter your password" required>
 
+          <label for="confirm_password">Confirm Password</label>
+          <input type="password" id="confirm_password" name="confirm_password" placeholder="Must have at least 4 characters" required>
           <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>">
 
           <button type="submit" class="btn btn-enroll">Register</button>
