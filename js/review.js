@@ -2,25 +2,16 @@ let stars = document.getElementsByClassName("star");
 
 function gfg(n) {
     remove();
-
+    const cls = ["one", "two", "three", "four", "five"][n - 1];
     for (let i = 0; i < n; i++) {
-        let cls = "";
-
-        if (n == 1) cls = "one";
-        else if (n == 2) cls = "two";
-        else if (n == 3) cls = "three";
-        else if (n == 4) cls = "four";
-        else if (n == 5) cls = "five";
-
         stars[i].className = "star " + cls;
     }
+    const input = document.getElementById("rating-value");
+    if (input) input.value = n;
 }
 
 function remove() {
-    let i = 0;
-
-    while (i < 5) {
+    for (let i = 0; i < 5; i++) {
         stars[i].className = "star";
-        i++;
     }
 }

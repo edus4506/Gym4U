@@ -1,11 +1,14 @@
 <?php
 session_start();
 require_once __DIR__ . '/../database/db.php';
+require_once __DIR__ . '/../utils/csrf.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     header('Location: ../login.php');
     exit;
 }
+
+csrf_verify();
 
 $username = trim($_POST['username'] ?? '');
 $password = $_POST['password'] ?? '';
@@ -25,6 +28,8 @@ if (!$user || (int)$user['active'] !== 1 || !password_verify($password, $user['p
     header('Location: ../login.php?error=invalid');
     exit;
 }
+
+session_regenerate_id(true);
 
 $_SESSION['user_id'] = $user['id'];
 $_SESSION['user_name'] = $user['name'];

@@ -1,5 +1,6 @@
 <?php
   require_once __DIR__ . '/controllers/classesController.php';
+  require_once __DIR__ . '/utils/csrf.php';
 
   $successMessages = [
     'enrolled' => 'Enrollment confirmed.',
@@ -42,6 +43,7 @@
         <li><a href="index.php">Home</a></li>
         <li><a href="classes.php" aria-current="page">Classes</a></li>
         <li><a href="trainers.php">Trainers</a></li>
+        <li><a href="equipment.php">Equipment</a></li>
         <?php if (isset($_SESSION['user_id'])): ?>
           <li><a href="profile.php">Profile</a></li>
           <li><a href="actions/logout.php">Logout</a></li>
@@ -201,6 +203,7 @@
                 <?php elseif ($enrolled): ?>
                   <form method="post" action="actions/class_enrollment_action.php">
                     <input type="hidden" name="schedule_id" value="<?= (int)$slot['id'] ?>">
+                    <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>">
                     <input type="hidden" name="mode" value="cancel">
                     <button class="btn btn-cancel" type="submit">Cancel</button>
                   </form>
@@ -209,6 +212,7 @@
                 <?php else: ?>
                   <form method="post" action="actions/class_enrollment_action.php">
                     <input type="hidden" name="schedule_id" value="<?= (int)$slot['id'] ?>">
+                    <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>">
                     <input type="hidden" name="mode" value="enroll">
                     <button class="btn btn-enroll" type="submit">Enroll</button>
                   </form>
@@ -273,7 +277,9 @@
               <span onclick="gfg(5)" class="star">★</span>
           </div>
         </div>
+        <input type="hidden" name="rating" id="rating-value" value="5">
         <textarea name="comment" placeholder="Share your experience..." rows="3" required></textarea>
+        <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>">
         <button type="submit" class="btn btn-enroll">Submit Review</button>
       </form>
     </section>

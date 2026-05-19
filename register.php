@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once __DIR__ . '/utils/csrf.php';
 
 if (isset($_SESSION['user_id'])) {
     header('Location: index.php');
@@ -10,6 +11,8 @@ $errors = [
   'empty' => 'Please fill in all required fields.',
   'email' => 'Please enter a valid email address.',
   'exists' => 'That username or email is already registered.',
+  'password' => 'Passwords do not match.',
+  'weakpassword' => 'Password must contain at least 4 characters.',
 ];
 
 $errorMessage = $errors[$_GET['error'] ?? ''] ?? null;
@@ -39,6 +42,7 @@ $errorMessage = $errors[$_GET['error'] ?? ''] ?? null;
         <li><a href="index.php">Home</a></li>
         <li><a href="classes.php">Classes</a></li>
         <li><a href="trainers.php">Trainers</a></li>
+        <li><a href="equipment.php">Equipment</a></li>
         <li><a href="register.php" aria-current="page">Register</a></li>
       </ul>
     </nav>
@@ -67,6 +71,10 @@ $errorMessage = $errors[$_GET['error'] ?? ''] ?? null;
 
           <label for="password">Password</label>
           <input type="password" id="password" name="password" placeholder="Enter your password" required>
+
+          <label for="confirm_password">Confirm Password</label>
+          <input type="password" id="confirm_password" name="confirm_password" placeholder="Must have at least 4 characters" required>
+          <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>">
 
           <button type="submit" class="btn btn-enroll">Register</button>
           <p>Already have an account? <a href="login.php">Login here</a></p>

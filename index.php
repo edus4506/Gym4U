@@ -1,5 +1,6 @@
 <?php
   require_once __DIR__ . '/controllers/indexController.php';
+  require_once __DIR__ . '/utils/csrf.php';
 ?>
 
 <!DOCTYPE html>
@@ -29,6 +30,7 @@
         <li><a href="index.php" aria-current="page">Home</a></li>
         <li><a href="classes.php">Classes</a></li>
         <li><a href="trainers.php">Trainers</a></li>
+        <li><a href="equipment.php">Equipment</a></li>
         <?php if (isset($_SESSION['user_id'])): ?>
           <li><a href="profile.php">Profile</a></li>
           <li><a href="actions/logout.php">Logout</a></li>
@@ -144,7 +146,16 @@
     <!-- REVIEW FORM -->
     <section class="section review-form-container">
       <h2>Your Feedback matters!</h2>
-      <form class="review-form" method="post" action="submit_review.php">
+      <form class="review-form" method="post" action="actions/review_action.php">
+        <label for="schedule_id">Class:</label>
+        <select id="schedule_id" name="schedule_id" required>
+          <option value="">Choose an enrolled class</option>
+          <?php foreach ($memberEnrollments as $slot): ?>
+            <option value="<?= (int)$slot['id'] ?>">
+              <?= htmlspecialchars($slot['class_name'] . '-' . $slot['day'] . '-' . $slot['time']) ?>
+            </option>
+          <?php endforeach; ?>
+        </select>
         <div class="rating-row">
           <label>Rating:</label>
           <div class="star-rating" aria-label="Rating">
@@ -155,7 +166,9 @@
               <span onclick="gfg(5)" class="star">★</span>
           </div>
         </div>
+        <input type="hidden" name="rating" id="rating-value" value="5">
         <textarea name="comment" placeholder="Share your experience..." rows="3" required></textarea>
+        <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>">
         <button type="submit" class="btn-primary">Submit Review</button>
       </form>
     </section>

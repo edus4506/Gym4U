@@ -1,5 +1,6 @@
 <?php
   require_once __DIR__ . '/controllers/profileController.php';
+  require_once __DIR__ . '/utils/csrf.php';
 
   $photo = $user['profile_photo'] ?: 'images/gym4u_icon.png';
   $days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
@@ -30,6 +31,7 @@
         <li><a href="index.php">Home</a></li>
         <li><a href="classes.php">Classes</a></li>
         <li><a href="trainers.php">Trainers</a></li>
+        <li><a href="equipment.php">Equipment</a></li>
         <li><a href="profile.php" aria-current="page">Profile</a></li>
         <li><a href="actions/logout.php">Logout</a></li>
       </ul>
@@ -99,6 +101,7 @@
           </div>
         </div>
 
+        <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>">
         <button type="submit" class="btn-primary">Save Changes</button>
       </form>
     </section>
@@ -129,6 +132,7 @@
                   <td class="td">
                     <form method="post" action="actions/class_enrollment_action.php">
                       <input type="hidden" name="schedule_id" value="<?= (int)$slot['schedule_id'] ?>">
+                      <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>">
                       <input type="hidden" name="mode" value="cancel">
                       <button class="btn btn-cancel" type="submit">Cancel</button>
                     </form>
@@ -167,6 +171,7 @@
             <label for="bio">Bio</label>
             <textarea id="bio" name="bio" rows="4"><?= htmlspecialchars($trainerProfile['bio'] ?? '') ?></textarea>
           </div>
+          <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>">
           <button type="submit" class="btn-primary">Save Trainer Profile</button>
         </form>
       </section>
@@ -186,6 +191,7 @@
               <input type="time" name="time" value="<?= htmlspecialchars($slot['time']) ?>" aria-label="Time">
               <input type="number" name="duration_minutes" min="15" value="<?= (int)$slot['duration_minutes'] ?>" aria-label="Duration minutes">
               <input type="number" name="capacity" min="1" value="<?= (int)$slot['capacity'] ?>" aria-label="Capacity">
+              <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>">
               <span class="muted"><?= (int)$slot['enrolled'] ?> enrolled</span>
               <button class="btn btn-enroll" type="submit">Save</button>
             </form>
@@ -231,6 +237,7 @@
               <option value="admin">Admin</option>
             </select>
           </div>
+          <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>">
           <button class="btn-primary" type="submit">Create Account</button>
         </form>
       </section>
@@ -251,6 +258,7 @@
                 <?php endforeach; ?>
               </select>
               <label class="checkbox-label"><input type="checkbox" name="active" <?= (int)$managedUser['active'] === 1 ? 'checked' : '' ?>> Active</label>
+              <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>">
               <button class="btn btn-enroll" type="submit">Save</button>
             </form>
           <?php endforeach; ?>
@@ -271,6 +279,7 @@
               <?php foreach ($trainers as $trainer): ?><option value="<?= (int)$trainer['id'] ?>"><?= htmlspecialchars($trainer['name']) ?></option><?php endforeach; ?>
             </select>
           </div>
+          <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>">
           <button class="btn-primary" type="submit">Create Class</button>
         </form>
         <div class="admin-list">
@@ -282,6 +291,7 @@
               <input type="text" name="description" value="<?= htmlspecialchars($class['description']) ?>" aria-label="Description">
               <select name="category_id" aria-label="Category"><?php foreach ($categories as $category): ?><option value="<?= (int)$category['id'] ?>" <?= (int)$class['category_id'] === (int)$category['id'] ? 'selected' : '' ?>><?= htmlspecialchars($category['name']) ?></option><?php endforeach; ?></select>
               <select name="trainer_id" aria-label="Trainer"><?php foreach ($trainers as $trainer): ?><option value="<?= (int)$trainer['id'] ?>" <?= (int)$class['trainer_id'] === (int)$trainer['id'] ? 'selected' : '' ?>><?= htmlspecialchars($trainer['name']) ?></option><?php endforeach; ?></select>
+              <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>">
               <button class="btn btn-enroll" type="submit">Save</button>
               <button class="btn btn-cancel" type="submit" name="mode" value="delete">Remove</button>
             </form>
@@ -299,6 +309,7 @@
             <input type="time" name="time" required>
             <input type="number" name="duration_minutes" min="15" value="45" placeholder="Duration">
             <input type="number" name="capacity" min="1" value="12" placeholder="Capacity">
+            <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>">
           </div>
           <button class="btn-primary" type="submit">Add Schedule Slot</button>
         </form>
@@ -312,6 +323,7 @@
               <input type="time" name="time" value="<?= htmlspecialchars($slot['time']) ?>" aria-label="Time">
               <input type="number" name="duration_minutes" min="15" value="<?= (int)$slot['duration_minutes'] ?>" aria-label="Duration">
               <input type="number" name="capacity" min="1" value="<?= (int)$slot['capacity'] ?>" aria-label="Capacity">
+              <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>">
               <span class="muted"><?= (int)$slot['enrolled'] ?> enrolled</span>
               <button class="btn btn-enroll" type="submit">Save</button>
               <button class="btn btn-cancel" type="submit" name="mode" value="delete">Remove</button>
@@ -328,6 +340,7 @@
             <input type="text" name="name" placeholder="Equipment name" required>
             <input type="number" name="quantity" min="0" value="1">
             <select name="status"><?php foreach ($statuses as $status): ?><option value="<?= htmlspecialchars($status) ?>"><?= htmlspecialchars(ucfirst($status)) ?></option><?php endforeach; ?></select>
+            <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>">
           </div>
           <button class="btn-primary" type="submit">Add Equipment</button>
         </form>
@@ -339,6 +352,7 @@
               <input type="text" name="name" value="<?= htmlspecialchars($item['name']) ?>" aria-label="Equipment name">
               <input type="number" name="quantity" min="0" value="<?= (int)$item['quantity'] ?>" aria-label="Quantity">
               <select name="status" aria-label="Status"><?php foreach ($statuses as $status): ?><option value="<?= htmlspecialchars($status) ?>" <?= $item['status'] === $status ? 'selected' : '' ?>><?= htmlspecialchars(ucfirst($status)) ?></option><?php endforeach; ?></select>
+              <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>">
               <button class="btn btn-enroll" type="submit">Save</button>
               <button class="btn btn-cancel" type="submit" name="mode" value="delete">Remove</button>
             </form>
