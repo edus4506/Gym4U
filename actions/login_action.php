@@ -1,11 +1,14 @@
 <?php
 session_start();
 require_once __DIR__ . '/../database/db.php';
+require_once __DIR__ . '/../utils/csrf.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     header('Location: ../login.php');
     exit;
 }
+
+csrf_verify();
 
 $username = trim($_POST['username'] ?? '');
 $password = $_POST['password'] ?? '';

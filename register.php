@@ -1,6 +1,8 @@
 <?php
 session_start();
 
+require_once __DIR__ . '/utils/csrf.php';
+
 if (isset($_SESSION['user_id'])) {
     header('Location: index.php');
     exit;
@@ -73,6 +75,7 @@ $errorMessage = $errors[$_GET['error'] ?? ''] ?? null;
 
           <label for="confirm_password">Confirm Password</label>
           <input type="password" id="confirm_password" name="confirm_password" placeholder="Must have at least 4 characters" required>
+          <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>">
 
           <button type="submit" class="btn btn-enroll">Register</button>
           <p>Already have an account? <a href="login.php">Login here</a></p>
