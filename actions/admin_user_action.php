@@ -3,11 +3,14 @@ declare(strict_types = 1);
 
 session_start();
 require_once __DIR__ . '/../database/db.php';
+require_once __DIR__ . '/../utils/csrf.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST' || ($_SESSION['user_role'] ?? '') !== 'admin') {
   header('Location: ../profile.php');
   exit;
 }
+
+csrf_verify();
 
 $db = getDatabaseConnection();
 

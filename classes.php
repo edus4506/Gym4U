@@ -1,5 +1,6 @@
 <?php
   require_once __DIR__ . '/controllers/classesController.php';
+  require_once __DIR__ . '/utils/csrf.php';
 
   $successMessages = [
     'enrolled' => 'Enrollment confirmed.',
@@ -202,6 +203,7 @@
                 <?php elseif ($enrolled): ?>
                   <form method="post" action="actions/class_enrollment_action.php">
                     <input type="hidden" name="schedule_id" value="<?= (int)$slot['id'] ?>">
+                    <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>">
                     <input type="hidden" name="mode" value="cancel">
                     <button class="btn btn-cancel" type="submit">Cancel</button>
                   </form>
@@ -210,6 +212,7 @@
                 <?php else: ?>
                   <form method="post" action="actions/class_enrollment_action.php">
                     <input type="hidden" name="schedule_id" value="<?= (int)$slot['id'] ?>">
+                    <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>">
                     <input type="hidden" name="mode" value="enroll">
                     <button class="btn btn-enroll" type="submit">Enroll</button>
                   </form>
@@ -273,6 +276,7 @@
           <option value="1">1 Star - Terrible</option>
         </select>
         <textarea name="comment" placeholder="Share your experience..." rows="3" required></textarea>
+        <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>">
         <button type="submit" class="btn btn-enroll">Submit Review</button>
       </form>
     </section>

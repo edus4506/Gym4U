@@ -3,11 +3,14 @@ declare(strict_types = 1);
 
 session_start();
 require_once __DIR__ . '/../database/db.php';
+require_once __DIR__ . '/../utils/csrf.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST' || !isset($_SESSION['user_id'])) {
   header('Location: ../login.php');
   exit;
 }
+
+csrf_verify();
 
 if (($_SESSION['user_role'] ?? '') !== 'member') {
   header('Location: ../classes.php?error=members-only');
