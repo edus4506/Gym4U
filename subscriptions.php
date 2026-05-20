@@ -35,7 +35,7 @@
         <?php else: ?>
           <li><a href="login.php">Login</a></li>
         <?php endif; ?>
-        
+
       </ul>
     </nav>
   </header>
@@ -46,7 +46,7 @@
       <h3 class="section-title-3">3. Start Training!</h3>
     </section>
     <section class="subscriptions-grid">
-      <article class="subscription-card">
+      <article class="section about">
         <h3>Off-Peak Plan</h3>
         <p class="subscription-price">€19.99/month</p>
         <ul>
@@ -54,37 +54,39 @@
           <li>Locker room access</li>
           <li>1 group class per week</li>
           <li>Free healthy drinks</li>
-          <li>Restricted access during peak hours</li>
+          <li>Restricted time access</li>
         </ul>
-        <a href="#" class="btn-primary">Subscribe</a>
+        <a href="#" class="btn-primary">Select Plan</a>
       </article>
-      <article class="subscription-card featured">
+      <article class="section about featured">
         <div class="subscription-badge">Most Popular</div>
         <h3>Total Plan</h3>
         <p class="subscription-price">€29.99/month</p>
         <ul>
+          <li>All Off-Peak Plan benefits</li>
           <li>Unlimited group classes</li>
           <li>Access to all equipment</li>
           <li>Priority booking</li>
           <li>Nutrition evaluation included</li>
         </ul>
-        <a href="#" class="btn-primary">Subscribe</a>
+        <a href="#" class="btn-primary">Select Plan</a>
       </article>
-      <article class="subscription-card">
+      <article class="section about">
         <h3>Premium Plan</h3>
         <p class="subscription-price">€39.99/month</p>
         <ul>
+          <li>All Total Plan benefits</li>
           <li>Unlimited gym access</li>
           <li>Unlimited classes</li>
           <li>Personal trainer sessions</li>
           <li>Exclusive wellness benefits</li>
         </ul>
-        <a href="#" class="btn-primary">Subscribe</a>
+        <a href="#" class="btn-primary">Select Plan</a>
       </article>
     </section>
     <section class="subscriptions-login">
-      <h4>Already a Gym4U member?</h4>
-      <a href="login.php" class="btn-primary">Login Here</a>
+      <p>Already a Gym4U member?</p>
+      <a href="login.php">Login Here</a>
     </section>
   </main>
   <footer class="footer">

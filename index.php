@@ -14,7 +14,6 @@
   <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="css/index.css">
 </head>
-
 <body>
   <header>
     <div>
@@ -40,9 +39,7 @@
       </ul>
     </nav>
   </header>
-
   <main>
-    <!-- HERO -->
     <section class="section hero">
       <div class="slider">
         <img src="images/index/slider1.png" class="slide" alt="Gym training image 1">
@@ -57,8 +54,6 @@
         <a class="btn-primary">Get Started</a>
       </div>
     </section>
-
-    <!-- ABOUT -->
     <section class="section about">
       <h2>Why Gym4U?</h2>
       <div class="features">
@@ -91,8 +86,6 @@
         </div>
       </div>
     </section>
-
-    <!-- FEATURE CARDS -->
     <section class="features-modern">
       <h2 class="visually-hidden">Gym Features Overview</h2>
       <div class="grid-2x2">
@@ -132,8 +125,6 @@
         </article>
       </div>
     </section>
-
-    <!-- CTA -->
     <section class="section cta-section">
       <h2>Your fitness journey starts here!</h2>
       <p>
@@ -142,8 +133,6 @@
       </p>
       <p><a href="classes.php">See more about classes!</a></p>
     </section>
-
-    <!-- REVIEW FORM -->
     <section class="section review-form-container">
       <h2>Your Feedback matters!</h2>
       <form class="review-form" method="post" action="actions/review_action.php">
@@ -169,8 +158,6 @@
         <button type="submit" class="btn-primary">Submit Review</button>
       </form>
     </section>
-
-    <!-- DYNAMIC REVIEWS -->
     <section class="section">
       <h2>Member Feedback</h2>
       <div class="division-grid">
@@ -187,7 +174,6 @@
       </div>
     </section>
   </main>
-
   <footer class="footer">
     <p>
       <a href="privacy.php">Privacy Policy</a> |
