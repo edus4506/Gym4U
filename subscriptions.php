@@ -1,4 +1,14 @@
-<?php session_start(); ?>
+<?php
+session_start();
+
+$selectedPlan = $_GET['plan'] ?? null;
+
+$planNames = [
+  'offpeak' => 'Off-Peak Plan',
+  'total' => 'Total Plan',
+  'premium' => 'Premium Plan',
+];
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -27,15 +37,12 @@
         <li><a href="classes.php">Classes</a></li>
         <li><a href="trainers.php">Trainers</a></li>
         <li><a href="equipment.php">Equipment</a></li>
-        <li><a href="subscriptions.php" aria-current="page">Subscriptions</a></li>
-
         <?php if (isset($_SESSION['user_id'])): ?>
           <li><a href="profile.php">Profile</a></li>
           <li><a href="actions/logout.php">Logout</a></li>
         <?php else: ?>
           <li><a href="login.php">Login</a></li>
         <?php endif; ?>
-
       </ul>
     </nav>
   </header>
@@ -56,7 +63,7 @@
           <li>Free healthy drinks</li>
           <li>Restricted time access</li>
         </ul>
-        <a href="#" class="btn-primary">Select Plan</a>
+        <a href="subscriptions.php?plan=offpeak" class="btn-primary">Select Plan</a>
       </article>
       <article class="section about featured">
         <div class="subscription-badge">Most Popular</div>
@@ -69,7 +76,7 @@
           <li>Priority booking</li>
           <li>Nutrition evaluation included</li>
         </ul>
-        <a href="#" class="btn-primary">Select Plan</a>
+        <a href="subscriptions.php?plan=total" class="btn-primary">Select Plan</a>
       </article>
       <article class="section about">
         <h3>Premium Plan</h3>
@@ -81,13 +88,37 @@
           <li>Personal trainer sessions</li>
           <li>Exclusive wellness benefits</li>
         </ul>
-        <a href="#" class="btn-primary">Select Plan</a>
+        <a href="subscriptions.php?plan=premium" class="btn-primary">Select Plan</a>
       </article>
     </section>
     <section class="subscriptions-login">
       <p>Already a Gym4U member?</p>
       <a href="login.php">Login Here</a>
     </section>
+    <div class="payment-overlay" style="<?= $selectedPlan ? 'display:flex;' : 'display:none;' ?>">
+      <div class="section about">
+        <a href="subscriptions.php" class="close-modal">×</a>
+        <h2>Complete Your Subscription</h2>
+        <?php if ($selectedPlan): ?>
+            <h3 class="section-title"><strong><?= htmlspecialchars(ucfirst($planNames[$selectedPlan] ?? '')) ?></strong></h3>
+        <?php endif; ?>
+        <form>
+          <div class="subscription-info">
+            <label for="email">Email</label>
+            <input type="email" id="email" placeholder="your.email@example.com">
+            <label for="cardholder">Cardholder</label>
+            <input type="text" id="cardholder" placeholder="John Doe">          
+            <label for="cardnumber">Card</label>
+            <input type="text" id="cardnumber" placeholder="1234 5678 9012 3456">          
+            <label for="expiry">Expire</label>
+            <input type="text" id="expiry" placeholder="MM/YY">            
+            <label for="cvv">CVV</label>
+            <input type="password" id="cvv" placeholder="123">            
+          </div>
+          <a href="register.php" class="btn-primary">Register Page</a>
+        </form>
+      </div>
+    </div>
   </main>
   <footer class="footer">
     <p>

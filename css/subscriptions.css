@@ -69,6 +69,56 @@
   
 }
 
+.payment-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.payment-overlay .about {
+  position: relative;
+  width: min(500px, 90%);
+}
+
+.close-modal {
+  position: absolute;
+  top: 1rem;
+  right: 1.2rem;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-soft);
+}
+
+.close-modal:hover {
+  text-decoration: none;
+}
+
+.section-title {
+  color: var(--secondary);
+  font-size: 2rem;;
+  font-weight: 300;
+  margin-bottom: 1rem;
+}
+
+.subscription-info {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.subscription-info label {
+  text-align: left;
+}
+
+.subscription-info input {
+  width: 100%;
+}
+
 @media (max-width: 1200px) {
   .subscriptions-grid {
     grid-template-columns: 1fr;
