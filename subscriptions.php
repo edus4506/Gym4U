@@ -31,6 +31,8 @@ $planNames = [
     <div class="middle">
       <h1>Gym4U</h1>
     </div>
+    <input type="checkbox" id="menu-toggle">
+    <label for="menu-toggle" class="hamburger">☰</label>
     <nav class="right" aria-label="Main navigation">
       <ul>
         <li><a href="index.php">Home</a></li>
