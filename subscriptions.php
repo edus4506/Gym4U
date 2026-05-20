@@ -37,12 +37,7 @@ $planNames = [
         <li><a href="classes.php">Classes</a></li>
         <li><a href="trainers.php">Trainers</a></li>
         <li><a href="equipment.php">Equipment</a></li>
-        <?php if (isset($_SESSION['user_id'])): ?>
-          <li><a href="profile.php">Profile</a></li>
-          <li><a href="actions/logout.php">Logout</a></li>
-        <?php else: ?>
-          <li><a href="login.php">Login</a></li>
-        <?php endif; ?>
+        <li><a href="login.php">Login</a></li>
       </ul>
     </nav>
   </header>
