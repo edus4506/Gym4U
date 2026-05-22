@@ -296,17 +296,19 @@
         </form>
         <div class="admin-list">
           <?php foreach ($adminClasses as $class): ?>
-            <form class="inline-admin-form" method="post" action="actions/admin_class_action.php">
-              <input type="hidden" name="mode" value="update">
-              <input type="hidden" name="class_id" value="<?= (int)$class['id'] ?>">
-              <input type="text" name="name" value="<?= htmlspecialchars($class['name']) ?>" aria-label="Class name">
-              <input type="text" name="description" value="<?= htmlspecialchars($class['description']) ?>" aria-label="Description">
-              <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>">
-              <select name="category_id" aria-label="Category"><?php foreach ($categories as $category): ?><option value="<?= (int)$category['id'] ?>" <?= (int)$class['category_id'] === (int)$category['id'] ? 'selected' : '' ?>><?= htmlspecialchars($category['name']) ?></option><?php endforeach; ?></select>
-              <select name="trainer_id" aria-label="Trainer"><?php foreach ($trainers as $trainer): ?><option value="<?= (int)$trainer['id'] ?>" <?= (int)$class['trainer_id'] === (int)$trainer['id'] ? 'selected' : '' ?>><?= htmlspecialchars($trainer['name']) ?></option><?php endforeach; ?></select>
-              <button class="btn btn-enroll" type="submit">Save</button>
-              <button class="btn btn-cancel" type="submit" name="mode" value="delete">Remove</button>
-            </form>
+            <?php if ($class['name'] !== 'Gym Review'): ?>
+              <form class="inline-admin-form" method="post" action="actions/admin_class_action.php">
+                <input type="hidden" name="mode" value="update">
+                <input type="hidden" name="class_id" value="<?= (int)$class['id'] ?>">
+                <input type="text" name="name" value="<?= htmlspecialchars($class['name']) ?>" aria-label="Class name">
+                <input type="text" name="description" value="<?= htmlspecialchars($class['description']) ?>" aria-label="Description">
+                <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>">
+                <select name="category_id" aria-label="Category"><?php foreach ($categories as $category): ?><option value="<?= (int)$category['id'] ?>" <?= (int)$class['category_id'] === (int)$category['id'] ? 'selected' : '' ?>><?= htmlspecialchars($category['name']) ?></option><?php endforeach; ?></select>
+                <select name="trainer_id" aria-label="Trainer"><?php foreach ($trainers as $trainer): ?><option value="<?= (int)$trainer['id'] ?>" <?= (int)$class['trainer_id'] === (int)$trainer['id'] ? 'selected' : '' ?>><?= htmlspecialchars($trainer['name']) ?></option><?php endforeach; ?></select>
+                <button class="btn btn-enroll" type="submit">Save</button>
+                <button class="btn btn-cancel" type="submit" name="mode" value="delete">Remove</button>
+              </form>
+            <?php endif; ?>
           <?php endforeach; ?>
         </div>
       </section>
@@ -327,6 +329,7 @@
         </form>
         <div class="admin-list">
           <?php foreach ($adminSchedules as $slot): ?>
+            <?php if ($slot['class_name'] !== 'Gym Review'): ?>
             <form class="inline-admin-form" method="post" action="actions/admin_schedule_action.php">
               <input type="hidden" name="mode" value="update">
               <input type="hidden" name="schedule_id" value="<?= (int)$slot['id'] ?>">
@@ -340,6 +343,7 @@
               <button class="btn btn-enroll" type="submit">Save</button>
               <button class="btn btn-cancel" type="submit" name="mode" value="delete">Remove</button>
             </form>
+            <?php endif; ?>
           <?php endforeach; ?>
         </div>
       </section>

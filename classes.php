@@ -110,12 +110,14 @@
         </thead>
         <tbody class="tbody">
           <?php foreach ($schedule as $slot): ?>
-            <tr class="tr">
-              <th class="th" scope="row"><?= htmlspecialchars($slot['class_name']) ?></th>
-              <td class="td"><?= htmlspecialchars($slot['trainer_name']) ?></td>
-              <td class="td"><?= htmlspecialchars($slot['day']) ?></td>
-              <td class="td"><?= htmlspecialchars($slot['time']) ?></td>
-            </tr>
+            <?php if ($slot['class_name'] !== 'Gym Review'): ?>
+              <tr class="tr">
+                <th class="th" scope="row"><?= htmlspecialchars($slot['class_name']) ?></th>
+                <td class="td"><?= htmlspecialchars($slot['trainer_name']) ?></td>
+                <td class="td"><?= htmlspecialchars($slot['day']) ?></td>
+                <td class="td"><?= htmlspecialchars($slot['time']) ?></td>
+              </tr>
+            <?php endif; ?>
           <?php endforeach; ?>
         </tbody>
       </table>
@@ -185,41 +187,43 @@
         </thead>
         <tbody class="tbody">
           <?php foreach ($schedule as $slot): ?>
-            <?php $full = $slot['enrolled'] >= $slot['capacity']; ?>
-            <?php $enrolled = isset($memberEnrollments[$slot['id']]); ?>
-            <tr class="tr <?= $enrolled ? 'enrolled-row' : '' ?>">
-              <th class="th" scope="row"><?= htmlspecialchars($slot['class_name']) ?></th>
-              <td class="td">
-                <a href="trainers.php#<?= htmlspecialchars(strtolower(str_replace(' ', '-', $slot['trainer_name']))) ?>">
-                  <?= htmlspecialchars($slot['trainer_name']) ?>
-                </a>
-              </td>
-              <td class="td"><?= htmlspecialchars($slot['day']) ?>, <?= htmlspecialchars($slot['time']) ?></td>
-              <td class="td"><?= (int)$slot['enrolled'] ?>/<?= (int)$slot['capacity'] ?></td>
-              <td class="td">
-                <?php if (!isset($_SESSION['user_id'])): ?>
-                  <a class="btn btn-enroll" href="login.php">Login</a>
-                <?php elseif (($_SESSION['user_role'] ?? '') !== 'member'): ?>
-                  <span class="muted">Members only</span>
-                <?php elseif ($enrolled): ?>
-                  <form method="post" action="actions/class_enrollment_action.php">
-                    <input type="hidden" name="schedule_id" value="<?= (int)$slot['id'] ?>">
-                    <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>">
-                    <input type="hidden" name="mode" value="cancel">
-                    <button class="btn btn-cancel" type="submit">Cancel</button>
-                  </form>
-                <?php elseif ($full): ?>
-                  <button class="btn" disabled>Full</button>
-                <?php else: ?>
-                  <form method="post" action="actions/class_enrollment_action.php">
-                    <input type="hidden" name="schedule_id" value="<?= (int)$slot['id'] ?>">
-                    <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>">
-                    <input type="hidden" name="mode" value="enroll">
-                    <button class="btn btn-enroll" type="submit">Enroll</button>
-                  </form>
-                <?php endif; ?>
-              </td>
-            </tr>
+            <?php if ($slot['class_name'] !== 'Gym Review'): ?>
+              <?php $full = $slot['enrolled'] >= $slot['capacity']; ?>
+              <?php $enrolled = isset($memberEnrollments[$slot['id']]); ?>
+              <tr class="tr <?= $enrolled ? 'enrolled-row' : '' ?>">
+                <th class="th" scope="row"><?= htmlspecialchars($slot['class_name']) ?></th>
+                <td class="td">
+                  <a href="trainers.php#<?= htmlspecialchars(strtolower(str_replace(' ', '-', $slot['trainer_name']))) ?>">
+                    <?= htmlspecialchars($slot['trainer_name']) ?>
+                  </a>
+                </td>
+                <td class="td"><?= htmlspecialchars($slot['day']) ?>, <?= htmlspecialchars($slot['time']) ?></td>
+                <td class="td"><?= (int)$slot['enrolled'] ?>/<?= (int)$slot['capacity'] ?></td>
+                <td class="td">
+                  <?php if (!isset($_SESSION['user_id'])): ?>
+                    <a class="btn btn-enroll" href="login.php">Login</a>
+                  <?php elseif (($_SESSION['user_role'] ?? '') !== 'member'): ?>
+                    <span class="muted">Members only</span>
+                  <?php elseif ($enrolled): ?>
+                    <form method="post" action="actions/class_enrollment_action.php">
+                      <input type="hidden" name="schedule_id" value="<?= (int)$slot['id'] ?>">
+                      <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>">
+                      <input type="hidden" name="mode" value="cancel">
+                      <button class="btn btn-cancel" type="submit">Cancel</button>
+                    </form>
+                  <?php elseif ($full): ?>
+                    <button class="btn" disabled>Full</button>
+                  <?php else: ?>
+                    <form method="post" action="actions/class_enrollment_action.php">
+                      <input type="hidden" name="schedule_id" value="<?= (int)$slot['id'] ?>">
+                      <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>">
+                      <input type="hidden" name="mode" value="enroll">
+                      <button class="btn btn-enroll" type="submit">Enroll</button>
+                    </form>
+                  <?php endif; ?>
+                </td>
+              </tr>
+            <?php endif; ?>
           <?php endforeach; ?>
         </tbody>
       </table>
