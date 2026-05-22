@@ -53,7 +53,7 @@
       </p>
     </section>
 
-    <section class="section terms-section">
+    <section class="section about">
       <h2>Privacy and Data Protection</h2>
 
       <article class="feature">
@@ -237,7 +237,7 @@
     <p>
       <a href="privacy.php">Privacy Policy</a> |
       <a href="terms.php">Terms of Use</a> |
-      <a href="#">Cancellations</a> |
+      <a href="cancelations.php">Cancellations</a> |
       <a href="https://www.livroreclamacoes.pt/Inicio/" target="_blank"> Complaints Book </a>
     </p>
 

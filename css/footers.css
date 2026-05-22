@@ -30,3 +30,13 @@ article ul {
   color: white;
   margin-top: 0rem;
 }
+
+.about h2, .about h3 {
+  text-align: center;
+  margin-top: 0rem;
+  margin-bottom: 2rem;
+}
+
+.about {
+  text-align: left;
+}

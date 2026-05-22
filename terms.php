@@ -1,7 +1,5 @@
 <?php declare(strict_types = 1); ?>
 
-<! é preciso conectar com database? >
-
 <!DOCTYPE html>
 <html lang="en-US">
 <head>
@@ -49,7 +47,7 @@
       </p>
     </section>
 
-    <section class="section">
+    <section class="section about">
       <h2>Website Terms and Conditions</h2>
 
       <article class="feature">
@@ -239,7 +237,7 @@
       </article>
     </section>
 
-    <section class="section">
+    <section class="section about">
       <h2>Gym Membership and Facility Regulations</h2>
 
       <article class="feature">
@@ -367,7 +365,7 @@
     <p>
       <a href="privacy.php">Privacy Policy</a> |
       <a href="terms.php">Terms of Use</a> |
-      <a href="#">Cancellations</a> |
+      <a href="cancelations.php">Cancellations</a> |
       <a href="https://www.livroreclamacoes.pt/Inicio/" target="_blank"> Complaints Book </a>
     </p>
 
