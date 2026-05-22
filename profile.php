@@ -235,23 +235,42 @@
 
     <?php if ($user['role'] === 'admin'): ?>
       <section class="profile-panel">
-        <h2>Create User</h2>
-        <form class="profile-form" method="post" action="actions/admin_user_action.php">
-          <input type="hidden" name="mode" value="create">
-          <div class="form-grid">
-            <input type="text" name="name" placeholder="Name" required>
-            <input type="text" name="username" placeholder="Username" required>
-            <input type="email" name="email" placeholder="Email" required>
-            <input type="password" name="password" placeholder="Password" required>
-            <select name="role">
-              <option value="member">Member</option>
-              <option value="trainer">Trainer</option>
-              <option value="admin">Admin</option>
-            </select>
+        <div class="admin-header">
+          <h2>Create New Member, Trainer or Admin</h2>
+
+          <a href="profile.php?create-user=1" class="btn-primary">Create Account</a>
+        </div>
+
+        <div class="modal-overlay" style="<?= isset($_GET['create-user']) ? 'display:flex;' : 'display:none;' ?>">
+          <div class="modal-box">
+            <a href="profile.php" class="modal-close">×</a>
+
+            <h2>Create Account</h2>
+
+            <form class="profile-form" method="post" action="actions/admin_user_action.php">
+              <input type="hidden" name="mode" value="create">
+
+              <div class="form-grid">
+                <input type="text" name="name" placeholder="Name" required>
+                <input type="text" name="username" placeholder="Username" required>
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="password" name="password" placeholder="Password" required>
+
+                <select name="role">
+                  <option value="member">Member</option>
+                  <option value="trainer">Trainer</option>
+                  <option value="admin">Admin</option>
+                </select>
+              </div>
+
+              <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>">
+
+              <button class="btn-primary" type="submit">
+                Create Account
+              </button>
+            </form>
           </div>
-          <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>">
-          <button class="btn-primary" type="submit">Create Account</button>
-        </form>
+        </div>
       </section>
 
       <section class="profile-panel">
