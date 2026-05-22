@@ -167,6 +167,19 @@
               <label for="certifications">Certifications</label>
               <input type="text" id="certifications" name="certifications" value="<?= htmlspecialchars($trainerProfile['certifications'] ?? '') ?>">
             </div>
+            <div class="form-group">
+              <label for="specialization_ids">Specializations</label>
+              <select id="specialization_ids" name="specialization_ids[]" multiple size="6" aria-label="Specializations">
+                <?php foreach ($categories as $category): ?>
+                  <option
+                    value="<?= (int)$category['id'] ?>"
+                    <?= in_array((int)$category['id'], $trainerCategoryIds, true) ? 'selected' : '' ?>
+                  >
+                    <?= htmlspecialchars($category['name']) ?>
+                  </option>
+                <?php endforeach; ?>
+              </select>
+            </div>
           </div>
           <div class="form-group">
             <label for="bio">Bio</label>

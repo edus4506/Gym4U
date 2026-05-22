@@ -48,6 +48,7 @@ $memberEnrollments = [];
 $trainerProfile = null;
 $trainerSchedule = [];
 $trainerRoster = [];
+$trainerCategoryIds = [];
 $categories = $db->query('SELECT id, name FROM categories ORDER BY name')->fetchAll();
 $trainers = $db->query('SELECT t.id, u.name FROM trainers t JOIN users u ON u.id = t.user_id ORDER BY u.name')->fetchAll();
 $adminUsers = [];
@@ -80,6 +81,10 @@ if ($user['role'] === 'trainer') {
   $trainerProfile = $profileStmt->fetch();
 
   if ($trainerProfile) {
+    $trainerCategoryStmt = $db->prepare('SELECT category_id FROM trainer_categories WHERE trainer_id = ?');
+    $trainerCategoryStmt->execute([(int)$trainerProfile['id']]);
+    $trainerCategoryIds = array_map('intval', array_column($trainerCategoryStmt->fetchAll(), 'category_id'));
+
     $scheduleStmt = $db->prepare("
       SELECT cs.id, c.name AS class_name, cs.day, cs.time, cs.duration_minutes, cs.capacity, cs.enrolled
       FROM class_schedule cs

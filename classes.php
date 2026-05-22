@@ -12,6 +12,7 @@
     'already-enrolled' => 'You are already enrolled in that class.',
     'members-only' => 'Only members can enroll in classes or leave reviews.',
     'not-enrolled' => 'You can only review classes you are enrolled in.',
+    'not-attended' => 'You can only review classes you have already attended.',
     'review' => 'Please choose a class, rating, and comment.',
     'invalid' => 'That class action could not be completed.',
   ];
@@ -260,9 +261,9 @@
       <form class="review-form" method="post" action="actions/review_action.php">
         <label for="schedule_id">Class:</label>
         <select id="schedule_id" name="schedule_id" required>
-          <option value="">Choose an enrolled class</option>
+          <option value="">Choose an attended class</option>
           <?php foreach ($schedule as $slot): ?>
-            <?php if (isset($memberEnrollments[$slot['id']])): ?>
+            <?php if (isset($reviewableScheduleIds[(int)$slot['id']])): ?>
               <option value="<?= (int)$slot['id'] ?>">
                 <?= htmlspecialchars($slot['class_name'] . ' - ' . $slot['day'] . ' ' . $slot['time']) ?>
               </option>
