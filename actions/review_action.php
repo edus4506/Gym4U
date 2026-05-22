@@ -27,11 +27,39 @@ if ($scheduleId <= 0 || $rating < 1 || $rating > 5 || $comment === '') {
 }
 
 $db = getDatabaseConnection();
-$enrolled = $db->prepare('SELECT 1 FROM enrollments WHERE user_id = ? AND schedule_id = ?');
+$enrolled = $db->prepare('
+  SELECT cs.day, cs.time
+  FROM enrollments e
+  JOIN class_schedule cs ON cs.id = e.schedule_id
+  WHERE e.user_id = ? AND e.schedule_id = ?
+');
 $enrolled->execute([(int)$_SESSION['user_id'], $scheduleId]);
+$enrollmentSlot = $enrolled->fetch();
 
-if (!$enrolled->fetchColumn()) {
+if (!$enrollmentSlot) {
   header('Location: ../classes.php?error=not-enrolled');
+  exit;
+}
+
+$dayOrder = [
+  'Monday' => 1,
+  'Tuesday' => 2,
+  'Wednesday' => 3,
+  'Thursday' => 4,
+  'Friday' => 5,
+  'Saturday' => 6,
+  'Sunday' => 7,
+];
+$now = new DateTimeImmutable('now');
+$currentDayNumber = (int)$now->format('N');
+$currentTime = $now->format('H:i');
+$slotDayNumber = $dayOrder[(string)$enrollmentSlot['day']] ?? 0;
+$slotTime = (string)$enrollmentSlot['time'];
+$finished_class = $slotDayNumber < $currentDayNumber
+  || ($slotDayNumber === $currentDayNumber && $slotTime < $currentTime);
+
+if (!$finished_class) {
+  header('Location: ../classes.php?error=not-attended');
   exit;
 }
 

@@ -149,11 +149,13 @@
       <form class="review-form" method="post" action="actions/review_action.php">
         <label for="schedule_id">Class:</label>
         <select id="schedule_id" name="schedule_id" required>
-          <option value="">Choose an enrolled class</option>
+          <option value="">Choose an attended class</option>
           <?php foreach ($memberEnrollments as $slot): ?>
-            <option value="<?= (int)$slot['id'] ?>">
-              <?= htmlspecialchars($slot['class_name'] . '-' . $slot['day'] . '-' . $slot['time']) ?>
-            </option>
+            <?php if (isset($reviewableScheduleIds[(int)$slot['id']])): ?>
+              <option value="<?= (int)$slot['id'] ?>">
+                <?= htmlspecialchars($slot['class_name'] . '-' . $slot['day'] . '-' . $slot['time']) ?>
+              </option>
+            <?php endif; ?>
           <?php endforeach; ?>
         </select>
         <label for="rating">Rating:</label>
