@@ -73,9 +73,9 @@ try {
     $db->rollBack();
   }
 
-  header('Location: ../profile.php?error=admin');
+  header('Location: ../manage_users.php?error=admin');
   exit;
 }
 
-header('Location: ../profile.php?success=admin');
+header('Location: ../manage_users.php?success=admin');
 exit;
