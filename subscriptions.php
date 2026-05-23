@@ -99,20 +99,27 @@ $planNames = [
         <?php if ($selectedPlan): ?>
             <h3 class="section-title"><strong><?= htmlspecialchars(ucfirst($planNames[$selectedPlan] ?? '')) ?></strong></h3>
         <?php endif; ?>
-        <form>
+        <form method="get" action="register.php">
           <div class="subscription-info">
             <label for="email">Email</label>
-            <input type="email" id="email" placeholder="your.email@example.com">
+            <input type="email" id="email" name="email" placeholder="your.email@example.com" required>
+
             <label for="cardholder">Cardholder</label>
-            <input type="text" id="cardholder" placeholder="John Doe">          
+            <input type="text" id="cardholder" placeholder="John Doe">
+
             <label for="cardnumber">Card</label>
-            <input type="text" id="cardnumber" placeholder="1234 5678 9012 3456">          
+            <input type="text" id="cardnumber" placeholder="1234 5678 9012 3456">
+
             <label for="expiry">Expire</label>
-            <input type="text" id="expiry" placeholder="MM/YY">            
+            <input type="text" id="expiry" placeholder="MM/YY">
+
             <label for="cvv">CVV</label>
-            <input type="password" id="cvv" placeholder="123">            
+            <input type="password" id="cvv" placeholder="123">
           </div>
-          <a href="register.php" class="btn-primary">Register Page</a>
+
+          <input type="hidden" name="plan" value="<?= htmlspecialchars($selectedPlan ?? '') ?>">
+
+          <button type="submit" class="btn-primary">Register Page</button>
         </form>
       </div>
     </div>
