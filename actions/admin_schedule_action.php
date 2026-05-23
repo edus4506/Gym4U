@@ -6,7 +6,7 @@ require_once __DIR__ . '/../database/db.php';
 require_once __DIR__ . '/../utils/csrf.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST' || ($_SESSION['user_role'] ?? '') !== 'admin') {
-  header('Location: ../profile.php');
+  header('Location: ../manage_schedules.php');
   exit;
 }
 
@@ -49,9 +49,9 @@ try {
     $db->rollBack();
   }
 
-  header('Location: ../profile.php?error=class');
+  header('Location: ../manage_schedules.php?error=class');
   exit;
 }
 
-header('Location: ../profile.php?success=class');
+header('Location: ../manage_schedules.php?success=class');
 exit;
