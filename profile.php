@@ -50,8 +50,14 @@
       </div>
       <?php if ($user['role'] === 'member'): ?>
         <?php if ($user['subscription_plan'] && $user['subscription_plan'] !== 'none'): ?>
-          <img class="subscription-badge" src="images/memberships/<?= htmlspecialchars($user['subscription_plan']) ?>.png" alt="Subscription badge">
+          <img class="subscription-badge" src="images/badges/<?= htmlspecialchars($user['subscription_plan']) ?>.png" alt="Subscription badge">
+        <?php else: ?>
+          <p>Your membership is currently inactive. <a href="subscriptions.php">Reactivate now</a>.</p>
         <?php endif; ?>
+      <?php elseif ($user['role'] === 'trainer'): ?>
+        <img class="subscription-badge" src="images/badges/trainer.png" alt="Trainer badge">
+      <?php elseif ($user['role'] === 'admin'): ?>
+        <img class="subscription-badge" src="images/badges/admin.png" alt="Admin badge">
       <?php endif; ?>
     </section>
 
