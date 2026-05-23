@@ -93,6 +93,25 @@ main {
   align-items: center;
 }
 
+.btn-manage {
+  display: inline-block;
+  background: var(--secondary);
+  color: white;
+  border: none;
+  padding: 0.8rem 1.2rem;
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.btn-manage:hover, .btn-manage:focus-visible {
+  background: var(--secondary-strong);
+  color: white;
+  text-decoration: none;
+}
+
 .modal-box .profile-form {
   margin-top: 1.5rem;
 }

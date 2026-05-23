@@ -169,7 +169,7 @@ nav.right {
 }
 
 .btn-cancel:hover {
-  background: #7e2626;
+  background: var(--danger-strong);
 }
 
 .btn-review {

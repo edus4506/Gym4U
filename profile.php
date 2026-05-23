@@ -277,43 +277,63 @@
         <div class="admin-header">
           <h2>Manage Members, Trainers, and Admins</h2>
 
-          <a href="manage_users.php" class="btn-primary">Manage Users</a>
+          <a href="manage_users.php" class="btn-manage">Manage Users</a>
         </div>
       </section>
 
       <section class="profile-panel">
-        <h2>Class Catalog</h2>
-        <form class="profile-form compact-form" method="post" action="actions/admin_class_action.php">
-          <input type="hidden" name="mode" value="create">
-          <div class="form-grid">
-            <input type="text" name="name" placeholder="Class name" required>
-            <input type="text" name="description" placeholder="Description">
-            <select name="category_id" required>
-              <?php foreach ($categories as $category): ?><option value="<?= (int)$category['id'] ?>"><?= htmlspecialchars($category['name']) ?></option><?php endforeach; ?>
-            </select>
-            <select name="trainer_id" required>
-              <?php foreach ($trainers as $trainer): ?><option value="<?= (int)$trainer['id'] ?>"><?= htmlspecialchars($trainer['name']) ?></option><?php endforeach; ?>
-            </select>
+        <div class="admin-header">
+          <h2>Create New Class</h2>
+
+          <a href="profile.php?create-class=1" class="btn-primary">
+            Create Class
+          </a>
+        </div>
+
+        <div class="modal-overlay" style="<?= isset($_GET['create-class']) ? 'display:flex;' : 'display:none;' ?>">
+          <div class="modal-box">
+            <a href="profile.php" class="modal-close">×</a>
+
+            <h2>Create Class</h2>
+
+            <form class="profile-form" method="post" action="actions/admin_class_action.php">
+              <input type="hidden" name="mode" value="create">
+
+              <div class="form-grid">
+                <input type="text" name="name" placeholder="Class name" required>
+
+                <input type="text" name="description" placeholder="Description">
+
+                <select name="category_id" required>
+                  <?php foreach ($categories as $category): ?>
+                    <option value="<?= (int)$category['id'] ?>">
+                      <?= htmlspecialchars($category['name']) ?>
+                    </option>
+                  <?php endforeach; ?>
+                </select>
+
+                <select name="trainer_id" required>
+                  <?php foreach ($trainers as $trainer): ?>
+                    <option value="<?= (int)$trainer['id'] ?>">
+                      <?= htmlspecialchars($trainer['name']) ?>
+                    </option>
+                  <?php endforeach; ?>
+                </select>
+              </div>
+
+              <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>">
+
+              <button class="btn-primary" type="submit">Create Class</button>
+            </form>
           </div>
-          <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>">
-          <button class="btn-primary" type="submit">Create Class</button>
-        </form>
-        <div class="admin-list">
-          <?php foreach ($adminClasses as $class): ?>
-            <?php if ($class['name'] !== 'Gym Review'): ?>
-              <form class="inline-admin-form" method="post" action="actions/admin_class_action.php">
-                <input type="hidden" name="mode" value="update">
-                <input type="hidden" name="class_id" value="<?= (int)$class['id'] ?>">
-                <input type="text" name="name" value="<?= htmlspecialchars($class['name']) ?>" aria-label="Class name">
-                <input type="text" name="description" value="<?= htmlspecialchars($class['description']) ?>" aria-label="Description">
-                <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>">
-                <select name="category_id" aria-label="Category"><?php foreach ($categories as $category): ?><option value="<?= (int)$category['id'] ?>" <?= (int)$class['category_id'] === (int)$category['id'] ? 'selected' : '' ?>><?= htmlspecialchars($category['name']) ?></option><?php endforeach; ?></select>
-                <select name="trainer_id" aria-label="Trainer"><?php foreach ($trainers as $trainer): ?><option value="<?= (int)$trainer['id'] ?>" <?= (int)$class['trainer_id'] === (int)$trainer['id'] ? 'selected' : '' ?>><?= htmlspecialchars($trainer['name']) ?></option><?php endforeach; ?></select>
-                <button class="btn btn-enroll" type="submit">Save</button>
-                <button class="btn btn-cancel" type="submit" name="mode" value="delete">Remove</button>
-              </form>
-            <?php endif; ?>
-          <?php endforeach; ?>
+        </div>
+      </section>
+
+      <section class="profile-panel">
+        <div class="admin-header">
+          <h2>Manage Classes</h2>
+
+          <a href="manage_classes.php" class="btn-manage">Manage Classes</a>
         </div>
       </section>
 

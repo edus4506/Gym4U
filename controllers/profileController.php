@@ -51,7 +51,6 @@ $trainerRoster = [];
 $trainerCategoryIds = [];
 $categories = $db->query('SELECT id, name FROM categories ORDER BY name')->fetchAll();
 $trainers = $db->query('SELECT t.id, u.name FROM trainers t JOIN users u ON u.id = t.user_id ORDER BY u.name')->fetchAll();
-$adminClasses = [];
 $adminSchedules = [];
 $equipment = [];
 
