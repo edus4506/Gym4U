@@ -5,7 +5,7 @@ $selectedPlan = $_GET['plan'] ?? null;
 
 $planNames = [
   'offpeak' => 'Off-Peak Plan',
-  'total' => 'Total Plan',
+  'classic' => 'Classic Plan',
   'premium' => 'Premium Plan',
 ];
 ?>
@@ -64,7 +64,7 @@ $planNames = [
       </article>
       <article class="section about featured">
         <div class="subscription-badge">Most Popular</div>
-        <h3>Total Plan</h3>
+        <h3>Classic Plan</h3>
         <p class="subscription-price">€29.99/month</p>
         <ul>
           <li>All Off-Peak Plan benefits</li>
@@ -73,13 +73,13 @@ $planNames = [
           <li>Priority booking</li>
           <li>Nutrition evaluation included</li>
         </ul>
-        <a href="subscriptions.php?plan=total" class="btn-primary">Select Plan</a>
+        <a href="subscriptions.php?plan=classic" class="btn-primary">Select Plan</a>
       </article>
       <article class="section about">
         <h3>Premium Plan</h3>
         <p class="subscription-price">€39.99/month</p>
         <ul>
-          <li>All Total Plan benefits</li>
+          <li>All Classic Plan benefits</li>
           <li>Unlimited gym access</li>
           <li>Unlimited classes</li>
           <li>Personal trainer sessions</li>

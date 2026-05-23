@@ -3,7 +3,10 @@ session_start();
 
 require_once __DIR__ . '/utils/csrf.php';
 
-if (isset($_SESSION['user_id'])) {
+$prefilledEmail = $_GET['email'] ?? '';
+$selectedPlan = $_GET['plan'] ?? 'none';
+
+if (isset($_SESSION['user_id']) || $prefilledEmail === '') {
     header('Location: index.php');
     exit;
 }
@@ -15,9 +18,6 @@ $errors = [
   'password' => 'Passwords do not match.',
   'weakpassword' => 'Password must contain at least 4 characters.',
 ];
-
-$prefilledEmail = $_GET['email'] ?? '';
-$selectedPlan = $_GET['plan'] ?? 'none';
 
 $errorMessage = $errors[$_GET['error'] ?? ''] ?? null;
 ?>

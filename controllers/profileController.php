@@ -11,7 +11,7 @@ if (!isset($_SESSION['user_id'])) {
 
 $db = getDatabaseConnection();
 
-$stmt = $db->prepare('SELECT id, name, username, email, password, role, profile_photo, active FROM users WHERE id = ?');
+$stmt = $db->prepare('SELECT id, name, username, email, password, role, profile_photo, active, subscription_plan FROM users WHERE id = ?');
 $stmt->execute([(int)$_SESSION['user_id']]);
 $user = $stmt->fetch() ?: null;
 

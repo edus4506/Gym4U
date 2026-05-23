@@ -42,6 +42,13 @@ main {
   text-transform: capitalize;
 }
 
+.subscription-badge {
+  width: 140px;
+  height: auto;
+  object-fit: contain;
+  margin-left: auto;
+}
+
 .alert {
   border-radius: 8px;
   padding: 0.8rem 1rem;
@@ -176,7 +183,13 @@ main {
 @media (max-width: 700px) {
   .profile-header {
     align-items: flex-start;
+    align-items: center;
     flex-direction: column;
+  }
+
+  .subscription-badge {
+    margin-left: 0;
+    margin-top: 1rem;
   }
 
   .form-grid {

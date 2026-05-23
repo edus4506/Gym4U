@@ -48,6 +48,11 @@
         <h2><?= htmlspecialchars($user['name']) ?></h2>
         <p>@<?= htmlspecialchars($user['username']) ?></p>
       </div>
+      <?php if ($user['role'] === 'member'): ?>
+        <?php if ($user['subscription_plan'] && $user['subscription_plan'] !== 'none'): ?>
+          <img class="subscription-badge" src="images/memberships/<?= htmlspecialchars($user['subscription_plan']) ?>.png" alt="Subscription badge">
+        <?php endif; ?>
+      <?php endif; ?>
     </section>
 
     <?php if ($successMessage): ?>
