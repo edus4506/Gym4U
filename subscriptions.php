@@ -105,16 +105,16 @@ $planNames = [
             <input type="email" id="email" name="email" placeholder="your.email@example.com" required>
 
             <label for="cardholder">Cardholder</label>
-            <input type="text" id="cardholder" placeholder="John Doe">
+            <input type="text" id="cardholder" placeholder="John Doe" required>
 
             <label for="cardnumber">Card</label>
-            <input type="text" id="cardnumber" placeholder="1234 5678 9012 3456">
+            <input type="text" id="cardnumber" placeholder="1234 5678 9012 3456" pattern="[0-9]{4} [0-9]{4} [0-9]{4} [0-9]{4}" maxlength="19" required>
 
             <label for="expiry">Expire</label>
-            <input type="text" id="expiry" placeholder="MM/YY">
+            <input type="text" id="expiry" placeholder="MM/YY" pattern="(0[1-9]|1[0-2])\/[0-9]{2}" maxlength="5" required>
 
             <label for="cvv">CVV</label>
-            <input type="password" id="cvv" placeholder="123">
+            <input type="password" id="cvv" placeholder="123" pattern="[0-9]{3}" maxlength="3" required>
           </div>
 
           <input type="hidden" name="plan" value="<?= htmlspecialchars($selectedPlan ?? '') ?>">
