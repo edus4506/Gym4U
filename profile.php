@@ -274,25 +274,10 @@
       </section>
 
       <section class="profile-panel">
-        <h2>Manage Members, Trainers, and Admins</h2>
-        <div class="admin-list">
-          <?php foreach ($adminUsers as $managedUser): ?>
-            <form class="inline-admin-form" method="post" action="actions/admin_user_action.php">
-              <input type="hidden" name="mode" value="update">
-              <input type="hidden" name="user_id" value="<?= (int)$managedUser['id'] ?>">
-              <input type="text" name="name" value="<?= htmlspecialchars($managedUser['name']) ?>" aria-label="Name">
-              <input type="text" name="username" value="<?= htmlspecialchars($managedUser['username']) ?>" aria-label="Username">
-              <input type="email" name="email" value="<?= htmlspecialchars($managedUser['email']) ?>" aria-label="Email">
-              <select name="role" aria-label="Role">
-                <?php foreach (['member', 'trainer', 'admin'] as $role): ?>
-                  <option value="<?= htmlspecialchars($role) ?>" <?= $managedUser['role'] === $role ? 'selected' : '' ?>><?= htmlspecialchars(ucfirst($role)) ?></option>
-                <?php endforeach; ?>
-              </select>
-              <label class="checkbox-label"><input type="checkbox" name="active" <?= (int)$managedUser['active'] === 1 ? 'checked' : '' ?>> Active</label>
-              <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>">
-              <button class="btn btn-enroll" type="submit">Save</button>
-            </form>
-          <?php endforeach; ?>
+        <div class="admin-header">
+          <h2>Manage Members, Trainers, and Admins</h2>
+
+          <a href="manage_users.php" class="btn-primary">Manage Users</a>
         </div>
       </section>
 

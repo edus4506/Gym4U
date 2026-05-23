@@ -51,7 +51,6 @@ $trainerRoster = [];
 $trainerCategoryIds = [];
 $categories = $db->query('SELECT id, name FROM categories ORDER BY name')->fetchAll();
 $trainers = $db->query('SELECT t.id, u.name FROM trainers t JOIN users u ON u.id = t.user_id ORDER BY u.name')->fetchAll();
-$adminUsers = [];
 $adminClasses = [];
 $adminSchedules = [];
 $equipment = [];
@@ -113,7 +112,6 @@ if ($user['role'] === 'trainer') {
 }
 
 if ($user['role'] === 'admin') {
-  $adminUsers = $db->query('SELECT id, name, username, email, role, active FROM users ORDER BY role, name')->fetchAll();
   $adminClasses = $db->query("
     SELECT c.id, c.name, c.description, c.category_id, c.trainer_id,
            cat.name AS category_name, u.name AS trainer_name
