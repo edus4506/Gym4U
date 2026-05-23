@@ -27,6 +27,7 @@ $errorMessage = $messages['error'][$_GET['error'] ?? ''] ?? null;
 $statuses = [
   'available',
   'maintenance',
+  'unavailable',
 ];
 
 $search = trim($_GET['search'] ?? '');
