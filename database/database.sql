@@ -22,7 +22,8 @@ CREATE TABLE IF NOT EXISTS users (
     password TEXT NOT NULL,
     profile_photo TEXT,
     active INTEGER NOT NULL DEFAULT 1,
-    role TEXT NOT NULL CHECK(role IN ('member', 'trainer', 'admin')) DEFAULT 'member'
+    role TEXT NOT NULL CHECK(role IN ('member', 'trainer', 'admin')) DEFAULT 'member',
+    subscription_plan TEXT NOT NULL DEFAULT 'none'
 );
 
 CREATE TABLE IF NOT EXISTS trainers (
@@ -105,12 +106,12 @@ CREATE TABLE IF NOT EXISTS reviews (
 
 -- INSERT DATA
 -- Users (members) — password: 1234
-INSERT INTO users (name, username, email, password, role) VALUES
-    ('Maria Silva', 'member', 'maria@email.com', '$2y$12$fjBAAB0sRN4GCrVuwBX4HejD3yKzOn9XQqDl7vKyGAD9LhmtPsqvC', 'member'),
-    ('Joao Pereira', 'joao.pereira', 'joao@email.com', '$2y$12$fjBAAB0sRN4GCrVuwBX4HejD3yKzOn9XQqDl7vKyGAD9LhmtPsqvC', 'member'),
-    ('Daniel Rocha', 'daniel.rocha', 'daniel@email.com', '$2y$12$fjBAAB0sRN4GCrVuwBX4HejD3yKzOn9XQqDl7vKyGAD9LhmtPsqvC', 'member'),
-    ('Ana Costa', 'ana.costa', 'ana@email.com', '$2y$12$fjBAAB0sRN4GCrVuwBX4HejD3yKzOn9XQqDl7vKyGAD9LhmtPsqvC', 'member'),
-    ('Pedro Matos', 'pedro.matos', 'pedro@email.com', '$2y$12$fjBAAB0sRN4GCrVuwBX4HejD3yKzOn9XQqDl7vKyGAD9LhmtPsqvC', 'member');
+INSERT INTO users (name, username, email, password, role, subscription_plan) VALUES
+    ('Maria Silva', 'member', 'maria@email.com', '$2y$12$fjBAAB0sRN4GCrVuwBX4HejD3yKzOn9XQqDl7vKyGAD9LhmtPsqvC', 'member', 'classic'),
+    ('Joao Pereira', 'joao.pereira', 'joao@email.com', '$2y$12$fjBAAB0sRN4GCrVuwBX4HejD3yKzOn9XQqDl7vKyGAD9LhmtPsqvC', 'member', 'offpeak'),
+    ('Daniel Rocha', 'daniel.rocha', 'daniel@email.com', '$2y$12$fjBAAB0sRN4GCrVuwBX4HejD3yKzOn9XQqDl7vKyGAD9LhmtPsqvC', 'member', 'classic'),
+    ('Ana Costa', 'ana.costa', 'ana@email.com', '$2y$12$fjBAAB0sRN4GCrVuwBX4HejD3yKzOn9XQqDl7vKyGAD9LhmtPsqvC', 'member', 'premium'),
+    ('Pedro Matos', 'pedro.matos', 'pedro@email.com', '$2y$12$fjBAAB0sRN4GCrVuwBX4HejD3yKzOn9XQqDl7vKyGAD9LhmtPsqvC', 'member', 'classic');
 
 -- Users (trainers) — ids 6 to 13 — password: 1234
 INSERT INTO users (name, username, email, password, role) VALUES
@@ -214,7 +215,8 @@ INSERT INTO classes (name, description, category_id, trainer_id) VALUES
     ('Pilates Flow', 'Technique-focused classes for posture and core control.', 7, 6),
     ('Core Control', 'Controlled core sessions for balance and posture improvement.', 7, 6),
     ('Body Toning', 'Goal-focused sessions for toning, fat loss, and body definition.', 8, 7),
-    ('Fit Shape', 'Shape and tone your body with structured fitness sessions.', 8, 7);
+    ('Fit Shape', 'Shape and tone your body with structured fitness sessions.', 8, 7),
+    ('Gym Review', 'General gym feedback and experience reviews.', 1, NULL);
 
 -- Class Schedule
 INSERT INTO class_schedule (class_id, day, time, duration_minutes, capacity, enrolled) VALUES
@@ -230,7 +232,8 @@ INSERT INTO class_schedule (class_id, day, time, duration_minutes, capacity, enr
     (13, 'Friday', '17:30', 50, 12, 12),
     (15, 'Friday', '18:00', 45, 14, 9),
     (5, 'Saturday', '10:00', 60, 5, 3),
-    (10, 'Saturday', '18:30', 45, 16, 14);
+    (10, 'Saturday', '18:30', 45, 16, 14),
+    (16, 'Sunday', '00:00', 1, 999, 0);
 
 -- Equipment
 INSERT INTO equipment (name, quantity, status) VALUES

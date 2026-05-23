@@ -3,7 +3,10 @@ session_start();
 
 require_once __DIR__ . '/utils/csrf.php';
 
-if (isset($_SESSION['user_id'])) {
+$prefilledEmail = $_GET['email'] ?? '';
+$selectedPlan = $_GET['plan'] ?? 'none';
+
+if (isset($_SESSION['user_id']) || $prefilledEmail === '') {
     header('Location: index.php');
     exit;
 }
@@ -38,13 +41,15 @@ $errorMessage = $errors[$_GET['error'] ?? ''] ?? null;
       </a>
     </div>
     <div class="middle"><h1>Gym4U</h1></div>
+    <input type="checkbox" id="menu-toggle">
+    <label for="menu-toggle" class="hamburger">☰</label>
     <nav class="right" aria-label="Main navigation">
       <ul>
         <li><a href="index.php">Home</a></li>
         <li><a href="classes.php">Classes</a></li>
         <li><a href="trainers.php">Trainers</a></li>
         <li><a href="equipment.php">Equipment</a></li>
-        <li><a href="register.php" aria-current="page">Register</a></li>
+        <li><a href="login.php">Login</a></li>
       </ul>
     </nav>
   </header>
@@ -58,6 +63,8 @@ $errorMessage = $errors[$_GET['error'] ?? ''] ?? null;
         <?php endif; ?>
         <form class="form" method="post" action="actions/register_action.php">
 
+          <input type="hidden" name="subscription_plan" value="<?= htmlspecialchars($selectedPlan) ?>">
+
           <label for="name">Name</label>
           <input type="text" id="name" name="name" placeholder="Enter your name" required>
 
@@ -65,7 +72,7 @@ $errorMessage = $errors[$_GET['error'] ?? ''] ?? null;
           <input type="text" id="username" name="username" placeholder="Enter your username" required>
 
           <label for="email">Email</label>
-          <input type="email" id="email" name="email" placeholder="your.email@example.com" required>
+          <input type="email" id="email" name="email" placeholder="your.email@example.com" value="<?= htmlspecialchars($prefilledEmail) ?>" readonly required>
 
           <label for="phone">Phone</label>
           <input type="tel" id="phone" name="phone" pattern="[0-9]{9}" placeholder="999999999" required>

@@ -42,6 +42,13 @@ main {
   text-transform: capitalize;
 }
 
+.subscription-badge {
+  width: 140px;
+  height: auto;
+  object-fit: contain;
+  margin-left: auto;
+}
+
 .alert {
   border-radius: 8px;
   padding: 0.8rem 1rem;
@@ -84,6 +91,41 @@ main {
 }
 
 .inline-admin-form .btn {
+  width: 100%;
+}
+
+.admin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.btn-create {
+  display: inline-block;
+  background: var(--secondary);
+  color: white;
+  border: none;
+  padding: 0.8rem 1.2rem;
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.btn-create:hover, .btn-create:focus-visible {
+  background: var(--secondary-strong);
+  color: white;
+  text-decoration: none;
+}
+
+.modal-box .profile-form {
+  margin-top: 1.5rem;
+}
+
+.modal-box input,
+.modal-box select,
+.modal-box button {
   width: 100%;
 }
 
@@ -141,7 +183,13 @@ main {
 @media (max-width: 700px) {
   .profile-header {
     align-items: flex-start;
+    align-items: center;
     flex-direction: column;
+  }
+
+  .subscription-badge {
+    margin-left: 0;
+    margin-top: 1rem;
   }
 
   .form-grid {

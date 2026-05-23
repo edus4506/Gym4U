@@ -1,6 +1,25 @@
 <?php
   require_once __DIR__ . '/controllers/indexController.php';
   require_once __DIR__ . '/utils/csrf.php';
+
+  $successMessages = [
+    'enrolled' => 'Enrollment confirmed.',
+    'cancelled' => 'Enrollment cancelled.',
+    'reviewed' => 'Review submitted.',
+  ];
+
+  $errorMessages = [
+    'full' => 'That class is already full.',
+    'already-enrolled' => 'You are already enrolled in that class.',
+    'members-only' => 'Only members can enroll in classes or leave reviews.',
+    'not-enrolled' => 'You can only review classes you are enrolled in.',
+    'not-attended' => 'You can only review classes you have already attended.',
+    'review' => 'Please choose a class, rating, and comment.',
+    'invalid' => 'That class action could not be completed.',
+  ];
+
+  $successMessage = $successMessages[$_GET['success'] ?? ''] ?? null;
+  $errorMessage = $errorMessages[$_GET['error'] ?? ''] ?? null;
 ?>
 
 <!DOCTYPE html>
@@ -14,7 +33,6 @@
   <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="css/index.css">
 </head>
-
 <body>
   <header>
     <div>
@@ -25,6 +43,8 @@
     <div class="middle">
       <h1>Gym4U</h1>
     </div>
+    <input type="checkbox" id="menu-toggle">
+    <label for="menu-toggle" class="hamburger">☰</label>
     <nav class="right" aria-label="Main navigation">
       <ul>
         <li><a href="index.php" aria-current="page">Home</a></li>
@@ -35,14 +55,20 @@
           <li><a href="profile.php">Profile</a></li>
           <li><a href="actions/logout.php">Logout</a></li>
         <?php else: ?>
-          <li><a href="login.php">Login</a></li>
+          <li><a href="subscriptions.php">Subscribe</a></li>
         <?php endif; ?>
       </ul>
     </nav>
   </header>
-
   <main>
-    <!-- HERO -->
+    <?php if ($successMessage): ?>
+      <p class="alert alert-success"><?= htmlspecialchars($successMessage) ?></p>
+    <?php endif; ?>
+
+    <?php if ($errorMessage): ?>
+      <p class="alert alert-error"><?= htmlspecialchars($errorMessage) ?></p>
+    <?php endif; ?>
+
     <section class="section hero">
       <div class="slider">
         <img src="images/index/slider1.png" class="slide" alt="Gym training image 1">
@@ -58,7 +84,6 @@
       </div>
     </section>
 
-    <!-- ABOUT -->
     <section class="section about">
       <h2>Why Gym4U?</h2>
       <div class="features">
@@ -92,7 +117,6 @@
       </div>
     </section>
 
-    <!-- FEATURE CARDS -->
     <section class="features-modern">
       <h2 class="visually-hidden">Gym Features Overview</h2>
       <div class="grid-2x2">
@@ -133,7 +157,6 @@
       </div>
     </section>
 
-    <!-- CTA -->
     <section class="section cta-section">
       <h2>Your fitness journey starts here!</h2>
       <p>
@@ -143,21 +166,10 @@
       <p><a href="classes.php">See more about classes!</a></p>
     </section>
 
-    <!-- REVIEW FORM -->
     <section class="section review-form-container">
-      <h2>Your Feedback matters!</h2>
+      <h2>Your Feedback Matters!</h2>
       <form class="review-form" method="post" action="actions/review_action.php">
-        <label for="schedule_id">Class:</label>
-        <select id="schedule_id" name="schedule_id" required>
-          <option value="">Choose an attended class</option>
-          <?php foreach ($memberEnrollments as $slot): ?>
-            <?php if (isset($reviewableScheduleIds[(int)$slot['id']])): ?>
-              <option value="<?= (int)$slot['id'] ?>">
-                <?= htmlspecialchars($slot['class_name'] . '-' . $slot['day'] . '-' . $slot['time']) ?>
-              </option>
-            <?php endif; ?>
-          <?php endforeach; ?>
-        </select>
+        <input type="hidden" name="schedule_id" value="14">
         <label for="rating">Rating:</label>
         <select id="rating" name="rating">
           <option value="5">5 Stars - Excellent</option>
@@ -172,7 +184,6 @@
       </form>
     </section>
 
-    <!-- DYNAMIC REVIEWS -->
     <section class="section">
       <h2>Member Feedback</h2>
       <div class="division-grid">
@@ -189,7 +200,6 @@
       </div>
     </section>
   </main>
-
   <footer class="footer">
     <p>
       <a href="privacy.php">Privacy Policy</a> |

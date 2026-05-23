@@ -81,6 +81,17 @@ header nav ul li:last-child a[aria-current="page"] {
   color: var(--text);
 }
 
+#menu-toggle {
+  display: none;
+}
+
+.hamburger {
+  display: none;
+  font-size: 2rem;
+  cursor: pointer;
+  color: white;
+}
+
 nav.right {
   display: flex;
   justify-content: flex-end;
@@ -169,7 +180,7 @@ nav.right {
 }
 
 .btn-cancel:hover {
-  background: #7e2626;
+  background: var(--danger-strong);
 }
 
 .btn-review {
@@ -700,6 +711,42 @@ nav.right {
   font-size: 0.9rem;
 }
 
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-overlay.active {
+  display: flex;
+}
+
+.modal-box {
+  position: relative;
+  width: min(500px, 90%);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 2rem;
+}
+
+.modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1.2rem;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-soft);
+}
+
+.modal-close:hover {
+  text-decoration: none;
+}
+
 @media (max-width: 1100px) {
   .trainer-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -711,9 +758,8 @@ nav.right {
 }
 
 @media (max-width: 950px) {
-  .trainer-grid,
-  .focus-grid,
-  .contact-grid {
+
+  .trainer-grid, .focus-grid, .contact-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
@@ -723,6 +769,41 @@ nav.right {
 
   .trainer-image {
     height: 240px;
+  }
+
+  header {
+    position: relative;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  header nav.right {
+    display: none;
+    position: absolute;
+    top: 70px;
+    right: 1rem;
+    background: var(--primary);
+    padding: 1rem;
+    border-radius: 1rem;
+    border: 2px solid var(--primary-strong);
+    z-index: 1000;
+  }
+
+  header nav.right ul {
+    flex-direction: column;
+    align-items: stretch;
+    min-width: 220px;
+  }
+
+  header nav.right ul li a {
+    width: 100%;
+    justify-content: center;
+  }
+
+  #menu-toggle:checked ~ nav.right {
+    display: flex;
   }
 }
 
@@ -748,19 +829,6 @@ nav.right {
 }
 
 @media (max-width: 700px) {
-  header {
-    padding: 0.6rem 1rem;
-  }
-
-  header nav ul {
-    justify-content: flex-start;
-    flex-wrap: wrap;
-  }
-
-  header nav ul li:last-child a {
-    margin-left: 0;
-  }
-
   .th,
   .td {
     font-size: 0.78rem;

@@ -12,6 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 
 csrf_verify();
 
+$subscriptionPlan = $_POST['subscription_plan'] ?? 'none';
 $name = trim($_POST['name'] ?? '');
 $username = trim($_POST['username'] ?? '');
 $email = trim($_POST['email'] ?? '');
@@ -41,13 +42,14 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 $db = getDatabaseConnection();
 
 try {
-  $stmt = $db->prepare('INSERT INTO users (name, username, email, password, role) VALUES (?, ?, ?, ?, ?)');
+  $stmt = $db->prepare('INSERT INTO users (name, username, email, password, role, subscription_plan) VALUES (?, ?, ?, ?, ?, ?)');
   $stmt->execute([
     $name,
     $username,
     $email,
     password_hash($password, PASSWORD_DEFAULT),
     'member',
+    $subscriptionPlan
   ]);
 } catch (PDOException $exception) {
   header('Location: ../register.php?error=exists');

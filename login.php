@@ -35,13 +35,15 @@ $errorMessage = $errors[$_GET['error'] ?? ''] ?? null;
       </a>
     </div>
     <div class="middle"><h1>Gym4U</h1></div>
+    <input type="checkbox" id="menu-toggle">
+    <label for="menu-toggle" class="hamburger">☰</label>
     <nav class="right" aria-label="Main navigation">
       <ul>
         <li><a href="index.php">Home</a></li>
         <li><a href="classes.php">Classes</a></li>
         <li><a href="trainers.php">Trainers</a></li>
         <li><a href="equipment.php">Equipment</a></li>
-        <li><a href="login.php" aria-current="page">Login</a></li>
+        <li><a href="subscriptions.php">Subscribe</a></li>
       </ul>
     </nav>
   </header>
@@ -63,7 +65,7 @@ $errorMessage = $errors[$_GET['error'] ?? ''] ?? null;
           <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>">
 
           <button type="submit" class="btn btn-enroll">Login</button>
-          <p>Don't have an account? <a href="register.php">Register here</a></p>
+          <p>Still haven't joined? <a href="subscriptions.php">Join the best Gym4U</a></p>
         </form>
       </div>
     </div>

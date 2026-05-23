@@ -21,6 +21,8 @@
       </a>
     </div>
     <div class="middle"><h1>Gym4U</h1></div>
+    <input type="checkbox" id="menu-toggle">
+    <label for="menu-toggle" class="hamburger">☰</label>
     <nav class="right" aria-label="Main navigation">
       <ul>
         <li><a href="index.php">Home</a></li>
@@ -31,7 +33,7 @@
           <li><a href="profile.php">Profile</a></li>
           <li><a href="actions/logout.php">Logout</a></li>
         <?php else: ?>
-          <li><a href="login.php">Login</a></li>
+          <li><a href="subscriptions.php">Subscribe</a></li>
         <?php endif; ?>
       </ul>
     </nav>
