@@ -265,9 +265,7 @@
 
               <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>">
 
-              <button class="btn-primary" type="submit">
-                Create Account
-              </button>
+              <button class="btn-primary" type="submit">Create Account</button>
             </form>
           </div>
         </div>
@@ -285,9 +283,7 @@
         <div class="admin-header">
           <h2>Create New Class</h2>
 
-          <a href="profile.php?create-class=1" class="btn-primary">
-            Create Class
-          </a>
+          <a href="profile.php?create-class=1" class="btn-primary">Create Class</a>
         </div>
 
         <div class="modal-overlay" style="<?= isset($_GET['create-class']) ? 'display:flex;' : 'display:none;' ?>">
@@ -338,37 +334,55 @@
       </section>
 
       <section class="profile-panel">
-        <h2>Class Schedule</h2>
-        <form class="profile-form compact-form" method="post" action="actions/admin_schedule_action.php">
-          <input type="hidden" name="mode" value="create">
-          <div class="form-grid">
-            <select name="class_id" required><?php foreach ($adminClasses as $class): ?><option value="<?= (int)$class['id'] ?>"><?= htmlspecialchars($class['name']) ?></option><?php endforeach; ?></select>
-            <select name="day"><?php foreach ($days as $day): ?><option value="<?= htmlspecialchars($day) ?>"><?= htmlspecialchars($day) ?></option><?php endforeach; ?></select>
-            <input type="time" name="time" required>
-            <input type="number" name="duration_minutes" min="15" value="45" placeholder="Duration">
-            <input type="number" name="capacity" min="1" value="12" placeholder="Capacity">
-            <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>">
-          </div>
-          <button class="btn-primary" type="submit">Add Schedule Slot</button>
-        </form>
-        <div class="admin-list">
-          <?php foreach ($adminSchedules as $slot): ?>
-            <?php if ($slot['class_name'] !== 'Gym Review'): ?>
-            <form class="inline-admin-form" method="post" action="actions/admin_schedule_action.php">
-              <input type="hidden" name="mode" value="update">
-              <input type="hidden" name="schedule_id" value="<?= (int)$slot['id'] ?>">
-              <select name="class_id" aria-label="Class"><?php foreach ($adminClasses as $class): ?><option value="<?= (int)$class['id'] ?>" <?= (int)$slot['class_id'] === (int)$class['id'] ? 'selected' : '' ?>><?= htmlspecialchars($class['name']) ?></option><?php endforeach; ?></select>
-              <select name="day" aria-label="Day"><?php foreach ($days as $day): ?><option value="<?= htmlspecialchars($day) ?>" <?= $slot['day'] === $day ? 'selected' : '' ?>><?= htmlspecialchars($day) ?></option><?php endforeach; ?></select>
-              <input type="time" name="time" value="<?= htmlspecialchars($slot['time']) ?>" aria-label="Time">
-              <input type="number" name="duration_minutes" min="15" value="<?= (int)$slot['duration_minutes'] ?>" aria-label="Duration">
-              <input type="number" name="capacity" min="1" value="<?= (int)$slot['capacity'] ?>" aria-label="Capacity">
+        <div class="admin-header">
+          <h2>Create Schedule Slot</h2>
+
+          <a href="profile.php?create-schedule=1" class="btn-primary">Add Schedule</a>
+        </div>
+
+        <div class="modal-overlay" style="<?= isset($_GET['create-schedule']) ? 'display:flex;' : 'display:none;' ?>">
+          <div class="modal-box">
+            <a href="profile.php" class="modal-close">×</a>
+
+            <h2>Create Schedule Slot</h2>
+
+            <form class="profile-form" method="post" action="actions/admin_schedule_action.php">
+              <input type="hidden" name="mode" value="create">
+
+              <div class="form-grid">
+                <select name="class_id" required>
+                  <?php foreach ($adminClasses as $class): ?>
+                    <?php if ($class['name'] !== 'Gym Review'): ?>
+                      <option value="<?= (int)$class['id'] ?>">
+                        <?= htmlspecialchars($class['name']) ?>
+                      </option>
+                    <?php endif; ?>
+                  <?php endforeach; ?>
+                </select>
+
+                <select name="day">
+                  <?php foreach ($days as $day): ?>
+                    <option value="<?= htmlspecialchars($day) ?>">
+                      <?= htmlspecialchars($day) ?>
+                    </option>
+                  <?php endforeach; ?>
+                </select>
+                <input type="time" name="time" required>
+                <input type="number" name="duration_minutes" min="15" value="45" placeholder="Duration">
+                <input type="number" name="capacity" min="1" value="12" placeholder="Capacity">
+              </div>
               <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>">
-              <span class="muted"><?= (int)$slot['enrolled'] ?> enrolled</span>
-              <button class="btn btn-enroll" type="submit">Save</button>
-              <button class="btn btn-cancel" type="submit" name="mode" value="delete">Remove</button>
+              <button class="btn-primary" type="submit">Add Schedule Slot</button>
             </form>
-            <?php endif; ?>
-          <?php endforeach; ?>
+          </div>
+        </div>
+      </section>
+
+      <section class="profile-panel">
+        <div class="admin-header">
+          <h2>Manage Schedule</h2>
+
+          <a href="manage_schedules.php" class="btn-manage">Manage Schedule</a>
         </div>
       </section>
 
