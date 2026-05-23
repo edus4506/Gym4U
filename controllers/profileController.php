@@ -51,7 +51,6 @@ $trainerRoster = [];
 $trainerCategoryIds = [];
 $categories = $db->query('SELECT id, name FROM categories ORDER BY name')->fetchAll();
 $trainers = $db->query('SELECT t.id, u.name FROM trainers t JOIN users u ON u.id = t.user_id ORDER BY u.name')->fetchAll();
-$equipment = [];
 
 if ($user['role'] === 'member') {
   $stmt = $db->prepare("
@@ -107,8 +106,4 @@ if ($user['role'] === 'trainer') {
     $rosterStmt->execute([(int)$trainerProfile['id']]);
     $trainerRoster = $rosterStmt->fetchAll();
   }
-}
-
-if ($user['role'] === 'admin') {
-  $equipment = $db->query('SELECT id, name, quantity, status FROM equipment ORDER BY name')->fetchAll();
 }

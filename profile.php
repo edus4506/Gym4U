@@ -387,30 +387,48 @@
       </section>
 
       <section class="profile-panel">
-        <h2>Equipment</h2>
-        <form class="profile-form compact-form" method="post" action="actions/admin_equipment_action.php">
-          <input type="hidden" name="mode" value="create">
-          <div class="form-grid">
-            <input type="text" name="name" placeholder="Equipment name" required>
-            <input type="number" name="quantity" min="0" value="1">
-            <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>">
-            <select name="status"><?php foreach ($statuses as $status): ?><option value="<?= htmlspecialchars($status) ?>"><?= htmlspecialchars(ucfirst($status)) ?></option><?php endforeach; ?></select>
-          </div>
-          <button class="btn-primary" type="submit">Add Equipment</button>
-        </form>
-        <div class="admin-list">
-          <?php foreach ($equipment as $item): ?>
-            <form class="inline-admin-form" method="post" action="actions/admin_equipment_action.php">
-              <input type="hidden" name="mode" value="update">
-              <input type="hidden" name="equipment_id" value="<?= (int)$item['id'] ?>">
-              <input type="text" name="name" value="<?= htmlspecialchars($item['name']) ?>" aria-label="Equipment name">
-              <input type="number" name="quantity" min="0" value="<?= (int)$item['quantity'] ?>" aria-label="Quantity">
-              <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>">
-              <select name="status" aria-label="Status"><?php foreach ($statuses as $status): ?><option value="<?= htmlspecialchars($status) ?>" <?= $item['status'] === $status ? 'selected' : '' ?>><?= htmlspecialchars(ucfirst($status)) ?></option><?php endforeach; ?></select>
-              <button class="btn btn-enroll" type="submit">Save</button>
-              <button class="btn btn-cancel" type="submit" name="mode" value="delete">Remove</button>
+        <div class="admin-header">
+          <h2>Create Equipment</h2>
+
+          <a href="profile.php?create-equipment=1" class="btn-primary">Add Equipment</a>
+        </div>
+
+        <div class="modal-overlay" style="<?= isset($_GET['create-equipment']) ? 'display:flex;' : 'display:none;' ?>">
+          <div class="modal-box">
+            <a href="profile.php" class="modal-close">×</a>
+
+            <h2>Create Equipment</h2>
+
+            <form class="profile-form" method="post" action="actions/admin_equipment_action.php">
+              <input type="hidden" name="mode" value="create">
+
+              <div class="form-grid">
+                <input type="text" name="name" placeholder="Equipment name" required>
+
+                <input type="number" name="quantity" min="0" value="1">
+
+                <select name="status">
+                  <?php foreach ($statuses as $status): ?>
+                    <option value="<?= htmlspecialchars($status) ?>">
+                      <?= htmlspecialchars(ucfirst($status)) ?>
+                    </option>
+                  <?php endforeach; ?>
+                </select>
+              </div>
+
+              <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>" >
+
+              <button class="btn-primary" type="submit">Add Equipment</button>
             </form>
-          <?php endforeach; ?>
+          </div>
+        </div>
+      </section>
+
+      <section class="profile-panel">
+        <div class="admin-header">
+          <h2>Manage Equipment</h2>
+
+          <a href="manage_equipment.php" class="btn-manage">Manage Equipment</a>
         </div>
       </section>
     <?php endif; ?>
