@@ -1,6 +1,36 @@
 <?php
 declare(strict_types = 1);
 session_start();
+
+require_once __DIR__ . '/database/db.php';
+require_once __DIR__ . '/utils/csrf.php';
+
+$user = null;
+
+if (isset($_SESSION['user_id'])) {
+  $db = getDatabaseConnection();
+
+  $stmt = $db->prepare('
+    SELECT
+      id,
+      name,
+      email,
+      role,
+      subscription_plan
+    FROM users
+    WHERE id = ?
+  ');
+
+  $stmt->execute([(int)$_SESSION['user_id']]);
+
+  $user = $stmt->fetch() ?: null;
+}
+
+$errors = [
+  'password' => 'Incorrect password.',
+];
+
+$errorMessage = $errors[$_GET['error'] ?? ''] ?? null;
 ?>
 
 <!DOCTYPE html>
@@ -12,6 +42,7 @@ session_start();
   <link rel="icon" href="images/gym4u_icon.png">
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/profile.css">
   <link rel="stylesheet" href="css/footers.css">
 </head>
 
@@ -31,7 +62,12 @@ session_start();
         <li><a href="classes.php">Classes</a></li>
         <li><a href="trainers.php">Trainers</a></li>
         <li><a href="equipment.php">Equipment</a></li>
-        <li><a href="#">Profile</a></li>
+        <?php if (isset($_SESSION['user_id'])): ?>
+          <li><a href="profile.php">Profile</a></li>
+          <li><a href="actions/logout.php">Logout</a></li>
+        <?php else: ?>
+          <li><a href="subscriptions.php">Subscribe</a></li>
+        <?php endif; ?>
       </ul>
     </nav>
   </header>
@@ -137,8 +173,62 @@ session_start();
       </article>
 
       <div class="cancel-action">
-        <a href="#" class="btn-primary">Continue to Cancellation</a>
+        <a href="cancelations.php?cancel-membership=1" class="btn-primary">Continue to Cancellation</a>
       </div>
+
+      <?php if (isset($_GET['cancel-membership'])): ?>
+        <div class="modal-overlay" style="display:flex;">
+          <div class="modal-box">
+            <a href="cancelations.php" class="modal-close">×</a>
+
+            <?php if (!isset($_SESSION['user_id'])): ?>
+
+              <h2>Login Required</h2>
+
+              <p>Please login before cancelling a membership.</p>
+
+              <a href="login.php" class="btn-primary">Login</a>
+
+            <?php elseif ($user['role'] !== 'member'): ?>
+
+              <h2>Members Only</h2>
+
+              <p>Only members can cancel memberships.</p>
+
+            <?php elseif ($user['subscription_plan'] === 'none'): ?>
+
+              <h2>No Active Membership</h2>
+
+              <p>You do not currently have an active membership.</p>
+
+            <?php else: ?>
+
+              <h2>Cancel Membership</h2>
+
+              <form method="post" action="actions/cancel_membership_action.php">
+                <?php if ($errorMessage): ?>
+                  <p class="alert alert-error"><?= htmlspecialchars($errorMessage) ?></p>
+                <?php endif; ?>
+                <div class="form-grid">
+                  <label>Name</label>
+                  <input type="text" value="<?= htmlspecialchars($user['name']) ?>" readonly>
+
+                  <label>Email</label>
+                  <input type="email" value="<?= htmlspecialchars($user['email']) ?>" readonly>
+
+                  <label>Password</label>
+                  <input type="password" name="password" placeholder="Confirm your password" required>
+                </div>
+
+                <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>">
+
+                <button type="submit" class="btn btn-cancel">Cancel Membership</button>
+              </form>
+
+            <?php endif; ?>
+          </div>
+        </div>
+      <?php endif; ?>
     </section>
   </main>
 

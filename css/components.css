@@ -175,6 +175,7 @@ nav.right {
 }
 
 .btn-cancel {
+  margin-top: 0.8rem;
   background: var(--danger);
   color: white;
 }
