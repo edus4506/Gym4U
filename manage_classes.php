@@ -50,6 +50,52 @@ if (!isset($_SESSION['user_id']) || ($_SESSION['user_role'] ?? '') !== 'admin') 
 
   <main>
     <section class="profile-panel">
+        <div class="admin-header">
+          <h2>Create New Class</h2>
+
+          <a href="manage_classes.php?create-class=1" class="btn-create">Create Class</a>
+        </div>
+
+        <div class="modal-overlay" style="<?= isset($_GET['create-class']) ? 'display:flex;' : 'display:none;' ?>">
+          <div class="modal-box">
+            <a href="manage_classes.php" class="modal-close">×</a>
+
+            <h2>Create Class</h2>
+
+            <form class="profile-form" method="post" action="actions/admin_class_action.php">
+              <input type="hidden" name="mode" value="create">
+
+              <div class="form-grid">
+                <input type="text" name="name" placeholder="Class name" required>
+
+                <input type="text" name="description" placeholder="Description">
+
+                <select name="category_id" required>
+                  <?php foreach ($categories as $category): ?>
+                    <option value="<?= (int)$category['id'] ?>">
+                      <?= htmlspecialchars($category['name']) ?>
+                    </option>
+                  <?php endforeach; ?>
+                </select>
+
+                <select name="trainer_id" required>
+                  <?php foreach ($trainers as $trainer): ?>
+                    <option value="<?= (int)$trainer['id'] ?>">
+                      <?= htmlspecialchars($trainer['name']) ?>
+                    </option>
+                  <?php endforeach; ?>
+                </select>
+              </div>
+
+              <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>">
+
+              <button class="btn-primary" type="submit">Create Class</button>
+            </form>
+          </div>
+        </div>
+    </section>
+
+    <section class="profile-panel">
       <h2>Filter Classes</h2>
 
       <form class="filter-group" method="get" action="manage_classes.php">

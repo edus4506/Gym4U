@@ -236,92 +236,9 @@
     <?php if ($user['role'] === 'admin'): ?>
       <section class="profile-panel">
         <div class="admin-header">
-          <h2>Create New Member, Trainer or Admin</h2>
-
-          <a href="profile.php?create-user=1" class="btn-primary">Create Account</a>
-        </div>
-
-        <div class="modal-overlay" style="<?= isset($_GET['create-user']) ? 'display:flex;' : 'display:none;' ?>">
-          <div class="modal-box">
-            <a href="profile.php" class="modal-close">×</a>
-
-            <h2>Create Account</h2>
-
-            <form class="profile-form" method="post" action="actions/admin_user_action.php">
-              <input type="hidden" name="mode" value="create">
-
-              <div class="form-grid">
-                <input type="text" name="name" placeholder="Name" required>
-                <input type="text" name="username" placeholder="Username" required>
-                <input type="email" name="email" placeholder="Email" required>
-                <input type="password" name="password" placeholder="Password" required>
-
-                <select name="role">
-                  <option value="member">Member</option>
-                  <option value="trainer">Trainer</option>
-                  <option value="admin">Admin</option>
-                </select>
-              </div>
-
-              <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>">
-
-              <button class="btn-primary" type="submit">Create Account</button>
-            </form>
-          </div>
-        </div>
-      </section>
-
-      <section class="profile-panel">
-        <div class="admin-header">
           <h2>Manage Members, Trainers, and Admins</h2>
 
-          <a href="manage_users.php" class="btn-manage">Manage Users</a>
-        </div>
-      </section>
-
-      <section class="profile-panel">
-        <div class="admin-header">
-          <h2>Create New Class</h2>
-
-          <a href="profile.php?create-class=1" class="btn-primary">Create Class</a>
-        </div>
-
-        <div class="modal-overlay" style="<?= isset($_GET['create-class']) ? 'display:flex;' : 'display:none;' ?>">
-          <div class="modal-box">
-            <a href="profile.php" class="modal-close">×</a>
-
-            <h2>Create Class</h2>
-
-            <form class="profile-form" method="post" action="actions/admin_class_action.php">
-              <input type="hidden" name="mode" value="create">
-
-              <div class="form-grid">
-                <input type="text" name="name" placeholder="Class name" required>
-
-                <input type="text" name="description" placeholder="Description">
-
-                <select name="category_id" required>
-                  <?php foreach ($categories as $category): ?>
-                    <option value="<?= (int)$category['id'] ?>">
-                      <?= htmlspecialchars($category['name']) ?>
-                    </option>
-                  <?php endforeach; ?>
-                </select>
-
-                <select name="trainer_id" required>
-                  <?php foreach ($trainers as $trainer): ?>
-                    <option value="<?= (int)$trainer['id'] ?>">
-                      <?= htmlspecialchars($trainer['name']) ?>
-                    </option>
-                  <?php endforeach; ?>
-                </select>
-              </div>
-
-              <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>">
-
-              <button class="btn-primary" type="submit">Create Class</button>
-            </form>
-          </div>
+          <a href="manage_users.php" class="btn-primary">Manage Users</a>
         </div>
       </section>
 
@@ -329,52 +246,7 @@
         <div class="admin-header">
           <h2>Manage Classes</h2>
 
-          <a href="manage_classes.php" class="btn-manage">Manage Classes</a>
-        </div>
-      </section>
-
-      <section class="profile-panel">
-        <div class="admin-header">
-          <h2>Create Schedule Slot</h2>
-
-          <a href="profile.php?create-schedule=1" class="btn-primary">Add Schedule</a>
-        </div>
-
-        <div class="modal-overlay" style="<?= isset($_GET['create-schedule']) ? 'display:flex;' : 'display:none;' ?>">
-          <div class="modal-box">
-            <a href="profile.php" class="modal-close">×</a>
-
-            <h2>Create Schedule Slot</h2>
-
-            <form class="profile-form" method="post" action="actions/admin_schedule_action.php">
-              <input type="hidden" name="mode" value="create">
-
-              <div class="form-grid">
-                <select name="class_id" required>
-                  <?php foreach ($adminClasses as $class): ?>
-                    <?php if ($class['name'] !== 'Gym Review'): ?>
-                      <option value="<?= (int)$class['id'] ?>">
-                        <?= htmlspecialchars($class['name']) ?>
-                      </option>
-                    <?php endif; ?>
-                  <?php endforeach; ?>
-                </select>
-
-                <select name="day">
-                  <?php foreach ($days as $day): ?>
-                    <option value="<?= htmlspecialchars($day) ?>">
-                      <?= htmlspecialchars($day) ?>
-                    </option>
-                  <?php endforeach; ?>
-                </select>
-                <input type="time" name="time" required>
-                <input type="number" name="duration_minutes" min="15" value="45" placeholder="Duration">
-                <input type="number" name="capacity" min="1" value="12" placeholder="Capacity">
-              </div>
-              <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>">
-              <button class="btn-primary" type="submit">Add Schedule Slot</button>
-            </form>
-          </div>
+          <a href="manage_classes.php" class="btn-primary">Manage Classes</a>
         </div>
       </section>
 
@@ -382,45 +254,7 @@
         <div class="admin-header">
           <h2>Manage Schedule</h2>
 
-          <a href="manage_schedules.php" class="btn-manage">Manage Schedule</a>
-        </div>
-      </section>
-
-      <section class="profile-panel">
-        <div class="admin-header">
-          <h2>Create Equipment</h2>
-
-          <a href="profile.php?create-equipment=1" class="btn-primary">Add Equipment</a>
-        </div>
-
-        <div class="modal-overlay" style="<?= isset($_GET['create-equipment']) ? 'display:flex;' : 'display:none;' ?>">
-          <div class="modal-box">
-            <a href="profile.php" class="modal-close">×</a>
-
-            <h2>Create Equipment</h2>
-
-            <form class="profile-form" method="post" action="actions/admin_equipment_action.php">
-              <input type="hidden" name="mode" value="create">
-
-              <div class="form-grid">
-                <input type="text" name="name" placeholder="Equipment name" required>
-
-                <input type="number" name="quantity" min="0" value="1">
-
-                <select name="status">
-                  <?php foreach ($statuses as $status): ?>
-                    <option value="<?= htmlspecialchars($status) ?>">
-                      <?= htmlspecialchars(ucfirst($status)) ?>
-                    </option>
-                  <?php endforeach; ?>
-                </select>
-              </div>
-
-              <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>" >
-
-              <button class="btn-primary" type="submit">Add Equipment</button>
-            </form>
-          </div>
+          <a href="manage_schedules.php" class="btn-primary">Manage Schedule</a>
         </div>
       </section>
 
@@ -428,7 +262,7 @@
         <div class="admin-header">
           <h2>Manage Equipment</h2>
 
-          <a href="manage_equipment.php" class="btn-manage">Manage Equipment</a>
+          <a href="manage_equipment.php" class="btn-primary">Manage Equipment</a>
         </div>
       </section>
     <?php endif; ?>

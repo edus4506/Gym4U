@@ -44,6 +44,43 @@ if (!isset($_SESSION['user_id']) || ($_SESSION['user_role'] ?? '') !== 'admin') 
   </header>
   <main>
     <section class="profile-panel">
+        <div class="admin-header">
+          <h2>Create New Member, Trainer or Admin</h2>
+
+          <a href="manage_users.php?create-user=1" class="btn-create">Create Account</a>
+        </div>
+
+        <div class="modal-overlay" style="<?= isset($_GET['create-user']) ? 'display:flex;' : 'display:none;' ?>">
+          <div class="modal-box">
+            <a href="manage_users.php" class="modal-close">×</a>
+
+            <h2>Create Account</h2>
+
+            <form class="profile-form" method="post" action="actions/admin_user_action.php">
+              <input type="hidden" name="mode" value="create">
+
+              <div class="form-grid">
+                <input type="text" name="name" placeholder="Name" required>
+                <input type="text" name="username" placeholder="Username" required>
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="password" name="password" placeholder="Password" required>
+
+                <select name="role">
+                  <option value="member">Member</option>
+                  <option value="trainer">Trainer</option>
+                  <option value="admin">Admin</option>
+                </select>
+              </div>
+
+              <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>">
+
+              <button class="btn-primary" type="submit">Create Account</button>
+            </form>
+          </div>
+        </div>
+    </section>
+
+    <section class="profile-panel">
       <h2>Filter Users</h2>
 
       <form class="filter-group" method="get" action="manage_users.php">

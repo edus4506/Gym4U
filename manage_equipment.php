@@ -50,6 +50,44 @@ if (!isset($_SESSION['user_id']) || ($_SESSION['user_role'] ?? '') !== 'admin') 
 
   <main>
     <section class="profile-panel">
+        <div class="admin-header">
+          <h2>Create Equipment</h2>
+
+          <a href="manage_equipment.php?create-equipment=1" class="btn-create">Add Equipment</a>
+        </div>
+
+        <div class="modal-overlay" style="<?= isset($_GET['create-equipment']) ? 'display:flex;' : 'display:none;' ?>">
+          <div class="modal-box">
+            <a href="manage_equipment.php" class="modal-close">×</a>
+
+            <h2>Create Equipment</h2>
+
+            <form class="profile-form" method="post" action="actions/admin_equipment_action.php">
+              <input type="hidden" name="mode" value="create">
+
+              <div class="form-grid">
+                <input type="text" name="name" placeholder="Equipment name" required>
+
+                <input type="number" name="quantity" min="0" value="1">
+
+                <select name="status">
+                  <?php foreach ($statuses as $status): ?>
+                    <option value="<?= htmlspecialchars($status) ?>">
+                      <?= htmlspecialchars(ucfirst($status)) ?>
+                    </option>
+                  <?php endforeach; ?>
+                </select>
+              </div>
+
+              <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>" >
+
+              <button class="btn-primary" type="submit">Add Equipment</button>
+            </form>
+          </div>
+        </div>
+    </section>
+
+    <section class="profile-panel">
       <h2>Filter Equipment</h2>
 
       <form class="filter-group" method="get" action="manage_equipment.php">

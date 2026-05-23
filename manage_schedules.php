@@ -50,6 +50,51 @@ if (!isset($_SESSION['user_id']) || ($_SESSION['user_role'] ?? '') !== 'admin') 
 
   <main>
     <section class="profile-panel">
+        <div class="admin-header">
+          <h2>Create Schedule Slot</h2>
+
+          <a href="manage_schedules.php?create-schedule=1" class="btn-create">Add Schedule</a>
+        </div>
+
+        <div class="modal-overlay" style="<?= isset($_GET['create-schedule']) ? 'display:flex;' : 'display:none;' ?>">
+          <div class="modal-box">
+            <a href="manage_schedules.php" class="modal-close">×</a>
+
+            <h2>Create Schedule Slot</h2>
+
+            <form class="profile-form" method="post" action="actions/admin_schedule_action.php">
+              <input type="hidden" name="mode" value="create">
+
+              <div class="form-grid">
+                <select name="class_id" required>
+                  <?php foreach ($adminClasses as $class): ?>
+                    <?php if ($class['name'] !== 'Gym Review'): ?>
+                      <option value="<?= (int)$class['id'] ?>">
+                        <?= htmlspecialchars($class['name']) ?>
+                      </option>
+                    <?php endif; ?>
+                  <?php endforeach; ?>
+                </select>
+
+                <select name="day">
+                  <?php foreach ($days as $day): ?>
+                    <option value="<?= htmlspecialchars($day) ?>">
+                      <?= htmlspecialchars($day) ?>
+                    </option>
+                  <?php endforeach; ?>
+                </select>
+                <input type="time" name="time" required>
+                <input type="number" name="duration_minutes" min="15" value="45" placeholder="Duration">
+                <input type="number" name="capacity" min="1" value="12" placeholder="Capacity">
+              </div>
+              <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>">
+              <button class="btn-primary" type="submit">Add Schedule Slot</button>
+            </form>
+          </div>
+        </div>
+    </section>
+
+    <section class="profile-panel">
       <h2>Filter Schedule</h2>
 
       <form class="filter-group" method="get" action="manage_schedules.php">
