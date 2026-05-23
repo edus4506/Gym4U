@@ -237,140 +237,34 @@
 
     <?php if ($user['role'] === 'admin'): ?>
       <section class="profile-panel">
-        <h2>Create User</h2>
-        <form class="profile-form" method="post" action="actions/admin_user_action.php">
-          <input type="hidden" name="mode" value="create">
-          <div class="form-grid">
-            <input type="text" name="name" placeholder="Name" required>
-            <input type="text" name="username" placeholder="Username" required>
-            <input type="email" name="email" placeholder="Email" required>
-            <input type="password" name="password" placeholder="Password" required>
-            <select name="role">
-              <option value="member">Member</option>
-              <option value="trainer">Trainer</option>
-              <option value="admin">Admin</option>
-            </select>
-          </div>
-          <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>">
-          <button class="btn-primary" type="submit">Create Account</button>
-        </form>
-      </section>
+        <div class="admin-header">
+          <h2>Manage Members, Trainers, and Admins</h2>
 
-      <section class="profile-panel">
-        <h2>Manage Members, Trainers, and Admins</h2>
-        <div class="admin-list">
-          <?php foreach ($adminUsers as $managedUser): ?>
-            <form class="inline-admin-form" method="post" action="actions/admin_user_action.php">
-              <input type="hidden" name="mode" value="update">
-              <input type="hidden" name="user_id" value="<?= (int)$managedUser['id'] ?>">
-              <input type="text" name="name" value="<?= htmlspecialchars($managedUser['name']) ?>" aria-label="Name">
-              <input type="text" name="username" value="<?= htmlspecialchars($managedUser['username']) ?>" aria-label="Username">
-              <input type="email" name="email" value="<?= htmlspecialchars($managedUser['email']) ?>" aria-label="Email">
-              <select name="role" aria-label="Role">
-                <?php foreach (['member', 'trainer', 'admin'] as $role): ?>
-                  <option value="<?= htmlspecialchars($role) ?>" <?= $managedUser['role'] === $role ? 'selected' : '' ?>><?= htmlspecialchars(ucfirst($role)) ?></option>
-                <?php endforeach; ?>
-              </select>
-              <label class="checkbox-label"><input type="checkbox" name="active" <?= (int)$managedUser['active'] === 1 ? 'checked' : '' ?>> Active</label>
-              <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>">
-              <button class="btn btn-enroll" type="submit">Save</button>
-            </form>
-          <?php endforeach; ?>
+          <a href="manage_users.php" class="btn-primary">Manage Users</a>
         </div>
       </section>
 
       <section class="profile-panel">
-        <h2>Class Catalog</h2>
-        <form class="profile-form compact-form" method="post" action="actions/admin_class_action.php">
-          <input type="hidden" name="mode" value="create">
-          <div class="form-grid">
-            <input type="text" name="name" placeholder="Class name" required>
-            <input type="text" name="description" placeholder="Description">
-            <select name="category_id" required>
-              <?php foreach ($categories as $category): ?><option value="<?= (int)$category['id'] ?>"><?= htmlspecialchars($category['name']) ?></option><?php endforeach; ?>
-            </select>
-            <select name="trainer_id" required>
-              <?php foreach ($trainers as $trainer): ?><option value="<?= (int)$trainer['id'] ?>"><?= htmlspecialchars($trainer['name']) ?></option><?php endforeach; ?>
-            </select>
-          </div>
-          <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>">
-          <button class="btn-primary" type="submit">Create Class</button>
-        </form>
-        <div class="admin-list">
-          <?php foreach ($adminClasses as $class): ?>
-            <form class="inline-admin-form" method="post" action="actions/admin_class_action.php">
-              <input type="hidden" name="mode" value="update">
-              <input type="hidden" name="class_id" value="<?= (int)$class['id'] ?>">
-              <input type="text" name="name" value="<?= htmlspecialchars($class['name']) ?>" aria-label="Class name">
-              <input type="text" name="description" value="<?= htmlspecialchars($class['description']) ?>" aria-label="Description">
-              <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>">
-              <select name="category_id" aria-label="Category"><?php foreach ($categories as $category): ?><option value="<?= (int)$category['id'] ?>" <?= (int)$class['category_id'] === (int)$category['id'] ? 'selected' : '' ?>><?= htmlspecialchars($category['name']) ?></option><?php endforeach; ?></select>
-              <select name="trainer_id" aria-label="Trainer"><?php foreach ($trainers as $trainer): ?><option value="<?= (int)$trainer['id'] ?>" <?= (int)$class['trainer_id'] === (int)$trainer['id'] ? 'selected' : '' ?>><?= htmlspecialchars($trainer['name']) ?></option><?php endforeach; ?></select>
-              <button class="btn btn-enroll" type="submit">Save</button>
-              <button class="btn btn-cancel" type="submit" name="mode" value="delete">Remove</button>
-            </form>
-          <?php endforeach; ?>
+        <div class="admin-header">
+          <h2>Manage Classes</h2>
+
+          <a href="manage_classes.php" class="btn-primary">Manage Classes</a>
         </div>
       </section>
 
       <section class="profile-panel">
-        <h2>Class Schedule</h2>
-        <form class="profile-form compact-form" method="post" action="actions/admin_schedule_action.php">
-          <input type="hidden" name="mode" value="create">
-          <div class="form-grid">
-            <select name="class_id" required><?php foreach ($adminClasses as $class): ?><option value="<?= (int)$class['id'] ?>"><?= htmlspecialchars($class['name']) ?></option><?php endforeach; ?></select>
-            <select name="day"><?php foreach ($days as $day): ?><option value="<?= htmlspecialchars($day) ?>"><?= htmlspecialchars($day) ?></option><?php endforeach; ?></select>
-            <input type="time" name="time" required>
-            <input type="number" name="duration_minutes" min="15" value="45" placeholder="Duration">
-            <input type="number" name="capacity" min="1" value="12" placeholder="Capacity">
-            <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>">
-          </div>
-          <button class="btn-primary" type="submit">Add Schedule Slot</button>
-        </form>
-        <div class="admin-list">
-          <?php foreach ($adminSchedules as $slot): ?>
-            <form class="inline-admin-form" method="post" action="actions/admin_schedule_action.php">
-              <input type="hidden" name="mode" value="update">
-              <input type="hidden" name="schedule_id" value="<?= (int)$slot['id'] ?>">
-              <select name="class_id" aria-label="Class"><?php foreach ($adminClasses as $class): ?><option value="<?= (int)$class['id'] ?>" <?= (int)$slot['class_id'] === (int)$class['id'] ? 'selected' : '' ?>><?= htmlspecialchars($class['name']) ?></option><?php endforeach; ?></select>
-              <select name="day" aria-label="Day"><?php foreach ($days as $day): ?><option value="<?= htmlspecialchars($day) ?>" <?= $slot['day'] === $day ? 'selected' : '' ?>><?= htmlspecialchars($day) ?></option><?php endforeach; ?></select>
-              <input type="time" name="time" value="<?= htmlspecialchars($slot['time']) ?>" aria-label="Time">
-              <input type="number" name="duration_minutes" min="15" value="<?= (int)$slot['duration_minutes'] ?>" aria-label="Duration">
-              <input type="number" name="capacity" min="1" value="<?= (int)$slot['capacity'] ?>" aria-label="Capacity">
-              <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>">
-              <span class="muted"><?= (int)$slot['enrolled'] ?> enrolled</span>
-              <button class="btn btn-enroll" type="submit">Save</button>
-              <button class="btn btn-cancel" type="submit" name="mode" value="delete">Remove</button>
-            </form>
-          <?php endforeach; ?>
+        <div class="admin-header">
+          <h2>Manage Schedule</h2>
+
+          <a href="manage_schedules.php" class="btn-primary">Manage Schedule</a>
         </div>
       </section>
 
       <section class="profile-panel">
-        <h2>Equipment</h2>
-        <form class="profile-form compact-form" method="post" action="actions/admin_equipment_action.php">
-          <input type="hidden" name="mode" value="create">
-          <div class="form-grid">
-            <input type="text" name="name" placeholder="Equipment name" required>
-            <input type="number" name="quantity" min="0" value="1">
-            <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>">
-            <select name="status"><?php foreach ($statuses as $status): ?><option value="<?= htmlspecialchars($status) ?>"><?= htmlspecialchars(ucfirst($status)) ?></option><?php endforeach; ?></select>
-          </div>
-          <button class="btn-primary" type="submit">Add Equipment</button>
-        </form>
-        <div class="admin-list">
-          <?php foreach ($equipment as $item): ?>
-            <form class="inline-admin-form" method="post" action="actions/admin_equipment_action.php">
-              <input type="hidden" name="mode" value="update">
-              <input type="hidden" name="equipment_id" value="<?= (int)$item['id'] ?>">
-              <input type="text" name="name" value="<?= htmlspecialchars($item['name']) ?>" aria-label="Equipment name">
-              <input type="number" name="quantity" min="0" value="<?= (int)$item['quantity'] ?>" aria-label="Quantity">
-              <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>">
-              <select name="status" aria-label="Status"><?php foreach ($statuses as $status): ?><option value="<?= htmlspecialchars($status) ?>" <?= $item['status'] === $status ? 'selected' : '' ?>><?= htmlspecialchars(ucfirst($status)) ?></option><?php endforeach; ?></select>
-              <button class="btn btn-enroll" type="submit">Save</button>
-              <button class="btn btn-cancel" type="submit" name="mode" value="delete">Remove</button>
-            </form>
-          <?php endforeach; ?>
+        <div class="admin-header">
+          <h2>Manage Equipment</h2>
+
+          <a href="manage_equipment.php" class="btn-primary">Manage Equipment</a>
         </div>
       </section>
     <?php endif; ?>

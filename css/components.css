@@ -180,7 +180,7 @@ nav.right {
 }
 
 .btn-cancel:hover {
-  background: #7e2626;
+  background: var(--danger-strong);
 }
 
 .btn-review {
@@ -709,6 +709,42 @@ nav.right {
 .rating-stars {
   color: var(--secondary-strong);
   font-size: 0.9rem;
+}
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-overlay.active {
+  display: flex;
+}
+
+.modal-box {
+  position: relative;
+  width: min(500px, 90%);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 2rem;
+}
+
+.modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1.2rem;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-soft);
+}
+
+.modal-close:hover {
+  text-decoration: none;
 }
 
 @media (max-width: 1100px) {
