@@ -80,7 +80,7 @@
           Join Gym4U and start your fitness journey with expert guidance,
           modern equipment, and motivating classes.
         </p>
-        <a class="btn-primary">Get Started</a>
+        <a class="btn-primary" href="subscriptions.php">Get Started</a>
       </div>
     </section>
 
@@ -169,15 +169,6 @@
     <section class="section review-form-container">
       <h2>Your Feedback Matters!</h2>
       <form class="review-form" method="post" action="actions/review_action.php">
-        <label for="schedule_id">Class:</label>
-        <select id="schedule_id" name="schedule_id" required>
-          <option value="">Choose an enrolled class</option>
-          <?php foreach ($memberEnrollments as $slot): ?>
-            <option value="<?= (int)$slot['id'] ?>">
-              <?= htmlspecialchars($slot['class_name'] . '-' . $slot['day'] . '-' . $slot['time']) ?>
-            </option>
-          <?php endforeach; ?>
-        </select>
         <div class="rating-row">
           <label>Rating:</label>
           <div class="star-rating" aria-label="Rating">
@@ -188,6 +179,7 @@
               <span onclick="gfg(5)" class="star">★</span>
           </div>
         </div>
+        <input type="hidden" name="schedule_id" value="14">
         <input type="hidden" name="rating" id="rating-value" value="5">
         <textarea name="comment" placeholder="Share your experience..." rows="3" required></textarea>
         <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>">
