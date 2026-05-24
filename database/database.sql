@@ -214,7 +214,8 @@ INSERT INTO classes (name, description, category_id, trainer_id) VALUES
     ('Pilates Flow', 'Technique-focused classes for posture and core control.', 7, 6),
     ('Core Control', 'Controlled core sessions for balance and posture improvement.', 7, 6),
     ('Body Toning', 'Goal-focused sessions for toning, fat loss, and body definition.', 8, 7),
-    ('Fit Shape', 'Shape and tone your body with structured fitness sessions.', 8, 7);
+    ('Fit Shape', 'Shape and tone your body with structured fitness sessions.', 8, 7),
+    ('Gym Review', 'General gym feedback and experience reviews.', 1, NULL);
 
 -- Class Schedule
 INSERT INTO class_schedule (class_id, day, time, duration_minutes, capacity, enrolled) VALUES
@@ -230,7 +231,8 @@ INSERT INTO class_schedule (class_id, day, time, duration_minutes, capacity, enr
     (13, 'Friday', '17:30', 50, 12, 12),
     (15, 'Friday', '18:00', 45, 14, 9),
     (5, 'Saturday', '10:00', 60, 5, 3),
-    (10, 'Saturday', '18:30', 45, 16, 14);
+    (10, 'Saturday', '18:30', 45, 16, 14),
+    (16, 'Sunday', '00:00', 1, 999, 0);
 
 -- Equipment
 INSERT INTO equipment (name, quantity, status) VALUES

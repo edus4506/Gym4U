@@ -17,6 +17,7 @@ $reviews = $db->query("
 ")->fetchAll();
 
 $memberEnrollments = [];
+$reviewableScheduleIds = [];
 
 if(isset($_SESSION['user_id']) && ($_SESSION['user_role'] ?? '') === 'member') {
     $stmt= $db->prepare("
@@ -28,6 +29,30 @@ if(isset($_SESSION['user_id']) && ($_SESSION['user_role'] ?? '') === 'member') {
     ");
     $stmt->execute([(int)$_SESSION['user_id']]);
     $memberEnrollments = $stmt->fetchAll();
+
+    $dayOrder = [
+        'Monday' => 1,
+        'Tuesday' => 2,
+        'Wednesday' => 3,
+        'Thursday' => 4,
+        'Friday' => 5,
+        'Saturday' => 6,
+        'Sunday' => 7,
+    ];
+    $now = new DateTimeImmutable('now');
+    $currentDayNumber = (int)$now->format('N');
+    $currentTime = $now->format('H:i');
+
+    foreach ($memberEnrollments as $slot) {
+        $slotDayNumber = $dayOrder[$slot['day']] ?? 0;
+        $slotTime = (string)$slot['time'];
+        $isPast = $slotDayNumber < $currentDayNumber
+            || ($slotDayNumber === $currentDayNumber && $slotTime < $currentTime);
+
+        if ($isPast) {
+            $reviewableScheduleIds[(int)$slot['id']] = true;
+        }
+    }
 }
 
 ?>

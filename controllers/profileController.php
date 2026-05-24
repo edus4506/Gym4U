@@ -48,12 +48,9 @@ $memberEnrollments = [];
 $trainerProfile = null;
 $trainerSchedule = [];
 $trainerRoster = [];
+$trainerCategoryIds = [];
 $categories = $db->query('SELECT id, name FROM categories ORDER BY name')->fetchAll();
 $trainers = $db->query('SELECT t.id, u.name FROM trainers t JOIN users u ON u.id = t.user_id ORDER BY u.name')->fetchAll();
-$adminUsers = [];
-$adminClasses = [];
-$adminSchedules = [];
-$equipment = [];
 
 if ($user['role'] === 'member') {
   $stmt = $db->prepare("
@@ -80,6 +77,10 @@ if ($user['role'] === 'trainer') {
   $trainerProfile = $profileStmt->fetch();
 
   if ($trainerProfile) {
+    $trainerCategoryStmt = $db->prepare('SELECT category_id FROM trainer_categories WHERE trainer_id = ?');
+    $trainerCategoryStmt->execute([(int)$trainerProfile['id']]);
+    $trainerCategoryIds = array_map('intval', array_column($trainerCategoryStmt->fetchAll(), 'category_id'));
+
     $scheduleStmt = $db->prepare("
       SELECT cs.id, c.name AS class_name, cs.day, cs.time, cs.duration_minutes, cs.capacity, cs.enrolled
       FROM class_schedule cs
@@ -105,24 +106,4 @@ if ($user['role'] === 'trainer') {
     $rosterStmt->execute([(int)$trainerProfile['id']]);
     $trainerRoster = $rosterStmt->fetchAll();
   }
-}
-
-if ($user['role'] === 'admin') {
-  $adminUsers = $db->query('SELECT id, name, username, email, role, active FROM users ORDER BY role, name')->fetchAll();
-  $adminClasses = $db->query("
-    SELECT c.id, c.name, c.description, c.category_id, c.trainer_id,
-           cat.name AS category_name, u.name AS trainer_name
-    FROM classes c
-    JOIN categories cat ON cat.id = c.category_id
-    LEFT JOIN trainers t ON t.id = c.trainer_id
-    LEFT JOIN users u ON u.id = t.user_id
-    ORDER BY c.name
-  ")->fetchAll();
-  $adminSchedules = $db->query("
-    SELECT cs.id, cs.class_id, c.name AS class_name, cs.day, cs.time, cs.duration_minutes, cs.capacity, cs.enrolled
-    FROM class_schedule cs
-    JOIN classes c ON c.id = cs.class_id
-    ORDER BY cs.day, cs.time
-  ")->fetchAll();
-  $equipment = $db->query('SELECT id, name, quantity, status FROM equipment ORDER BY name')->fetchAll();
 }

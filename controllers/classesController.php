@@ -58,10 +58,39 @@ $trainersForFilter = $db->query('SELECT t.id AS id, u.name AS name FROM trainers
 $equipment = $db->query('SELECT id, name, quantity, status FROM equipment ORDER BY name')->fetchAll();
 
 $memberEnrollments = [];
+$reviewableScheduleIds = [];
 if (isset($_SESSION['user_id'])) {
     $enrollmentStmt = $db->prepare('SELECT schedule_id FROM enrollments WHERE user_id = ?');
     $enrollmentStmt->execute([(int)$_SESSION['user_id']]);
     $memberEnrollments = array_flip(array_column($enrollmentStmt->fetchAll(), 'schedule_id'));
+
+    $dayOrder = [
+        'Monday' => 1,
+        'Tuesday' => 2,
+        'Wednesday' => 3,
+        'Thursday' => 4,
+        'Friday' => 5,
+        'Saturday' => 6,
+        'Sunday' => 7,
+    ];
+    $now = new DateTimeImmutable('now');
+    $currentDayNumber = (int)$now->format('N');
+    $currentTime = $now->format('H:i');
+
+    foreach ($schedule as $slot) {
+        if (!isset($memberEnrollments[$slot['id']])) {
+            continue;
+        }
+
+        $slotDayNumber = $dayOrder[$slot['day']] ?? 0;
+        $slotTime = (string)$slot['time'];
+        $isPast = $slotDayNumber < $currentDayNumber
+            || ($slotDayNumber === $currentDayNumber && $slotTime < $currentTime);
+
+        if ($isPast) {
+            $reviewableScheduleIds[(int)$slot['id']] = true;
+        }
+    }
 }
 
 $reviews = $db->query("
