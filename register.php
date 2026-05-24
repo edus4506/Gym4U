@@ -39,7 +39,9 @@ $errorMessage = $errors[$_GET['error'] ?? ''] ?? null;
         <img src="images/gym4u_logo.png" alt="Gym4U logo" class="logo">
       </a>
     </div>
-    <div class="middle"><h1>Gym4U</h1></div>
+    <div class="middle">
+      <h1>Gym4U</h1>
+    </div>
     <input type="checkbox" id="menu-toggle">
     <label for="menu-toggle" class="hamburger">☰</label>
     <nav class="right" aria-label="Main navigation">

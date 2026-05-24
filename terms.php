@@ -19,7 +19,6 @@
         <img src="images/gym4u_logo.png" alt="Gym4U logo" class="logo">
       </a>
     </div>
-
     <div class="middle">
       <h1>Gym4U</h1>
     </div>
