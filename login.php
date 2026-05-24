@@ -1,6 +1,5 @@
 <?php
 session_start();
-
 require_once __DIR__ . '/utils/csrf.php';
 
 if (isset($_SESSION['user_id'])) {
@@ -58,10 +57,13 @@ $errorMessage = $errors[$_GET['error'] ?? ''] ?? null;
           <input type="text" id="username" name="username" placeholder="Enter your username" required>
 
           <label for="password">Password</label>
-          <input type="password" id="password" name="password" placeholder="Enter your password" required>
+
+          <div class="password-wrapper">
+            <input type="password" id="password" name="password" placeholder="Enter your password" required>
+            <span class="eye-icon" id="eye-icon"> 👁️ </span>
+          </div>
 
           <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>">
-
           <button type="submit" class="btn btn-enroll">Login</button>
           <p>Don't have an account? <a href="register.php">Register here</a></p>
         </form>
@@ -79,5 +81,7 @@ $errorMessage = $errors[$_GET['error'] ?? ''] ?? null;
     <p>Membership Conditions · Regulations · Ethics Channel · Data Processing</p>
     <p>&copy; 2026 Gym4U. All rights reserved.</p>
   </footer>
+  <script src="js/main.js"></script>
+  <script src="js/authentication.js"></script>
 </body>
 </html>

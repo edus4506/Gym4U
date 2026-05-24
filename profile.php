@@ -100,6 +100,7 @@
             </div>
           </div>
         </div>
+
         <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>">
         <button type="submit" class="btn-primary">Save Changes</button>
       </form>

@@ -8,7 +8,7 @@ require_once __DIR__ . '/controllers/equipmentController.php';
 <html lang="en-US">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Equipment | Gym4U</title>
     <link rel="icon" href="images/gym4u_icon.png">
     <link rel="stylesheet" href="css/base.css">
@@ -93,8 +93,3 @@ require_once __DIR__ . '/controllers/equipmentController.php';
   </footer>
 </body>
 </html>
-
-                    
-                    
-
-    

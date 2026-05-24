@@ -57,3 +57,16 @@ main {
 button {
   margin-top: 1rem;
 }
+
+.password-wrapper {
+  position: relative;
+}
+
+.eye-icon {
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+    font-size: 20px;
+    color: #333;
+    margin-top: 0.5rem;
+}

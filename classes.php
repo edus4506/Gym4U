@@ -187,43 +187,41 @@
         </thead>
         <tbody class="tbody">
           <?php foreach ($schedule as $slot): ?>
-            <?php if ($slot['class_name'] !== 'Gym Review'): ?>
-              <?php $full = $slot['enrolled'] >= $slot['capacity']; ?>
-              <?php $enrolled = isset($memberEnrollments[$slot['id']]); ?>
-              <tr class="tr <?= $enrolled ? 'enrolled-row' : '' ?>">
-                <th class="th" scope="row"><?= htmlspecialchars($slot['class_name']) ?></th>
-                <td class="td">
-                  <a href="trainers.php#<?= htmlspecialchars(strtolower(str_replace(' ', '-', $slot['trainer_name']))) ?>">
-                    <?= htmlspecialchars($slot['trainer_name']) ?>
-                  </a>
-                </td>
-                <td class="td"><?= htmlspecialchars($slot['day']) ?>, <?= htmlspecialchars($slot['time']) ?></td>
-                <td class="td"><?= (int)$slot['enrolled'] ?>/<?= (int)$slot['capacity'] ?></td>
-                <td class="td">
-                  <?php if (!isset($_SESSION['user_id'])): ?>
-                    <a class="btn btn-enroll" href="login.php">Login</a>
-                  <?php elseif (($_SESSION['user_role'] ?? '') !== 'member'): ?>
-                    <span class="muted">Members only</span>
-                  <?php elseif ($enrolled): ?>
-                    <form method="post" action="actions/class_enrollment_action.php">
-                      <input type="hidden" name="schedule_id" value="<?= (int)$slot['id'] ?>">
-                      <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>">
-                      <input type="hidden" name="mode" value="cancel">
-                      <button class="btn btn-cancel" type="submit">Cancel</button>
-                    </form>
-                  <?php elseif ($full): ?>
-                    <button class="btn" disabled>Full</button>
-                  <?php else: ?>
-                    <form method="post" action="actions/class_enrollment_action.php">
-                      <input type="hidden" name="schedule_id" value="<?= (int)$slot['id'] ?>">
-                      <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>">
-                      <input type="hidden" name="mode" value="enroll">
-                      <button class="btn btn-enroll" type="submit">Enroll</button>
-                    </form>
-                  <?php endif; ?>
-                </td>
-              </tr>
-            <?php endif; ?>
+            <?php $full = $slot['enrolled'] >= $slot['capacity']; ?>
+            <?php $enrolled = isset($memberEnrollments[$slot['id']]); ?>
+            <tr class="tr <?= $enrolled ? 'enrolled-row' : '' ?>">
+              <th class="th" scope="row"><?= htmlspecialchars($slot['class_name']) ?></th>
+              <td class="td">
+                <a href="trainers.php#<?= htmlspecialchars(strtolower(str_replace(' ', '-', $slot['trainer_name']))) ?>">
+                  <?= htmlspecialchars($slot['trainer_name']) ?>
+                </a>
+              </td>
+              <td class="td"><?= htmlspecialchars($slot['day']) ?>, <?= htmlspecialchars($slot['time']) ?></td>
+              <td class="td"><?= (int)$slot['enrolled'] ?>/<?= (int)$slot['capacity'] ?></td>
+              <td class="td">
+                <?php if (!isset($_SESSION['user_id'])): ?>
+                  <a class="btn btn-enroll" href="login.php">Login</a>
+                <?php elseif (($_SESSION['user_role'] ?? '') !== 'member'): ?>
+                  <span class="muted">Members only</span>
+                <?php elseif ($enrolled): ?>
+                  <form class="enroll-form" method="post" action="actions/class_enrollment_action.php" data-schedule-id="<?= (int)$slot['id'] ?>">
+                    <input type="hidden" name="schedule_id" value="<?= (int)$slot['id'] ?>">
+                    <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>">
+                    <input type="hidden" name="mode" value="cancel">
+                    <button class="btn btn-cancel" type="submit">Cancel</button>
+                  </form>
+                <?php elseif ($full): ?>
+                  <button class="btn" disabled>Full</button>
+                <?php else: ?>
+                  <form class="enroll-form" method="post" action="actions/class_enrollment_action.php" data-schedule-id="<?= (int)$slot['id'] ?>">
+                    <input type="hidden" name="schedule_id" value="<?= (int)$slot['id'] ?>">
+                    <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>">
+                    <input type="hidden" name="mode" value="enroll">
+                    <button class="btn btn-enroll" type="submit">Enroll</button>
+                  </form>
+                <?php endif; ?>
+              </td>
+            </tr>
           <?php endforeach; ?>
         </tbody>
       </table>
@@ -272,14 +270,17 @@
             <?php endif; ?>
           <?php endforeach; ?>
         </select>
-        <label for="rating">Rating:</label>
-        <select id="rating" name="rating">
-          <option value="5">5 Stars - Excellent</option>
-          <option value="4">4 Stars - Very Good</option>
-          <option value="3">3 Stars - Average</option>
-          <option value="2">2 Stars - Poor</option>
-          <option value="1">1 Star - Terrible</option>
-        </select>
+        <div class="rating-row">
+          <label>Rating:</label>
+          <div class="star-rating" aria-label="Rating">
+              <span onclick="gfg(1)" class="star">★</span>
+              <span onclick="gfg(2)" class="star">★</span>
+              <span onclick="gfg(3)" class="star">★</span>
+              <span onclick="gfg(4)" class="star">★</span>
+              <span onclick="gfg(5)" class="star">★</span>
+          </div>
+        </div>
+        <input type="hidden" name="rating" id="rating-value" value="5">
         <textarea name="comment" placeholder="Share your experience..." rows="3" required></textarea>
         <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>">
         <button type="submit" class="btn btn-enroll">Submit Review</button>
@@ -313,5 +314,8 @@
     <p>Membership Conditions · Regulations · Ethics Channel · Data Processing</p>
     <p>&copy; 2026 Gym4U. All rights reserved.</p>
   </footer>
+  <script src="js/main.js"></script>
+  <script src="js/review.js"></script>
+  <script src="js/classes.js"></script>
 </body>
 </html>
