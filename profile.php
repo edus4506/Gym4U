@@ -49,7 +49,7 @@
         <p>@<?= htmlspecialchars($user['username']) ?></p>
       </div>
       <?php if ($user['role'] === 'member'): ?>
-        <?php if ($user['subscription_plan'] && $user['subscription_plan'] !== 'none'): ?>
+        <?php if ($user['subscription_plan'] !== 'none'): ?>
           <img class="subscription-badge" src="images/badges/<?= htmlspecialchars($user['subscription_plan']) ?>.png" alt="Subscription badge">
         <?php else: ?>
           <p>Your membership is currently inactive. <a href="subscriptions.php">Reactivate now</a>.</p>
@@ -286,10 +286,10 @@
     <p>
       <a href="privacy.php">Privacy Policy</a> |
       <a href="terms.php">Terms of Use</a> |
-      <a href="cancelations.php">Cancellations</a> |
+      <a href="cancellations.php">Cancellations</a> |
       <a href="https://www.livroreclamacoes.pt/Inicio/" target="_blank"> Complaints Book </a>
     </p>
-    <p>Membership Conditions Â· Regulations Â· Ethics Channel Â· Data Processing</p>
+    <p>Membership Conditions · Regulations · Ethics Channel · Data Processing</p>
     <p>&copy; 2026 Gym4U. All rights reserved.</p>
   </footer>
 </body>
