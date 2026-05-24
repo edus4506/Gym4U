@@ -52,41 +52,41 @@
     <!-- FILTERS -->
     <section class="section filter-panel">
       <h2>Find the Right Trainer</h2>
-      <form class="filter-form filter-form-4" action="#" method="get">
+      <form class="filter-form filter-form-4" action="trainers.php" method="get">
         <div class="form-group">
           <label for="trainer-search">Search by name</label>
-          <input type="text" id="trainer-search" name="trainer-search" placeholder="e.g. Eduardo Amaral">
+          <input type="text" id="trainer-search" name="trainer-search" placeholder="e.g. Eduardo Amaral" value="<?= htmlspecialchars($search) ?>">
         </div>
         <div class="form-group">
           <label for="specialization">Specialization</label>
           <select id="specialization" name="specialization">
             <option value="">All specializations</option>
-            <option value="yoga">Yoga</option>
-            <option value="spinning">Spinning</option>
-            <option value="pilates">Pilates</option>
-            <option value="hiit">HIIT</option>
-            <option value="personal-training">Personal Training</option>
+            <?php foreach ($categories as $cat): ?>
+              <option value="<?= (int)$cat['id'] ?>" <?= $categoryId === (int)$cat['id'] ? 'selected' : '' ?>>
+                <?= htmlspecialchars($cat['name']) ?>
+              </option>
+            <?php endforeach; ?>
           </select>
         </div>
         <div class="form-group">
           <label for="experience">Experience level</label>
           <select id="experience" name="experience">
             <option value="">Any experience</option>
-            <option value="1-3">1-3 years</option>
-            <option value="4-6">4-6 years</option>
-            <option value="7-plus">7+ years</option>
+            <option value="1-3" <?= $experience === '1-3' ? 'selected' : '' ?>>1-3 years</option>
+            <option value="4-6" <?= $experience === '4-6' ? 'selected' : '' ?>>4-6 years</option>
+            <option value="7-plus" <?= $experience === '7-plus' ? 'selected' : '' ?>>7+ years</option>
           </select>
         </div>
         <div class="form-group">
           <label for="class-day">Available on</label>
           <select id="class-day" name="class-day">
             <option value="">Any day</option>
-            <option value="monday">Monday</option>
-            <option value="tuesday">Tuesday</option>
-            <option value="wednesday">Wednesday</option>
-            <option value="thursday">Thursday</option>
-            <option value="friday">Friday</option>
-            <option value="saturday">Saturday</option>
+            <option value="monday" <?= $classDay === 'monday' ? 'selected' : '' ?>>Monday</option>
+            <option value="tuesday" <?= $classDay === 'tuesday' ? 'selected' : '' ?>>Tuesday</option>
+            <option value="wednesday" <?= $classDay === 'wednesday' ? 'selected' : '' ?>>Wednesday</option>
+            <option value="thursday" <?= $classDay === 'thursday' ? 'selected' : '' ?>>Thursday</option>
+            <option value="friday" <?= $classDay === 'friday' ? 'selected' : '' ?>>Friday</option>
+            <option value="saturday" <?= $classDay === 'saturday' ? 'selected' : '' ?>>Saturday</option>
           </select>
         </div>
         <button type="submit">Apply Filters</button>
@@ -236,5 +236,6 @@
     <p>Membership Conditions · Regulations · Ethics Channel · Data Processing</p>
     <p>&copy; 2026 Gym4U. All rights reserved.</p>
   </footer>
+  <script src="js/trainers.js"></script>
 </body>
 </html>
