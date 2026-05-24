@@ -169,15 +169,26 @@
     <section class="section review-form-container">
       <h2>Your Feedback Matters!</h2>
       <form class="review-form" method="post" action="actions/review_action.php">
-        <input type="hidden" name="schedule_id" value="14">
-        <label for="rating">Rating:</label>
-        <select id="rating" name="rating">
-          <option value="5">5 Stars - Excellent</option>
-          <option value="4">4 Stars - Very Good</option>
-          <option value="3">3 Stars - Average</option>
-          <option value="2">2 Stars - Poor</option>
-          <option value="1">1 Star - Terrible</option>
+        <label for="schedule_id">Class:</label>
+        <select id="schedule_id" name="schedule_id" required>
+          <option value="">Choose an enrolled class</option>
+          <?php foreach ($memberEnrollments as $slot): ?>
+            <option value="<?= (int)$slot['id'] ?>">
+              <?= htmlspecialchars($slot['class_name'] . '-' . $slot['day'] . '-' . $slot['time']) ?>
+            </option>
+          <?php endforeach; ?>
         </select>
+        <div class="rating-row">
+          <label>Rating:</label>
+          <div class="star-rating" aria-label="Rating">
+              <span onclick="gfg(1)" class="star">★</span>
+              <span onclick="gfg(2)" class="star">★</span>
+              <span onclick="gfg(3)" class="star">★</span>
+              <span onclick="gfg(4)" class="star">★</span>
+              <span onclick="gfg(5)" class="star">★</span>
+          </div>
+        </div>
+        <input type="hidden" name="rating" id="rating-value" value="5">
         <textarea name="comment" placeholder="Share your experience..." rows="3" required></textarea>
         <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>">
         <button type="submit" class="btn-primary">Submit Review</button>
@@ -210,5 +221,7 @@
     <p>Membership Conditions · Regulations · Ethics Channel · Data Processing</p>
     <p>&copy; 2026 Gym4U. All rights reserved.</p>
   </footer>
+  <script src="js/main.js"></script>
+  <script src="js/review.js"></script>
 </body>
 </html>

@@ -606,6 +606,22 @@ nav.right {
   min-height: 100px;
 }
 
+.rating-row {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.star {
+  font-size: 2rem;
+  cursor: pointer;
+  color: var(--border);
+}
+
+.one, .two, .three, .four, .five {
+  color: var(--secondary);
+}
+
 .cta-section {
   display: flex;
   flex-wrap: wrap;
