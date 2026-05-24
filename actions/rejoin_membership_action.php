@@ -16,8 +16,6 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
   exit;
 }
 
-csrf_verify();
-
 $db = getDatabaseConnection();
 
 $stmt = $db->prepare('

@@ -1,14 +1,4 @@
-<?php
-session_start();
-
-$selectedPlan = $_GET['plan'] ?? null;
-
-$planNames = [
-  'offpeak' => 'Off-Peak Plan',
-  'classic' => 'Classic Plan',
-  'premium' => 'Premium Plan',
-];
-?>
+<?php require_once __DIR__ . '/controllers/subscriptionsController.php'; ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -99,28 +89,53 @@ $planNames = [
         <?php if ($selectedPlan): ?>
             <h3 class="section-title"><strong><?= htmlspecialchars(ucfirst($planNames[$selectedPlan] ?? '')) ?></strong></h3>
         <?php endif; ?>
-        <form method="get" action="register.php">
-          <div class="subscription-info">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" placeholder="your.email@example.com" required>
+        <?php if ($user && $user['subscription_plan'] === 'none'): ?>
+          <form method="post" action="actions/rejoin_membership_action.php">
+            <div class="subscription-info">
+              <label for="password">Confirm Password</label>
+              <input type="password" id="password" name="password" placeholder="Your password" required>
 
-            <label for="cardholder">Cardholder</label>
-            <input type="text" id="cardholder" placeholder="John Doe" required>
+              <label for="cardholder">Cardholder</label>
+              <input type="text" id="cardholder" placeholder="John Doe" required>
 
-            <label for="cardnumber">Card</label>
-            <input type="text" id="cardnumber" placeholder="1234 5678 9012 3456" pattern="[0-9]{4} [0-9]{4} [0-9]{4} [0-9]{4}" maxlength="19" required>
+              <label for="cardnumber">Card</label>
+              <input type="text" id="cardnumber" placeholder="1234 5678 9012 3456" pattern="[0-9]{4} [0-9]{4} [0-9]{4} [0-9]{4}" maxlength="19" required>
 
-            <label for="expiry">Expire</label>
-            <input type="text" id="expiry" placeholder="MM/YY" pattern="(0[1-9]|1[0-2])\/[0-9]{2}" maxlength="5" required>
+              <label for="expiry">Expire</label>
+              <input type="text" id="expiry" placeholder="MM/YY" pattern="(0[1-9]|1[0-2])\/[0-9]{2}" maxlength="5" required>
 
-            <label for="cvv">CVV</label>
-            <input type="password" id="cvv" placeholder="123" pattern="[0-9]{3}" maxlength="3" required>
-          </div>
+              <label for="cvv">CVV</label>
+              <input type="password" id="cvv" placeholder="123" pattern="[0-9]{3}" maxlength="3" required>
+            </div>
 
-          <input type="hidden" name="plan" value="<?= htmlspecialchars($selectedPlan ?? '') ?>">
+            <input type="hidden" name="subscription_plan" value="<?= htmlspecialchars($selectedPlan ?? '') ?>">
 
-          <button type="submit" class="btn-primary">Register Page</button>
-        </form>
+            <button type="submit" class="btn-primary">Rejoin Membership</button>
+          </form>
+        <?php else: ?>
+          <form method="get" action="register.php">
+            <div class="subscription-info">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="your.email@example.com" required>
+
+              <label for="cardholder">Cardholder</label>
+              <input type="text" id="cardholder" placeholder="John Doe" required>
+
+              <label for="cardnumber">Card</label>
+              <input type="text" id="cardnumber" placeholder="1234 5678 9012 3456" pattern="[0-9]{4} [0-9]{4} [0-9]{4} [0-9]{4}" maxlength="19" required>
+
+              <label for="expiry">Expire</label>
+              <input type="text" id="expiry" placeholder="MM/YY" pattern="(0[1-9]|1[0-2])\/[0-9]{2}" maxlength="5" required>
+
+              <label for="cvv">CVV</label>
+              <input type="password" id="cvv" placeholder="123" pattern="[0-9]{3}" maxlength="3" required>
+            </div>
+
+            <input type="hidden" name="plan" value="<?= htmlspecialchars($selectedPlan ?? '') ?>">
+
+            <button type="submit" class="btn-primary">Register Page</button>
+          </form>
+        <?php endif; ?>
       </div>
     </div>
   </main>

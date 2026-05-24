@@ -1,27 +1,42 @@
 <?php
-declare(strict_types=1);
+declare(strict_types = 1);
 
 session_start();
+
 require_once __DIR__ . '/../database/db.php';
 
-if(!isset($_SESSION['user_id'])){
-    header('Location: login.php');
-    exit;
-}
+$selectedPlan = $_GET['plan'] ?? null;
 
-$db=getDatabaseConnection();
+$planNames = [
+  'offpeak' => 'Off-Peak Plan',
+  'classic' => 'Classic Plan',
+  'premium' => 'Premium Plan',
+];
 
-$stmt=$db->prepare('SELECT id,name,username,email,role,membership FROM users WHERE id=?');
-$stmt->execute([(int)$_SESSION['user_id']]);
+$user = null;
 
-$user=$stmt->fetch() ?: null;
+if (isset($_SESSION['user_id'])) {
+  $db = getDatabaseConnection();
 
-if($user===null){
+  $stmt = $db->prepare('
+    SELECT
+      id,
+      name,
+      username,
+      email,
+      role,
+      subscription_plan
+    FROM users
+    WHERE id = ?
+  ');
+
+  $stmt->execute([(int)$_SESSION['user_id']]);
+
+  $user = $stmt->fetch() ?: null;
+
+  if ($user === null) {
     session_destroy();
     header('Location: login.php');
     exit;
+  }
 }
-
-$userEmail=$user['email'];
-$membership=$user['membership'];
-?>
