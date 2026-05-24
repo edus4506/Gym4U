@@ -13,6 +13,12 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 csrf_verify();
 
 $subscriptionPlan = $_POST['subscription_plan'] ?? 'none';
+
+$allowed_plans = ['none', 'offpeak', 'classic', 'premium'];
+if(!in_array($subscriptionPlan, $allowed_plans, true)) {
+  $subscriptionPlan = 'none';
+}
+
 $name = trim($_POST['name'] ?? '');
 $username = trim($_POST['username'] ?? '');
 $email = trim($_POST['email'] ?? '');
