@@ -42,14 +42,14 @@
   </header>
 
   <main>
-    <section class="hero">
+    <section class="text-hero">
       <h2>Cancellations</h2>
       <p>
         At Gym4U, we understand that plans can change. Members may cancel subscriptions and memberships directly through the platform at any time. Thank you for your understanding and cooperation in helping us maintain a fair and organized membership system for all users.
       </p>
     </section>
 
-    <section class="section about">
+    <section class="section text-section">
       <h2>Cancel Classes or Personal Training Sessions</h2>
       <p>
         If you wish to cancel a class or personal training session, you can manage your cancellation directly through your profile page.
@@ -62,7 +62,7 @@
       <?php endif; ?>
     </section>
 
-    <section class="section about">
+    <section class="section text-section">
       <h2>Membership Cancellation Policy</h2>
       <article class="feature">
         <h3>1. Membership Cancellation Requests</h3>
@@ -212,7 +212,7 @@
     </section>
   </main>
 
-  <footer class="footer">
+  <footer>
     <p>
       <a href="privacy.php">Privacy Policy</a> |
       <a href="terms.php">Terms of Use</a> |

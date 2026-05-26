@@ -101,31 +101,6 @@ section, .section {
   margin-bottom: 2rem;
 }
 
-.h2 {
-  margin: 0 0 0.6rem;
-  line-height: 1.2;
-}
-
-.h3 {
-  margin: 0 0 0.6rem;
-  line-height: 1.2;
-}
-
-.p {
-  margin: 0 0 1rem;
-  color: var(--text-soft);
-}
-
-.a {
-  color: var(--primary);
-  text-decoration: none;
-}
-
-.a:hover {
-  color: var(--primary-strong);
-  text-decoration: underline;
-}
-
 .visually-hidden {
   position: absolute;
   width: 1px;

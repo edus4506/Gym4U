@@ -18,12 +18,12 @@
     content.className = 'trainer-content';
     content.innerHTML = `
       <h3>${t.name}</h3>
-      <p class="p trainer-role">${t.title}</p>
+      <p class="trainer-role">${t.title}</p>
       <p>${t.bio}</p>
-      <p class="p trainer-meta"><strong>Experience:</strong> ${t.experience_years} years</p>
-      <p class="p trainer-meta"><strong>Certifications:</strong> ${t.certifications}</p>
-      <p class="p trainer-meta"><strong>Specializations:</strong> ${t.specializations}</p>
-      <p class="p trainer-meta"><strong>Classes:</strong> ${t.classes || 'N/A'}</p>
+      <p class="trainer-meta"><strong>Experience:</strong> ${t.experience_years} years</p>
+      <p class="trainer-meta"><strong>Certifications:</strong> ${t.certifications}</p>
+      <p class="trainer-meta"><strong>Specializations:</strong> ${t.specializations}</p>
+      <p class="trainer-meta"><strong>Classes:</strong> ${t.classes || 'N/A'}</p>
     `;
 
     article.appendChild(img);

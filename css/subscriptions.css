@@ -33,13 +33,17 @@
   color: var(--secondary);
 }
 
-.about ul {
-  margin-bottom: 2rem;
-  padding-left: 1.2rem;
+.subscription-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 2.5rem 2rem;
   text-align: center;
+  position: relative;
 }
 
-.about li {
+.subscription-card li {
   text-align: center;
   margin-bottom: 0.8rem;
 }
@@ -48,7 +52,7 @@
   transform: scale(1.04);
 }
 
-.subscription-badge {
+.subscription-ribbon {
   position: absolute;
   top: 0.5rem;
   right: -1rem;
@@ -78,7 +82,7 @@
   align-items: center;
 }
 
-.payment-overlay .about {
+.payment-overlay .subscription-card {
   position: relative;
   width: min(500px, 90%);
 }
@@ -134,14 +138,14 @@
     gap: 1rem;
   }
 
-  .subscription-badge {
+  .subscription-ribbon {
     top: 49rem;
     right: 1.5rem;
   }
 }
 
 @media (max-width: 500px) {
-  .subscription-badge {
+  .subscription-ribbon {
     font-size: 0.625rem;
     top: 47rem;
     right: 0.5rem;

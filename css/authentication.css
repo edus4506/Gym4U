@@ -13,7 +13,7 @@ main {
   margin: 3rem auto;
 }
 
-.card {
+.auth-card {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
@@ -21,7 +21,7 @@ main {
   padding: 2.5rem;
 }
 
-.card h2 {
+.auth-card h2 {
   margin-bottom: 1.5rem;
   color: var(--dark);
 }

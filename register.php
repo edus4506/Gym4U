@@ -36,7 +36,7 @@
 
   <main>
     <div class="wrapper">
-      <div class="card">
+      <div class="auth-card">
         <h2>Register</h2>
         <?php if ($errorMessage): ?>
           <p class="form-error"><?= htmlspecialchars($errorMessage) ?></p>
@@ -76,7 +76,7 @@
     </div>
   </main>
 
-  <footer class="footer">
+  <footer>
     <p>
       <a href="privacy.php">Privacy Policy</a> |
       <a href="terms.php">Terms of Use</a> |

@@ -44,7 +44,7 @@ session_start();
   </header>
 
   <main>
-    <section class="hero">
+    <section class="text-hero">
       <h2>Terms and Conditions</h2>
 
       <p>
@@ -55,7 +55,7 @@ session_start();
       </p>
     </section>
 
-    <section class="section about">
+    <section class="section text-section">
       <h2>Website Terms and Conditions</h2>
 
       <article class="feature">
@@ -245,7 +245,7 @@ session_start();
       </article>
     </section>
 
-    <section class="section about">
+    <section class="section text-section">
       <h2>Gym Membership and Facility Regulations</h2>
 
       <article class="feature">
@@ -369,7 +369,7 @@ session_start();
 
   </main>
 
-  <footer class="footer">
+  <footer>
     <p>
       <a href="privacy.php">Privacy Policy</a> |
       <a href="terms.php">Terms of Use</a> |

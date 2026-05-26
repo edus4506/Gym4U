@@ -112,7 +112,7 @@ nav.right {
 }
 
 
-.footer {
+footer {
   background: var(--primary);
   color: white;
   text-align: center;
@@ -121,18 +121,18 @@ nav.right {
   margin-top: 2rem;
 }
 
-.footer p {
+footer p {
   margin: 0.4rem 0;
   font-size: 0.85rem;
   color: white;
 }
 
-.footer a {
+footer a {
   color: #e5e7eb;
   text-decoration: none;
 }
 
-.footer a:hover, .footer a:focus-visible {
+footer a:hover, footer a:focus-visible {
   color: white;
   text-decoration: underline;
 }
@@ -232,22 +232,22 @@ nav.right {
   color: white;
 }
 
-.table {
+table {
   width: 100%;
   border-collapse: collapse;
 }
 
-.th, .td {
+th, td {
   border: 1px solid var(--border);
   padding: 0.55rem;
   text-align: center;
 }
 
-.th {
+th {
   background: rgba(2, 132, 199, 0.08);
 }
 
-.caption {
+caption {
   caption-side: top;
   text-align: left;
   font-weight: 600;
@@ -462,7 +462,14 @@ nav.right {
 }
 
 .form-group label {
+  color: var(--text-soft);
+  font-size: 0.9rem;
   font-weight: 600;
+}
+
+.form-group input:disabled {
+  background: var(--surface-muted);
+  color: var(--text-soft);
 }
 
 .filter-group {
@@ -864,8 +871,8 @@ nav.right {
 }
 
 @media (max-width: 700px) {
-  .th,
-  .td {
+  th,
+  td {
     font-size: 0.78rem;
     padding: 0.4rem 0.3rem;
   }

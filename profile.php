@@ -120,24 +120,24 @@
         <?php if (!$memberEnrollments): ?>
           <p>You are not enrolled in any classes yet. Browse the <a href="classes.php">class schedule</a> to book a spot.</p>
         <?php else: ?>
-          <table class="table">
+          <table>
             <thead>
               <tr>
-                <th class="th">Class</th>
-                <th class="th">Trainer</th>
-                <th class="th">When</th>
-                <th class="th">Capacity</th>
-                <th class="th">Action</th>
+                <th>Class</th>
+                <th>Trainer</th>
+                <th>When</th>
+                <th>Capacity</th>
+                <th>Action</th>
               </tr>
             </thead>
             <tbody>
               <?php foreach ($memberEnrollments as $slot): ?>
                 <tr>
-                  <th class="th" scope="row"><?= htmlspecialchars($slot['class_name']) ?></th>
-                  <td class="td"><?= htmlspecialchars($slot['trainer_name']) ?></td>
-                  <td class="td"><?= htmlspecialchars($slot['day']) ?>, <?= htmlspecialchars($slot['time']) ?></td>
-                  <td class="td"><?= (int)$slot['enrolled'] ?>/<?= (int)$slot['capacity'] ?></td>
-                  <td class="td">
+                  <th scope="row"><?= htmlspecialchars($slot['class_name']) ?></th>
+                  <td><?= htmlspecialchars($slot['trainer_name']) ?></td>
+                  <td><?= htmlspecialchars($slot['day']) ?>, <?= htmlspecialchars($slot['time']) ?></td>
+                  <td><?= (int)$slot['enrolled'] ?>/<?= (int)$slot['capacity'] ?></td>
+                  <td>
                     <form method="post" action="actions/class_enrollment_action.php">
                       <input type="hidden" name="schedule_id" value="<?= (int)$slot['schedule_id'] ?>">
                       <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>">
@@ -225,15 +225,15 @@
         <?php if (!$trainerRoster): ?>
           <p>No members are enrolled in your classes yet.</p>
         <?php else: ?>
-          <table class="table">
-            <thead><tr><th class="th">Class</th><th class="th">When</th><th class="th">Member</th><th class="th">Email</th></tr></thead>
+          <table>
+            <thead><tr><th>Class</th><th>When</th><th>Member</th><th>Email</th></tr></thead>
             <tbody>
               <?php foreach ($trainerRoster as $entry): ?>
                 <tr>
-                  <th class="th" scope="row"><?= htmlspecialchars($entry['class_name']) ?></th>
-                  <td class="td"><?= htmlspecialchars($entry['day']) ?>, <?= htmlspecialchars($entry['time']) ?></td>
-                  <td class="td"><?= htmlspecialchars($entry['name']) ?></td>
-                  <td class="td"><?= htmlspecialchars($entry['email']) ?></td>
+                  <th scope="row"><?= htmlspecialchars($entry['class_name']) ?></th>
+                  <td><?= htmlspecialchars($entry['day']) ?>, <?= htmlspecialchars($entry['time']) ?></td>
+                  <td><?= htmlspecialchars($entry['name']) ?></td>
+                  <td><?= htmlspecialchars($entry['email']) ?></td>
                 </tr>
               <?php endforeach; ?>
             </tbody>
@@ -277,7 +277,7 @@
     <?php endif; ?>
   </main>
 
-  <footer class="footer">
+  <footer>
     <p>
       <a href="privacy.php">Privacy Policy</a> |
       <a href="terms.php">Terms of Use</a> |

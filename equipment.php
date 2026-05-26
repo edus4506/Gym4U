@@ -39,12 +39,12 @@
     </nav>
   </header>
     <main class="main">
-        <section class="section">
+        <section>
             <h2>Equipment</h2>
             <p>Check the availability of all gym equipment below.</p>
         </section>
-        <section class="section">
-            <form method="get" action="equipment.php" class="filter-form">
+        <section>
+            <form method="get" action="equipment.php" class="filter-form-equipment">
                 <label for="status">Filter by status:</label>
                 <select name="status" id="status">
                     <option value="all" <?= $statusFilter === 'all' ? 'selected': '' ?>>All</option>
@@ -55,21 +55,21 @@
                 <button type="submit" class="btn-primary">Filter</button>
             </form>
         </section>
-        <section class="section">
-            <table class="table">
-                <thead class="thead">
-                    <tr class="tr">
-                        <th class="th" scope="col">Equipment</th>
-                        <th class="th" scope="col">Quantity</th>
-                        <th class="th" scope="col">Status</th>
+        <section>
+            <table>
+                <thead>
+                    <tr>
+                        <th scope="col">Equipment</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Status</th>
                     </tr>
                 </thead>
-                <tbody class="tbody">
+                <tbody>
                     <?php foreach ($equipment as $item): ?>
-                        <tr class="tr">
-                            <th class="th" scope="row"><?= htmlspecialchars($item['name']) ?></th>
-                            <td class="td"><?= (int)($item['quantity']) ?></td>
-                            <td class="td">
+                        <tr>
+                            <th scope="row"><?= htmlspecialchars($item['name']) ?></th>
+                            <td><?= (int)($item['quantity']) ?></td>
+                            <td>
                                 <span class="badge badge-<?= htmlspecialchars($item['status']) ?>">
                                     <?= htmlspecialchars(ucfirst($item['status'])) ?>
                                 </span>
@@ -81,7 +81,7 @@
         </section>
     </main>
 
-    <footer class="footer">
+    <footer>
     <p>
       <a href="privacy.php">Privacy Policy</a> |
       <a href="terms.php">Terms of Use</a> |

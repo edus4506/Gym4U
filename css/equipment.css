@@ -8,13 +8,13 @@ body {
     flex-direction: column;
 }
 
-.filter-form {
+.filter-form-equipment {
     display: flex;
     align-items: center;
     gap: 1rem;
 }
 
-.filter-form select {
+.filter-form-equipment select {
     width: auto;
 }
 

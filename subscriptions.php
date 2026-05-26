@@ -40,7 +40,7 @@
       <h3 class="section-title-3">3. Start Training!</h3>
     </section>
     <section class="subscriptions-grid">
-      <article class="section about">
+      <article class="section subscription-card">
         <h3>Off-Peak Plan</h3>
         <p class="subscription-price">€19.99/month</p>
         <ul>
@@ -52,8 +52,8 @@
         </ul>
         <a href="subscriptions.php?plan=offpeak" class="btn-primary">Select Plan</a>
       </article>
-      <article class="section about featured">
-        <div class="subscription-badge">Most Popular</div>
+      <article class="section subscription-card featured">
+        <span class="subscription-ribbon">Most Popular</span>
         <h3>Classic Plan</h3>
         <p class="subscription-price">€29.99/month</p>
         <ul>
@@ -65,7 +65,7 @@
         </ul>
         <a href="subscriptions.php?plan=classic" class="btn-primary">Select Plan</a>
       </article>
-      <article class="section about">
+      <article class="section subscription-card">
         <h3>Premium Plan</h3>
         <p class="subscription-price">€39.99/month</p>
         <ul>
@@ -83,7 +83,7 @@
       <a href="login.php">Login Here</a>
     </section>
     <div class="payment-overlay" style="<?= $selectedPlan ? 'display:flex;' : 'display:none;' ?>">
-      <div class="section about">
+      <div class="section subscription-card">
         <a href="subscriptions.php" class="close-modal">×</a>
         <h2>Complete Your Subscription</h2>
         <?php if ($selectedPlan): ?>
@@ -125,7 +125,7 @@
       </div>
     </div>
   </main>
-  <footer class="footer">
+  <footer>
     <p>
       <a href="privacy.php">Privacy Policy</a> |
       <a href="terms.php">Terms of Use</a> |

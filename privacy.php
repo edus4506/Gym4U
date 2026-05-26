@@ -44,7 +44,7 @@
   </header>
 
   <main>
-    <section class="hero">
+    <section class="text-hero">
       <h2>Privacy Policy</h2>
 
       <p>
@@ -61,7 +61,7 @@
       </p>
     </section>
 
-    <section class="section about">
+    <section class="section text-section">
       <h2>Privacy and Data Protection</h2>
 
       <article class="feature">
@@ -241,7 +241,7 @@
     </section>
   </main>
 
-  <footer class="footer">
+  <footer>
     <p>
       <a href="privacy.php">Privacy Policy</a> |
       <a href="terms.php">Terms of Use</a> |

@@ -94,7 +94,7 @@
     </section>
 
     <!-- TRAINER CARDS -->
-    <section class="section">
+    <section>
       <h2>Our Coaching Staff</h2>
       <div class="trainer-grid">
         <?php foreach ($trainers as $trainer): ?>
@@ -108,12 +108,12 @@
             >
             <div class="trainer-content">
               <h3><?= htmlspecialchars($trainer['name']) ?></h3>
-              <p class="p trainer-role"><?= htmlspecialchars($trainer['title']) ?></p>
+              <p class="trainer-role"><?= htmlspecialchars($trainer['title']) ?></p>
               <p><?= htmlspecialchars($trainer['bio']) ?></p>
-              <p class="p trainer-meta"><strong>Experience:</strong> <?= (int)$trainer['experience_years'] ?> years</p>
-              <p class="p trainer-meta"><strong>Certifications:</strong> <?= htmlspecialchars($trainer['certifications']) ?></p>
-              <p class="p trainer-meta"><strong>Specializations:</strong> <?= htmlspecialchars($trainer['specializations']) ?></p>
-              <p class="p trainer-meta"><strong>Classes:</strong> <?= htmlspecialchars($classesPerTrainer[$trainer['id']] ?? 'N/A') ?></p>
+              <p class="trainer-meta"><strong>Experience:</strong> <?= (int)$trainer['experience_years'] ?> years</p>
+              <p class="trainer-meta"><strong>Certifications:</strong> <?= htmlspecialchars($trainer['certifications']) ?></p>
+              <p class="trainer-meta"><strong>Specializations:</strong> <?= htmlspecialchars($trainer['specializations']) ?></p>
+              <p class="trainer-meta"><strong>Classes:</strong> <?= htmlspecialchars($classesPerTrainer[$trainer['id']] ?? 'N/A') ?></p>
             </div>
           </article>
         <?php endforeach; ?>
@@ -123,23 +123,23 @@
     <!-- OVERVIEW TABLE -->
     <section class="section schedule-box clean-panel">
       <h2>Trainer Overview</h2>
-      <table class="table">
-        <caption class="caption">Summary of trainer specializations and experience</caption>
-        <thead class="thead">
-          <tr class="tr">
-            <th class="th" scope="col">Trainer</th>
-            <th class="th" scope="col">Specialization</th>
-            <th class="th" scope="col">Experience</th>
-            <th class="th" scope="col">Main Classes</th>
+      <table>
+        <caption>Summary of trainer specializations and experience</caption>
+        <thead>
+          <tr>
+            <th scope="col">Trainer</th>
+            <th scope="col">Specialization</th>
+            <th scope="col">Experience</th>
+            <th scope="col">Main Classes</th>
           </tr>
         </thead>
-        <tbody class="tbody">
+        <tbody>
           <?php foreach ($trainers as $trainer): ?>
-            <tr class="tr">
-              <th class="th" scope="row"><?= htmlspecialchars($trainer['name']) ?></th>
-              <td class="td"><?= htmlspecialchars($trainer['specializations']) ?></td>
-              <td class="td"><?= (int)$trainer['experience_years'] ?> years</td>
-              <td class="td"><?= htmlspecialchars($classesPerTrainer[$trainer['id']] ?? 'N/A') ?></td>
+            <tr>
+              <th scope="row"><?= htmlspecialchars($trainer['name']) ?></th>
+              <td><?= htmlspecialchars($trainer['specializations']) ?></td>
+              <td><?= (int)$trainer['experience_years'] ?> years</td>
+              <td><?= htmlspecialchars($classesPerTrainer[$trainer['id']] ?? 'N/A') ?></td>
             </tr>
           <?php endforeach; ?>
         </tbody>
@@ -226,7 +226,7 @@
     </section>
   </main>
 
-  <footer class="footer">
+  <footer>
     <p>
       <a href="privacy.php">Privacy Policy</a> |
       <a href="terms.php">Terms of Use</a> |
