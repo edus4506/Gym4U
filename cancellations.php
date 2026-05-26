@@ -174,59 +174,9 @@
               <p>Only members can cancel memberships.</p>
 
             <?php elseif ($user['subscription_plan'] === 'none'): ?>
-
-              <h2>Rejoin Membership</h2>
-
-              <p>
-                Your membership is currently inactive.
-                Reactivate your Gym4U membership below.
-              </p>
-
-              <form method="post" action="actions/rejoin_membership_action.php">
-                <div class="form-grid">
-
-                  <label>Name</label>
-                  <input
-                    type="text"
-                    value="<?= htmlspecialchars($user['name']) ?>"
-                    readonly
-                  >
-
-                  <label>Email</label>
-                  <input
-                    type="email"
-                    value="<?= htmlspecialchars($user['email']) ?>"
-                    readonly
-                  >
-
-                  <label>Membership Plan</label>
-
-                  <select name="subscription_plan" required>
-                    <option value="">Choose a plan</option>
-                    <option value="offpeak">Off-Peak</option>
-                    <option value="classic">Classic</option>
-                    <option value="premium">Premium</option>
-                  </select>
-
-                  <label>Password</label>
-                  <input
-                    type="password"
-                    name="password"
-                    placeholder="Confirm your password"
-                    required
-                  >
-                </div>
-
-                <input
-                  type="hidden"
-                  name="csrf_token"
-                  value="<?= htmlspecialchars(csrf_token()) ?>"
-                >
-
-                <button type="submit" class="btn-primary">
-                  Reactivate Membership
-                </button>
-              </form>
+              <h2>No Active Membership</h2>
+              <p>You don't have an active membership.</p>
+              <a href="subscriptions.php" class="btn-primary">Subscribe Now</a>
 
             <?php else: ?>
 
@@ -244,7 +194,10 @@
                   <input type="email" value="<?= htmlspecialchars($user['email']) ?>" readonly>
 
                   <label>Password</label>
-                  <input type="password" name="password" placeholder="Confirm your password" required>
+                  <div class="password-wrapper">
+                      <input type="password" name="password" placeholder="Enter your password" required>
+                      <span class="eye-icon">👁️</span>
+                  </div>
                 </div>
 
                 <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>">
@@ -269,5 +222,6 @@
     <p>Membership Conditions · Regulations · Ethics Channel · Data Processing</p>
     <p>&copy; 2026 Gym4U. All rights reserved.</p>
   </footer>
+  <script src="js/authentication.js"></script>
 </body>
 </html>

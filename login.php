@@ -48,8 +48,8 @@
           <label for="password">Password</label>
 
           <div class="password-wrapper">
-            <input type="password" id="password" name="password" placeholder="Enter your password" required>
-            <span class="eye-icon" id="eye-icon"> 👁️ </span>
+              <input type="password" name="password" placeholder="Enter your password" required>
+              <span class="eye-icon">👁️</span>
           </div>
 
           <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>">

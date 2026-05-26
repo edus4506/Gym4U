@@ -56,10 +56,16 @@
           <input type="tel" id="phone" name="phone" pattern="[0-9]{9}" placeholder="999999999" required>
 
           <label for="password">Password</label>
-          <input type="password" id="password" name="password" placeholder="Enter your password" required>
+          <div class="password-wrapper">
+              <input type="password" name="password" placeholder="Enter your password" required>
+              <span class="eye-icon">👁️</span>
+          </div>
 
           <label for="confirm_password">Confirm Password</label>
-          <input type="password" id="confirm_password" name="confirm_password" placeholder="Must have at least 4 characters" required>
+          <div class="password-wrapper">
+              <input type="password" id="confirm_password" name="confirm_password" placeholder="Must have at least 4 characters" required>
+              <span class="eye-icon">👁️</span>
+          </div>
           <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>">
 
           <button type="submit" class="btn btn-enroll">Register</button>
@@ -80,5 +86,6 @@
     <p>Membership Conditions · Regulations · Ethics Channel · Data Processing</p>
     <p>&copy; 2026 Gym4U. All rights reserved.</p>
   </footer>
+  <script src="js/authentication.js"></script>
 </body>
 </html>

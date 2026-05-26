@@ -764,6 +764,24 @@ nav.right {
   text-decoration: none;
 }
 
+.password-wrapper {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.password-wrapper input {
+    width: 100%;
+}
+
+.eye-icon {
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+    user-select: none;
+}
+
 @media (max-width: 1100px) {
   .trainer-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));

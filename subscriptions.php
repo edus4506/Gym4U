@@ -102,8 +102,10 @@
             <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>">
             <div class="subscription-info">
               <label for="password">Confirm Password</label>
-              <input type="password" id="password" name="password" placeholder="Your password" required>
-
+              <div class="password-wrapper">
+                  <input type="password" name="password" placeholder="Enter your password" required>
+                  <span class="eye-icon">👁️</span>
+              </div>
               <label for="cardholder">Cardholder</label>
               <input type="text" id="cardholder" placeholder="John Doe" required>
 
@@ -133,5 +135,6 @@
     <p>Membership Conditions · Regulations · Ethics Channel · Data Processing</p>
     <p>&copy; 2026 Gym4U. All rights reserved.</p>
   </footer>
+  <script src="js/authentication.js"></script>
 </body>
 </html>
