@@ -1,11 +1,4 @@
-<?php
-  require_once __DIR__ . '/controllers/profileController.php';
-  require_once __DIR__ . '/utils/csrf.php';
-
-  $photo = $user['profile_photo'] ?: 'images/gym4u_icon.png';
-  $days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-  $statuses = ['available', 'maintenance', 'unavailable'];
-?>
+<?php require_once __DIR__ . '/controllers/profileController.php'; ?>
 
 <!DOCTYPE html>
 <html lang="en-US">

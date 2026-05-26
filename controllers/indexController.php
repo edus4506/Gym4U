@@ -1,6 +1,7 @@
 <?php
 declare(strict_types = 1);
 require_once __DIR__ . '/../database/db.php';
+require_once __DIR__ . '/../utils/csrf.php';
 
 session_start();
 
@@ -19,8 +20,8 @@ $reviews = $db->query("
 $memberEnrollments = [];
 $reviewableScheduleIds = [];
 
-if(isset($_SESSION['user_id']) && ($_SESSION['user_role'] ?? '') === 'member') {
-    $stmt= $db->prepare("
+if (isset($_SESSION['user_id']) && ($_SESSION['user_role'] ?? '') === 'member') {
+    $stmt = $db->prepare("
         SELECT cs.id, c.name AS class_name, cs.day, cs.time
         FROM enrollments e
         JOIN class_schedule cs ON e.schedule_id = cs.id
@@ -31,22 +32,17 @@ if(isset($_SESSION['user_id']) && ($_SESSION['user_role'] ?? '') === 'member') {
     $memberEnrollments = $stmt->fetchAll();
 
     $dayOrder = [
-        'Monday' => 1,
-        'Tuesday' => 2,
-        'Wednesday' => 3,
-        'Thursday' => 4,
-        'Friday' => 5,
-        'Saturday' => 6,
-        'Sunday' => 7,
+        'Monday' => 1, 'Tuesday' => 2, 'Wednesday' => 3,
+        'Thursday' => 4, 'Friday' => 5, 'Saturday' => 6, 'Sunday' => 7,
     ];
-    $now = new DateTimeImmutable('now');
+    $now              = new DateTimeImmutable('now');
     $currentDayNumber = (int)$now->format('N');
-    $currentTime = $now->format('H:i');
+    $currentTime      = $now->format('H:i');
 
     foreach ($memberEnrollments as $slot) {
         $slotDayNumber = $dayOrder[$slot['day']] ?? 0;
-        $slotTime = (string)$slot['time'];
-        $isPast = $slotDayNumber < $currentDayNumber
+        $slotTime      = (string)$slot['time'];
+        $isPast        = $slotDayNumber < $currentDayNumber
             || ($slotDayNumber === $currentDayNumber && $slotTime < $currentTime);
 
         if ($isPast) {
@@ -55,4 +51,19 @@ if(isset($_SESSION['user_id']) && ($_SESSION['user_role'] ?? '') === 'member') {
     }
 }
 
-?>
+$successMessages = [
+    'enrolled'         => 'Enrollment confirmed.',
+    'cancelled'        => 'Enrollment cancelled.',
+    'reviewed'         => 'Review submitted.',
+];
+$errorMessages = [
+    'full'             => 'That class is already full.',
+    'already-enrolled' => 'You are already enrolled in that class.',
+    'members-only'     => 'Only members can enroll in classes or leave reviews.',
+    'not-enrolled'     => 'You can only review classes you are enrolled in.',
+    'not-attended'     => 'You can only review classes you have already attended.',
+    'review'           => 'Please choose a class, rating, and comment.',
+    'invalid'          => 'That class action could not be completed.',
+];
+$successMessage = $successMessages[$_GET['success'] ?? ''] ?? null;
+$errorMessage   = $errorMessages[$_GET['error'] ?? ''] ?? null;

@@ -1,19 +1,4 @@
-<?php
-session_start();
-require_once __DIR__ . '/utils/csrf.php';
-
-if (isset($_SESSION['user_id'])) {
-    header('Location: index.php');
-    exit;
-}
-
-$errors = [
-  'empty' => 'Please enter your username and password.',
-  'invalid' => 'Invalid username or password.',
-];
-
-$errorMessage = $errors[$_GET['error'] ?? ''] ?? null;
-?>
+<?php require_once __DIR__ . '/controllers/loginController.php'; ?>
 
 <!DOCTYPE html>
 <html lang="en">

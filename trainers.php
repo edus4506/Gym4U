@@ -1,6 +1,4 @@
-<?php
-  require_once __DIR__ . '/controllers/trainersController.php';
-?>
+<?php require_once __DIR__ . '/controllers/trainersController.php'; ?>
 
 <!DOCTYPE html>
 <html lang="en-US">

@@ -1,24 +1,4 @@
-<?php
-  require_once __DIR__ . '/controllers/classesController.php';
-  require_once __DIR__ . '/utils/csrf.php';
-
-  $successMessages = [
-    'enrolled' => 'Enrollment confirmed.',
-    'cancelled' => 'Enrollment cancelled.',
-    'reviewed' => 'Review submitted.',
-  ];
-  $errorMessages = [
-    'full' => 'That class is already full.',
-    'already-enrolled' => 'You are already enrolled in that class.',
-    'members-only' => 'Only members can enroll in classes or leave reviews.',
-    'not-enrolled' => 'You can only review classes you are enrolled in.',
-    'not-attended' => 'You can only review classes you have already attended.',
-    'review' => 'Please choose a class, rating, and comment.',
-    'invalid' => 'That class action could not be completed.',
-  ];
-  $successMessage = $successMessages[$_GET['success'] ?? ''] ?? null;
-  $errorMessage = $errorMessages[$_GET['error'] ?? ''] ?? null;
-?>
+<?php require_once __DIR__ . '/controllers/classesController.php'; ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -322,4 +302,5 @@
   <script src="js/review.js"></script>
   <script src="js/classes.js"></script>
 </body>
+<?php error_log('classes.php chegou ao fim'); ?>
 </html>

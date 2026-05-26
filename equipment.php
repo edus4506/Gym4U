@@ -1,8 +1,4 @@
-<?php
-session_start();
-
-require_once __DIR__ . '/controllers/equipmentController.php';
-?>
+<?php require_once __DIR__ . '/controllers/equipmentController.php'; ?>
 
 <!DOCTYPE html>
 <html lang="en-US">

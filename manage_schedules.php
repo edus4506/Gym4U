@@ -1,16 +1,4 @@
-<?php
-declare(strict_types = 1);
-
-session_start();
-
-require_once __DIR__ . '/controllers/manage_schedules_controller.php';
-require_once __DIR__ . '/utils/csrf.php';
-
-if (!isset($_SESSION['user_id']) || ($_SESSION['user_role'] ?? '') !== 'admin') {
-  header('Location: index.php');
-  exit;
-}
-?>
+<?php require_once __DIR__ . '/controllers/manage_schedules_controller.php'; ?>
 
 <!DOCTYPE html>
 <html lang="en-US">
