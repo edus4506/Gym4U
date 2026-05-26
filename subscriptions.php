@@ -87,10 +87,19 @@
         <a href="subscriptions.php" class="close-modal">×</a>
         <h2>Complete Your Subscription</h2>
         <?php if ($selectedPlan): ?>
-            <h3 class="section-title"><strong><?= htmlspecialchars(ucfirst($planNames[$selectedPlan] ?? '')) ?></strong></h3>
+          <h3 class="section-title"><strong><?= htmlspecialchars($planNames[$selectedPlan] ?? '') ?></strong></h3>
         <?php endif; ?>
-        <?php if ($user && $user['subscription_plan'] === 'none'): ?>
-          <form method="post" action="actions/rejoin_membership_action.php">
+
+        <?php if ($errorMessage): ?>
+          <p class="alert alert-error"><?= htmlspecialchars($errorMessage) ?></p>
+
+        <?php elseif (!isset($_SESSION['user_id'])): ?>
+          <p>Please register a new account first.</p>
+          <a href="register.php" class="btn-primary">Register Account</a>
+
+        <?php else: ?>
+          <form method="post" action="actions/join_membership_action.php">
+            <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>">
             <div class="subscription-info">
               <label for="password">Confirm Password</label>
               <input type="password" id="password" name="password" placeholder="Your password" required>
@@ -107,33 +116,8 @@
               <label for="cvv">CVV</label>
               <input type="password" id="cvv" placeholder="123" pattern="[0-9]{3}" maxlength="3" required>
             </div>
-
             <input type="hidden" name="subscription_plan" value="<?= htmlspecialchars($selectedPlan ?? '') ?>">
-
-            <button type="submit" class="btn-primary">Rejoin Membership</button>
-          </form>
-        <?php else: ?>
-          <form method="get" action="register.php">
-            <div class="subscription-info">
-              <label for="email">Email</label>
-              <input type="email" id="email" name="email" placeholder="your.email@example.com" required>
-
-              <label for="cardholder">Cardholder</label>
-              <input type="text" id="cardholder" placeholder="John Doe" required>
-
-              <label for="cardnumber">Card</label>
-              <input type="text" id="cardnumber" placeholder="1234 5678 9012 3456" pattern="[0-9]{4} [0-9]{4} [0-9]{4} [0-9]{4}" maxlength="19" required>
-
-              <label for="expiry">Expire</label>
-              <input type="text" id="expiry" placeholder="MM/YY" pattern="(0[1-9]|1[0-2])\/[0-9]{2}" maxlength="5" required>
-
-              <label for="cvv">CVV</label>
-              <input type="password" id="cvv" placeholder="123" pattern="[0-9]{3}" maxlength="3" required>
-            </div>
-
-            <input type="hidden" name="plan" value="<?= htmlspecialchars($selectedPlan ?? '') ?>">
-
-            <button type="submit" class="btn-primary">Register Page</button>
+            <button type="submit" class="btn-primary">Confirm Membership</button>
           </form>
         <?php endif; ?>
       </div>

@@ -5,10 +5,7 @@ session_start();
 
 require_once __DIR__ . '/../utils/csrf.php';
 
-$prefilledEmail = $_GET['email'] ?? '';
-$selectedPlan   = $_GET['plan'] ?? 'none';
-
-if (isset($_SESSION['user_id']) || $prefilledEmail === '') {
+if (isset($_SESSION['user_id'])) {
     header('Location: index.php');
     exit;
 }

@@ -43,8 +43,6 @@
         <?php endif; ?>
         <form class="form" method="post" action="actions/register_action.php">
 
-          <input type="hidden" name="subscription_plan" value="<?= htmlspecialchars($selectedPlan) ?>">
-
           <label for="name">Name</label>
           <input type="text" id="name" name="name" placeholder="Enter your name" required>
 
@@ -52,7 +50,7 @@
           <input type="text" id="username" name="username" placeholder="Enter your username" required>
 
           <label for="email">Email</label>
-          <input type="email" id="email" name="email" placeholder="your.email@example.com" value="<?= htmlspecialchars($prefilledEmail) ?>" readonly required>
+          <input type="email" id="email" name="email" placeholder="your.email@example.com" required>
 
           <label for="phone">Phone</label>
           <input type="tel" id="phone" name="phone" pattern="[0-9]{9}" placeholder="999999999" required>
