@@ -1,19 +1,4 @@
-<?php
-session_start();
-require_once __DIR__ . '/utils/csrf.php';
-
-if (isset($_SESSION['user_id'])) {
-    header('Location: index.php');
-    exit;
-}
-
-$errors = [
-  'empty' => 'Please enter your username and password.',
-  'invalid' => 'Invalid username or password.',
-];
-
-$errorMessage = $errors[$_GET['error'] ?? ''] ?? null;
-?>
+<?php require_once __DIR__ . '/controllers/loginController.php'; ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -33,21 +18,25 @@ $errorMessage = $errors[$_GET['error'] ?? ''] ?? null;
         <img src="images/gym4u_logo.png" alt="Gym4U logo" class="logo">
       </a>
     </div>
-    <div class="middle"><h1>Gym4U</h1></div>
+    <div class="middle">
+      <h1>Gym4U</h1>
+    </div>
+    <input type="checkbox" id="menu-toggle">
+    <label for="menu-toggle" class="hamburger">☰</label>
     <nav class="right" aria-label="Main navigation">
       <ul>
         <li><a href="index.php">Home</a></li>
         <li><a href="classes.php">Classes</a></li>
         <li><a href="trainers.php">Trainers</a></li>
         <li><a href="equipment.php">Equipment</a></li>
-        <li><a href="login.php" aria-current="page">Login</a></li>
+        <li><a href="register.php">Register</a></li>
       </ul>
     </nav>
   </header>
 
   <main>
     <div class="wrapper">
-      <div class="card">
+      <div class="auth-card">
         <h2>Login</h2>
         <?php if ($errorMessage): ?>
           <p class="form-error"><?= htmlspecialchars($errorMessage) ?></p>
@@ -59,23 +48,23 @@ $errorMessage = $errors[$_GET['error'] ?? ''] ?? null;
           <label for="password">Password</label>
 
           <div class="password-wrapper">
-            <input type="password" id="password" name="password" placeholder="Enter your password" required>
-            <span class="eye-icon" id="eye-icon"> 👁️ </span>
+              <input type="password" name="password" placeholder="Enter your password" required>
+              <span class="eye-icon">👁️</span>
           </div>
 
           <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>">
           <button type="submit" class="btn btn-enroll">Login</button>
-          <p>Don't have an account? <a href="register.php">Register here</a></p>
+          <p>Still haven't joined? <a href="register.php">Register now</a></p>
         </form>
       </div>
     </div>
   </main>
 
-  <footer class="footer">
+  <footer>
     <p>
       <a href="privacy.php">Privacy Policy</a> |
       <a href="terms.php">Terms of Use</a> |
-      <a href="#">Cancellations</a> |
+      <a href="cancellations.php">Cancellations</a> |
       <a href="https://www.livroreclamacoes.pt/Inicio/" target="_blank"> Complaints Book </a>
     </p>
     <p>Membership Conditions · Regulations · Ethics Channel · Data Processing</p>

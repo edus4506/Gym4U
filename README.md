@@ -39,7 +39,7 @@ Gym4U is a gym management website built for the LTW course at FEUP (2026). It al
 - [x] Oversee and ensure the smooth operation of the entire system.
 
 **Extra:**
-- [ ] Something extra (e.g., personal training bookings, membership plans, waitlist, ...).
+- [x] Something extra (e.g., personal training bookings, membership plans, waitlist, ...).
 
 ## Running
 
@@ -71,8 +71,16 @@ Gym4U is a gym management website built for the LTW course at FEUP (2026). It al
 ├── trainers.php           # Trainers page
 ├── equipment.php          # Equipment availability page
 ├── profile.php            # User profile (member/trainer/admin)
+├── subscriptions.php      # Membership plan selection
+├── cancelations.php       # Cancellation policy and membership cancellation
 ├── login.php              # Login page
 ├── register.php           # Registration page
+├── manage_users.php       # Admin: manage users
+├── manage_classes.php     # Admin: manage classes
+├── manage_schedules.php   # Admin: manage class schedules
+├── manage_equipment.php   # Admin: manage equipment
+├── privacy.php            # Privacy policy
+├── terms.php              # Terms of use
 ├── controllers/           # Data loaders (no HTML output)
 ├── actions/               # POST handlers (validate, update DB, redirect)
 ├── utils/
@@ -80,6 +88,7 @@ Gym4U is a gym management website built for the LTW course at FEUP (2026). It al
 ├── css/
 │   ├── base.css           # CSS reset, typography, and base styles
 │   ├── components.css     # Reusable component styles
+│   ├── subscriptions.css  # Subscriptions page styles
 │   ├── index.css          # Home page styles
 │   ├── classes.css        # Classes page styles
 │   ├── trainers.css       # Trainers page styles

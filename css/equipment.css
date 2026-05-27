@@ -1,20 +1,10 @@
-main {
-    flex: 1;
-}
-
-body {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-}
-
-.filter-form {
+.filter-form-equipment {
     display: flex;
     align-items: center;
     gap: 1rem;
 }
 
-.filter-form select {
+.filter-form-equipment select {
     width: auto;
 }
 

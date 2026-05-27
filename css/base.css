@@ -31,6 +31,9 @@ body {
   background: var(--bg);
   color: var(--text);
   line-height: 1.5;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -93,37 +96,13 @@ button {
 }
 
 main, .main {
+  flex: 1;
   width: min(1100px, 92%);
   margin: 1.8rem auto 3rem;
 }
 
 section, .section {
   margin-bottom: 2rem;
-}
-
-.h2 {
-  margin: 0 0 0.6rem;
-  line-height: 1.2;
-}
-
-.h3 {
-  margin: 0 0 0.6rem;
-  line-height: 1.2;
-}
-
-.p {
-  margin: 0 0 1rem;
-  color: var(--text-soft);
-}
-
-.a {
-  color: var(--primary);
-  text-decoration: none;
-}
-
-.a:hover {
-  color: var(--primary-strong);
-  text-decoration: underline;
 }
 
 .visually-hidden {

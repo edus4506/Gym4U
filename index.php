@@ -1,26 +1,4 @@
-<?php
-  require_once __DIR__ . '/controllers/indexController.php';
-  require_once __DIR__ . '/utils/csrf.php';
-
-  $successMessages = [
-    'enrolled' => 'Enrollment confirmed.',
-    'cancelled' => 'Enrollment cancelled.',
-    'reviewed' => 'Review submitted.',
-  ];
-
-  $errorMessages = [
-    'full' => 'That class is already full.',
-    'already-enrolled' => 'You are already enrolled in that class.',
-    'members-only' => 'Only members can enroll in classes or leave reviews.',
-    'not-enrolled' => 'You can only review classes you are enrolled in.',
-    'not-attended' => 'You can only review classes you have already attended.',
-    'review' => 'Please choose a class, rating, and comment.',
-    'invalid' => 'That class action could not be completed.',
-  ];
-
-  $successMessage = $successMessages[$_GET['success'] ?? ''] ?? null;
-  $errorMessage = $errorMessages[$_GET['error'] ?? ''] ?? null;
-?>
+<?php require_once __DIR__ . '/controllers/indexController.php'; ?>
 
 <!DOCTYPE html>
 <html lang="en-US">
@@ -33,7 +11,6 @@
   <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="css/index.css">
 </head>
-
 <body>
   <header>
     <div>
@@ -44,6 +21,8 @@
     <div class="middle">
       <h1>Gym4U</h1>
     </div>
+    <input type="checkbox" id="menu-toggle">
+    <label for="menu-toggle" class="hamburger">☰</label>
     <nav class="right" aria-label="Main navigation">
       <ul>
         <li><a href="index.php" aria-current="page">Home</a></li>
@@ -52,6 +31,9 @@
         <li><a href="equipment.php">Equipment</a></li>
         <?php if (isset($_SESSION['user_id'])): ?>
           <li><a href="profile.php">Profile</a></li>
+          <?php if ($subscriptionPlan == 'none'): ?>
+            <li><a href="subscriptions.php">Subscribe</a></li>
+          <?php endif; ?>
           <li><a href="actions/logout.php">Logout</a></li>
         <?php else: ?>
           <li><a href="login.php">Login</a></li>
@@ -59,7 +41,6 @@
       </ul>
     </nav>
   </header>
-
   <main>
     <?php if ($successMessage): ?>
       <p class="alert alert-success"><?= htmlspecialchars($successMessage) ?></p>
@@ -75,12 +56,27 @@
         <img src="images/index/slider2.png" class="slide" alt="Gym training image 2">
       </div>
       <div class="hero-text">
-        <h2>Transform Your Body</h2>
-        <p>
-          Join Gym4U and start your fitness journey with expert guidance,
-          modern equipment, and motivating classes.
-        </p>
-        <a class="btn-primary">Get Started</a>
+        <?php if (!isset($_SESSION['user_id'])): ?>
+          <h2>Welcome to Gym4U</h2>
+          <p>
+            Your fitness journey starts here! Join Gym4U and experience the best
+            in fitness with expert trainers, modern equipment, and motivating classes.
+          </p>
+          <a class="btn-primary" href="register.php">Join Now!</a>
+        <?php elseif ($subscriptionPlan == 'none'): ?>
+          <h2>Transform Your Body</h2>
+          <p>
+            Choose a subscription and start your fitness journey with expert guidance,
+            modern equipment and motivating classes.
+          </p>
+          <a class="btn-primary" href="subscriptions.php">Subscribe Now!</a>
+        <?php else: ?>
+          <h2>Welcome Back!</h2>
+          <p>
+            Check out our schedule and find the perfect classes to keep you motivated.
+          </p>
+          <a class="btn-primary" href="classes.php">See Classes</a>
+        <?php endif; ?>
       </div>
     </section>
 
@@ -169,15 +165,6 @@
     <section class="section review-form-container">
       <h2>Your Feedback Matters!</h2>
       <form class="review-form" method="post" action="actions/review_action.php">
-        <label for="schedule_id">Class:</label>
-        <select id="schedule_id" name="schedule_id" required>
-          <option value="">Choose an enrolled class</option>
-          <?php foreach ($memberEnrollments as $slot): ?>
-            <option value="<?= (int)$slot['id'] ?>">
-              <?= htmlspecialchars($slot['class_name'] . '-' . $slot['day'] . '-' . $slot['time']) ?>
-            </option>
-          <?php endforeach; ?>
-        </select>
         <div class="rating-row">
           <label>Rating:</label>
           <div class="star-rating" aria-label="Rating">
@@ -188,6 +175,7 @@
               <span onclick="gfg(5)" class="star">★</span>
           </div>
         </div>
+        <input type="hidden" name="schedule_id" value="14">
         <input type="hidden" name="rating" id="rating-value" value="5">
         <textarea name="comment" placeholder="Share your experience..." rows="3" required></textarea>
         <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>">
@@ -195,7 +183,7 @@
       </form>
     </section>
 
-    <section class="section">
+    <section>
       <h2>Member Feedback</h2>
       <div class="division-grid">
         <?php foreach ($reviews as $review): ?>
@@ -211,12 +199,11 @@
       </div>
     </section>
   </main>
-
-  <footer class="footer">
+  <footer>
     <p>
       <a href="privacy.php">Privacy Policy</a> |
       <a href="terms.php">Terms of Use</a> |
-      <a href="#">Cancellations</a> |
+      <a href="cancellations.php">Cancellations</a> |
       <a href="https://www.livroreclamacoes.pt/Inicio/" target="_blank"> Complaints Book </a>
     </p>
     <p>Membership Conditions · Regulations · Ethics Channel · Data Processing</p>

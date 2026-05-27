@@ -1,16 +1,20 @@
 <?php
 declare(strict_types = 1);
 require_once __DIR__ . '/../database/db.php';
+require_once __DIR__ . '/../utils/csrf.php';
+
+ini_set('display_errors', '1');
+error_reporting(E_ALL);
 
 session_start();
 
 $db = getDatabaseConnection();
 
 $filters = [
-    'type' => trim($_GET['type'] ?? ''),
+    'type'    => trim($_GET['type'] ?? ''),
     'trainer' => trim($_GET['trainer'] ?? ''),
-    'day' => trim($_GET['day'] ?? ''),
-    'time' => trim($_GET['time'] ?? ''),
+    'day'     => trim($_GET['day'] ?? ''),
+    'time'    => trim($_GET['time'] ?? ''),
 ];
 
 $classes = $db->query("
@@ -42,22 +46,22 @@ $scheduleSql = "
 $scheduleStmt = $db->prepare($scheduleSql);
 $timeFilter = $filters['time'] === 'Any time' ? '' : $filters['time'];
 $scheduleStmt->execute([
-    ':type_filter' => $filters['type'],
-    ':type_value' => $filters['type'],
+    ':type_filter'    => $filters['type'],
+    ':type_value'     => $filters['type'],
     ':trainer_filter' => $filters['trainer'],
-    ':trainer_value' => $filters['trainer'],
-    ':day_filter' => strtolower($filters['day']),
-    ':day_value' => strtolower($filters['day']),
-    ':time_filter' => $timeFilter,
-    ':time_value' => $timeFilter,
+    ':trainer_value'  => $filters['trainer'],
+    ':day_filter'     => strtolower($filters['day']),
+    ':day_value'      => strtolower($filters['day']),
+    ':time_filter'    => $timeFilter,
+    ':time_value'     => $timeFilter,
 ]);
 $schedule = $scheduleStmt->fetchAll();
 
-$categories = $db->query('SELECT id, name FROM categories ORDER BY name')->fetchAll();
-$trainersForFilter = $db->query('SELECT t.id AS id, u.name AS name FROM trainers t JOIN users u ON t.user_id = u.id ORDER BY u.name')->fetchAll();
-$equipment = $db->query('SELECT id, name, quantity, status FROM equipment ORDER BY name')->fetchAll();
+$categories         = $db->query('SELECT id, name FROM categories ORDER BY name')->fetchAll();
+$trainersForFilter  = $db->query('SELECT t.id AS id, u.name AS name FROM trainers t JOIN users u ON t.user_id = u.id ORDER BY u.name')->fetchAll();
+$equipment          = $db->query('SELECT id, name, quantity, status FROM equipment ORDER BY name')->fetchAll();
 
-$memberEnrollments = [];
+$memberEnrollments    = [];
 $reviewableScheduleIds = [];
 if (isset($_SESSION['user_id'])) {
     $enrollmentStmt = $db->prepare('SELECT schedule_id FROM enrollments WHERE user_id = ?');
@@ -65,26 +69,20 @@ if (isset($_SESSION['user_id'])) {
     $memberEnrollments = array_flip(array_column($enrollmentStmt->fetchAll(), 'schedule_id'));
 
     $dayOrder = [
-        'Monday' => 1,
-        'Tuesday' => 2,
-        'Wednesday' => 3,
-        'Thursday' => 4,
-        'Friday' => 5,
-        'Saturday' => 6,
-        'Sunday' => 7,
+        'Monday' => 1, 'Tuesday' => 2, 'Wednesday' => 3,
+        'Thursday' => 4, 'Friday' => 5, 'Saturday' => 6, 'Sunday' => 7,
     ];
-    $now = new DateTimeImmutable('now');
+    $now           = new DateTimeImmutable('now');
     $currentDayNumber = (int)$now->format('N');
-    $currentTime = $now->format('H:i');
+    $currentTime   = $now->format('H:i');
 
     foreach ($schedule as $slot) {
         if (!isset($memberEnrollments[$slot['id']])) {
             continue;
         }
-
         $slotDayNumber = $dayOrder[$slot['day']] ?? 0;
-        $slotTime = (string)$slot['time'];
-        $isPast = $slotDayNumber < $currentDayNumber
+        $slotTime      = (string)$slot['time'];
+        $isPast        = $slotDayNumber < $currentDayNumber
             || ($slotDayNumber === $currentDayNumber && $slotTime < $currentTime);
 
         if ($isPast) {
@@ -118,4 +116,20 @@ $divisionImages = [
     'Pilates & Core'      => ['src' => 'images/classes/pilates-img.jpeg',    'alt' => 'Pilates and core stability space'],
     'Body Toning'         => ['src' => 'images/classes/toning.png',          'alt' => 'Personal toning training'],
 ];
-?>
+
+$successMessages = [
+    'enrolled'  => 'Enrollment confirmed.',
+    'cancelled' => 'Enrollment cancelled.',
+    'reviewed'  => 'Review submitted.',
+];
+$errorMessages = [
+    'full'            => 'That class is already full.',
+    'already-enrolled' => 'You are already enrolled in that class.',
+    'members-only'    => 'Only members can enroll in classes or leave reviews.',
+    'not-enrolled'    => 'You can only review classes you are enrolled in.',
+    'not-attended'    => 'You can only review classes you have already attended.',
+    'review'          => 'Please choose a class, rating, and comment.',
+    'invalid'         => 'That class action could not be completed.',
+];
+$successMessage = $successMessages[$_GET['success'] ?? ''] ?? null;
+$errorMessage   = $errorMessages[$_GET['error'] ?? ''] ?? null;

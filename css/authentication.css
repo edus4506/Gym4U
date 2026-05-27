@@ -1,19 +1,9 @@
-body {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-main {
-  flex: 1;
-}
-
 .wrapper {
   width: min(420px, 92%);
   margin: 3rem auto;
 }
 
-.card {
+.auth-card {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
@@ -21,7 +11,7 @@ main {
   padding: 2.5rem;
 }
 
-.card h2 {
+.auth-card h2 {
   margin-bottom: 1.5rem;
   color: var(--dark);
 }
@@ -54,19 +44,6 @@ main {
   text-align: left;
 }
 
-button {
+.form button {
   margin-top: 1rem;
-}
-
-.password-wrapper {
-  position: relative;
-}
-
-.eye-icon {
-    position: absolute;
-    right: 10px;
-    cursor: pointer;
-    font-size: 20px;
-    color: #333;
-    margin-top: 0.5rem;
 }

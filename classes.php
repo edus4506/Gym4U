@@ -1,24 +1,4 @@
-<?php
-  require_once __DIR__ . '/controllers/classesController.php';
-  require_once __DIR__ . '/utils/csrf.php';
-
-  $successMessages = [
-    'enrolled' => 'Enrollment confirmed.',
-    'cancelled' => 'Enrollment cancelled.',
-    'reviewed' => 'Review submitted.',
-  ];
-  $errorMessages = [
-    'full' => 'That class is already full.',
-    'already-enrolled' => 'You are already enrolled in that class.',
-    'members-only' => 'Only members can enroll in classes or leave reviews.',
-    'not-enrolled' => 'You can only review classes you are enrolled in.',
-    'not-attended' => 'You can only review classes you have already attended.',
-    'review' => 'Please choose a class, rating, and comment.',
-    'invalid' => 'That class action could not be completed.',
-  ];
-  $successMessage = $successMessages[$_GET['success'] ?? ''] ?? null;
-  $errorMessage = $errorMessages[$_GET['error'] ?? ''] ?? null;
-?>
+<?php require_once __DIR__ . '/controllers/classesController.php'; ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -38,7 +18,11 @@
         <img src="images/gym4u_logo.png" alt="Gym4U logo" class="logo">
       </a>
     </div>
-    <div class="middle"><h1>Gym4U</h1></div>
+    <div class="middle">
+      <h1>Gym4U</h1>
+    </div>
+    <input type="checkbox" id="menu-toggle">
+    <label for="menu-toggle" class="hamburger">☰</label>
     <nav class="right" aria-label="Main navigation">
       <ul>
         <li><a href="index.php">Home</a></li>
@@ -49,7 +33,7 @@
           <li><a href="profile.php">Profile</a></li>
           <li><a href="actions/logout.php">Logout</a></li>
         <?php else: ?>
-          <li><a href="login.php">Login</a></li>
+          <li><a href="subscriptions.php">Subscribe</a></li>
         <?php endif; ?>
       </ul>
     </nav>
@@ -72,7 +56,7 @@
       </p>
     </section>
 
-    <section class="section">
+    <section>
       <h2>Class Divisions</h2>
       <div class="division-grid">
         <?php foreach ($divisions as $division => $divClasses): ?>
@@ -84,10 +68,10 @@
             <div class="division-content">
               <h3><?= htmlspecialchars($division) ?></h3>
               <p><?= htmlspecialchars($divClasses[0]['description']) ?></p>
-              <p class="p division-meta">
+              <p class="division-meta">
                 <strong>Classes:</strong> <?= htmlspecialchars(implode(', ', array_column($divClasses, 'name'))) ?>
               </p>
-              <p class="p division-meta">
+              <p class="division-meta">
                 <strong>Trainer:</strong> <?= htmlspecialchars($divClasses[0]['trainer_name']) ?>
               </p>
             </div>
@@ -98,24 +82,24 @@
 
     <section class="section schedule-box">
       <h2>Weekly Class Schedule</h2>
-      <table class="table">
-        <caption class="caption">All classes and trainers at Gym4U</caption>
-        <thead class="thead">
-          <tr class="tr">
-            <th class="th" scope="col">Class</th>
-            <th class="th" scope="col">Trainer</th>
-            <th class="th" scope="col">Day</th>
-            <th class="th" scope="col">Time</th>
+      <table>
+        <caption>All classes and trainers at Gym4U</caption>
+        <thead>
+          <tr>
+            <th scope="col">Class</th>
+            <th scope="col">Trainer</th>
+            <th scope="col">Day</th>
+            <th scope="col">Time</th>
           </tr>
         </thead>
-        <tbody class="tbody">
+        <tbody>
           <?php foreach ($schedule as $slot): ?>
             <?php if ($slot['class_name'] !== 'Gym Review'): ?>
-              <tr class="tr">
-                <th class="th" scope="row"><?= htmlspecialchars($slot['class_name']) ?></th>
-                <td class="td"><?= htmlspecialchars($slot['trainer_name']) ?></td>
-                <td class="td"><?= htmlspecialchars($slot['day']) ?></td>
-                <td class="td"><?= htmlspecialchars($slot['time']) ?></td>
+              <tr>
+                <th scope="row"><?= htmlspecialchars($slot['class_name']) ?></th>
+                <td><?= htmlspecialchars($slot['trainer_name']) ?></td>
+                <td><?= htmlspecialchars($slot['day']) ?></td>
+                <td><?= htmlspecialchars($slot['time']) ?></td>
               </tr>
             <?php endif; ?>
           <?php endforeach; ?>
@@ -174,31 +158,31 @@
 
     <section class="section schedule-box">
       <h2>Class Booking &amp; Reviews</h2>
-      <table class="table">
-        <caption class="caption">Book your spot or leave a review for past sessions</caption>
-        <thead class="thead">
-          <tr class="tr">
-            <th class="th">Class &amp; Rating</th>
-            <th class="th">Trainer</th>
-            <th class="th">Day &amp; Time</th>
-            <th class="th">Capacity</th>
-            <th class="th">Action</th>
+      <table>
+        <caption>Book your spot or leave a review for past sessions</caption>
+        <thead>
+          <tr>
+            <th>Class &amp; Rating</th>
+            <th>Trainer</th>
+            <th>Day &amp; Time</th>
+            <th>Capacity</th>
+            <th>Action</th>
           </tr>
         </thead>
-        <tbody class="tbody">
+        <tbody>
           <?php foreach ($schedule as $slot): ?>
             <?php $full = $slot['enrolled'] >= $slot['capacity']; ?>
             <?php $enrolled = isset($memberEnrollments[$slot['id']]); ?>
-            <tr class="tr <?= $enrolled ? 'enrolled-row' : '' ?>">
-              <th class="th" scope="row"><?= htmlspecialchars($slot['class_name']) ?></th>
-              <td class="td">
+            <tr <?= $enrolled ? 'enrolled-row' : '' ?>>
+              <th scope="row"><?= htmlspecialchars($slot['class_name']) ?></th>
+              <td>
                 <a href="trainers.php#<?= htmlspecialchars(strtolower(str_replace(' ', '-', $slot['trainer_name']))) ?>">
                   <?= htmlspecialchars($slot['trainer_name']) ?>
                 </a>
               </td>
-              <td class="td"><?= htmlspecialchars($slot['day']) ?>, <?= htmlspecialchars($slot['time']) ?></td>
-              <td class="td"><?= (int)$slot['enrolled'] ?>/<?= (int)$slot['capacity'] ?></td>
-              <td class="td">
+              <td><?= htmlspecialchars($slot['day']) ?>, <?= htmlspecialchars($slot['time']) ?></td>
+              <td><?= (int)$slot['enrolled'] ?>/<?= (int)$slot['capacity'] ?></td>
+              <td>
                 <?php if (!isset($_SESSION['user_id'])): ?>
                   <a class="btn btn-enroll" href="login.php">Login</a>
                 <?php elseif (($_SESSION['user_role'] ?? '') !== 'member'): ?>
@@ -229,21 +213,21 @@
 
     <section class="section schedule-box">
       <h2>Main Training Area Equipment</h2>
-      <table class="table">
-        <caption class="caption">Current equipment availability</caption>
-        <thead class="thead">
-          <tr class="tr">
-            <th class="th" scope="col">Equipment</th>
-            <th class="th" scope="col">Quantity</th>
-            <th class="th" scope="col">Status</th>
+      <table>
+        <caption>Current equipment availability</caption>
+        <thead>
+          <tr>
+            <th scope="col">Equipment</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Status</th>
           </tr>
         </thead>
-        <tbody class="tbody">
+        <tbody>
           <?php foreach ($equipment as $item): ?>
-            <tr class="tr">
-              <th class="th" scope="row"><?= htmlspecialchars($item['name']) ?></th>
-              <td class="td"><?= (int)$item['quantity'] ?></td>
-              <td class="td"><?= htmlspecialchars(ucfirst($item['status'])) ?></td>
+            <tr>
+              <th scope="row"><?= htmlspecialchars($item['name']) ?></th>
+              <td><?= (int)$item['quantity'] ?></td>
+              <td><?= htmlspecialchars(ucfirst($item['status'])) ?></td>
             </tr>
           <?php endforeach; ?>
         </tbody>
@@ -287,7 +271,7 @@
       </form>
     </section>
 
-    <section class="section">
+    <section>
       <h2>Member Feedback</h2>
       <div class="division-grid">
         <?php foreach ($reviews as $review): ?>
@@ -304,11 +288,11 @@
     </section>
   </main>
 
-  <footer class="footer">
+  <footer>
     <p>
       <a href="privacy.php">Privacy Policy</a> |
       <a href="terms.php">Terms of Use</a> |
-      <a href="#">Cancellations</a> |
+      <a href="cancellations.php">Cancellations</a> |
       <a href="https://www.livroreclamacoes.pt/Inicio/" target="_blank"> Complaints Book </a>
     </p>
     <p>Membership Conditions · Regulations · Ethics Channel · Data Processing</p>

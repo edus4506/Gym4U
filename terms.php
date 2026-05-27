@@ -1,6 +1,7 @@
-<?php declare(strict_types = 1); ?>
-
-<! é preciso conectar com database? >
+<?php 
+declare(strict_types = 1); 
+session_start();
+?>
 
 <!DOCTYPE html>
 <html lang="en-US">
@@ -21,24 +22,29 @@
         <img src="images/gym4u_logo.png" alt="Gym4U logo" class="logo">
       </a>
     </div>
-
     <div class="middle">
       <h1>Gym4U</h1>
     </div>
-
+    <input type="checkbox" id="menu-toggle">
+    <label for="menu-toggle" class="hamburger">☰</label>
     <nav class="right" aria-label="Main navigation">
       <ul>
         <li><a href="index.php">Home</a></li>
         <li><a href="classes.php">Classes</a></li>
         <li><a href="trainers.php">Trainers</a></li>
         <li><a href="equipment.php">Equipment</a></li>
-        <li><a href="#">Profile</a></li>
+        <?php if (isset($_SESSION['user_id'])): ?>
+          <li><a href="profile.php">Profile</a></li>
+          <li><a href="actions/logout.php">Logout</a></li>
+        <?php else: ?>
+          <li><a href="subscriptions.php">Subscribe</a></li>
+        <?php endif; ?>
       </ul>
     </nav>
   </header>
 
   <main>
-    <section class="hero">
+    <section class="text-hero">
       <h2>Terms and Conditions</h2>
 
       <p>
@@ -49,7 +55,7 @@
       </p>
     </section>
 
-    <section class="section">
+    <section class="section text-section">
       <h2>Website Terms and Conditions</h2>
 
       <article class="feature">
@@ -239,7 +245,7 @@
       </article>
     </section>
 
-    <section class="section">
+    <section class="section text-section">
       <h2>Gym Membership and Facility Regulations</h2>
 
       <article class="feature">
@@ -363,18 +369,14 @@
 
   </main>
 
-  <footer class="footer">
+  <footer>
     <p>
       <a href="privacy.php">Privacy Policy</a> |
       <a href="terms.php">Terms of Use</a> |
-      <a href="#">Cancellations</a> |
+      <a href="cancellations.php">Cancellations</a> |
       <a href="https://www.livroreclamacoes.pt/Inicio/" target="_blank"> Complaints Book </a>
     </p>
-
-    <p>
-      Membership Conditions · Regulations · Ethics Channel · Data Processing
-    </p>
-
+    <p>Membership Conditions · Regulations · Ethics Channel · Data Processing</p>
     <p>&copy; 2026 Gym4U. All rights reserved.</p>
   </footer>
 </body>

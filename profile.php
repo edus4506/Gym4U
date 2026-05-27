@@ -1,11 +1,4 @@
-<?php
-  require_once __DIR__ . '/controllers/profileController.php';
-  require_once __DIR__ . '/utils/csrf.php';
-
-  $photo = $user['profile_photo'] ?: 'images/gym4u_icon.png';
-  $days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-  $statuses = ['available', 'maintenance', 'unavailable'];
-?>
+<?php require_once __DIR__ . '/controllers/profileController.php'; ?>
 
 <!DOCTYPE html>
 <html lang="en-US">
@@ -25,7 +18,11 @@
         <img src="images/gym4u_logo.png" alt="Gym4U logo" class="logo">
       </a>
     </div>
-    <div class="middle"><h1>Gym4U</h1></div>
+    <div class="middle">
+      <h1>Gym4U</h1>
+    </div>
+    <input type="checkbox" id="menu-toggle">
+    <label for="menu-toggle" class="hamburger">☰</label>
     <nav class="right" aria-label="Main navigation">
       <ul>
         <li><a href="index.php">Home</a></li>
@@ -46,6 +43,17 @@
         <h2><?= htmlspecialchars($user['name']) ?></h2>
         <p>@<?= htmlspecialchars($user['username']) ?></p>
       </div>
+      <?php if ($user['role'] === 'member'): ?>
+        <?php if ($user['subscription_plan'] !== 'none'): ?>
+          <img class="subscription-badge" src="images/badges/<?= htmlspecialchars($user['subscription_plan']) ?>.png" alt="Subscription badge">
+        <?php else: ?>
+          <p>Your membership is currently inactive. <a href="subscriptions.php">Reactivate now</a>.</p>
+        <?php endif; ?>
+      <?php elseif ($user['role'] === 'trainer'): ?>
+        <img class="subscription-badge" src="images/badges/trainer.png" alt="Trainer badge">
+      <?php elseif ($user['role'] === 'admin'): ?>
+        <img class="subscription-badge" src="images/badges/admin.png" alt="Admin badge">
+      <?php endif; ?>
     </section>
 
     <?php if ($successMessage): ?>
@@ -112,24 +120,24 @@
         <?php if (!$memberEnrollments): ?>
           <p>You are not enrolled in any classes yet. Browse the <a href="classes.php">class schedule</a> to book a spot.</p>
         <?php else: ?>
-          <table class="table">
+          <table>
             <thead>
               <tr>
-                <th class="th">Class</th>
-                <th class="th">Trainer</th>
-                <th class="th">When</th>
-                <th class="th">Capacity</th>
-                <th class="th">Action</th>
+                <th>Class</th>
+                <th>Trainer</th>
+                <th>When</th>
+                <th>Capacity</th>
+                <th>Action</th>
               </tr>
             </thead>
             <tbody>
               <?php foreach ($memberEnrollments as $slot): ?>
                 <tr>
-                  <th class="th" scope="row"><?= htmlspecialchars($slot['class_name']) ?></th>
-                  <td class="td"><?= htmlspecialchars($slot['trainer_name']) ?></td>
-                  <td class="td"><?= htmlspecialchars($slot['day']) ?>, <?= htmlspecialchars($slot['time']) ?></td>
-                  <td class="td"><?= (int)$slot['enrolled'] ?>/<?= (int)$slot['capacity'] ?></td>
-                  <td class="td">
+                  <th scope="row"><?= htmlspecialchars($slot['class_name']) ?></th>
+                  <td><?= htmlspecialchars($slot['trainer_name']) ?></td>
+                  <td><?= htmlspecialchars($slot['day']) ?>, <?= htmlspecialchars($slot['time']) ?></td>
+                  <td><?= (int)$slot['enrolled'] ?>/<?= (int)$slot['capacity'] ?></td>
+                  <td>
                     <form method="post" action="actions/class_enrollment_action.php">
                       <input type="hidden" name="schedule_id" value="<?= (int)$slot['schedule_id'] ?>">
                       <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>">
@@ -217,15 +225,15 @@
         <?php if (!$trainerRoster): ?>
           <p>No members are enrolled in your classes yet.</p>
         <?php else: ?>
-          <table class="table">
-            <thead><tr><th class="th">Class</th><th class="th">When</th><th class="th">Member</th><th class="th">Email</th></tr></thead>
+          <table>
+            <thead><tr><th>Class</th><th>When</th><th>Member</th><th>Email</th></tr></thead>
             <tbody>
               <?php foreach ($trainerRoster as $entry): ?>
                 <tr>
-                  <th class="th" scope="row"><?= htmlspecialchars($entry['class_name']) ?></th>
-                  <td class="td"><?= htmlspecialchars($entry['day']) ?>, <?= htmlspecialchars($entry['time']) ?></td>
-                  <td class="td"><?= htmlspecialchars($entry['name']) ?></td>
-                  <td class="td"><?= htmlspecialchars($entry['email']) ?></td>
+                  <th scope="row"><?= htmlspecialchars($entry['class_name']) ?></th>
+                  <td><?= htmlspecialchars($entry['day']) ?>, <?= htmlspecialchars($entry['time']) ?></td>
+                  <td><?= htmlspecialchars($entry['name']) ?></td>
+                  <td><?= htmlspecialchars($entry['email']) ?></td>
                 </tr>
               <?php endforeach; ?>
             </tbody>
@@ -269,14 +277,14 @@
     <?php endif; ?>
   </main>
 
-  <footer class="footer">
+  <footer>
     <p>
       <a href="privacy.php">Privacy Policy</a> |
       <a href="terms.php">Terms of Use</a> |
-      <a href="#">Cancellations</a> |
+      <a href="cancellations.php">Cancellations</a> |
       <a href="https://www.livroreclamacoes.pt/Inicio/" target="_blank"> Complaints Book </a>
     </p>
-    <p>Membership Conditions Â· Regulations Â· Ethics Channel Â· Data Processing</p>
+    <p>Membership Conditions · Regulations · Ethics Channel · Data Processing</p>
     <p>&copy; 2026 Gym4U. All rights reserved.</p>
   </footer>
 </body>

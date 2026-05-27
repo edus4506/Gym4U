@@ -1,22 +1,24 @@
-h2 {
-  text-align: center;
-  font-size: 2.4rem;
-  margin-top: 3rem;
-  margin-bottom: 3rem;
+.text-section {
+  text-align: left;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 2.5rem 2rem;
 }
 
-p {
-    margin-bottom: 2rem;
+.text-section p {
+  margin-bottom: 2rem;
 }
 
 article ul {
-    color: var(--text-soft);
-    font-size: 0.8rem;
-    margin-left: 2rem;
-    margin-bottom: 2rem;
+  color: var(--text-soft);
+  font-size: 0.8rem;
+  margin-left: 2rem;
+  margin-bottom: 2rem;
 }
 
-.hero {
+.text-hero {
   background: var(--dark-soft);
   color: white;
   padding: 3rem 2rem;
@@ -25,8 +27,18 @@ article ul {
   margin-bottom: 2rem;
 }
 
-.hero h2, 
-.hero p {
+.text-hero h2,
+.text-hero p {
   color: white;
   margin-top: 0rem;
+}
+
+.text-section h2, .text-section h3 {
+  text-align: center;
+  margin-top: 0rem;
+  margin-bottom: 2rem;
+}
+
+.text-section {
+  text-align: left;
 }

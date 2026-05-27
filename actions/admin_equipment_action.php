@@ -6,7 +6,7 @@ require_once __DIR__ . '/../database/db.php';
 require_once __DIR__ . '/../utils/csrf.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST' || ($_SESSION['user_role'] ?? '') !== 'admin') {
-  header('Location: ../profile.php');
+  header('Location: ../manage_equipment.php');
   exit;
 }
 
@@ -37,9 +37,9 @@ try {
     throw new RuntimeException('Invalid equipment action');
   }
 } catch (Throwable $exception) {
-  header('Location: ../profile.php?error=equipment');
+  header('Location: ../manage_equipment.php?error=equipment');
   exit;
 }
 
-header('Location: ../profile.php?success=equipment');
+header('Location: ../manage_equipment.php?success=equipment');
 exit;

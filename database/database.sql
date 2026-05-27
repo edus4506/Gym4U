@@ -22,7 +22,8 @@ CREATE TABLE IF NOT EXISTS users (
     password TEXT NOT NULL,
     profile_photo TEXT,
     active INTEGER NOT NULL DEFAULT 1,
-    role TEXT NOT NULL CHECK(role IN ('member', 'trainer', 'admin')) DEFAULT 'member'
+    role TEXT NOT NULL CHECK(role IN ('member', 'trainer', 'admin')) DEFAULT 'member',
+    subscription_plan TEXT NOT NULL DEFAULT 'none'
 );
 
 CREATE TABLE IF NOT EXISTS trainers (
@@ -105,12 +106,12 @@ CREATE TABLE IF NOT EXISTS reviews (
 
 -- INSERT DATA
 -- Users (members) — password: 1234
-INSERT INTO users (name, username, email, password, role) VALUES
-    ('Maria Silva', 'member', 'maria@email.com', '$2y$12$fjBAAB0sRN4GCrVuwBX4HejD3yKzOn9XQqDl7vKyGAD9LhmtPsqvC', 'member'),
-    ('Joao Pereira', 'joao.pereira', 'joao@email.com', '$2y$12$fjBAAB0sRN4GCrVuwBX4HejD3yKzOn9XQqDl7vKyGAD9LhmtPsqvC', 'member'),
-    ('Daniel Rocha', 'daniel.rocha', 'daniel@email.com', '$2y$12$fjBAAB0sRN4GCrVuwBX4HejD3yKzOn9XQqDl7vKyGAD9LhmtPsqvC', 'member'),
-    ('Ana Costa', 'ana.costa', 'ana@email.com', '$2y$12$fjBAAB0sRN4GCrVuwBX4HejD3yKzOn9XQqDl7vKyGAD9LhmtPsqvC', 'member'),
-    ('Pedro Matos', 'pedro.matos', 'pedro@email.com', '$2y$12$fjBAAB0sRN4GCrVuwBX4HejD3yKzOn9XQqDl7vKyGAD9LhmtPsqvC', 'member');
+INSERT INTO users (name, username, email, password, role, subscription_plan) VALUES
+    ('Maria Silva', 'member', 'maria@email.com', '$2y$12$fjBAAB0sRN4GCrVuwBX4HejD3yKzOn9XQqDl7vKyGAD9LhmtPsqvC', 'member', 'classic'),
+    ('Joao Pereira', 'joao.pereira', 'joao@email.com', '$2y$12$fjBAAB0sRN4GCrVuwBX4HejD3yKzOn9XQqDl7vKyGAD9LhmtPsqvC', 'member', 'offpeak'),
+    ('Daniel Rocha', 'daniel.rocha', 'daniel@email.com', '$2y$12$fjBAAB0sRN4GCrVuwBX4HejD3yKzOn9XQqDl7vKyGAD9LhmtPsqvC', 'member', 'classic'),
+    ('Ana Costa', 'ana.costa', 'ana@email.com', '$2y$12$fjBAAB0sRN4GCrVuwBX4HejD3yKzOn9XQqDl7vKyGAD9LhmtPsqvC', 'member', 'premium'),
+    ('Pedro Matos', 'pedro.matos', 'pedro@email.com', '$2y$12$fjBAAB0sRN4GCrVuwBX4HejD3yKzOn9XQqDl7vKyGAD9LhmtPsqvC', 'member', 'classic');
 
 -- Users (trainers) — ids 6 to 13 — password: 1234
 INSERT INTO users (name, username, email, password, role) VALUES

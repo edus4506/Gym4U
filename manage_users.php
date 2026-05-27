@@ -1,16 +1,4 @@
-<?php
-declare(strict_types = 1);
-
-session_start();
-
-require_once __DIR__ . '/controllers/manage_users_controller.php';
-require_once __DIR__ . '/utils/csrf.php';
-
-if (!isset($_SESSION['user_id']) || ($_SESSION['user_role'] ?? '') !== 'admin') {
-  header('Location: index.php');
-  exit;
-}
-?>
+<?php require_once __DIR__ . '/controllers/manage_users_controller.php'; ?>
 
 <!DOCTYPE html>
 <html lang="en-US">
@@ -30,7 +18,11 @@ if (!isset($_SESSION['user_id']) || ($_SESSION['user_role'] ?? '') !== 'admin') 
         <img src="images/gym4u_logo.png" alt="Gym4U logo" class="logo">
       </a>
     </div>
-    <div class="middle"><h1>Gym4U</h1></div>
+    <div class="middle">
+      <h1>Gym4U</h1>
+    </div>
+    <input type="checkbox" id="menu-toggle">
+    <label for="menu-toggle" class="hamburger">☰</label>
     <nav class="right" aria-label="Main navigation">
       <ul>
         <li><a href="index.php">Home</a></li>
@@ -139,14 +131,14 @@ if (!isset($_SESSION['user_id']) || ($_SESSION['user_role'] ?? '') !== 'admin') 
         </div>
     </section>
   </main>
-  <footer class="footer">
+  <footer>
     <p>
       <a href="privacy.php">Privacy Policy</a> |
       <a href="terms.php">Terms of Use</a> |
-      <a href="#">Cancellations</a> |
+      <a href="cancellations.php">Cancellations</a> |
       <a href="https://www.livroreclamacoes.pt/Inicio/" target="_blank"> Complaints Book </a>
     </p>
-    <p>Membership Conditions Â· Regulations Â· Ethics Channel Â· Data Processing</p>
+    <p>Membership Conditions · Regulations · Ethics Channel · Data Processing</p>
     <p>&copy; 2026 Gym4U. All rights reserved.</p>
   </footer>
 </body>

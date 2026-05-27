@@ -1,22 +1,4 @@
-<?php
-session_start();
-require_once __DIR__ . '/utils/csrf.php';
-
-if (isset($_SESSION['user_id'])) {
-    header('Location: index.php');
-    exit;
-}
-
-$errors = [
-  'empty' => 'Please fill in all required fields.',
-  'email' => 'Please enter a valid email address.',
-  'exists' => 'That username or email is already registered.',
-  'password' => 'Passwords do not match.',
-  'weakpassword' => 'Password must contain at least 4 characters.',
-];
-
-$errorMessage = $errors[$_GET['error'] ?? ''] ?? null;
-?>
+<?php require_once __DIR__ . '/controllers/registerController.php'; ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -36,21 +18,25 @@ $errorMessage = $errors[$_GET['error'] ?? ''] ?? null;
         <img src="images/gym4u_logo.png" alt="Gym4U logo" class="logo">
       </a>
     </div>
-    <div class="middle"><h1>Gym4U</h1></div>
+    <div class="middle">
+      <h1>Gym4U</h1>
+    </div>
+    <input type="checkbox" id="menu-toggle">
+    <label for="menu-toggle" class="hamburger">☰</label>
     <nav class="right" aria-label="Main navigation">
       <ul>
         <li><a href="index.php">Home</a></li>
         <li><a href="classes.php">Classes</a></li>
         <li><a href="trainers.php">Trainers</a></li>
         <li><a href="equipment.php">Equipment</a></li>
-        <li><a href="register.php" aria-current="page">Register</a></li>
+        <li><a href="login.php">Login</a></li>
       </ul>
     </nav>
   </header>
 
   <main>
     <div class="wrapper">
-      <div class="card">
+      <div class="auth-card">
         <h2>Register</h2>
         <?php if ($errorMessage): ?>
           <p class="form-error"><?= htmlspecialchars($errorMessage) ?></p>
@@ -70,10 +56,16 @@ $errorMessage = $errors[$_GET['error'] ?? ''] ?? null;
           <input type="tel" id="phone" name="phone" pattern="[0-9]{9}" placeholder="999999999" required>
 
           <label for="password">Password</label>
-          <input type="password" id="password" name="password" placeholder="Enter your password" required>
+          <div class="password-wrapper">
+              <input type="password" name="password" placeholder="Enter your password" required>
+              <span class="eye-icon">👁️</span>
+          </div>
 
           <label for="confirm_password">Confirm Password</label>
-          <input type="password" id="confirm_password" name="confirm_password" placeholder="Must have at least 4 characters" required>
+          <div class="password-wrapper">
+              <input type="password" id="confirm_password" name="confirm_password" placeholder="Must have at least 4 characters" required>
+              <span class="eye-icon">👁️</span>
+          </div>
           <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>">
 
           <button type="submit" class="btn btn-enroll">Register</button>
@@ -84,15 +76,16 @@ $errorMessage = $errors[$_GET['error'] ?? ''] ?? null;
     </div>
   </main>
 
-  <footer class="footer">
+  <footer>
     <p>
       <a href="privacy.php">Privacy Policy</a> |
       <a href="terms.php">Terms of Use</a> |
-      <a href="#">Cancellations</a> |
+      <a href="cancellations.php">Cancellations</a> |
       <a href="https://www.livroreclamacoes.pt/Inicio/" target="_blank"> Complaints Book </a>
     </p>
     <p>Membership Conditions · Regulations · Ethics Channel · Data Processing</p>
     <p>&copy; 2026 Gym4U. All rights reserved.</p>
   </footer>
+  <script src="js/authentication.js"></script>
 </body>
 </html>

@@ -1,6 +1,4 @@
-<?php
-  require_once __DIR__ . '/controllers/trainersController.php';
-?>
+<?php require_once __DIR__ . '/controllers/trainersController.php'; ?>
 
 <!DOCTYPE html>
 <html lang="en-US">
@@ -20,7 +18,11 @@
         <img src="images/gym4u_logo.png" alt="Gym4U logo" class="logo">
       </a>
     </div>
-    <div class="middle"><h1>Gym4U</h1></div>
+    <div class="middle">
+      <h1>Gym4U</h1>
+    </div>
+    <input type="checkbox" id="menu-toggle">
+    <label for="menu-toggle" class="hamburger">☰</label>
     <nav class="right" aria-label="Main navigation">
       <ul>
         <li><a href="index.php">Home</a></li>
@@ -31,7 +33,7 @@
           <li><a href="profile.php">Profile</a></li>
           <li><a href="actions/logout.php">Logout</a></li>
         <?php else: ?>
-          <li><a href="login.php">Login</a></li>
+          <li><a href="subscriptions.php">Subscribe</a></li>
         <?php endif; ?>
       </ul>
     </nav>
@@ -50,41 +52,41 @@
     <!-- FILTERS -->
     <section class="section filter-panel">
       <h2>Find the Right Trainer</h2>
-      <form class="filter-form filter-form-4" action="#" method="get">
+      <form class="filter-form filter-form-4" action="trainers.php" method="get">
         <div class="form-group">
           <label for="trainer-search">Search by name</label>
-          <input type="text" id="trainer-search" name="trainer-search" placeholder="e.g. Eduardo Amaral">
+          <input type="text" id="trainer-search" name="trainer-search" placeholder="e.g. Eduardo Amaral" value="<?= htmlspecialchars($search) ?>">
         </div>
         <div class="form-group">
           <label for="specialization">Specialization</label>
           <select id="specialization" name="specialization">
             <option value="">All specializations</option>
-            <option value="yoga">Yoga</option>
-            <option value="spinning">Spinning</option>
-            <option value="pilates">Pilates</option>
-            <option value="hiit">HIIT</option>
-            <option value="personal-training">Personal Training</option>
+            <?php foreach ($categories as $cat): ?>
+              <option value="<?= (int)$cat['id'] ?>" <?= $categoryId === (int)$cat['id'] ? 'selected' : '' ?>>
+                <?= htmlspecialchars($cat['name']) ?>
+              </option>
+            <?php endforeach; ?>
           </select>
         </div>
         <div class="form-group">
           <label for="experience">Experience level</label>
           <select id="experience" name="experience">
             <option value="">Any experience</option>
-            <option value="1-3">1-3 years</option>
-            <option value="4-6">4-6 years</option>
-            <option value="7-plus">7+ years</option>
+            <option value="1-3" <?= $experience === '1-3' ? 'selected' : '' ?>>1-3 years</option>
+            <option value="4-6" <?= $experience === '4-6' ? 'selected' : '' ?>>4-6 years</option>
+            <option value="7-plus" <?= $experience === '7-plus' ? 'selected' : '' ?>>7+ years</option>
           </select>
         </div>
         <div class="form-group">
           <label for="class-day">Available on</label>
           <select id="class-day" name="class-day">
             <option value="">Any day</option>
-            <option value="monday">Monday</option>
-            <option value="tuesday">Tuesday</option>
-            <option value="wednesday">Wednesday</option>
-            <option value="thursday">Thursday</option>
-            <option value="friday">Friday</option>
-            <option value="saturday">Saturday</option>
+            <option value="monday" <?= $classDay === 'monday' ? 'selected' : '' ?>>Monday</option>
+            <option value="tuesday" <?= $classDay === 'tuesday' ? 'selected' : '' ?>>Tuesday</option>
+            <option value="wednesday" <?= $classDay === 'wednesday' ? 'selected' : '' ?>>Wednesday</option>
+            <option value="thursday" <?= $classDay === 'thursday' ? 'selected' : '' ?>>Thursday</option>
+            <option value="friday" <?= $classDay === 'friday' ? 'selected' : '' ?>>Friday</option>
+            <option value="saturday" <?= $classDay === 'saturday' ? 'selected' : '' ?>>Saturday</option>
           </select>
         </div>
         <button type="submit">Apply Filters</button>
@@ -92,7 +94,7 @@
     </section>
 
     <!-- TRAINER CARDS -->
-    <section class="section">
+    <section>
       <h2>Our Coaching Staff</h2>
       <div class="trainer-grid">
         <?php foreach ($trainers as $trainer): ?>
@@ -106,12 +108,12 @@
             >
             <div class="trainer-content">
               <h3><?= htmlspecialchars($trainer['name']) ?></h3>
-              <p class="p trainer-role"><?= htmlspecialchars($trainer['title']) ?></p>
+              <p class="trainer-role"><?= htmlspecialchars($trainer['title']) ?></p>
               <p><?= htmlspecialchars($trainer['bio']) ?></p>
-              <p class="p trainer-meta"><strong>Experience:</strong> <?= (int)$trainer['experience_years'] ?> years</p>
-              <p class="p trainer-meta"><strong>Certifications:</strong> <?= htmlspecialchars($trainer['certifications']) ?></p>
-              <p class="p trainer-meta"><strong>Specializations:</strong> <?= htmlspecialchars($trainer['specializations']) ?></p>
-              <p class="p trainer-meta"><strong>Classes:</strong> <?= htmlspecialchars($classesPerTrainer[$trainer['id']] ?? 'N/A') ?></p>
+              <p class="trainer-meta"><strong>Experience:</strong> <?= (int)$trainer['experience_years'] ?> years</p>
+              <p class="trainer-meta"><strong>Certifications:</strong> <?= htmlspecialchars($trainer['certifications']) ?></p>
+              <p class="trainer-meta"><strong>Specializations:</strong> <?= htmlspecialchars($trainer['specializations']) ?></p>
+              <p class="trainer-meta"><strong>Classes:</strong> <?= htmlspecialchars($classesPerTrainer[$trainer['id']] ?? 'N/A') ?></p>
             </div>
           </article>
         <?php endforeach; ?>
@@ -121,23 +123,23 @@
     <!-- OVERVIEW TABLE -->
     <section class="section schedule-box clean-panel">
       <h2>Trainer Overview</h2>
-      <table class="table">
-        <caption class="caption">Summary of trainer specializations and experience</caption>
-        <thead class="thead">
-          <tr class="tr">
-            <th class="th" scope="col">Trainer</th>
-            <th class="th" scope="col">Specialization</th>
-            <th class="th" scope="col">Experience</th>
-            <th class="th" scope="col">Main Classes</th>
+      <table>
+        <caption>Summary of trainer specializations and experience</caption>
+        <thead>
+          <tr>
+            <th scope="col">Trainer</th>
+            <th scope="col">Specialization</th>
+            <th scope="col">Experience</th>
+            <th scope="col">Main Classes</th>
           </tr>
         </thead>
-        <tbody class="tbody">
+        <tbody>
           <?php foreach ($trainers as $trainer): ?>
-            <tr class="tr">
-              <th class="th" scope="row"><?= htmlspecialchars($trainer['name']) ?></th>
-              <td class="td"><?= htmlspecialchars($trainer['specializations']) ?></td>
-              <td class="td"><?= (int)$trainer['experience_years'] ?> years</td>
-              <td class="td"><?= htmlspecialchars($classesPerTrainer[$trainer['id']] ?? 'N/A') ?></td>
+            <tr>
+              <th scope="row"><?= htmlspecialchars($trainer['name']) ?></th>
+              <td><?= htmlspecialchars($trainer['specializations']) ?></td>
+              <td><?= (int)$trainer['experience_years'] ?> years</td>
+              <td><?= htmlspecialchars($classesPerTrainer[$trainer['id']] ?? 'N/A') ?></td>
             </tr>
           <?php endforeach; ?>
         </tbody>
@@ -224,15 +226,16 @@
     </section>
   </main>
 
-  <footer class="footer">
+  <footer>
     <p>
       <a href="privacy.php">Privacy Policy</a> |
       <a href="terms.php">Terms of Use</a> |
-      <a href="#">Cancellations</a> |
+      <a href="cancellations.php">Cancellations</a> |
       <a href="https://www.livroreclamacoes.pt/Inicio/" target="_blank"> Complaints Book </a>
     </p>
     <p>Membership Conditions · Regulations · Ethics Channel · Data Processing</p>
     <p>&copy; 2026 Gym4U. All rights reserved.</p>
   </footer>
+  <script src="js/trainers.js"></script>
 </body>
 </html>
