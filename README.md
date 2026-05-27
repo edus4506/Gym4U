@@ -46,6 +46,21 @@ Gym4U is a gym management website built for the LTW course at FEUP (2026). It al
     sqlite3 database/database.db < database/database.sql
     php -S localhost:9000
 
+## Public REST API
+
+The project exposes read-only JSON endpoints for third-party applications:
+
+- `GET /api/index.php` - API discovery with available endpoints and filters.
+- `GET /api/schedules.php` - class schedules with class, category, trainer, capacity, enrolled, and available spots.
+- `GET /api/trainers.php` - trainer profiles with specializations and taught classes.
+- `GET /api/equipment.php` - equipment availability and status.
+
+Supported filters examples:
+
+- `/api/schedules.php?id=1&day=Monday&trainer_id=4&category_id=5&class_id=8&available_only=true`
+- `/api/trainers.php?id=1&category_id=4&search=Tiago`
+- `/api/equipment.php?id=8&status=available&search=Cable`
+
 ## Credentials
 
 - admin/p4s5w0rd
