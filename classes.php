@@ -196,6 +196,8 @@
                   </form>
                 <?php elseif ($full): ?>
                   <span class="badge badge-full">Full</span>
+                <?php elseif ($userMaxClasses !== null && $userEnrolledCount >= $userMaxClasses): ?>
+                  <span class="badge badge-limit">Limit reached</span>
                 <?php else: ?>
                   <form class="enroll-form" method="post" action="actions/class_enrollment_action.php" data-schedule-id="<?= (int)$slot['id'] ?>">
                     <input type="hidden" name="schedule_id" value="<?= (int)$slot['id'] ?>">

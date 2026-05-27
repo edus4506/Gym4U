@@ -4,6 +4,7 @@ declare(strict_types = 1);
 session_start();
 require_once __DIR__ . '/../database/db.php';
 require_once __DIR__ . '/../utils/csrf.php';
+require_once __DIR__ . '/../utils/membership_limits.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST' || !isset($_SESSION['user_id'])) {
   header('Location: ../login.php');
@@ -32,6 +33,16 @@ try {
   $db->beginTransaction();
 
   if ($mode === 'enroll') {
+    $planStmt = $db->prepare('SELECT subscription_plan FROM users WHERE id = ?');
+    $planStmt->execute([$userId]);
+    $plan = (string)($planStmt->fetchColumn() ?: 'none');
+
+    if (!membership_can_enroll($db, $userId, $plan)) {
+      $db->rollBack();
+      header('Location: ../classes.php?error=limit-reached');
+      exit;
+    }
+
     $slotStmt = $db->prepare('SELECT capacity, enrolled FROM class_schedule WHERE id = ?');
     $slotStmt->execute([$scheduleId]);
     $slot = $slotStmt->fetch();

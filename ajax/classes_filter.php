@@ -2,6 +2,8 @@
 declare(strict_types=1);
 require_once __DIR__ . '/../database/db.php';
 require_once __DIR__ . '/../utils/csrf.php';
+require_once __DIR__ . '/../utils/membership_limits.php';
+
 session_start();
 header('Content-Type: application/json; charset=utf-8');
 
@@ -55,6 +57,14 @@ if ($isLoggedIn) {
     $enrollStmt = $db->prepare('SELECT schedule_id FROM enrollments WHERE user_id = ?');
     $enrollStmt->execute([(int)$_SESSION['user_id']]);
     $memberEnrollments = array_flip(array_column($enrollStmt->fetchAll(), 'schedule_id'));
+    if ($isMember) {
+        $planStmt = $db->prepare('SELECT subscription_plan FROM users WHERE id = ?');
+        $planStmt->execute([(int)$_SESSION['user_id']]);
+        $userPlan      = (string)($planStmt->fetchColumn() ?: 'none');
+        $limitReached  = !membership_can_enroll($db, (int)$_SESSION['user_id'], $userPlan);
+    } else {
+        $limitReached = false;
+    }
 }
 
 $result = [];
@@ -70,6 +80,8 @@ foreach ($schedule as $slot) {
         $action = 'cancel';
     } elseif ($full) {
         $action = 'full';
+    } elseif ($limitReached) {
+        $action = 'limit-reached';
     } else {
         $action = 'enroll';
     }

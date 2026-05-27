@@ -24,6 +24,12 @@
             span.className = 'badge badge-full';
             span.textContent = 'Full';
             td.appendChild(span);
+        
+        } else if (slot.action === 'limit-reached') {
+            const span = document.createElement('span');
+            span.className = 'muted';
+            span.textContent = 'Limit reached';
+            td.appendChild(span);
 
         } else {
             const f = document.createElement('form');

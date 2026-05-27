@@ -5,6 +5,7 @@ session_start();
 
 require_once __DIR__ . '/../database/db.php';
 require_once __DIR__ . '/../utils/csrf.php';
+require_once __DIR__ . '/../utils/membership_limits.php';
 
 header('Content-Type: application/json');
 
@@ -40,6 +41,15 @@ try {
     $db->beginTransaction();
 
     if($mode === 'enroll') {
+        $planStmt = $db->prepare('SELECT subscription_plan FROM users WHERE id = ?');
+        $planStmt->execute([$userId]);
+        $plan = (string)($planStmt->fetchColumn() ?: 'none');
+
+        if (!membership_can_enroll($db, $userId, $plan)) {
+            $db->rollBack();
+            jsonError('limit-reached');
+        }
+
         $slotStmt = $db->prepare('SELECT capacity, enrolled FROM class_schedule WHERE id = ?');
         $slotStmt->execute([$scheduleId]);
         $slot = $slotStmt->fetch();
@@ -69,11 +79,20 @@ try {
     $slotStmt->execute([$scheduleId]);
     $updated = $slotStmt->fetch();
 
+    $countStmt = $db->prepare('SELECT COUNT(*) FROM enrollments WHERE user_id = ?');
+    $countStmt->execute([$userId]);
+
+    $planStmt2 = $db->prepare('SELECT subscription_plan FROM users WHERE id = ?');
+    $planStmt2->execute([$userId]);
+    $currentPlan = (string)($planStmt2->fetchColumn() ?: 'none');
+
     echo json_encode([
-        'success' => true,
-        'mode' => $mode,
-        'enrolled' => (int)$updated['enrolled'],
-        'capacity' => (int)$updated['capacity'],
+        'success'       => true,
+        'mode'          => $mode,
+        'enrolled'      => (int)$updated['enrolled'],
+        'capacity'      => (int)$updated['capacity'],
+        'enrolledCount' => (int)$countStmt->fetchColumn(),
+        'maxClasses'    => membership_max_classes($currentPlan),
     ]);
 
 } catch (PDOException) {
