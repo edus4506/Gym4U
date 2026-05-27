@@ -27,3 +27,7 @@ if (isset($_SESSION['user_id'])) {
 
   $user = $stmt->fetch() ?: null;
 }
+
+if (isset($_GET['error']) && $_GET['error'] === 'password') {
+  $errorMessage = 'Incorrect password. Please try again.';
+}

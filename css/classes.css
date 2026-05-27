@@ -1,3 +1,13 @@
+.badge-full {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #721c24;
+  background: #f8d7da;
+}
+
 .classes-intro {
   background: var(--surface);
   border: 1px solid var(--border);

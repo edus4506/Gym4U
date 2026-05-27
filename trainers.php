@@ -136,7 +136,7 @@
         <tbody>
           <?php foreach ($trainers as $trainer): ?>
             <tr>
-              <th scope="row"><?= htmlspecialchars($trainer['name']) ?></th>
+              <th scope="row"><a href="trainer_profile.php?id=<?= (int)$trainer['id'] ?>"><?= htmlspecialchars($trainer['name']) ?></a></th>
               <td><?= htmlspecialchars($trainer['specializations']) ?></td>
               <td><?= (int)$trainer['experience_years'] ?> years</td>
               <td><?= htmlspecialchars($classesPerTrainer[$trainer['id']] ?? 'N/A') ?></td>
