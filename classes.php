@@ -176,7 +176,7 @@
             <tr <?= $enrolled ? 'enrolled-row' : '' ?>>
               <th scope="row"><?= htmlspecialchars($slot['class_name']) ?></th>
               <td>
-                <a href="trainers.php#<?= htmlspecialchars(strtolower(str_replace(' ', '-', $slot['trainer_name']))) ?>">
+                <a href="trainer_profile.php?id=<?= (int)$slot['trainer_id'] ?>">
                   <?= htmlspecialchars($slot['trainer_name']) ?>
                 </a>
               </td>
@@ -195,7 +195,7 @@
                     <button class="btn btn-cancel" type="submit">Cancel</button>
                   </form>
                 <?php elseif ($full): ?>
-                  <button class="btn" disabled>Full</button>
+                  <span class="badge badge-full">Full</span>
                 <?php else: ?>
                   <form class="enroll-form" method="post" action="actions/class_enrollment_action.php" data-schedule-id="<?= (int)$slot['id'] ?>">
                     <input type="hidden" name="schedule_id" value="<?= (int)$slot['id'] ?>">

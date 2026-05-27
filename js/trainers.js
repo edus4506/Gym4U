@@ -17,7 +17,7 @@
     const content = document.createElement('div');
     content.className = 'trainer-content';
     content.innerHTML = `
-      <h3>${t.name}</h3>
+      <h3><a href="trainer_profile.php?id=${t.id}">${t.name}</a></h3>
       <p class="trainer-role">${t.title}</p>
       <p>${t.bio}</p>
       <p class="trainer-meta"><strong>Experience:</strong> ${t.experience_years} years</p>

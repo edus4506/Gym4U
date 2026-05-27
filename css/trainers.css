@@ -19,3 +19,22 @@
     margin-top: 1.2rem;
   }
 }
+
+.trainer-profile-header {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+.trainer-profile-img {
+  width: 160px;
+  height: 160px;
+  object-fit: cover;
+  object-position: top;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.trainer-profile-info {
+  flex: 1;
+}
