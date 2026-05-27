@@ -241,6 +241,7 @@ INSERT INTO equipment (name, quantity, status) VALUES
     ('Stationary Bike', 6, 'available'),
     ('Rowing Machine', 4, 'available'),
     ('Weight Bench', 10, 'available'),
+    ('Kettlebell', 17, 'unavailable'),
     ('Dumbbells Set', 12, 'available'),
     ('Barbell Rack', 5, 'available'),
     ('Elliptical', 4, 'maintenance'),

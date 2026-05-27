@@ -34,7 +34,7 @@
   async function applyFilter() {
     const params = new URLSearchParams(new FormData(form));
 
-    const response = await fetch('actions/trainers_filter.php?' + params.toString());
+    const response = await fetch('ajax/trainers.php?' + params.toString());
     const trainers = await response.json();
 
     grid.innerHTML = '';
