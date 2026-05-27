@@ -20,34 +20,42 @@ $reviews = $db->query("
 
 $memberEnrollments = [];
 $reviewableScheduleIds = [];
+$subscriptionPlan = null;
 
-if (isset($_SESSION['user_id']) && ($_SESSION['user_role'] ?? '') === 'member') {
-    $stmt = $db->prepare("
-        SELECT cs.id, c.name AS class_name, cs.day, cs.time
-        FROM enrollments e
-        JOIN class_schedule cs ON e.schedule_id = cs.id
-        JOIN classes c ON cs.class_id = c.id
-        WHERE e.user_id = ?
-    ");
+if (isset($_SESSION['user_id'])) {
+    $stmt = $db->prepare("SELECT subscription_plan FROM users WHERE id = ?");
     $stmt->execute([(int)$_SESSION['user_id']]);
-    $memberEnrollments = $stmt->fetchAll();
+    $user = $stmt->fetch();
+    $subscriptionPlan = $user['subscription_plan'] ?? 'none';
 
-    $dayOrder = [
-        'Monday' => 1, 'Tuesday' => 2, 'Wednesday' => 3,
-        'Thursday' => 4, 'Friday' => 5, 'Saturday' => 6, 'Sunday' => 7,
-    ];
-    $now              = new DateTimeImmutable('now');
-    $currentDayNumber = (int)$now->format('N');
-    $currentTime      = $now->format('H:i');
+    if (($_SESSION['user_role'] ?? '') === 'member') {
+        $stmt = $db->prepare("
+            SELECT cs.id, c.name AS class_name, cs.day, cs.time
+            FROM enrollments e
+            JOIN class_schedule cs ON e.schedule_id = cs.id
+            JOIN classes c ON cs.class_id = c.id
+            WHERE e.user_id = ?
+        ");
+        $stmt->execute([(int)$_SESSION['user_id']]);
+        $memberEnrollments = $stmt->fetchAll();
 
-    foreach ($memberEnrollments as $slot) {
-        $slotDayNumber = $dayOrder[$slot['day']] ?? 0;
-        $slotTime      = (string)$slot['time'];
-        $isPast        = $slotDayNumber < $currentDayNumber
-            || ($slotDayNumber === $currentDayNumber && $slotTime < $currentTime);
+        $dayOrder = [
+            'Monday' => 1, 'Tuesday' => 2, 'Wednesday' => 3,
+            'Thursday' => 4, 'Friday' => 5, 'Saturday' => 6, 'Sunday' => 7,
+        ];
+        $now              = new DateTimeImmutable('now');
+        $currentDayNumber = (int)$now->format('N');
+        $currentTime      = $now->format('H:i');
 
-        if ($isPast) {
-            $reviewableScheduleIds[(int)$slot['id']] = true;
+        foreach ($memberEnrollments as $slot) {
+            $slotDayNumber = $dayOrder[$slot['day']] ?? 0;
+            $slotTime      = (string)$slot['time'];
+            $isPast        = $slotDayNumber < $currentDayNumber
+                || ($slotDayNumber === $currentDayNumber && $slotTime < $currentTime);
+
+            if ($isPast) {
+                $reviewableScheduleIds[(int)$slot['id']] = true;
+            }
         }
     }
 }

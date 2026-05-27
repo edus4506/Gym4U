@@ -65,5 +65,8 @@ $stmt->execute([
   (int)$user['id']
 ]);
 
+$stmt = $db->prepare('DELETE FROM enrollments WHERE user_id = ?');
+$stmt->execute([(int)$user['id']]);
+
 header('Location: ../profile.php?success=membership-cancelled');
 exit;

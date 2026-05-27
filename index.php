@@ -31,9 +31,12 @@
         <li><a href="equipment.php">Equipment</a></li>
         <?php if (isset($_SESSION['user_id'])): ?>
           <li><a href="profile.php">Profile</a></li>
+          <?php if ($subscriptionPlan == 'none'): ?>
+            <li><a href="subscriptions.php">Subscribe</a></li>
+          <?php endif; ?>
           <li><a href="actions/logout.php">Logout</a></li>
         <?php else: ?>
-          <li><a href="subscriptions.php">Subscribe</a></li>
+          <li><a href="login.php">Login</a></li>
         <?php endif; ?>
       </ul>
     </nav>
@@ -53,12 +56,27 @@
         <img src="images/index/slider2.png" class="slide" alt="Gym training image 2">
       </div>
       <div class="hero-text">
-        <h2>Transform Your Body</h2>
-        <p>
-          Join Gym4U and start your fitness journey with expert guidance,
-          modern equipment, and motivating classes.
-        </p>
-        <a class="btn-primary" href="subscriptions.php">Get Started</a>
+        <?php if (!isset($_SESSION['user_id'])): ?>
+          <h2>Welcome to Gym4U</h2>
+          <p>
+            Your fitness journey starts here! Join Gym4U and experience the best
+            in fitness with expert trainers, modern equipment, and motivating classes.
+          </p>
+          <a class="btn-primary" href="register.php">Join Now!</a>
+        <?php elseif ($subscriptionPlan == 'none'): ?>
+          <h2>Transform Your Body</h2>
+          <p>
+            Choose a subscription and start your fitness journey with expert guidance,
+            modern equipment and motivating classes.
+          </p>
+          <a class="btn-primary" href="subscriptions.php">Subscribe Now!</a>
+        <?php else: ?>
+          <h2>Welcome Back!</h2>
+          <p>
+            Check out our schedule and find the perfect classes to keep you motivated.
+          </p>
+          <a class="btn-primary" href="classes.php">See Classes</a>
+        <?php endif; ?>
       </div>
     </section>
 

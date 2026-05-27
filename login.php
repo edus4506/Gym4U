@@ -29,7 +29,7 @@
         <li><a href="classes.php">Classes</a></li>
         <li><a href="trainers.php">Trainers</a></li>
         <li><a href="equipment.php">Equipment</a></li>
-        <li><a href="subscriptions.php">Subscribe</a></li>
+        <li><a href="register.php">Register</a></li>
       </ul>
     </nav>
   </header>
@@ -54,7 +54,7 @@
 
           <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>">
           <button type="submit" class="btn btn-enroll">Login</button>
-          <p>Still haven't joined? <a href="subscriptions.php">Join the best Gym4U</a></p>
+          <p>Still haven't joined? <a href="register.php">Register now</a></p>
         </form>
       </div>
     </div>
