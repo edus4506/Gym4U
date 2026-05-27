@@ -23,7 +23,7 @@
         const mode = formData.get('mode');
         const row = form.closest('tr');
 
-        const response = await fetch('actions/enroll_ajax.php', {
+        const response = await fetch('ajax/enroll.php', {
           method: 'POST',
           body: formData,
         });
@@ -85,7 +85,7 @@
       const mode = formData.get('mode');
       const row = form.closest('tr');
 
-      const response = await fetch('actions/enroll_ajax.php', {
+      const response = await fetch('ajax/enroll.php', {
         method: 'POST',
         body: formData,
       });
