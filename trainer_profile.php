@@ -120,3 +120,4 @@
         <p>&copy; 2026 Gym4U. All rights reserved.</p>
     </footer>
 </body>
+</html>

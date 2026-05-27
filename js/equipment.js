@@ -5,11 +5,23 @@
 
     function buildRow(item) {
         const tr = document.createElement('tr');
-        tr.innerHTML = ` 
-            <th scope="row">${item.name}</th>
-            <td>${item.quantity}</td>
-            <td><span class="badge badge-${item.status}">${item.status.charAt(0).toUpperCase() + item.status.slice(1)}</span></td>
-        `;
+
+        const th = document.createElement('th');
+        th.scope = 'row';
+        th.textContent = item.name;
+
+        const tdQty = document.createElement('td');
+        tdQty.textContent = item.quantity;
+
+        const badge = document.createElement('span');
+        badge.className = 'badge badge-' + item.status;
+        badge.textContent = item.status.charAt(0).toUpperCase() + item.status.slice(1);
+        const tdStatus = document.createElement('td');
+        tdStatus.appendChild(badge);
+
+        tr.appendChild(th);
+        tr.appendChild(tdQty);
+        tr.appendChild(tdStatus);
         return tr;
     }
 
