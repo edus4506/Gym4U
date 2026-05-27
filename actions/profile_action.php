@@ -43,7 +43,7 @@ if ($name === '' || $username === '') {
 
 $passwordHash = $user['password'];
 if ($newPassword !== '' || $confirmPassword !== '' || $currentPassword !== '') {
-  if ($newPassword === '' || $newPassword !== $confirmPassword || !password_verify($currentPassword, $user['password'])) {
+  if ($newPassword === '' || strlen($newPassword) < 4 || $newPassword !== $confirmPassword || !password_verify($currentPassword, $user['password'])) {
     header('Location: ../profile.php?error=password');
     exit;
   }

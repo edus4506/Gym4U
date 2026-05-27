@@ -196,6 +196,8 @@
                   </form>
                 <?php elseif ($full): ?>
                   <span class="badge badge-full">Full</span>
+                <?php elseif ($userPlan == 'none'): ?>
+                  <a class="btn btn-enroll" href="subscriptions.php">Subscribe</a>
                 <?php elseif ($userMaxClasses !== null && $userEnrolledCount >= $userMaxClasses): ?>
                   <span class="badge badge-limit">Limit reached</span>
                 <?php else: ?>

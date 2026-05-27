@@ -94,17 +94,26 @@
           <div class="form-grid">
             <div class="form-group">
               <label for="current_password">Current password</label>
-              <input type="password" id="current_password" name="current_password" autocomplete="current-password">
+              <div class="password-wrapper">
+                <input type="password" name="current_password" placeholder="Enter current password">
+                <span class="eye-icon">👁️</span>
+              </div>
             </div>
 
             <div class="form-group">
               <label for="new_password">New password</label>
-              <input type="password" id="new_password" name="new_password" autocomplete="new-password">
+              <div class="password-wrapper">
+                <input type="password" name="new_password" placeholder="Enter new password" minlength="4">
+                <span class="eye-icon">👁️</span>
+              </div>
             </div>
 
             <div class="form-group">
               <label for="confirm_password">Confirm new password</label>
-              <input type="password" id="confirm_password" name="confirm_password" autocomplete="new-password">
+              <div class="password-wrapper">
+                <input type="password" name="confirm_password" placeholder="Confirm new password" minlength="4">
+                <span class="eye-icon">👁️</span>
+              </div>
             </div>
           </div>
         </div>
@@ -287,5 +296,6 @@
     <p>Membership Conditions · Regulations · Ethics Channel · Data Processing</p>
     <p>&copy; 2026 Gym4U. All rights reserved.</p>
   </footer>
+  <script src="js/authentication.js"></script>
 </body>
 </html>

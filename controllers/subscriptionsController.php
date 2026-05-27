@@ -50,3 +50,7 @@ if (isset($_SESSION['user_id'])) {
         $selectedPlan = null;
     }
 }
+
+if (isset($_GET['error']) && $_GET['error'] === 'password') {
+    $errorMessage = 'Incorrect password. Please try again.';
+}

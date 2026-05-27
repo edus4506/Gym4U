@@ -50,7 +50,7 @@ if (
   $password === '' ||
   !password_verify($password, $user['password'])
 ) {
-  header('Location: ../cancelations.php?cancel-membership=1&error=password');
+  header('Location: ../cancellations.php?cancel-membership=1&error=password');
   exit;
 }
 

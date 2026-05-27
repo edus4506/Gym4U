@@ -92,8 +92,9 @@
 
         <?php if ($errorMessage): ?>
           <p class="alert alert-error"><?= htmlspecialchars($errorMessage) ?></p>
+        <?php endif; ?>
 
-        <?php elseif (!isset($_SESSION['user_id'])): ?>
+        <?php if (!isset($_SESSION['user_id'])): ?>
           <p>Please register a new account first.</p>
           <a href="register.php" class="btn-primary">Register Account</a>
 
