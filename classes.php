@@ -301,5 +301,6 @@
   <script src="js/main.js"></script>
   <script src="js/review.js"></script>
   <script src="js/classes.js"></script>
+  <script src="js/classes_filter.js"></script>
 </body>
 </html>

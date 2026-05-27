@@ -138,6 +138,8 @@
     });
   }
 
+  window.initEnrollButtons = initEnrollButtons;
+
   document.addEventListener('DOMContentLoaded', () => {
     initEnrollButtons();
   });
