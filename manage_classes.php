@@ -203,5 +203,6 @@
     <p>Membership Conditions · Regulations · Ethics Channel · Data Processing</p>
     <p>&copy; 2026 Gym4U. All rights reserved.</p>
   </footer>
+  <script src="js/manage_classes.js"></script>
 </body>
 </html>
