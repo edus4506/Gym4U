@@ -172,6 +172,16 @@
       </section>
     <?php endif; ?>
 
+    <?php if ($role === 'trainer' || $role === 'admin'): ?>
+      <section class="profile-panel">
+        <div class="admin-header">
+          <h2>Analytics Dashboard</h2>
+
+          <a href="analytics.php" class="btn-primary">View Analytics</a>
+        </div>
+      </section>
+    <?php endif; ?>
+
     <?php if ($user['role'] === 'trainer' && $trainerProfile): ?>
       <section class="profile-panel">
         <h2>Trainer Public Profile</h2>
@@ -264,7 +274,7 @@
     <?php if ($user['role'] === 'admin'): ?>
       <section class="profile-panel">
         <div class="admin-header">
-          <h2>Manage Members, Trainers, and Admins</h2>
+          <h2>User Management</h2>
 
           <a href="manage_users.php" class="btn-primary">Manage Users</a>
         </div>
@@ -272,7 +282,7 @@
 
       <section class="profile-panel">
         <div class="admin-header">
-          <h2>Manage Classes</h2>
+          <h2>Class Management</h2>
 
           <a href="manage_classes.php" class="btn-primary">Manage Classes</a>
         </div>
@@ -280,7 +290,7 @@
 
       <section class="profile-panel">
         <div class="admin-header">
-          <h2>Manage Schedule</h2>
+          <h2>Class Schedule Management</h2>
 
           <a href="manage_schedules.php" class="btn-primary">Manage Schedule</a>
         </div>
@@ -288,7 +298,7 @@
 
       <section class="profile-panel">
         <div class="admin-header">
-          <h2>Manage Equipment</h2>
+          <h2>Facility Equipment Management</h2>
 
           <a href="manage_equipment.php" class="btn-primary">Manage Equipment</a>
         </div>
