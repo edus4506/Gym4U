@@ -194,6 +194,20 @@
                     <input type="hidden" name="mode" value="cancel">
                     <button class="btn btn-cancel" type="submit">Cancel</button>
                   </form>
+                <?php elseif ($full && isset($memberWaitlist[$slot['id']])): ?>
+                  <form class="waitlist-form" method="post" action="ajax/waitlist.php">
+                    <input type="hidden" name="schedule_id" value="<?= (int)$slot['id'] ?>">
+                    <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>">
+                    <input type="hidden" name="mode" value="leave">
+                    <button class="btn btn-waitlist-cancel" type="submit">Leave Waitlist</button>
+                  </form>
+                <?php elseif ($full && $userPlan === 'premium'): ?>
+                  <form class="waitlist-form" method="post" action="ajax/waitlist.php">
+                    <input type="hidden" name="schedule_id" value="<?= (int)$slot['id'] ?>">
+                    <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>">
+                    <input type="hidden" name="mode" value="join">
+                    <button class="btn btn-waitlist" type="submit">Join Waitlist</button>
+                  </form>
                 <?php elseif ($full): ?>
                   <span class="badge badge-full">Full</span>
                 <?php elseif ($userPlan == 'none'): ?>

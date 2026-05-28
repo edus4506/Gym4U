@@ -195,6 +195,27 @@ footer a:hover, footer a:focus-visible {
   color: white;
 }
 
+.btn-waitlist {
+  background: #6f42c1;
+  color: #fff;
+  border: none;
+}
+
+.btn-waitlist:hover {
+  background: #5a32a3;
+}
+
+.btn-waitlist-cancel {
+  background: transparent;
+  color: #6f42c1;
+  border: 1px solid #6f42c1;
+}
+
+.btn-waitlist-cancel:hover {
+  background: #6f42c1;
+  color: #fff;
+}
+
 .alert {
   border-radius: 8px;
   padding: 0.8rem 1rem;

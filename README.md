@@ -39,7 +39,9 @@ Gym4U is a gym management website built for the LTW course at FEUP (2026). It al
 - [x] Oversee and ensure the smooth operation of the entire system.
 
 **Extra:**
-- [x] Something extra (e.g., personal training bookings, membership plans, waitlist, ...).
+- [x] **Membership Plans** — three subscription tiers (Off-Peak €19.99, Classic €29.99, Premium €39.99) shown on `subscriptions.php`. Plan stored per user and enforced on enrollment (Off-Peak: up to 2 classes, Classic: up to 6 classes, Premium: unlimited). Members can cancel their membership via `cancellations.php`.
+- [x] **Class Waitlist (Premium only)** — when a class is full, Premium members can join a waitlist. When a spot opens (another member cancels), the first person in the queue is automatically enrolled.
+- [x] **REST API** — public read-only JSON API under `api/` with endpoints for trainers, equipment, and schedules. Supports filters and returns proper HTTP status codes.
 
 ## Running
 
@@ -63,9 +65,13 @@ Supported filters examples:
 
 ## Credentials
 
-- admin/p4s5w0rd
-- member/1234
-- trainer/1234
+| Username | Password | Role | Plan |
+|---|---|---|---|
+| admin | p4s5w0rd | Admin | — |
+| trainer | 1234 | Trainer | — |
+| member | 1234 | Member | Premium — use to test waitlist and full membership features |
+| member2 | 1234 | Member | Off-Peak — restricted to 2 class enrollments |
+| member3 | 1234 | Member | Classic — up to 6 class enrollments |
 
 ## Website Screenshots
 
@@ -81,37 +87,104 @@ Supported filters examples:
 ## Project Structure
 
 ```
-├── index.php              # Home page
-├── classes.php            # Classes page
-├── trainers.php           # Trainers page
-├── equipment.php          # Equipment availability page
-├── profile.php            # User profile (member/trainer/admin)
-├── subscriptions.php      # Membership plan selection
-├── cancelations.php       # Cancellation policy and membership cancellation
-├── login.php              # Login page
-├── register.php           # Registration page
-├── manage_users.php       # Admin: manage users
-├── manage_classes.php     # Admin: manage classes
-├── manage_schedules.php   # Admin: manage class schedules
-├── manage_equipment.php   # Admin: manage equipment
-├── privacy.php            # Privacy policy
-├── terms.php              # Terms of use
-├── controllers/           # Data loaders (no HTML output)
-├── actions/               # POST handlers (validate, update DB, redirect)
+├── index.php                   # Home — hero slider, reviews, review form
+├── classes.php                 # Classes — schedule, enroll/cancel, waitlist, reviews
+├── trainers.php                # Trainers — list with filter
+├── trainer_profile.php         # Trainer detail — bio, schedule, classes
+├── equipment.php               # Equipment — availability table with filter
+├── profile.php                 # Profile — member/trainer/admin dashboards
+├── subscriptions.php           # Membership plan picker (Off-Peak/Classic/Premium)
+├── cancellations.php           # Cancellation policy + membership cancel flow
+├── login.php / register.php    # Authentication pages
+├── privacy.php / terms.php     # Static legal pages
+├── manage_users.php            # Admin: CRUD users
+├── manage_classes.php          # Admin: CRUD classes
+├── manage_schedules.php        # Admin: CRUD class schedules
+├── manage_equipment.php        # Admin: CRUD equipment
+│
+├── controllers/                # Data loaders — query DB, expose vars to views
+│   ├── indexController.php
+│   ├── classesController.php
+│   ├── trainersController.php
+│   ├── trainerProfileController.php
+│   ├── equipmentController.php
+│   ├── profileController.php
+│   ├── subscriptionsController.php
+│   ├── cancellationsController.php
+│   ├── loginController.php
+│   ├── registerController.php
+│   ├── manage_classes_controller.php
+│   ├── manage_schedules_controller.php
+│   ├── manage_equipment_controller.php
+│   └── manage_users_controller.php
+│
+├── actions/                    # POST handlers — validate, update DB, redirect
+│   ├── login_action.php
+│   ├── logout.php
+│   ├── register_action.php
+│   ├── profile_action.php
+│   ├── class_enrollment_action.php
+│   ├── review_action.php
+│   ├── join_membership_action.php
+│   ├── cancel_membership_action.php
+│   ├── trainer_profile_action.php
+│   ├── trainer_schedule_action.php
+│   ├── admin_class_action.php
+│   ├── admin_schedule_action.php
+│   ├── admin_equipment_action.php
+│   └── admin_user_action.php
+│
+├── ajax/                       # Ajax JSON endpoints — all return JSON
+│   ├── enroll.php              # POST — enroll/cancel + auto-enroll from waitlist
+│   ├── waitlist.php            # POST — join/leave waitlist (Premium only)
+│   ├── classes_filter.php      # GET — filtered schedule with enrollment state
+│   ├── review.php              # POST — submit review
+│   ├── trainers.php            # GET — filtered trainer list
+│   ├── equipment.php           # GET — filtered equipment list
+│   ├── manage_classes_filter.php
+│   ├── manage_schedules_filter.php
+│   ├── manage_equipment_filter.php
+│   └── manage_users_filter.php
+│
+├── api/                        # Public REST API — read-only JSON
+│   ├── index.php               # API discovery
+│   ├── trainers.php
+│   ├── equipment.php
+│   ├── schedules.php
+│   └── api_helpers.php
+│
 ├── utils/
-│   └── csrf.php           # CSRF token helpers
+│   ├── csrf.php                # csrf_token() and csrf_verify()
+│   └── membership_limits.php   # Per-plan enrollment limits
+│
+├── js/
+│   ├── main.js                 # Slider, nav enhancements
+│   ├── authentication.js       # Password show/hide
+│   ├── classes.js              # Enroll/cancel + waitlist Ajax
+│   ├── classes_filter.js       # Class table filter + DOM rebuild
+│   ├── review.js               # Star rating + review Ajax
+│   ├── trainers.js             # Trainer filter Ajax
+│   ├── equipment.js            # Equipment filter Ajax
+│   ├── manage_classes.js       # Admin class filter Ajax
+│   ├── manage_schedules.js     # Admin schedule filter Ajax
+│   ├── manage_equipment.js     # Admin equipment filter Ajax
+│   └── manage_users.js         # Admin user filter Ajax
+│
 ├── css/
-│   ├── base.css           # CSS reset, typography, and base styles
-│   ├── components.css     # Reusable component styles
-│   ├── subscriptions.css  # Subscriptions page styles
-│   ├── index.css          # Home page styles
-│   ├── classes.css        # Classes page styles
-│   ├── trainers.css       # Trainers page styles
-│   ├── equipment.css      # Equipment page styles
-│   └── profile.css        # Profile page styles
+│   ├── base.css                # Reset, typography, CSS variables
+│   ├── components.css          # Shared components (buttons, alerts, nav)
+│   ├── authentication.css
+│   ├── footers.css
+│   ├── index.css
+│   ├── classes.css
+│   ├── trainers.css
+│   ├── equipment.css
+│   ├── profile.css
+│   └── subscriptions.css
+│
 ├── database/
-│   ├── database.sql       # Schema and seed data
-│   └── db.php             # PDO connection helper
-├── images/                # Image assets
-└── README.md              # Project documentation
+│   ├── database.sql            # Schema + seed data
+│   └── db.php                  # PDO connection helper
+│
+└── images/                     # Static image assets
 ```

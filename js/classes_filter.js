@@ -24,6 +24,19 @@
             span.className = 'badge badge-full';
             span.textContent = 'Full';
             td.appendChild(span);
+
+        } else if (slot.action === 'waitlist' || slot.action === 'cancel-waitlist') {
+            const f = document.createElement('form');
+            f.className = 'waitlist-form';
+            f.method = 'post';
+            f.innerHTML =
+                '<input type="hidden" name="schedule_id" value="' + slot.id + '">' +
+                '<input type="hidden" name="csrf_token" value="' + slot.csrf_token + '">' +
+                '<input type="hidden" name="mode" value="' + (slot.action === 'waitlist' ? 'join' : 'leave') + '">' +
+                '<button class="btn ' + (slot.action === 'waitlist' ? 'btn-waitlist' : 'btn-waitlist-cancel') + '" type="submit">' +
+                (slot.action === 'waitlist' ? 'Join Waitlist' : 'Leave Waitlist') +
+                '</button>';
+            td.appendChild(f);
         
         } else if (slot.action === 'limit-reached') {
             const span = document.createElement('span');
@@ -99,6 +112,9 @@
 
         if (typeof window.initEnrollButtons === 'function') {
             window.initEnrollButtons();
+        }
+        if (typeof window.initWaitlistButtons === 'function') {
+            window.initWaitlistButtons();
         }
     });
 })();

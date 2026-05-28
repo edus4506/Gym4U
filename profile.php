@@ -162,6 +162,45 @@
       </section>
     <?php endif; ?>
 
+    <?php if ($user['role'] === 'member' && $user['subscription_plan'] === 'premium'): ?>
+      <section class="profile-panel">
+        <h2>My Waitlist</h2>
+        <?php if (!$memberWaitlist): ?>
+          <p>You are not on any waitlist. When a full class has a free spot, you'll be automatically enrolled.</p>
+        <?php else: ?>
+          <table>
+            <thead>
+              <tr>
+                <th>Class</th>
+                <th>Trainer</th>
+                <th>When</th>
+                <th>Position</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php foreach ($memberWaitlist as $slot): ?>
+                <tr>
+                  <th scope="row"><?= htmlspecialchars($slot['class_name']) ?></th>
+                  <td><?= htmlspecialchars($slot['trainer_name']) ?></td>
+                  <td><?= htmlspecialchars($slot['day']) ?>, <?= htmlspecialchars($slot['time']) ?></td>
+                  <td>#<?= (int)$slot['position'] ?></td>
+                  <td>
+                    <form class="waitlist-form" method="post" action="ajax/waitlist.php">
+                      <input type="hidden" name="schedule_id" value="<?= (int)$slot['schedule_id'] ?>">
+                      <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>">
+                      <input type="hidden" name="mode" value="leave">
+                      <button class="btn btn-waitlist-cancel" type="submit">Leave Waitlist</button>
+                    </form>
+                  </td>
+                </tr>
+              <?php endforeach; ?>
+            </tbody>
+          </table>
+        <?php endif; ?>
+      </section>
+    <?php endif; ?>
+
     <?php if ($user['role'] === 'trainer' && $trainerProfile): ?>
       <section class="profile-panel">
         <h2>Trainer Public Profile</h2>
