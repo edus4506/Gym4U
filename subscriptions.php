@@ -29,7 +29,7 @@
         <li><a href="classes.php">Classes</a></li>
         <li><a href="trainers.php">Trainers</a></li>
         <li><a href="equipment.php">Equipment</a></li>
-        <li><a href="login.php">Login</a></li>
+        <li><a href="actions/logout.php">Logout</a></li>
       </ul>
     </nav>
   </header>
@@ -77,10 +77,6 @@
         </ul>
         <a href="subscriptions.php?plan=premium" class="btn-primary">Select Plan</a>
       </article>
-    </section>
-    <section class="subscriptions-login">
-      <p>Already a Gym4U member?</p>
-      <a href="login.php">Login Here</a>
     </section>
     <div class="payment-overlay" style="<?= $selectedPlan ? 'display:flex;' : 'display:none;' ?>">
       <div class="section subscription-card">

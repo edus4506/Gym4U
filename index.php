@@ -1,4 +1,7 @@
-<?php require_once __DIR__ . '/controllers/indexController.php'; ?>
+<?php 
+  require_once __DIR__ . '/controllers/headerController.php';
+  require_once __DIR__ . '/controllers/indexController.php'; 
+?>
 
 <!DOCTYPE html>
 <html lang="en-US">
@@ -31,7 +34,7 @@
         <li><a href="equipment.php">Equipment</a></li>
         <?php if (isset($_SESSION['user_id'])): ?>
           <li><a href="profile.php">Profile</a></li>
-          <?php if ($subscriptionPlan == 'none'): ?>
+          <?php if ($role == 'member' && $subscriptionPlan == 'none'): ?>
             <li><a href="subscriptions.php">Subscribe</a></li>
           <?php endif; ?>
           <li><a href="actions/logout.php">Logout</a></li>
@@ -63,7 +66,7 @@
             in fitness with expert trainers, modern equipment, and motivating classes.
           </p>
           <a class="btn-primary" href="register.php">Join Now!</a>
-        <?php elseif ($subscriptionPlan == 'none'): ?>
+        <?php elseif ($role == 'member' && $subscriptionPlan == 'none'): ?>
           <h2>Transform Your Body</h2>
           <p>
             Choose a subscription and start your fitness journey with expert guidance,

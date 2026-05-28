@@ -1,4 +1,7 @@
-<?php require_once __DIR__ . '/controllers/classesController.php'; ?>
+<?php 
+  require_once __DIR__ . '/controllers/headerController.php';
+  require_once __DIR__ . '/controllers/classesController.php'; 
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -31,9 +34,12 @@
         <li><a href="equipment.php">Equipment</a></li>
         <?php if (isset($_SESSION['user_id'])): ?>
           <li><a href="profile.php">Profile</a></li>
+          <?php if ($role == 'member' && $subscriptionPlan == 'none'): ?>
+            <li><a href="subscriptions.php">Subscribe</a></li>
+          <?php endif; ?>
           <li><a href="actions/logout.php">Logout</a></li>
         <?php else: ?>
-          <li><a href="subscriptions.php">Subscribe</a></li>
+          <li><a href="login.php">Login</a></li>
         <?php endif; ?>
       </ul>
     </nav>
@@ -186,7 +192,7 @@
                 <?php if (!isset($_SESSION['user_id'])): ?>
                   <a class="btn btn-enroll" href="login.php">Login</a>
                 <?php elseif (($_SESSION['user_role'] ?? '') !== 'member'): ?>
-                  <span class="muted">Members only</span>
+                  <span class="badge badge-restricted">Members only</span>
                 <?php elseif ($enrolled): ?>
                   <form class="enroll-form" method="post" action="actions/class_enrollment_action.php" data-schedule-id="<?= (int)$slot['id'] ?>">
                     <input type="hidden" name="schedule_id" value="<?= (int)$slot['id'] ?>">
@@ -213,7 +219,7 @@
                 <?php elseif ($userPlan == 'none'): ?>
                   <a class="btn btn-enroll" href="subscriptions.php">Subscribe</a>
                 <?php elseif ($userMaxClasses !== null && $userEnrolledCount >= $userMaxClasses): ?>
-                  <span class="badge badge-limit">Limit reached</span>
+                  <span class="badge badge-restricted">Limit reached</span>
                 <?php else: ?>
                   <form class="enroll-form" method="post" action="actions/class_enrollment_action.php" data-schedule-id="<?= (int)$slot['id'] ?>">
                     <input type="hidden" name="schedule_id" value="<?= (int)$slot['id'] ?>">
