@@ -1,6 +1,5 @@
 <?php 
-declare(strict_types = 1); 
-session_start();
+  require_once __DIR__ . '/controllers/headerController.php';
 ?>
 
 <!DOCTYPE html>
@@ -35,9 +34,12 @@ session_start();
         <li><a href="equipment.php">Equipment</a></li>
         <?php if (isset($_SESSION['user_id'])): ?>
           <li><a href="profile.php">Profile</a></li>
+          <?php if ($usertype == 'member' && $subscriptionPlan == 'none'): ?>
+            <li><a href="subscriptions.php">Subscribe</a></li>
+          <?php endif; ?>
           <li><a href="actions/logout.php">Logout</a></li>
         <?php else: ?>
-          <li><a href="subscriptions.php">Subscribe</a></li>
+          <li><a href="login.php">Login</a></li>
         <?php endif; ?>
       </ul>
     </nav>

@@ -1,4 +1,7 @@
-<?php require_once __DIR__ . '/controllers/profileController.php'; ?>
+<?php 
+  require_once __DIR__ . '/controllers/headerController.php';
+  require_once __DIR__ . '/controllers/profileController.php'; 
+?>
 
 <!DOCTYPE html>
 <html lang="en-US">
@@ -29,8 +32,15 @@
         <li><a href="classes.php">Classes</a></li>
         <li><a href="trainers.php">Trainers</a></li>
         <li><a href="equipment.php">Equipment</a></li>
-        <li><a href="profile.php" aria-current="page">Profile</a></li>
-        <li><a href="actions/logout.php">Logout</a></li>
+        <?php if (isset($_SESSION['user_id'])): ?>
+          <li><a href="profile.php">Profile</a></li>
+          <?php if ($role == 'member' && $subscriptionPlan == 'none'): ?>
+            <li><a href="subscriptions.php">Subscribe</a></li>
+          <?php endif; ?>
+          <li><a href="actions/logout.php">Logout</a></li>
+        <?php else: ?>
+          <li><a href="login.php">Login</a></li>
+        <?php endif; ?>
       </ul>
     </nav>
   </header>
@@ -162,6 +172,16 @@
       </section>
     <?php endif; ?>
 
+    <?php if ($role === 'trainer' || $role === 'admin'): ?>
+      <section class="profile-panel">
+        <div class="admin-header">
+          <h2>Analytics Dashboard</h2>
+
+          <a href="analytics.php" class="btn-primary">View Analytics</a>
+        </div>
+      </section>
+    <?php endif; ?>
+
     <?php if ($user['role'] === 'trainer' && $trainerProfile): ?>
       <section class="profile-panel">
         <h2>Trainer Public Profile</h2>
@@ -254,7 +274,7 @@
     <?php if ($user['role'] === 'admin'): ?>
       <section class="profile-panel">
         <div class="admin-header">
-          <h2>Manage Members, Trainers, and Admins</h2>
+          <h2>User Management</h2>
 
           <a href="manage_users.php" class="btn-primary">Manage Users</a>
         </div>
@@ -262,7 +282,7 @@
 
       <section class="profile-panel">
         <div class="admin-header">
-          <h2>Manage Classes</h2>
+          <h2>Class Management</h2>
 
           <a href="manage_classes.php" class="btn-primary">Manage Classes</a>
         </div>
@@ -270,7 +290,7 @@
 
       <section class="profile-panel">
         <div class="admin-header">
-          <h2>Manage Schedule</h2>
+          <h2>Class Schedule Management</h2>
 
           <a href="manage_schedules.php" class="btn-primary">Manage Schedule</a>
         </div>
@@ -278,7 +298,7 @@
 
       <section class="profile-panel">
         <div class="admin-header">
-          <h2>Manage Equipment</h2>
+          <h2>Facility Equipment Management</h2>
 
           <a href="manage_equipment.php" class="btn-primary">Manage Equipment</a>
         </div>
