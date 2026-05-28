@@ -46,9 +46,9 @@
         <ul>
           <li>Access to gym equipment</li>
           <li>Locker room access</li>
-          <li>1 group class per week</li>
-          <li>Free healthy drinks</li>
+          <li>2 classes per week</li>
           <li>Restricted time access</li>
+          <li>Free healthy drinks</li>
         </ul>
         <a href="subscriptions.php?plan=offpeak" class="btn-primary">Select Plan</a>
       </article>
@@ -58,10 +58,9 @@
         <p class="subscription-price">€29.99/month</p>
         <ul>
           <li>All Off-Peak Plan benefits</li>
-          <li>Unlimited group classes</li>
-          <li>Access to all equipment</li>
-          <li>Priority booking</li>
-          <li>Nutrition evaluation included</li>
+          <li>6 classes per week</li>
+          <li>Unrestricted time access</li>
+          <li>Free towel service</li>
         </ul>
         <a href="subscriptions.php?plan=classic" class="btn-primary">Select Plan</a>
       </article>
@@ -70,10 +69,10 @@
         <p class="subscription-price">€39.99/month</p>
         <ul>
           <li>All Classic Plan benefits</li>
-          <li>Unlimited gym access</li>
           <li>Unlimited classes</li>
-          <li>Personal trainer sessions</li>
-          <li>Exclusive wellness benefits</li>
+          <li>Waitlist in full classes</li>
+          <li>Dedicated locker</li>
+          <li>Free merchandise</li>
         </ul>
         <a href="subscriptions.php?plan=premium" class="btn-primary">Select Plan</a>
       </article>
