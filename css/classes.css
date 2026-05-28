@@ -1,5 +1,5 @@
 .badge-full,
-.badge-limit {
+.badge-restricted {
   display: inline-block;
   padding: 0.25rem 0.75rem;
   border-radius: 1rem;
@@ -9,7 +9,7 @@
   background: #f8d7da;
 }
 
-.badge-limit {
+.badge-restricted {
   color: #856404;
   background: #fff3cd;
 }
