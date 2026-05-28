@@ -44,7 +44,7 @@
         <h2>
           Analytics Dashboard
           <?php if ($trainerInfo): ?>
-            — <?= htmlspecialchars($trainerInfo['name']) ?>
+            <span class="analytics-trainer-name">— <?= htmlspecialchars($trainerInfo['name']) ?></span>
           <?php endif; ?>
         </h2>
         <a href="profile.php" class="btn-create">Back to Profile</a>
@@ -52,7 +52,7 @@
 
       <?php if ($role === 'admin' && !empty($allTrainers)): ?>
         <form method="get" action="analytics.php" class="filter-group" style="margin-top: 1rem;">
-          <select name="trainer_id" onchange="this.form.submit()">
+          <select name="trainer_id" class="analytics-trainer-select">
             <?php foreach ($allTrainers as $t): ?>
               <option
                 value="<?= (int)$t['id'] ?>"
@@ -71,36 +71,36 @@
       <div class="analytics-cards">
 
         <div class="analytics-card">
-          <span class="analytics-card-value"><?= $totalEnrolled ?></span>
+          <span class="analytics-card-value" data-card="enrolled"><?= $totalEnrolled ?></span>
           <span class="analytics-card-label">Total Members Enrolled</span>
         </div>
 
         <div class="analytics-card">
-          <span class="analytics-card-value"><?= $fillRate ?>%</span>
+          <span class="analytics-card-value" data-card="fillRate"><?= $fillRate ?>%</span>
           <span class="analytics-card-label">Overall Fill Rate</span>
         </div>
 
         <div class="analytics-card">
-          <span class="analytics-card-value">
+          <span class="analytics-card-value" data-card="rating">
             <?= $overallRating !== null ? $overallRating . ' ★' : '—' ?>
           </span>
           <span class="analytics-card-label">Average Rating</span>
         </div>
 
         <div class="analytics-card">
-          <span class="analytics-card-value"><?= $totalReviews ?></span>
+          <span class="analytics-card-value" data-card="reviews"><?= $totalReviews ?></span>
           <span class="analytics-card-label">Total Reviews</span>
         </div>
 
         <div class="analytics-card">
-          <span class="analytics-card-value"><?= count($classStats) ?></span>
+          <span class="analytics-card-value" data-card="slots"><?= count($classStats) ?></span>
           <span class="analytics-card-label">Active Schedule Slots</span>
         </div>
 
         <?php if ($topClass): ?>
           <div class="analytics-card analytics-card-highlight">
-            <span class="analytics-card-value"><?= htmlspecialchars($topClass['class_name']) ?></span>
-            <span class="analytics-card-label">Most Popular Class (<?= $topClass['enrolled'] ?> enrolled)</span>
+            <span class="analytics-card-value" data-card="topClass"><?= htmlspecialchars($topClass['class_name']) ?></span>
+            <span class="analytics-card-label" data-card="topClassLabel">Most Popular Class (<?= $topClass['enrolled'] ?> enrolled)</span>
           </div>
         <?php endif; ?>
 
@@ -113,7 +113,7 @@
       <?php if (empty($classStats)): ?>
         <p class="muted">No classes assigned yet.</p>
       <?php else: ?>
-        <div class="admin-list">
+        <div class="admin-list analytics-breakdown">
           <?php foreach ($classStats as $slot): ?>
             <div class="analytics-row">
               <div class="analytics-row-main">
@@ -158,25 +158,27 @@
     </section>
 
     <section class="profile-panel">
-        <h2>Recent Reviews</h2>
+      <h2>Recent Reviews</h2>
 
+      <div class="analytics-reviews">
         <?php if (empty($recentReviews)): ?>
-            <p class="muted">No reviews yet.</p>
+          <p class="muted">No reviews yet.</p>
         <?php else: ?>
-            <div class="division-grid">
+          <div class="division-grid">
             <?php foreach ($recentReviews as $review): ?>
-                <article class="review-card">
+              <article class="review-card">
                 <h3><?= htmlspecialchars($review['class_name']) ?></h3>
                 <div class="review-header">
-                    <strong><?= htmlspecialchars($review['member_name']) ?></strong>
-                    <span><?= str_repeat('★', (int)$review['rating']) ?></span>
+                  <strong><?= htmlspecialchars($review['member_name']) ?></strong>
+                  <span><?= str_repeat('★', (int)$review['rating']) ?></span>
                 </div>
                 <p class="r-p"><?= htmlspecialchars($review['comment']) ?></p>
-                </article>
+              </article>
             <?php endforeach; ?>
-            </div>
+          </div>
         <?php endif; ?>
-        </section>
+      </div>
+    </section>
 
   </main>
 
@@ -190,6 +192,6 @@
     <p>Membership Conditions · Regulations · Ethics Channel · Data Processing</p>
     <p>&copy; 2026 Gym4U. All rights reserved.</p>
   </footer>
-
+  <script src="js/analytics.js" defer></script>
 </body>
 </html>
