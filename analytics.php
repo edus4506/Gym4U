@@ -158,35 +158,25 @@
     </section>
 
     <section class="profile-panel">
-      <h2>Recent Reviews</h2>
+        <h2>Recent Reviews</h2>
 
-      <?php if (empty($recentReviews)): ?>
-        <p class="muted">No reviews yet.</p>
-      <?php else: ?>
-        <div class="admin-list">
-          <?php foreach ($recentReviews as $review): ?>
-            <div class="analytics-review">
-              <div class="analytics-review-header">
-                <span class="analytics-review-class">
-                  <?= htmlspecialchars($review['class_name']) ?>
-                </span>
-                <span class="analytics-review-rating">
-                  <?= str_repeat('★', (int)$review['rating']) ?><?= str_repeat('☆', 5 - (int)$review['rating']) ?>
-                </span>
-                <span class="muted analytics-review-meta">
-                  <?= htmlspecialchars($review['member_name']) ?>
-                </span>
-              </div>
-              <?php if (!empty($review['comment'])): ?>
-                <p class="analytics-review-comment">
-                  "<?= htmlspecialchars($review['comment']) ?>"
-                </p>
-              <?php endif; ?>
+        <?php if (empty($recentReviews)): ?>
+            <p class="muted">No reviews yet.</p>
+        <?php else: ?>
+            <div class="division-grid">
+            <?php foreach ($recentReviews as $review): ?>
+                <article class="review-card">
+                <h3><?= htmlspecialchars($review['class_name']) ?></h3>
+                <div class="review-header">
+                    <strong><?= htmlspecialchars($review['member_name']) ?></strong>
+                    <span><?= str_repeat('★', (int)$review['rating']) ?></span>
+                </div>
+                <p class="r-p"><?= htmlspecialchars($review['comment']) ?></p>
+                </article>
+            <?php endforeach; ?>
             </div>
-          <?php endforeach; ?>
-        </div>
-      <?php endif; ?>
-    </section>
+        <?php endif; ?>
+        </section>
 
   </main>
 
