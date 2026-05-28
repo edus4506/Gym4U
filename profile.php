@@ -208,6 +208,9 @@
             </tbody>
           </table>
         <?php endif; ?>
+      </section>
+    <?php endif; ?>
+
     <?php if ($role === 'trainer' || $role === 'admin'): ?>
       <section class="profile-panel">
         <div class="admin-header">
