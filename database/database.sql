@@ -2,6 +2,7 @@
 
 PRAGMA foreign_keys = OFF;
 
+DROP TABLE IF EXISTS waitlist;
 DROP TABLE IF EXISTS reviews;
 DROP TABLE IF EXISTS enrollments;
 DROP TABLE IF EXISTS class_schedule;
@@ -104,14 +105,26 @@ CREATE TABLE IF NOT EXISTS reviews (
     FOREIGN KEY (schedule_id) REFERENCES class_schedule(id)
 );
 
+CREATE TABLE IF NOT EXISTS waitlist (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER NOT NULL,
+    schedule_id INTEGER NOT NULL,
+    added_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE(user_id, schedule_id),
+    FOREIGN KEY (user_id) REFERENCES users(id),
+    FOREIGN KEY (schedule_id) REFERENCES class_schedule(id)
+);
+
 -- INSERT DATA
 -- Users (members) — password: 1234
 INSERT INTO users (name, username, email, password, role, subscription_plan) VALUES
-    ('Maria Silva', 'member', 'maria@email.com', '$2y$12$fjBAAB0sRN4GCrVuwBX4HejD3yKzOn9XQqDl7vKyGAD9LhmtPsqvC', 'member', 'classic'),
+    ('Maria Silva', 'member', 'maria@email.com', '$2y$12$fjBAAB0sRN4GCrVuwBX4HejD3yKzOn9XQqDl7vKyGAD9LhmtPsqvC', 'member', 'premium'),
     ('Joao Pereira', 'joao.pereira', 'joao@email.com', '$2y$12$fjBAAB0sRN4GCrVuwBX4HejD3yKzOn9XQqDl7vKyGAD9LhmtPsqvC', 'member', 'offpeak'),
     ('Daniel Rocha', 'daniel.rocha', 'daniel@email.com', '$2y$12$fjBAAB0sRN4GCrVuwBX4HejD3yKzOn9XQqDl7vKyGAD9LhmtPsqvC', 'member', 'classic'),
     ('Ana Costa', 'ana.costa', 'ana@email.com', '$2y$12$fjBAAB0sRN4GCrVuwBX4HejD3yKzOn9XQqDl7vKyGAD9LhmtPsqvC', 'member', 'premium'),
-    ('Pedro Matos', 'pedro.matos', 'pedro@email.com', '$2y$12$fjBAAB0sRN4GCrVuwBX4HejD3yKzOn9XQqDl7vKyGAD9LhmtPsqvC', 'member', 'classic');
+    ('Pedro Matos', 'pedro.matos', 'pedro@email.com', '$2y$12$fjBAAB0sRN4GCrVuwBX4HejD3yKzOn9XQqDl7vKyGAD9LhmtPsqvC', 'member', 'classic'),
+    ('Test OffPeak', 'member2', 'member2@email.com', '$2y$12$fjBAAB0sRN4GCrVuwBX4HejD3yKzOn9XQqDl7vKyGAD9LhmtPsqvC', 'member', 'offpeak'),
+    ('Test Classic', 'member3', 'member3@email.com', '$2y$12$fjBAAB0sRN4GCrVuwBX4HejD3yKzOn9XQqDl7vKyGAD9LhmtPsqvC', 'member', 'classic');
 
 -- Users (trainers) — ids 6 to 13 — password: 1234
 INSERT INTO users (name, username, email, password, role) VALUES
@@ -229,7 +242,7 @@ INSERT INTO class_schedule (class_id, day, time, duration_minutes, capacity, enr
     (14, 'Wednesday', '19:00', 45, 14, 8),
     (12, 'Thursday', '17:30', 55, 12, 6),
     (9, 'Thursday', '18:30', 55, 12, 7),
-    (13, 'Friday', '17:30', 50, 12, 12),
+    (13, 'Friday', '17:30', 50, 12, 11),
     (15, 'Friday', '18:00', 45, 14, 9),
     (5, 'Saturday', '10:00', 60, 5, 3),
     (10, 'Saturday', '18:30', 45, 16, 14),

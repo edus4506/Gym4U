@@ -100,9 +100,52 @@
     forms.forEach(form => initFormListener(form));
   }
 
+  function initWaitlistButtons() {
+    document.querySelectorAll('.waitlist-form').forEach(form => {
+      form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        const formData = new FormData(form);
+        const mode = formData.get('mode');
+
+        const response = await fetch('ajax/waitlist.php', { method: 'POST', body: formData });
+        const data = await response.json();
+
+        if (!data.success) {
+          const messages = {
+            'premium-only':     'This feature is only available for Premium members.',
+            'already-enrolled': 'You are already enrolled in this class.',
+            'not-logged-in':    'Please login first.',
+            'invalid':          'That action could not be completed.',
+          };
+          showMessage(messages[data.error] || 'Something went wrong.', 'error');
+          return;
+        }
+
+        const csrfInput = form.querySelector('input[name="csrf_token"]');
+        const scheduleInput = form.querySelector('input[name="schedule_id"]');
+
+        if (data.mode === 'join') {
+          form.querySelector('input[name="mode"]').value = 'leave';
+          const btn = form.querySelector('button');
+          btn.textContent = 'Leave Waitlist';
+          btn.className = 'btn btn-waitlist-cancel';
+          showMessage('You joined the waitlist. You are #' + data.position + ' in line.', 'success');
+        } else {
+          form.querySelector('input[name="mode"]').value = 'join';
+          const btn = form.querySelector('button');
+          btn.textContent = 'Join Waitlist';
+          btn.className = 'btn btn-waitlist';
+          showMessage('You left the waitlist.', 'success');
+        }
+      });
+    });
+  }
+
   window.initEnrollButtons = initEnrollButtons;
+  window.initWaitlistButtons = initWaitlistButtons;
 
   document.addEventListener('DOMContentLoaded', () => {
     initEnrollButtons();
+    initWaitlistButtons();
   });
 })();

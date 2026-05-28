@@ -56,6 +56,8 @@ $photo    = $user['profile_photo'] ?: 'images/gym4u_icon.png';
 $days     = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 $statuses = ['available', 'maintenance', 'unavailable'];
 
+$memberWaitlist = [];
+
 if ($user['role'] === 'member') {
     $stmt = $db->prepare("
         SELECT e.id AS enrollment_id, cs.id AS schedule_id, c.name AS class_name, u.name AS trainer_name,
@@ -73,6 +75,25 @@ if ($user['role'] === 'member') {
     ");
     $stmt->execute([(int)$user['id']]);
     $memberEnrollments = $stmt->fetchAll();
+
+    if ($user['subscription_plan'] === 'premium') {
+        $wStmt = $db->prepare("
+            SELECT w.schedule_id, c.name AS class_name, u.name AS trainer_name,
+                   cs.day, cs.time,
+                   (SELECT COUNT(*) FROM waitlist w2
+                    WHERE w2.schedule_id = w.schedule_id
+                      AND w2.added_at <= w.added_at) AS position
+            FROM waitlist w
+            JOIN class_schedule cs ON cs.id = w.schedule_id
+            JOIN classes c ON c.id = cs.class_id
+            JOIN trainers t ON t.id = c.trainer_id
+            JOIN users u ON u.id = t.user_id
+            WHERE w.user_id = ?
+            ORDER BY w.added_at ASC
+        ");
+        $wStmt->execute([(int)$user['id']]);
+        $memberWaitlist = $wStmt->fetchAll();
+    }
 }
 
 if ($user['role'] === 'trainer') {

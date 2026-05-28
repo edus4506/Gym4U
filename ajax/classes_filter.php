@@ -57,6 +57,11 @@ if ($isLoggedIn) {
     $enrollStmt = $db->prepare('SELECT schedule_id FROM enrollments WHERE user_id = ?');
     $enrollStmt->execute([(int)$_SESSION['user_id']]);
     $memberEnrollments = array_flip(array_column($enrollStmt->fetchAll(), 'schedule_id'));
+
+    $waitlistStmt = $db->prepare('SELECT schedule_id FROM waitlist WHERE user_id = ?');
+    $waitlistStmt->execute([(int)$_SESSION['user_id']]);
+    $memberWaitlist = array_flip(array_column($waitlistStmt->fetchAll(), 'schedule_id'));
+
     if ($isMember) {
         $planStmt = $db->prepare('SELECT subscription_plan FROM users WHERE id = ?');
         $planStmt->execute([(int)$_SESSION['user_id']]);
@@ -64,6 +69,7 @@ if ($isLoggedIn) {
         $limitReached  = !membership_can_enroll($db, (int)$_SESSION['user_id'], $userPlan);
     } else {
         $limitReached = false;
+        $memberWaitlist = [];
     }
 }
 
@@ -72,12 +78,18 @@ foreach ($schedule as $slot) {
     $full     = (int)$slot['enrolled'] >= (int)$slot['capacity'];
     $enrolled = isset($memberEnrollments[$slot['id']]);
 
+    $onWaitlist = isset($memberWaitlist[$slot['id']]);
+
     if (!$isLoggedIn) {
         $action = 'login';
     } elseif (!$isMember) {
         $action = 'members-only';
     } elseif ($enrolled) {
         $action = 'cancel';
+    } elseif ($full && $onWaitlist) {
+        $action = 'cancel-waitlist';
+    } elseif ($full && ($userPlan ?? 'none') === 'premium') {
+        $action = 'waitlist';
     } elseif ($full) {
         $action = 'full';
     } elseif ($limitReached) {
@@ -98,7 +110,7 @@ foreach ($schedule as $slot) {
         'action'       => $action,
     ];
 
-    if ($action === 'enroll' || $action === 'cancel') {
+    if (in_array($action, ['enroll', 'cancel', 'waitlist', 'cancel-waitlist'], true)) {
         $row['csrf_token'] = csrf_token();
     }
 

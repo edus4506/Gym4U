@@ -62,6 +62,7 @@ $trainersForFilter  = $db->query('SELECT t.id AS id, u.name AS name FROM trainer
 $equipment          = $db->query('SELECT id, name, quantity, status FROM equipment ORDER BY name')->fetchAll();
 
 $memberEnrollments     = [];
+$memberWaitlist        = [];
 $reviewableScheduleIds = [];
 $userPlan              = 'none';
 $userEnrolledCount     = 0;
@@ -71,6 +72,10 @@ if (isset($_SESSION['user_id'])) {
     $enrollmentStmt = $db->prepare('SELECT schedule_id FROM enrollments WHERE user_id = ?');
     $enrollmentStmt->execute([(int)$_SESSION['user_id']]);
     $memberEnrollments = array_flip(array_column($enrollmentStmt->fetchAll(), 'schedule_id'));
+
+    $waitlistStmt = $db->prepare('SELECT schedule_id FROM waitlist WHERE user_id = ?');
+    $waitlistStmt->execute([(int)$_SESSION['user_id']]);
+    $memberWaitlist = array_flip(array_column($waitlistStmt->fetchAll(), 'schedule_id'));
 
     if (($_SESSION['user_role'] ?? '') === 'member') {
         $planStmt = $db->prepare('SELECT subscription_plan FROM users WHERE id = ?');
