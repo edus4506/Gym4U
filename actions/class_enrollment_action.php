@@ -43,9 +43,18 @@ try {
       exit;
     }
 
-    $slotStmt = $db->prepare('SELECT capacity, enrolled FROM class_schedule WHERE id = ?');
+    $slotStmt = $db->prepare('SELECT capacity, enrolled, time FROM class_schedule WHERE id = ?');
     $slotStmt->execute([$scheduleId]);
     $slot = $slotStmt->fetch();
+
+    if ($plan === 'offpeak') {
+        $hour = (int)substr($slot['time'], 0, 2);
+        if ($hour >= 18 && $hour < 20) {
+            $db->rollBack();
+            header('Location: ../classes.php?error=offpeak-restricted');
+            exit;
+        }
+    }
 
     if (!$slot || (int)$slot['enrolled'] >= (int)$slot['capacity']) {
       $db->rollBack();

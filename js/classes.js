@@ -20,6 +20,7 @@
         'invalid': 'That action could not be completed.',
         'not-logged-in': 'Please login to enroll.',
         'limit-reached': 'You have reached the maximum number of classes for your plan.',
+        'offpeak-restricted': 'Off-Peak members cannot enroll in classes between 18:00 and 20:00.',
       };
       showMessage(messages[data.error] || 'Something went wrong.', 'error');
       return;
@@ -53,7 +54,7 @@
       document.querySelectorAll('.enroll-form').forEach(f => {
         if (f.querySelector('input[name="mode"]')?.value === 'enroll') {
           const span = document.createElement('span');
-          span.className = 'muted';
+          span.className = 'badge-restricted';
           span.textContent = 'Limit reached';
           span.dataset.scheduleId = f.querySelector('input[name="schedule_id"]').value;
           span.dataset.csrfToken  = f.querySelector('input[name="csrf_token"]').value;
@@ -63,7 +64,7 @@
     }
 
     if (data.mode === 'cancel') {
-      document.querySelectorAll('.muted').forEach(span => {
+      document.querySelectorAll('.badge-restricted').forEach(span => {
         if (span.textContent === 'Limit reached') {
           const f = document.createElement('form');
           f.className = 'enroll-form';

@@ -216,6 +216,8 @@
                   </form>
                 <?php elseif ($full): ?>
                   <span class="badge badge-full">Full</span>
+                <?php elseif ($userPlan === 'offpeak' && (int)substr($slot['time'], 0, 2) >= 18 && (int)substr($slot['time'], 0, 2) < 20): ?>
+                  <span class="badge-restricted">Peak Hours</span>
                 <?php elseif ($userPlan == 'none'): ?>
                   <a class="btn btn-enroll" href="subscriptions.php">Subscribe</a>
                 <?php elseif ($userMaxClasses !== null && $userEnrolledCount >= $userMaxClasses): ?>
