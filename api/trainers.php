@@ -15,13 +15,10 @@ $sql = "
   SELECT
     t.id,
     u.name,
-    u.email,
-    u.profile_photo,
     t.title,
     t.bio,
     t.experience_years,
     t.certifications,
-    t.phone,
     GROUP_CONCAT(DISTINCT cat.name) AS specializations,
     GROUP_CONCAT(DISTINCT c.name) AS classes
   FROM trainers t
