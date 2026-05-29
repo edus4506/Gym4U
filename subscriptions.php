@@ -29,7 +29,13 @@
         <li><a href="classes.php">Classes</a></li>
         <li><a href="trainers.php">Trainers</a></li>
         <li><a href="equipment.php">Equipment</a></li>
-        <li><a href="actions/logout.php">Logout</a></li>
+        <li><a href="profile.php">Profile</a></li>
+        <li>
+          <form action="actions/logout.php" method="post" style="display:inline;">
+            <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>">
+            <button type="submit">Logout</button>
+          </form>
+        </li>
       </ul>
     </nav>
   </header>

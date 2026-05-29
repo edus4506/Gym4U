@@ -59,8 +59,10 @@ try {
     $stmt->execute([$name, $username, $email, $role, $active, $userId]);
 
     if ($role === 'trainer') {
+      $db->prepare('UPDATE users SET subscription_plan = ? WHERE id = ?')->execute(['none', $userId]);
       $db->prepare('INSERT OR IGNORE INTO trainers (user_id, bio, experience_years, certifications, phone, title) VALUES (?, "", 0, "", "", "Trainer")')->execute([$userId]);
     } elseif ($role === 'admin') {
+      $db->prepare('UPDATE users SET subscription_plan = ? WHERE id = ?')->execute(['none', $userId]);
       $db->prepare('INSERT OR IGNORE INTO admins (user_id) VALUES (?)')->execute([$userId]);
     }
 

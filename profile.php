@@ -33,11 +33,16 @@
         <li><a href="trainers.php">Trainers</a></li>
         <li><a href="equipment.php">Equipment</a></li>
         <?php if (isset($_SESSION['user_id'])): ?>
-          <li><a href="profile.php">Profile</a></li>
+          <li><a href="profile.php" aria-current="page">Profile</a></li>
           <?php if ($role == 'member' && $subscriptionPlan == 'none'): ?>
             <li><a href="subscriptions.php">Subscribe</a></li>
           <?php endif; ?>
-          <li><a href="actions/logout.php">Logout</a></li>
+          <li>
+            <form action="actions/logout.php" method="post" style="display:inline;">
+              <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>">
+              <button type="submit">Logout</button>
+            </form>
+          </li>
         <?php else: ?>
           <li><a href="login.php">Login</a></li>
         <?php endif; ?>

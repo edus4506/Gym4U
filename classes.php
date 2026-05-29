@@ -37,7 +37,12 @@
           <?php if ($role == 'member' && $subscriptionPlan == 'none'): ?>
             <li><a href="subscriptions.php">Subscribe</a></li>
           <?php endif; ?>
-          <li><a href="actions/logout.php">Logout</a></li>
+          <li>
+            <form action="actions/logout.php" method="post" style="display:inline;">
+              <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>">
+              <button type="submit">Logout</button>
+            </form>
+          </li>
         <?php else: ?>
           <li><a href="login.php">Login</a></li>
         <?php endif; ?>
