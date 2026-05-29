@@ -40,6 +40,16 @@ $adminClasses = $db->query("
     ORDER BY c.name
 ")->fetchAll();
 
+$classesWithoutSlots = $db->query("
+    SELECT c.id, c.name, u.name AS trainer_name
+    FROM classes c
+    LEFT JOIN trainers t ON t.id = c.trainer_id
+    LEFT JOIN users u ON u.id = t.user_id
+    WHERE c.name != 'Gym Review'
+      AND c.id NOT IN (SELECT DISTINCT class_id FROM class_schedule)
+    ORDER BY c.name
+")->fetchAll();
+
 $query = "
     SELECT
         cs.id,

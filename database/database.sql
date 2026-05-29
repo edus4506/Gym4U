@@ -200,17 +200,17 @@ INSERT INTO trainer_categories (trainer_id, category_id)
 SELECT id, 7 FROM trainers WHERE user_id = 11;
 
 
--- Joana Rodrigues (user_id = 12)
+-- Joana Rodrigues (user_id = 14)
 INSERT INTO trainer_categories (trainer_id, category_id)
-SELECT id, 8 FROM trainers WHERE user_id = 12;
+SELECT id, 8 FROM trainers WHERE user_id = 14;
 
 
--- Tiago Rocha (user_id = 13)
+-- Tiago Rocha (user_id = 15)
 INSERT INTO trainer_categories (trainer_id, category_id)
-SELECT id, 4 FROM trainers WHERE user_id = 13;
+SELECT id, 4 FROM trainers WHERE user_id = 15;
 
 INSERT INTO trainer_categories (trainer_id, category_id)
-SELECT id, 6 FROM trainers WHERE user_id = 13;
+SELECT id, 6 FROM trainers WHERE user_id = 15;
 
 -- Classes
 INSERT INTO classes (name, description, category_id, trainer_id) VALUES
