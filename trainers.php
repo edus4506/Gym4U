@@ -113,7 +113,7 @@
               onerror="this.style.display='none'"
             >
             <div class="trainer-content">
-              <h3><?= htmlspecialchars($trainer['name']) ?></h3>
+              <h3><a href="trainer_profile.php?id=<?= (int)$trainer['id'] ?>"><?= htmlspecialchars($trainer['name']) ?></a></h3>
               <p class="trainer-role"><?= htmlspecialchars($trainer['title']) ?></p>
               <p><?= htmlspecialchars($trainer['bio']) ?></p>
               <p class="trainer-meta"><strong>Experience:</strong> <?= (int)$trainer['experience_years'] ?> years</p>

@@ -360,6 +360,11 @@ caption {
   margin-bottom: 0.2rem;
 }
 
+.trainer-content h3 a {
+  color: inherit;
+  text-decoration: none;
+}
+
 .trainer-role {
   color: var(--primary-strong);
   font-weight: 700;
