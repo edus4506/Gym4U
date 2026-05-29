@@ -50,11 +50,13 @@ $query = "
         c.category_id,
         c.trainer_id,
         cat.name AS category_name,
-        u.name AS trainer_name
+        u.name AS trainer_name,
+        COUNT(cs.id) AS slot_count
     FROM classes c
     JOIN categories cat ON cat.id = c.category_id
     LEFT JOIN trainers t ON t.id = c.trainer_id
     LEFT JOIN users u ON u.id = t.user_id
+    LEFT JOIN class_schedule cs ON cs.class_id = c.id
     WHERE 1=1
 ";
 
@@ -75,7 +77,7 @@ if ($trainerFilter !== '') {
     $params[] = (int)$trainerFilter;
 }
 
-$query .= ' ORDER BY c.name';
+$query .= ' GROUP BY c.id ORDER BY c.name';
 
 $stmt = $db->prepare($query);
 $stmt->execute($params);

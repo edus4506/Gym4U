@@ -137,6 +137,16 @@
   padding-top: 1.2rem;
 }
 
+.badge-warning {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  border-radius: 1rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #664d03;
+  background: #fff3cd;
+}
+
 @media (max-width: 700px) {
   .profile-header {
     align-items: flex-start;

@@ -179,6 +179,10 @@
                 <?php endforeach; ?>
               </select>
 
+              <?php if ((int)$class['slot_count'] === 0): ?>
+                <span class="badge-warning">No scheduled slots — <a href="manage_schedules.php">add one</a></span>
+              <?php endif; ?>
+
               <button class="btn btn-enroll" type="submit">
                 Save
               </button>

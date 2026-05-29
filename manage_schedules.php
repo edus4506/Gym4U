@@ -50,34 +50,45 @@
 
             <h2>Create Schedule Slot</h2>
 
-            <form class="profile-form" method="post" action="actions/admin_schedule_action.php">
-              <input type="hidden" name="mode" value="create">
+            <?php if (empty($classesWithoutSlots)): ?>
+              <p>All classes already have a scheduled slot.</p>
+            <?php else: ?>
+              <form class="profile-form" method="post" action="actions/admin_schedule_action.php">
+                <input type="hidden" name="mode" value="create">
 
-              <div class="form-grid">
-                <select name="class_id" required>
-                  <?php foreach ($adminClasses as $class): ?>
-                    <?php if ($class['name'] !== 'Gym Review'): ?>
-                      <option value="<?= (int)$class['id'] ?>">
-                        <?= htmlspecialchars($class['name']) ?>
-                      </option>
-                    <?php endif; ?>
-                  <?php endforeach; ?>
-                </select>
-
-                <select name="day">
-                  <?php foreach ($days as $day): ?>
-                    <option value="<?= htmlspecialchars($day) ?>">
-                      <?= htmlspecialchars($day) ?>
+                <select name="class_id" required style="width:100%;margin-bottom:0.75rem;">
+                  <?php foreach ($classesWithoutSlots as $class): ?>
+                    <option value="<?= (int)$class['id'] ?>">
+                      <?= htmlspecialchars($class['name']) ?> — <?= htmlspecialchars($class['trainer_name']) ?>
                     </option>
                   <?php endforeach; ?>
                 </select>
-                <input type="time" name="time" required>
-                <input type="number" name="duration_minutes" min="15" value="45" placeholder="Duration">
-                <input type="number" name="capacity" min="1" value="12" placeholder="Capacity">
-              </div>
-              <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>">
-              <button class="btn-primary" type="submit">Add Schedule Slot</button>
-            </form>
+
+                <div class="form-grid">
+                  <label>Day
+                    <select name="day">
+                      <?php foreach ($days as $day): ?>
+                        <option value="<?= htmlspecialchars($day) ?>">
+                          <?= htmlspecialchars($day) ?>
+                        </option>
+                      <?php endforeach; ?>
+                    </select>
+                  </label>
+                  <label>Time
+                    <input type="time" name="time" required>
+                  </label>
+                  <label>Duration (min)
+                    <input type="number" name="duration_minutes" min="15" value="45">
+                  </label>
+                  <label>Capacity
+                    <input type="number" name="capacity" min="1" value="12">
+                  </label>
+                </div>
+                <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>">
+                <button class="btn-primary" type="submit">Add Schedule Slot</button>
+              </form>
+            <?php endif; ?>
+
           </div>
         </div>
     </section>

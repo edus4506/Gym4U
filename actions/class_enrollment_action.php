@@ -74,6 +74,21 @@ try {
     if ($delete->rowCount() > 0) {
       $update = $db->prepare('UPDATE class_schedule SET enrolled = MAX(enrolled - 1, 0) WHERE id = ?');
       $update->execute([$scheduleId]);
+
+      $nextStmt = $db->prepare('SELECT user_id FROM waitlist WHERE schedule_id = ? ORDER BY added_at ASC LIMIT 1');
+      $nextStmt->execute([$scheduleId]);
+      $nextUserId = $nextStmt->fetchColumn();
+
+      if ($nextUserId !== false) {
+        $insertEnroll = $db->prepare('INSERT INTO enrollments (user_id, schedule_id) VALUES (?, ?)');
+        $insertEnroll->execute([$nextUserId, $scheduleId]);
+
+        $incrementEnrolled = $db->prepare('UPDATE class_schedule SET enrolled = enrolled + 1 WHERE id = ?');
+        $incrementEnrolled->execute([$scheduleId]);
+
+        $deleteWaitlist = $db->prepare('DELETE FROM waitlist WHERE user_id = ? AND schedule_id = ?');
+        $deleteWaitlist->execute([$nextUserId, $scheduleId]);
+      }
     }
   }
 

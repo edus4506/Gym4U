@@ -15,7 +15,7 @@ $classDay   = $_GET['class-day'] ?? '';
 $query = "
     SELECT t.id, t.bio, t.experience_years, t.certifications, t.phone, t.title,
            u.name, u.email,
-           GROUP_CONCAT(DISTINCT cat.name) AS specializations
+           GROUP_CONCAT(cat.name, ', ') AS specializations
     FROM trainers t
     JOIN users u ON u.id = t.user_id
     LEFT JOIN trainer_categories tc ON tc.trainer_id = t.id
