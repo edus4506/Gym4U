@@ -165,6 +165,23 @@ footer a:hover, footer a:focus-visible {
   font-weight: 600;
 }
 
+.btn-logout {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.35rem 0.9rem;
+  border-radius: 999px;
+  background: var(--secondary);
+  color: var(--text);
+  font-size: 0.9rem;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-logout:hover, .btn-logout:focus-visible {
+  background: var(--secondary-strong);
+}
+
 .btn-enroll {
   background: var(--primary);
   color: white;
@@ -175,9 +192,12 @@ footer a:hover, footer a:focus-visible {
 }
 
 .btn-cancel {
-  margin-top: 0.8rem;
   background: var(--danger);
   color: white;
+}
+
+.btn-cancel-membership {
+  margin-top: 0.8rem;
 }
 
 .btn-cancel:hover {

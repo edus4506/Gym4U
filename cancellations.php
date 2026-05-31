@@ -42,7 +42,7 @@ require_once __DIR__ . '/controllers/cancellationsController.php';
           <li>
             <form action="actions/logout.php" method="post" style="display:inline;">
               <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>">
-              <button type="submit">Logout</button>
+              <button type="submit" class="btn-logout">Logout</button>
             </form>
           </li>
         <?php else: ?>
@@ -213,7 +213,7 @@ require_once __DIR__ . '/controllers/cancellationsController.php';
 
                 <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>">
 
-                <button type="submit" class="btn btn-cancel">Cancel Membership</button>
+                <button type="submit" class="btn btn-cancel btn-cancel-membership">Cancel Membership</button>
               </form>
 
             <?php endif; ?>

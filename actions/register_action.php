@@ -16,6 +16,7 @@ csrf_verify();
 $name = trim($_POST['name'] ?? '');
 $username = trim($_POST['username'] ?? '');
 $email = trim($_POST['email'] ?? '');
+$phone = trim($_POST['phone'] ?? '');
 $password = $_POST['password'] ?? '';
 $confirmPassword = $_POST['confirm_password'] ?? '';
 
@@ -42,11 +43,12 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 $db = getDatabaseConnection();
 
 try {
-    $stmt = $db->prepare('INSERT INTO users (name, username, email, password, role, subscription_plan) VALUES (?, ?, ?, ?, ?, ?)');
+    $stmt = $db->prepare('INSERT INTO users (name, username, email, phone, password, role, subscription_plan) VALUES (?, ?, ?, ?, ?, ?, ?)');
     $stmt->execute([
         $name,
         $username,
         $email,
+        $phone !== '' ? $phone : null,
         password_hash($password, PASSWORD_DEFAULT),
         'member',
         'none',

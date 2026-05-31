@@ -49,9 +49,9 @@ try {
     $db->rollBack();
   }
 
-  header('Location: ../manage_schedules.php?error=class');
+  header('Location: ../manage_schedules.php?error=schedule');
   exit;
 }
 
-header('Location: ../manage_schedules.php?success=class');
+header('Location: ../manage_schedules.php?success=schedule');
 exit;

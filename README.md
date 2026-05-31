@@ -39,9 +39,10 @@ Gym4U is a gym management website built for the LTW course at FEUP (2026). It al
 - [x] Oversee and ensure the smooth operation of the entire system.
 
 **Extra:**
-- [x] **Membership Plans** — three subscription tiers (Off-Peak €19.99, Classic €29.99, Premium €39.99) shown on `subscriptions.php`. Plan stored per user and enforced on enrollment (Off-Peak: up to 2 classes, Classic: up to 6 classes, Premium: unlimited). Members can cancel their membership via `cancellations.php`.
+- [x] **Membership Plans** — three subscription tiers (Off-Peak €19.99, Classic €29.99, Premium €39.99) shown on `subscriptions.php`. Plan stored per user and enforced on enrollment (Off-Peak: up to 2 classes and restricted to classes outside peak hours 18:00–20:00, Classic: up to 6 classes, Premium: unlimited). Members can cancel their membership via `cancellations.php`.
 - [x] **Class Waitlist (Premium only)** — when a class is full, Premium members can join a waitlist. When a spot opens (another member cancels), the first person in the queue is automatically enrolled.
 - [x] **REST API** — public read-only JSON API under `api/` with endpoints for trainers, equipment, and schedules. Supports filters and returns proper HTTP status codes.
+- [x] **Analytics Dashboard** — trainers and admins can view attendance statistics, ratings summaries, and engagement data via `analytics.php`. Gym-wide metrics (most popular classes, enrollment trends, equipment status) available to admins.
 
 ## Running
 
@@ -72,6 +73,14 @@ Supported filters examples:
 | member | 1234 | Member | Premium — use to test waitlist and full membership features |
 | member2 | 1234 | Member | Off-Peak — restricted to 2 class enrollments |
 | member3 | 1234 | Member | Classic — up to 6 class enrollments |
+
+## Access Control
+
+### Page Access by Role
+![Access Resume](images/readme/access_resume.jpg)
+
+### Navigation Header by Role
+![Headers Diagram](images/readme/headers_diagram.jpg)
 
 ## Website Screenshots
 
