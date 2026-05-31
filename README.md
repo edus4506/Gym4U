@@ -42,6 +42,7 @@ Gym4U is a gym management website built for the LTW course at FEUP (2026). It al
 - [x] **Membership Plans** — three subscription tiers (Off-Peak €19.99, Classic €29.99, Premium €39.99) shown on `subscriptions.php`. Plan stored per user and enforced on enrollment (Off-Peak: up to 2 classes, Classic: up to 6 classes, Premium: unlimited). Members can cancel their membership via `cancellations.php`.
 - [x] **Class Waitlist (Premium only)** — when a class is full, Premium members can join a waitlist. When a spot opens (another member cancels), the first person in the queue is automatically enrolled.
 - [x] **REST API** — public read-only JSON API under `api/` with endpoints for trainers, equipment, and schedules. Supports filters and returns proper HTTP status codes.
+- [x] **Analytics Dashboard** — trainers and admins can view attendance statistics, ratings summaries, and engagement data via `analytics.php`. Gym-wide metrics (most popular classes, enrollment trends, equipment status) available to admins.
 
 ## Running
 

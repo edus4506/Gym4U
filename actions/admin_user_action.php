@@ -6,7 +6,7 @@ require_once __DIR__ . '/../database/db.php';
 require_once __DIR__ . '/../utils/csrf.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST' || ($_SESSION['user_role'] ?? '') !== 'admin') {
-  header('Location: ../profile.php');
+  header('Location: ../manage_users.php');
   exit;
 }
 
@@ -52,6 +52,13 @@ try {
 
     if ($name === '' || $username === '' || $email === '' || !in_array($role, ['member', 'trainer', 'admin'], true)) {
       throw new RuntimeException('Invalid user');
+    }
+
+    if ($userId === (int)$_SESSION['user_id'] && $role !== 'admin') {
+      $adminCount = (int)$db->query("SELECT COUNT(*) FROM users WHERE role = 'admin' AND active = 1")->fetchColumn();
+      if ($adminCount <= 1) {
+        throw new RuntimeException('Cannot demote the only admin');
+      }
     }
 
     $db->beginTransaction();

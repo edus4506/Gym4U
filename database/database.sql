@@ -22,6 +22,7 @@ CREATE TABLE IF NOT EXISTS users (
     email TEXT NOT NULL UNIQUE,
     password TEXT NOT NULL,
     profile_photo TEXT,
+    phone TEXT,
     active INTEGER NOT NULL DEFAULT 1,
     role TEXT NOT NULL CHECK(role IN ('member', 'trainer', 'admin')) DEFAULT 'member',
     subscription_plan TEXT NOT NULL DEFAULT 'none'
@@ -102,7 +103,8 @@ CREATE TABLE IF NOT EXISTS reviews (
     rating INTEGER NOT NULL CHECK(rating BETWEEN 1 AND 5),
     comment TEXT NOT NULL,
     FOREIGN KEY (user_id) REFERENCES users(id),
-    FOREIGN KEY (schedule_id) REFERENCES class_schedule(id)
+    FOREIGN KEY (schedule_id) REFERENCES class_schedule(id),
+    UNIQUE(user_id, schedule_id)
 );
 
 CREATE TABLE IF NOT EXISTS waitlist (
