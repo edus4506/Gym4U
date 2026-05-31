@@ -74,6 +74,14 @@ Supported filters examples:
 | member2 | 1234 | Member | Off-Peak — restricted to 2 class enrollments |
 | member3 | 1234 | Member | Classic — up to 6 class enrollments |
 
+## Access Control
+
+### Page Access by Role
+![Access Resume](images/readme/access_resume.jpg)
+
+### Navigation Header by Role
+![Headers Diagram](images/readme/headers_diagram.jpg)
+
 ## Website Screenshots
 
 ### Home Page
