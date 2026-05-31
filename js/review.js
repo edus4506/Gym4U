@@ -57,5 +57,6 @@ function remove() {
     showMessage('Review submitted successfully!', 'success');
     form.reset();
     remove();
+    setTimeout(() => location.reload(), 1500);
   });
 })();
