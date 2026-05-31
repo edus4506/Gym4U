@@ -14,13 +14,16 @@
 }
 
 .slide:nth-child(2) {
-  animation-delay: 4s;
+  animation-delay: -4s;
 }
 
 @keyframes fade {
   0%   { opacity: 0; }
-  10%  { opacity: 1; }
-  45%  { opacity: 1; }
+  5%   { opacity: 0; }   
+  10%  { opacity: 1; }  
+  45%  { opacity: 1; }   
+  50%  { opacity: 0; } 
   55%  { opacity: 0; }
-  100% { opacity: 0; }
+  60%  { opacity: 1; }  
+  95%  { opacity: 1; }
 }
